@@ -1,0 +1,1 @@
+hlint.vba: call delete('/home/b/.vim/compiler/hlint.vim')

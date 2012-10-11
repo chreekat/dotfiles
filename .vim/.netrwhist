@@ -1,0 +1,11 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =9
+let g:netrw_dirhist_1='/home/b/src/shakespeare-0.10.1.1/Text'
+let g:netrw_dirhist_2='/home/b/src/shakespeare-0.10.1.1/Text/Shakespeare'
+let g:netrw_dirhist_3='/home/b/Org/Flog/flog/cabal-dev'
+let g:netrw_dirhist_4='/usr/share/perl5/MP3/Tag'
+let g:netrw_dirhist_5='/usr/share/perl5/MP3'
+let g:netrw_dirhist_6='/home/b/src/b/FlattenParagraph'
+let g:netrw_dirhist_7='/home/b/src/reactive-banana/reactive-banana-wx/src'
+let g:netrw_dirhist_8='/home/b/src/reactive-banana/reactive-banana-wx/src/Reactive'
+let g:netrw_dirhist_9='/home/b/src/reactive-banana/reactive-banana-wx/src/Reactive/Banana'

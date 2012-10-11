@@ -1,0 +1,10 @@
+--type-add=xml=.rss
+--type-add=haskell=.hsc
+#--type-add=text=.txt
+--type-set=coffee=.coffee
+--type-set=cabal=.cabal
+--type-set=hamlet=.hamlet
+--type-set=julius=.julius
+--type-set=lucius=.lucius
+--type-set=cassius=.cassius
+--type-set=elm=.elm
