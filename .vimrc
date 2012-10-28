@@ -24,19 +24,21 @@ filetype plugin indent on
 let xml_jump_string = "&$&"
 "call pathogen#infect()
 set t_Co=256
-let g:solarized_bold = 0
+"let g:solarized_bold = 0
 colorscheme solarized
 set aw
 set ai
 set bg=dark
+set cpo+=J
 set et
 set fdc=3
 set gp=ack-grep
 set hidden
+set modeline
 set is
 set laststatus=2 " Always show status
 set list
-set lcs=tab:>\ ,trail:⎵
+set lcs=tab:-\ ,trail:⎵
 set mouse=
 set showcmd
 set statusline=%f%m%r%h%w\%=[L:\%l\ C:\%c\ A:\%b\ H:\x%B\ P:\%p%%]
