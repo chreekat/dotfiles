@@ -6,7 +6,7 @@ OPTIONS=autoquiver
 OPTIONS=pickup_types:$
 
 # == Make things look nice ===================================
-OPTIONS=color,IBMgraphics,hilite_pet,lit_corridor
+OPTIONS=color,DECgraphics,hilite_pet,lit_corridor
 OPTIONS=menustyle:full
 
 # == Show extra stuff ========================================
@@ -29,13 +29,13 @@ OPTIONS=msg_window:full
 #   iron chain  -> infinity symbol
 #   statue      -> beta
 #   iron ball   -> theta
-DUNGEON= 0 179 196 218 191 192 217 197 193 194 180 195 250 254 \
-       254   0   0 240 241 250 176 177   0   0 243 242   0 239 \
-       251 227 244 247 250 247 250 250   0   0   0   0 247
+#DUNGEON= 1 179 196 218 191 192 217 197 193 194 180 195 250 254 \
+#       254   0   0 240 241 250 176 177   0   0 243 242   0 239 \
+#       251 227 244 247 250 247 250 250   0   0   0   0 247
        
-OBJECTS= 0 0 0 0 0 0 0 0 0 0 0 0 0 225 233 236 0
+#OBJECTS= 0 0 0 0 0 0 0 0 0 0 0 0 0 225 233 236 0
 
-TRAPS=   0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+#TRAPS=   0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
 
 # Default dungeon features for IBMgraphics
 # solid rock, various walls ... vertical open door
@@ -67,17 +67,17 @@ MENUCOLOR=" cursed clear potion "=orange
 MENUCOLOR=" cursed potion.* water"=orange
 
 # Unknown but equipped
-MENUCOLOR=" .* \([a-z ;]+\)"=gray&underline
+#MENUCOLOR=" .* \([a-z ;]+\)"=gray&underline
 
 # Uncursed and equipped
-MENUCOLOR=" [at].* [-+][0-9]+ .* \([a-z ;]+\)"=cyan&underline
-MENUCOLOR=" [0-9]+ [-+][0-9]+ .* \([a-z ;]+\)"=cyan&underline
-MENUCOLOR=" uncursed .* \([a-z ;]+\)"=cyan&underline
+#MENUCOLOR=" [at].* [-+][0-9]+ .* \([a-z ;]+\)"=cyan&underline
+#MENUCOLOR=" [0-9]+ [-+][0-9]+ .* \([a-z ;]+\)"=cyan&underline
+#MENUCOLOR=" uncursed .* \([a-z ;]+\)"=cyan&underline
 MENUCOLOR=" blessed .* \([a-z ;]+\)"=lightgreen&underline
 MENUCOLOR=" cursed .* \([a-z ;]+\)"=red&underline
 
-# Lit light sources
-MENUCOLOR=" \(lit\)"=white
+## Lit light sources
+#MENUCOLOR=" \(lit\)"=white
 
 # Damaged items
 MENUCOLOR=" rusty "=yellow
