@@ -93,6 +93,8 @@ augroup vimrc
 
     " Empty file? Start insert mode
     au BufEnter * if s:emptyFile(expand("%")) | star | endif
+
+    au BufEnter ~/src/Elm/* setl ts=8 noet noeol
 aug END
 
 " This needs to be better... needs to reuse quickfix buffer.
