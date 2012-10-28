@@ -211,6 +211,8 @@ EXEC 01;31  # Unix
 .rdf 32
 .css 32
 .js 32
+.elm 32
+.coffee 32
 .man 32
 .0 32
 .1 32
@@ -349,6 +351,10 @@ EXEC 01;31  # Unix
 .z    1;35
 .Z    1;35
 .zip  1;35
+
+# Makefiles
+*Makefile 7;35
+.do 7;35
 
 # For testing
 .ANSI-30-black 30
