@@ -164,8 +164,16 @@ endfunction
 
 function! BFoldtextRealz(foldstart, foldend)
     let lines = a:foldend - a:foldstart
-    let firstline = getline(a:foldstart)
-    let textend = '|' . lines . '| '
+    let commentPat = substitute(&cms, '%s', '.*', '')
+
+    let firstline=getline(a:foldstart)
+    " Now, a bunch of replacements/removals
+    "   End-of-line Comments
+    let firstline = substitute(firstline, '\S\+\zs\s*'.commentPat, '', 'g')
+    "   Syntactic white noise
+    let firstline = substitute(firstline, '^class\s*', '', 'g')
+
+    let textend = '|' . lines . '| ↓' . v:foldlevel
 
     return firstline . repeat(" ", WindowWidth()-StringWidth(firstline.textend)) . textend
 endfunction
