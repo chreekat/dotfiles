@@ -537,8 +537,8 @@ exe "hi! Title"          .s:fmt_bold   .s:fg_orange .s:bg_none
 exe "hi! VisualNOS"      .s:fmt_stnd   .s:fg_none   .s:bg_base02 .s:fmt_revbb
 exe "hi! WarningMsg"     .s:fmt_bold   .s:fg_red    .s:bg_none
 exe "hi! WildMenu"       .s:fmt_none   .s:fg_base2  .s:bg_base02 .s:fmt_revbb
-exe "hi! Folded"         .s:fmt_none   .s:fg_base0  .s:bg_base02
-exe "hi! FoldColumn"     .s:fmt_none   .s:fg_base0  .s:bg_base02
+exe "hi! Folded"         .s:fmt_none   .s:fg_none  .s:bg_base02
+exe "hi! FoldColumn"     .s:fmt_none   .s:fg_base03  .s:bg_base01
 if      (g:lunatic_diffmode=="high")
 exe "hi! DiffAdd"        .s:fmt_revr   .s:fg_green  .s:bg_none
 exe "hi! DiffChange"     .s:fmt_revr   .s:fg_yellow .s:bg_none
@@ -878,6 +878,11 @@ exe "hi! pandocMetadataKey"              .s:fg_blue   .s:bg_none   .s:fmt_none
 exe "hi! pandocMetadata"                 .s:fg_blue   .s:bg_none   .s:fmt_bold
 hi! link pandocMetadataTitle             pandocMetadata
 
+"}}}
+" coffee (un-)highlighting "{{{
+" For use with 'kchmck/vim-coffee-script'
+hi link coffeeSpecialOp NONE
+hi link coffeeExtendedOp NONE
 "}}}
 " Utility autocommand "{{{
 " ---------------------------------------------------------------------
