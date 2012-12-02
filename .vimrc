@@ -51,7 +51,6 @@ else
     echomsg "Skipping colorscheme cause it's no-findings."
 endif
 
-set aw
 set ai
 set bg=dark
 " set cpo+=J
