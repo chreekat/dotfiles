@@ -68,6 +68,7 @@ set laststatus=2 " Always show status
 set list
 set lcs=tab:-\ ,trail:⎵,extends:>,precedes:<
 set mouse=
+set nu
 set showcmd
 set sidescroll=1
 set sidescrolloff=1
@@ -79,7 +80,7 @@ set swb=usetab
 set titlestring=vi:\ %t%(\ %M%)%(\ (%{expand(\"%:~:.:h\")})%)%(\ %a%)
 set ts=4
 set tw=80
-set wildmode=longest,list
+set wildmode=longest:list:longest,list:full
 set wiw=83 nowrap " For shoots and googles
 
 let mapleader = ","
@@ -126,7 +127,20 @@ nmap <down> j
 nmap <leader>st :call ScreenTitle()<cr>
 
 " Quick toggle of hls
-nmap /// :set hls!<cr>
+function! ToggleHighlight()
+    set hls!
+    if &hls
+        let @/ = input("Search: ", @/)
+    endif
+endfunction
+
+nmap /// :call ToggleHighlight()<cr>
+
+" I just can't type z
+nmap ,. z
+
+" The "Dominate Dragons" idea
+command! GQ silent Gcommit -am "quicksave"
 
 " Makes the Alternate plugin (a.vim) easier for Dvorak
 command! Z A
