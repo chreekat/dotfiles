@@ -75,7 +75,7 @@ link_dot() {
 }
 
 # Initialize globals
-EXPORT_DIR=`dirname $0`
+EXPORT_DIR=$(dirname "${PWD}/$0")
 DOTS=(
     .dircolors
     .cvsignore
