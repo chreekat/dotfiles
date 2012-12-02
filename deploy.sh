@@ -2,14 +2,28 @@
 
 set -e
 
+# Utility functions
+
+## For ease of iterative experimentation
 doo () {
     $@
+    # echo $@
 }
 
 errm () {
     2>&1 echo -e "$@"
 }
 
+# START HERE.
+main () {
+    confirm_no_clobber
+    confirm_have_goodies
+    for i in ${DOTS[@]}; do
+        link_dot $i
+    done
+}
+
+# Subroutines
 confirm_no_clobber() {
     NOTADOT=''
 
@@ -60,14 +74,7 @@ link_dot() {
     doo ln -s $EXPORT_DIR/$dot .
 }
 
-main () {
-    confirm_no_clobber
-    confirm_have_goodies
-    for i in ${DOTS[@]}; do
-        link_dot $i
-    done
-}
-
+# Initialize globals
 EXPORT_DIR=`dirname $0`
 DOTS=(
     .dircolors
@@ -83,5 +90,6 @@ DOTS=(
     .gitconfig
 )
 
+# Fire missiles
 cd $HOME
 main
