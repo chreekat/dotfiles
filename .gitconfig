@@ -10,3 +10,5 @@
 	st = status --short
 [rebase]
 	autosquash = true
+[core]
+	excludesfile = ~/.cvsignore
