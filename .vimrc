@@ -35,6 +35,7 @@ if isdirectory($HOME."/.vim/bundle/vundle")
     Bundle 'suan/vim-instant-markdown'
     Bundle 'lukaszkorecki/workflowish'
     Bundle 'b4winckler/vim-angry'
+    Bundle 'Lokaltog/vim-powerline'
 else
     echomsg "Vundle not installed! Hecka weirdness may ensue."
 endif
@@ -71,7 +72,7 @@ set showcmd
 set sidescroll=1
 set sidescrolloff=1
 set smartcase ignorecase
-set statusline=%f%m%r%h%w\%=[L:\%l\ C:\%c\ A:\%b\ H:\x%B\ P:\%p%%]
+" set statusline=%f%m%r%h%w\%=[L:\%l\ C:\%c\ P:\%p%%]
 set sol!
 set sw=4
 set swb=usetab
