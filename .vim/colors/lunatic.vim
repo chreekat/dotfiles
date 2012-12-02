@@ -446,9 +446,7 @@ exe "hi! Normal"         .s:fmt_none   .s:fg_base0  .s:bg_back
 exe "hi! Comment"        .s:fmt_ital   .s:fg_base01 .s:bg_none
 "       *Comment         any comment
 
-hi! clear Constant
 exe "hi! Constant"       .s:fmt_none   .s:fg_cyan   .s:bg_none
-" exe "hi! String"         .s:fmt_none   .s:fg_cyan     .s:bg_none
 "       *Constant        any constant
 "        String          a string constant: "this is a string"
 "        Character       a character constant: 'c', '\n'
@@ -456,8 +454,7 @@ exe "hi! Constant"       .s:fmt_none   .s:fg_cyan   .s:bg_none
 "        Boolean         a boolean constant: TRUE, false
 "        Float           a floating point constant: 2.3e10
 
-hi! clear Identifier
-" exe "hi! Identifier"     .s:fmt_none   .s:fg_blue   .s:bg_none
+exe "hi! Identifier"     .s:fmt_none   .s:fg_blue   .s:bg_none
 "       *Identifier      any variable name
 "        Function        function name (also: methods for classes)
 "
@@ -470,7 +467,7 @@ exe "hi! Statement"      .s:fmt_none   .s:fg_green  .s:bg_none
 "        Keyword         any other keyword
 "        Exception       try, catch, throw
 
-exe "hi! PreProc"        .s:fmt_none   .s:fg_blue .s:bg_none
+exe "hi! PreProc"        .s:fmt_none   .s:fg_orange .s:bg_none
 "       *PreProc         generic Preprocessor
 "        Include         preprocessor #include
 "        Define          preprocessor #define
@@ -483,7 +480,7 @@ exe "hi! Type"           .s:fmt_none   .s:fg_yellow .s:bg_none
 "        Structure       struct, union, enum, etc.
 "        Typedef         A typedef
 
-exe "hi! Special"        .s:fmt_none   .s:fg_green    .s:bg_none
+exe "hi! Special"        .s:fmt_none   .s:fg_red    .s:bg_none
 "       *Special         any special symbol
 "        SpecialChar     special character in a constant
 "        Tag             you can use CTRL-] on this
@@ -580,36 +577,35 @@ exe "hi! CursorLine"     .s:fmt_uopt   .s:fg_none   .s:bg_base02  .s:sp_base1
 exe "hi! ColorColumn"    .s:fmt_none   .s:fg_none   .s:bg_base02
 exe "hi! Cursor"         .s:fmt_none   .s:fg_base03 .s:bg_base0
 hi! link lCursor Cursor
-exe "hi! MatchParen"     .s:fmt_none   .s:fg_none   .s:bg_base00
+exe "hi! MatchParen"     .s:fmt_bold   .s:fg_red    .s:bg_base01
 
 "}}}
 " vim syntax highlighting "{{{
 " ---------------------------------------------------------------------
 "exe "hi! vimLineComment" . s:fg_base01 .s:bg_none   .s:fmt_ital
-hi! link vimComment Comment
-hi! link vimLineComment Comment
+"hi! link vimComment Comment
+"hi! link vimLineComment Comment
 hi! link vimVar Identifier
 hi! link vimFunc Function
 hi! link vimUserFunc Function
 hi! link helpSpecial Special
 hi! link vimSet Normal
 hi! link vimSetEqual Normal
-hi! link vimCommentString Comment
-" exe "hi! vimCommentString"  .s:fmt_none    .s:fg_violet .s:bg_none
-" exe "hi! vimCommand"        .s:fmt_none    .s:fg_yellow .s:bg_none
-" exe "hi! vimCmdSep"         .s:fmt_bold    .s:fg_blue   .s:bg_none
+exe "hi! vimCommentString"  .s:fmt_none    .s:fg_violet .s:bg_none
+exe "hi! vimCommand"        .s:fmt_none    .s:fg_yellow .s:bg_none
+exe "hi! vimCmdSep"         .s:fmt_bold    .s:fg_blue   .s:bg_none
 exe "hi! helpExample"       .s:fmt_none    .s:fg_base1  .s:bg_none
 exe "hi! helpOption"        .s:fmt_none    .s:fg_cyan   .s:bg_none
 exe "hi! helpNote"          .s:fmt_none    .s:fg_magenta.s:bg_none
 exe "hi! helpVim"           .s:fmt_none    .s:fg_magenta.s:bg_none
 exe "hi! helpHyperTextJump" .s:fmt_undr    .s:fg_blue   .s:bg_none
 exe "hi! helpHyperTextEntry".s:fmt_none    .s:fg_green  .s:bg_none
-" exe "hi! vimIsCommand"      .s:fmt_none    .s:fg_base00 .s:bg_none
-" exe "hi! vimSynMtchOpt"     .s:fmt_none    .s:fg_yellow .s:bg_none
-" exe "hi! vimSynType"        .s:fmt_none    .s:fg_cyan   .s:bg_none
-" exe "hi! vimHiLink"         .s:fmt_none    .s:fg_blue   .s:bg_none
-" exe "hi! vimHiGroup"        .s:fmt_none    .s:fg_blue   .s:bg_none
-" exe "hi! vimGroup"          .s:fmt_undb    .s:fg_blue   .s:bg_none
+exe "hi! vimIsCommand"      .s:fmt_none    .s:fg_base00 .s:bg_none
+exe "hi! vimSynMtchOpt"     .s:fmt_none    .s:fg_yellow .s:bg_none
+exe "hi! vimSynType"        .s:fmt_none    .s:fg_cyan   .s:bg_none
+exe "hi! vimHiLink"         .s:fmt_none    .s:fg_blue   .s:bg_none
+exe "hi! vimHiGroup"        .s:fmt_none    .s:fg_blue   .s:bg_none
+exe "hi! vimGroup"          .s:fmt_undb    .s:fg_blue   .s:bg_none
 "}}}
 " diff highlighting "{{{
 " ---------------------------------------------------------------------
@@ -923,7 +919,8 @@ augroup SolarizedHiTrail
 augroup END
 " }}}
 " License "{{{
-" Elements copied from Solarized come under the following License:
+" Elements copied from Solarized (which is nearly everything of value) come
+" under the following License:
 " ---------------------------------------------------------------------
 "
 " Copyright (c) 2011 Ethan Schoonover
