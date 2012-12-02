@@ -16,6 +16,7 @@ errm () {
 
 # START HERE.
 main () {
+    cd $HOME
     confirm_no_clobber
     confirm_have_goodies
     for i in ${DOTS[@]}; do
@@ -91,5 +92,4 @@ DOTS=(
 )
 
 # Fire missiles
-cd $HOME
 main
