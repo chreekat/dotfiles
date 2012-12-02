@@ -1,3 +1,6 @@
 .vim/bundle
 .vim/.VimballRecord
 .vim/.netrwhist
+.ssh
+.irssi/sasl.auth
+.irssi/away.log
