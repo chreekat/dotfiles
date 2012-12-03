@@ -6,9 +6,11 @@
 [color]
 	ui = auto
 [alias]
-	lg = log --oneline --graph --decorate
+	lg = log --oneline --graph --decorate --all
 	st = status --short
 [rebase]
 	autosquash = true
 [core]
 	excludesfile = ~/.cvsignore
+[merge]
+	tool = vimdiff
