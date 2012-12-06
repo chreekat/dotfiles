@@ -14,3 +14,8 @@
 	excludesfile = ~/.cvsignore
 [merge]
 	tool = vimdiff
+[color "decorate"]
+	branch = green
+	remoteBranch = 14
+	HEAD = 4
+	tag = 6

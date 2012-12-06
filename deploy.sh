@@ -71,24 +71,31 @@ confirm_have_goodies() {
 
 link_dot() {
     dot=$1
-    doo rm $dot
+    doo rm -f $dot
     doo ln -s $EXPORT_DIR/$dot .
 }
 
 # Initialize globals
 EXPORT_DIR=$(dirname "${PWD}/$0")
 DOTS=(
-    .dircolors
-    .cvsignore
-    .bash_aliases
-    .ssh
     .ackrc
-    .toprc
+    .bash_aliases
+    .cvsignore
+    .cvsrc
+    .dircolors
+    .git
+    .gitconfig
+    .gitignore
+    .gnupg
+    .inputrc
+    .irssi
+    .muttrc
+    .ncmpcpp
     .nethackrc
+    .ssh
+    .toprc
     .vim
     .vimrc
-    .irssi
-    .gitconfig
 )
 
 # Fire missiles

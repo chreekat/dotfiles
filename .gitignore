@@ -4,3 +4,4 @@
 .ssh
 .irssi/sasl.auth
 .irssi/away.log
+.gnupg

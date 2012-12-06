@@ -1,0 +1,4 @@
+mpd_music_dir = "/home/b/Music"
+playlist_display_mode = "columns"
+user_interface = "alternative"
+allow_physical_files_deletion = "yes"
