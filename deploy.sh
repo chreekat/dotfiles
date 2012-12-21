@@ -83,7 +83,6 @@ DOTS=(
     .cvsignore
     .cvsrc
     .dircolors
-    .git
     .gitconfig
     .gitignore
     .gnupg
