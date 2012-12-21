@@ -73,7 +73,7 @@ set sidescroll=1
 set sidescrolloff=1
 set smartcase ignorecase
 " set statusline=%f%m%r%h%w\%=[L:\%l\ C:\%c\ P:\%p%%]
-set sol!
+set nosol
 set sw=4
 set swb=usetab
 set titlestring=vi:\ %t%(\ %M%)%(\ (%{expand(\"%:~:.:h\")})%)%(\ %a%)
@@ -269,7 +269,9 @@ augroup vimrc
     " call SoftWordWrap() |
     au BufRead *Nanowrimo/nanowrimo.txt nmap ,c :echo NanoStatus()<cr>
                 \|setl tw=72 fo+=a fp=par
-                \|ru autocorrect.vim | ru dvorak.vim
+                " \|ru autocorrect.vim | ru dvorak.vim
+    au InsertEnter * set cuc cul
+    au InsertLeave * set nocuc nocul
 
 aug END
 
