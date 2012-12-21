@@ -8,6 +8,9 @@
 [alias]
 	lg = log --oneline --graph --decorate --all
 	st = status --short
+	d = diff
+	dc = diff --cached
+	quicksave = commit -am "Blah"
 [rebase]
 	autosquash = true
 [core]
