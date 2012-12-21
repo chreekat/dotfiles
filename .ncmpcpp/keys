@@ -1,2 +1,8 @@
 key_prev_column = 'h'
 key_next_column = 'l'
+# Ctrl-l
+key_apply_filter = 12
+# 2 is "Ctrl-b" by some magical logic
+key_page_up = 2 339
+# 6 is "Ctrl-f" similarly
+key_page_down = 6 338
