@@ -10,6 +10,9 @@ doo () {
     # echo $@
 }
 
+# This function was originally named errm to be short for "error message", but
+# then I realized that it sounds like a person saying, "Errm, excuse me, I don't
+# think that's what you meant to do."
 errm () {
     2>&1 echo -e "$@"
 }
@@ -83,6 +86,7 @@ DOTS=(
     .cvsignore
     .cvsrc
     .dircolors
+    .emacs.d
     .gitconfig
     .gitignore
     .gnupg
@@ -93,6 +97,8 @@ DOTS=(
     .nethackrc
     .ssh
     .toprc
+    .tmux
+    .tmux.conf
     .vim
     .vimrc
 )
