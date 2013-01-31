@@ -11,6 +11,7 @@
 	d = diff
 	dc = diff --cached
 	quicksave = commit -am "Blah"
+	lp = log -p
 [rebase]
 	autosquash = true
 [core]
