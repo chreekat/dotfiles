@@ -1,8 +1,18 @@
 " Vundle bundle configs
-let g:syntastic_coffee_lint_options = "-f ~/bDotfiles/coffeelint.json"
+let g:syntastic_coffee_lint_options = "-f ~/Dropbox/bDotfiles/coffeelint.json"
 let g:syntastic_mode_map = {'active_filetypes': [], 'mode': 'passive', 'passive_filetypes': []}
 
 let g:instant_markdown_slow = 1
+
+let g:haskell_multiline_strings = 1
+
+let g:Powerline_symbols="unicode"
+let g:ctrlp_map = '<leader>t'
+
+let g:is_bash = 1
+
+let g:hpaste_author = 'chreekat'
+let g:haskell_autotags = 1
 
 " Vundle nonsense
 set nocompatible
@@ -17,18 +27,15 @@ if isdirectory($HOME."/.vim/bundle/vundle")
     Bundle 'gmarik/vundle'
     Bundle 'tpope/vim-fugitive'
     Bundle 'tpope/vim-surround'
-    Bundle 'tpope/vim-commentary'
+    Bundle 'scrooloose/nerdcommenter'
     Bundle 'tpope/vim-unimpaired'
     Bundle 'tpope/vim-speeddating'
     Bundle 'scrooloose/syntastic'
-    Bundle 'matchit.zip'
     Bundle 'kchmck/vim-coffee-script'
     Bundle 'altercation/vim-colors-solarized'
     Bundle 'a.vim'
     Bundle 'msanders/snipmate.vim'
-    Bundle 'wincent/Command-T'
-    " Bundle 'bsl/obviousmode'
-    " Bundle 'http://www.drchip.org/astronaut/vim/vbafiles/hilinks.vba.gz'
+    Bundle 'godlygeek/tabular'
     Bundle 'panozzaj/vim-autocorrect'
     Bundle 'dag/vim2hs'
     Bundle 'tpope/vim-markdown'
@@ -36,51 +43,60 @@ if isdirectory($HOME."/.vim/bundle/vundle")
     Bundle 'lukaszkorecki/workflowish'
     Bundle 'b4winckler/vim-angry'
     Bundle 'Lokaltog/vim-powerline'
+    Bundle 'kergoth/vim-hilinks'
+    Bundle 'kien/ctrlp.vim'
+    " BreakPts dependency
+    Bundle 'genutils'
+    Bundle 'vim-scripts/BreakPts'
+    Bundle 'chreekat/vim-paren-crosshairs'
+    Bundle 'chreekat/vim-colors-lunatic'
+    Bundle 'vim-scripts/VisIncr'
+    Bundle 'benmills/vimux'
+    Bundle 'spolu/dwm.vim'
+    " Bundle 'pbrisbin/html-template-syntax'
 else
     echomsg "Vundle not installed! Hecka weirdness may ensue."
 endif
 
+ru macros/matchit.vim
+
 filetype plugin indent on
-"syntax enable
 
-set t_Co=256
-
-if filereadable($HOME."/.vim/colors/lunatic.vim")
+if isdirectory($HOME."/.vim/bundle/vim-colors-lunatic")
     colorscheme lunatic
 else
     echomsg "Skipping colorscheme cause it's no-findings."
+    colorscheme default
 endif
 
 set ai
-set bg=dark
 " set cpo+=J
 set dict=/usr/share/dict/words
 set et
-set fdc=3
 set fo+=l
 set foldtext=BFoldtext()
-set gp=ack-grep
+set gp=ack-grep\ -H\ --column
+set grepformat=%f:%l:%c:%m
 set hidden
 set modeline
 set is
 set laststatus=2 " Always show status
 set list
-set lcs=tab:-\ ,trail:⎵,extends:>,precedes:<
+set lcs=tab:\ \ ,trail:\ ,extends:>,precedes:<
 set mouse=
-set nu
 set showcmd
 set sidescroll=1
 set sidescrolloff=1
-set smartcase ignorecase
+set smartcase
 " set statusline=%f%m%r%h%w\%=[L:\%l\ C:\%c\ P:\%p%%]
 set nosol
 set sw=4
-set swb=usetab
+set swb=useopen
 set titlestring=vi:\ %t%(\ %M%)%(\ (%{expand(\"%:~:.:h\")})%)%(\ %a%)
-set ts=4
 set tw=80
 set wildmode=longest:list:longest,list:full
 set wiw=83 nowrap " For shoots and googles
+set exrc
 
 let mapleader = ","
 let g:sh_fold_enabled=1
@@ -92,12 +108,13 @@ let g:haddock_indexfiledir = "~/.vim"
 
 map <Leader>e zfaB
 
+nmap <Leader>V :tabe  ~/.vimrc<cr>
 nmap <Leader>S :so ~/.vimrc<cr>
-nmap <Leader>V :e  ~/.vimrc<cr>
+nmap <Leader>L :tabe ~/.vim/bundle/vim-colors-lunatic/colors/lunatic.vim<cr>
 
 " Make <c-s> useful!
 nmap <c-s> :up<cr>
-vmap <c-s> :w 
+vmap <c-s> :w
 imap <c-s> <esc>:up<cr>
 
 " Escape key? No thanks
@@ -270,9 +287,9 @@ augroup vimrc
     au BufRead *Nanowrimo/nanowrimo.txt nmap ,c :echo NanoStatus()<cr>
                 \|setl tw=72 fo+=a fp=par
                 " \|ru autocorrect.vim | ru dvorak.vim
-    au InsertEnter * set cuc cul
-    au InsertLeave * set nocuc nocul
+    au BufEnter Log.txt setl fp=par\ p7
 
+    au BufNewFile ~/Dropbox/Project_Euler/p*.lhs :0r <abuf>:h/problem.skel |4
 aug END
 
 " This needs to be better... needs to reuse quickfix buffer.
