@@ -83,10 +83,12 @@ EXPORT_DIR=$(dirname "${PWD}/$0")
 DOTS=(
     .ackrc
     .bash_aliases
+    .bashrc
     .cvsignore
     .cvsrc
     .dircolors
     .emacs.d
+    .ghci
     .gitconfig
     .gitignore
     .gnupg
