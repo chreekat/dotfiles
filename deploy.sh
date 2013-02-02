@@ -25,6 +25,7 @@ main () {
     for i in ${DOTS[@]}; do
         link_dot $i
     done
+    # TODO: Make sure permissions are legit. .ssh and .ghci, I'm lookin at you.
 }
 
 # Subroutines
