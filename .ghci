@@ -1,1 +1,5 @@
-:set prompt "|%s|\nλ> "
+:set prompt "|%s|\nλ "
+
+:m + Control.Arrow
+:m + Control.Applicative
+:m + Data.Monoid
