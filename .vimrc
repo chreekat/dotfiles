@@ -87,7 +87,7 @@ set mouse=
 set showcmd
 set sidescroll=1
 set sidescrolloff=1
-set smartcase
+set smartcase ignorecase
 " set statusline=%f%m%r%h%w\%=[L:\%l\ C:\%c\ P:\%p%%]
 set nosol
 set sw=4
@@ -139,8 +139,6 @@ nmap <down> j
 " These don't work nice with nowrap, though
 "noremap 0 g0
 "noremap $ g$
-
-nmap <leader>st :call ScreenTitle()<cr>
 
 " Quick toggle of hls
 function! ToggleHighlight()
@@ -255,12 +253,6 @@ fu! SoftWordWrap()
     noremap g$ $
 endfu
 command! SoftWordWrap call SoftWordWrap()
-
-fu! ScreenTitle()
-    if &term =~ "screen"
-        silent exec "!echo -ne '\\ek" . expand("%:t") . " (vim)\\e\\\\'"
-    end
-endfu
 
 augroup vimrc
     au!
