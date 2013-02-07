@@ -57,6 +57,7 @@ if isdirectory($HOME."/.vim/bundle/vundle")
 else
     echomsg "Vundle not installed! Hecka weirdness may ensue."
 endif
+python from powerline.bindings.vim import source_plugin; source_plugin()
 
 ru macros/matchit.vim
 
@@ -98,7 +99,6 @@ set wildmode=longest:list:longest,list:full
 set wiw=83 nowrap " For shoots and googles
 set exrc
 
-let mapleader = ","
 let g:sh_fold_enabled=1
 let g:tex_flavor="latex"
 let g:Tex_DefaultTargetFormat="pdf"
@@ -108,7 +108,7 @@ let g:haddock_indexfiledir = "~/.vim"
 
 map <Leader>e zfaB
 
-nmap <Leader>V :tabe  ~/.vimrc<cr>
+nmap <Leader>V :tabe  ~/LoByMyHand/bDotfiles/.vimrc<cr>
 nmap <Leader>S :so ~/.vimrc<cr>
 nmap <Leader>L :tabe ~/.vim/bundle/vim-colors-lunatic/colors/lunatic.vim<cr>
 
@@ -128,6 +128,9 @@ nmap r<Tab> <Esc>
 inoremap <C-u> <esc>S
 
 nmap <C-w>M <C-w>\|<C-w>_
+
+" Toggle numbers. Maybe useless? Let's find out.
+map <leader># :if &nu \| set rnu \| elseif &rnu \|  set rnu! \| else \| set nu \| endif<cr>
 
 " There is never a time I don't want this, I believe.
 noremap j gj
