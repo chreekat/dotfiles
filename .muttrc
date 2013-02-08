@@ -42,6 +42,7 @@ set   ssl_force_tls=yes
 # Change default answers to questions
 set confirmappend=no
 set   copy=no
+set   record="this/is/ignored"
 set   include=yes
 
 
