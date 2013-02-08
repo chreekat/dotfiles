@@ -93,15 +93,18 @@ DOTS=(
     .gitconfig
     .gitignore
     .gnupg
+    .goobookrc
     .inputrc
     .irssi
+    .mutt
     .muttrc
     .ncmpcpp
     .nethackrc
+    .offlineimaprc
     .ssh
-    .toprc
     .tmux
     .tmux.conf
+    .toprc
     .vim
     .vimrc
 )
