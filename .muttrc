@@ -39,6 +39,8 @@ set   sort=threads
 set   sort_aux=reverse-last-date-received
 set   ssl_force_tls=yes
 set   fast_reply
+set   beep=no
+set   beep_new=yes
 
 # Change default answers to questions
 set confirmappend=no
@@ -58,7 +60,7 @@ macro index,pager gd <change-folder>=drafts<enter>   "Go to Google drafts"
 
 bind index,pager a group-reply
 bind index,pager c mail
-bind index,pager m change-folder
+macro index,pager m <change-folder>?<tab>
 bind index x tag-entry
 bind pager x tag-message
 
@@ -72,16 +74,7 @@ macro index,pager lw <change-folder>=@waiting_for<enter>     "Switch to @waiting
 
 # Offlineimap awayy
 macro index,pager O "<shell-escape>offlineimap<enter>"           "run offlineimap to sync all mail"
-macro index,pager o "<shell-escape>offlineimap -qf INBOX<enter>" "run offlineimap to sync inbox"
-
-# Sidebar Patch
-set sidebar_visible = yes
-set sidebar_width   = 20
-
-# Sidebar Navigation
-bind index,pager \Cj  sidebar-next
-bind index,pager \Ck  sidebar-prev
-bind index,pager \Co  sidebar-open
+macro index,pager o "<shell-escape>offlineimap -qf INBOX,@action<enter>" "run offlineimap to sync inbox"
 
 set query_command = "goobook query %s"
 set certificate_file = "~/.mutt/certificates"
