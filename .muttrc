@@ -85,3 +85,5 @@ bind index,pager L  sidebar-open
 
 set query_command = "goobook query %s"
 set certificate_file = "~/.mutt/certificates"
+
+source ~/.mutt/solarized.muttrc
