@@ -6,7 +6,7 @@ folder-hook . push "<esc>V"
 
 alternates bryan.richter@gmail.com chreekat@gmail.com
 
-mailboxes =INBOX =drafts =sent =starred =trash =archive =@action =@waiting_for
+mailboxes =INBOX =drafts =sent =starred =trash =archive =@action =@waiting_for =recent
 
 ## Timeout vars get their own section. We live in the future; these all need to
 ## be less than their defaults.
@@ -38,6 +38,7 @@ set   sleep_time=0
 set   sort=threads
 set   sort_aux=reverse-last-date-received
 set   ssl_force_tls=yes
+set   fast_reply
 
 # Change default answers to questions
 set confirmappend=no
