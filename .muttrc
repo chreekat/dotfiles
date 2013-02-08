@@ -38,7 +38,9 @@ set   sleep_time=0
 set   sort=threads
 set   sort_aux=reverse-last-date-received
 set   ssl_force_tls=yes
-set   fast_reply
+# Sigh - need to unset this because of bad "Re: your mail", which is totally
+# lame.
+#set   fast_reply
 set   beep=no
 set   beep_new=yes
 
