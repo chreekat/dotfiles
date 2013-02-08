@@ -110,6 +110,9 @@ stty -ixon
 if [ -d "$HOME/.cabal/bin" ] ; then
     PATH="$HOME/.cabal/bin:$PATH"
 fi
+if [ -d "$HOME/.local/bin" ] ; then
+    PATH="$HOME/.local/bin:$PATH"
+fi
 
 # Probably something is non-normalized here:
 export LESS="-RFX"
@@ -127,3 +130,6 @@ export PARINIT='rTbgqR B=.,?_A_a Q=_s>|'
 export BUP_DIR=$HOME/Dropbox/bup
 
 umask 0022
+
+powerline=~/.local/lib/python2.7/site-packages/powerline/bindings/bash/powerline.sh
+#[ -f $powerline ] && source $powerline
