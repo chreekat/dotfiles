@@ -57,8 +57,7 @@ if isdirectory($HOME."/.vim/bundle/vundle")
 else
     echomsg "Vundle not installed! Hecka weirdness may ensue."
 endif
-python from powerline.bindings.vim import source_plugin; source_plugin()
-
+"python from powerline.bindings.vim import source_plugin; source_plugin()
 ru macros/matchit.vim
 
 filetype plugin indent on
@@ -282,7 +281,6 @@ augroup vimrc
     au BufRead *Nanowrimo/nanowrimo.txt nmap ,c :echo NanoStatus()<cr>
                 \|setl tw=72 fo+=a fp=par
                 " \|ru autocorrect.vim | ru dvorak.vim
-    au BufEnter Log.txt setl fp=par\ p7
 
     au BufNewFile ~/Dropbox/Project_Euler/p*.lhs :0r <abuf>:h/problem.skel |4
 aug END
