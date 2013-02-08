@@ -1,0 +1,15 @@
+# Pacify facebook
+user-agent "Mozilla/5.001 (windows; U; NT4.0; en-US; rv:1.0) Gecko/25250101"
+
+# Decent colors with Solarized terminal colors
+color background   color12 color8
+color listnormal   color12 color8
+color listfocus    color8  color3
+color info         color10 color0 bold
+color article      color12 color8
+
+# Wat
+unbind-key J
+unbind-key K
+bind-key j next
+bind-key k prev

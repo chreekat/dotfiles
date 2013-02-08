@@ -100,6 +100,7 @@ DOTS=(
     .muttrc
     .ncmpcpp
     .nethackrc
+    .newsbeuter
     .offlineimaprc
     .ssh
     .tmux

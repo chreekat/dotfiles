@@ -4,4 +4,7 @@
 .ssh
 .irssi/sasl.auth
 .irssi/away.log
+.newsbeuter/urls
+.newsbeuter/cache.db*
+.newsbeuter/history.*
 .gnupg
