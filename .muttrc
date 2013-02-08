@@ -87,3 +87,7 @@ set query_command = "goobook query %s"
 set certificate_file = "~/.mutt/certificates"
 
 source ~/.mutt/solarized.muttrc
+
+# Losh was right about this
+macro index,pager C <copy-message>?<tab>
+macro index,pager s <save-message>?<tab>
