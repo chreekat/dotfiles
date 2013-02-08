@@ -131,5 +131,4 @@ export BUP_DIR=$HOME/Dropbox/bup
 
 umask 0022
 
-powerline=~/.local/lib/python2.7/site-packages/powerline/bindings/bash/powerline.sh
-#[ -f $powerline ] && source $powerline
+export BROWSER=google-chrome
