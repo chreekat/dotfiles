@@ -42,7 +42,7 @@ if isdirectory($HOME."/.vim/bundle/vundle")
     Bundle 'suan/vim-instant-markdown'
     Bundle 'lukaszkorecki/workflowish'
     Bundle 'b4winckler/vim-angry'
-    Bundle 'Lokaltog/vim-powerline'
+    "Bundle 'Lokaltog/vim-powerline'
     Bundle 'kergoth/vim-hilinks'
     Bundle 'kien/ctrlp.vim'
     " BreakPts dependency
@@ -57,7 +57,8 @@ if isdirectory($HOME."/.vim/bundle/vundle")
 else
     echomsg "Vundle not installed! Hecka weirdness may ensue."
 endif
-"python from powerline.bindings.vim import source_plugin; source_plugin()
+set rtp+=~/.local/lib/python2.7/site-packages/powerline/bindings/vim
+
 ru macros/matchit.vim
 
 filetype plugin indent on
