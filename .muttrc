@@ -2,7 +2,7 @@ reset all
 unhook *
 
 # Colllapse threads on viewing a folder
-folder-hook . push "<esc>V"
+folder-hook . push <collapse-all>
 
 alternates bryan.richter@gmail.com chreekat@gmail.com
 
