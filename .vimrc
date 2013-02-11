@@ -109,7 +109,7 @@ map <Leader>e zfaB
 
 nmap <Leader>V :tabe  ~/LoByMyHand/bDotfiles/.vimrc<cr>
 nmap <Leader>S :so ~/.vimrc<cr>
-nmap <Leader>L :tabe ~/.vim/bundle/vim-colors-lunatic/colors/lunatic.vim<cr>
+nmap <Leader>L :tabe ~/LoByMyHand/bDotfiles/.vim/bundle/vim-colors-lunatic/colors/lunatic.vim<cr>
 
 " Make <c-s> useful!
 nmap <c-s> :up<cr>
