@@ -101,6 +101,7 @@ DOTS=(
     .ncmpcpp
     .nethackrc
     .newsbeuter
+    .offlineimap
     .offlineimaprc
     .ssh
     .tmux
