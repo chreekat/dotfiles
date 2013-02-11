@@ -120,8 +120,6 @@ imap <c-s> <esc>:up<cr>
 vmap <Tab> <Esc>
 imap <Tab> <Esc>
 omap <Tab> <Esc>
-" cmap doesn't seem to work with Esc.. ?
-cmap <Tab> <C-c>
 " Catches a standard fuck up I do:
 nmap r<Tab> <Esc>
 
