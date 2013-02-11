@@ -39,6 +39,7 @@ set   sort=threads
 set   sort_aux=reverse-last-date-received
 set   ssl_force_tls=yes
 set   forward_format="Fw: %s"
+set   delete = yes
 
 # Sigh - need to unset this because of bad "Re: your mail", which is totally
 # lame.
