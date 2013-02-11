@@ -34,6 +34,7 @@ set   postponed=+drafts
 set   spoolfile=+INBOX
 set   reverse_name
 set   smtp_url=smtps://bryan.richter@smtp.gmail.com
+set   smtp_pass = "`passgm`"
 set   sleep_time=0
 set   sort=threads
 set   sort_aux=reverse-last-date-received
