@@ -55,7 +55,7 @@ if isdirectory($HOME."/.vim/bundle/vundle")
 else
     echomsg "Vundle not installed! Hecka weirdness may ensue."
 endif
-set rtp+=~/.local/lib/python2.7/site-packages/powerline/bindings/vim
+set rtp+=~/.local/lib/python2.7/site-packages/Powerline-beta-py2.7.egg/powerline/bindings/vim
 
 ru macros/matchit.vim
 
