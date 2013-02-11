@@ -51,8 +51,6 @@ if isdirectory($HOME."/.vim/bundle/vundle")
     Bundle 'chreekat/vim-paren-crosshairs'
     Bundle 'chreekat/vim-colors-lunatic'
     Bundle 'vim-scripts/VisIncr'
-    Bundle 'benmills/vimux'
-    Bundle 'spolu/dwm.vim'
     " Bundle 'pbrisbin/html-template-syntax'
 else
     echomsg "Vundle not installed! Hecka weirdness may ensue."
