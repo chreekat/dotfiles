@@ -94,7 +94,8 @@ set swb=useopen
 set titlestring=vi:\ %t%(\ %M%)%(\ (%{expand(\"%:~:.:h\")})%)%(\ %a%)
 set tw=80
 set wildmode=longest:list:longest,list:full
-set wiw=83 nowrap " For shoots and googles
+set wiw=40 nowrap " For shoots and googles
+set wmw=0 wmh=0
 set exrc
 
 let g:sh_fold_enabled=1
