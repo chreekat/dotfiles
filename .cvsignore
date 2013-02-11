@@ -3,3 +3,4 @@ tags
 .*.sw[po]
 dist
 cabal-dev
+*.pyc

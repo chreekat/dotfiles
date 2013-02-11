@@ -7,4 +7,8 @@
 .newsbeuter/urls
 .newsbeuter/cache.db*
 .newsbeuter/history.*
+.offlineimap/Account*
+.offlineimap/Repository*
+.offlineimap/lock
+.offlineimap/pid
 .gnupg
