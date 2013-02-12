@@ -67,7 +67,7 @@ macro index,pager gd <change-folder>=drafts<enter>   "Go to Google drafts"
 
 bind index,pager a group-reply
 bind index,pager c mail
-macro index,pager m <change-folder>?<tab>
+macro index,pager m <change-folder>?<toggle-mailboxes>
 
 # gmail-quasi-mimic macros
 
