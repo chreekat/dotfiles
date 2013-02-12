@@ -89,3 +89,17 @@ source ~/.mutt/solarized.muttrc
 # Losh was right about this
 macro index,pager C <copy-message>?<tab>
 macro index,pager s <save-message>?<tab>
+
+# Something to mark a whole folder as 'read'
+# Line by line,
+# 1. Tag all Unread or Old messages
+# 2. If any messages are tagged, [macro aborts otherwise]
+# 3. Clear the Unread flag
+# 4. Clear the Old flag
+# 5. Untag all messages
+macro index <esc>m '\
+<tag-pattern>~N|~O<enter>\
+<tag-prefix-cond>\
+<tag-prefix><clear-flag>N\
+<tag-prefix><clear-flag>O\
+<untag-pattern>~T<enter>'             "mark all messages read"
