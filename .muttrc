@@ -4,6 +4,9 @@ unhook *
 # Colllapse threads on viewing a folder
 folder-hook . exec collapse-all
 
+folder-hook .              set sort_aux = reverse-last-date-received
+folder-hook "INBOX|action" set sort_aux = last-date-received
+
 alternates bryan.richter@gmail.com chreekat@gmail.com
 
 mailboxes =INBOX =drafts =sent =starred =trash =archive =@action =@waiting_for =recent
@@ -36,7 +39,6 @@ set sleep_time        = 0
 set smart_wrap
 set smtp_pass         = "`passgm`"
 set smtp_url          = smtps://bryan.richter@smtp.gmail.com
-set sort_aux          = reverse-last-date-received
 set sort              = threads
 set spoolfile         = +INBOX
 set ssl_force_tls     = yes
@@ -54,6 +56,7 @@ bind pager b previous-page
 macro index,pager A "<pipe-message>goobook add<return>" "add the sender address to Google contacts"
 bind index,pager a group-reply
 bind index,pager c mail
+bind index,pager m change-folder
 
 macro index,pager Sa <save-message>=@action<enter>           "Apply @action label and archive"
 macro index,pager Sw <save-message>=@waiting_for<enter>      "Apply @waiting_for label and archive"
