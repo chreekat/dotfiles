@@ -2,80 +2,68 @@ reset all
 unhook *
 
 # Colllapse threads on viewing a folder
-folder-hook . push <collapse-all>
+folder-hook . exec collapse-all
 
 alternates bryan.richter@gmail.com chreekat@gmail.com
 
 mailboxes =INBOX =drafts =sent =starred =trash =archive =@action =@waiting_for =recent
 
-## Timeout vars get their own section. We live in the future; these all need to
-## be less than their defaults.
-
-# Google might need this to be shorter, but fixing timeout (below) might be a
-# better solution.
-#set   imap_keepalive=120
-
-# When waiting for user input, stop after this long to check on connections
-set   timeout=30
-
 # Time before cancelling a connect attempt.
 set   connect_timeout=5
 
-# And now real things.
-
-set   realname="Bryan Richter"
-set   from="bryan.richter@gmail.com"
-set   mark_old=no
-set   mbox_type=Maildir
-set   folder=$HOME/Mail
-set   pager_index_lines=10
-set   pager_stop
-set   postponed=+drafts
-set   spoolfile=+INBOX
-set   reverse_name
-set   smtp_url=smtps://bryan.richter@smtp.gmail.com
-set   smtp_pass = "`passgm`"
-set   sleep_time=0
-set   sort=threads
-set   sort_aux=reverse-last-date-received
-set   ssl_force_tls=yes
-set   forward_format="Fw: %s"
-set   delete = yes
-set   wait_key = no
-
-# Sigh - need to unset this because of bad "Re: your mail", which is totally
-# lame.
-#set   fast_reply
-set   beep=no
-set   beep_new=yes
-
-# Change default answers to questions
-set confirmappend=no
-set   copy=no
-set   record="this/is/ignored"
-set   include=yes
+set beep_new          = yes
+set beep              = no
+set confirmappend     = no
+set copy              = no
+set delete            = yes
+set folder            = $HOME/Mail
+set forward_format    = "Fwd: %s"
+set from              = "bryan.richter@gmail.com"
+set help              = no
+set include           = yes
+set markers           = no
+set mark_old          = no
+set mbox_type         = Maildir
+set menu_scroll
+set pager_context     = 2
+set pager_index_lines = 10
+set pager_stop
+set postponed         = +drafts
+set realname          = "Bryan Richter"
+set record            = "this/is/ignored"
+set reverse_name
+set sleep_time        = 0
+set smart_wrap
+set smtp_pass         = "`passgm`"
+set smtp_url          = smtps://bryan.richter@smtp.gmail.com
+set sort_aux          = reverse-last-date-received
+set sort              = threads
+set spoolfile         = +INBOX
+set ssl_force_tls     = yes
+set wait_key          = no
 
 
+macro index ,R "<enter-command>source ~/.muttrc<enter>" "Reload .muttrc"
+macro pager ,R "<exit>,R<enter>"                        "Reload .muttrc"
 bind pager b previous-page
 
 # gmail-mimic macros
 
 #macro index,pager \# <save-message>=[Gmail].Trash     "Trash a Google message"
-macro index,pager gi <change-folder>=INBOX<enter>            "Go to Google inbox"
-#macro index,pager ga <change-folder>=[Gmail].All<tab><enter> "Go to Google all mail"
-macro index,pager gd <change-folder>=drafts<enter>   "Go to Google drafts"
 
+macro index,pager A "<pipe-message>goobook add<return>" "add the sender address to Google contacts"
 bind index,pager a group-reply
 bind index,pager c mail
-macro index,pager m <change-folder>?<toggle-mailboxes>
 
-# gmail-quasi-mimic macros
-
-#macro index,pager g! <save-message>=[Gmail]/Spam<enter>      "Mark a message as spam"
 macro index,pager Sa <save-message>=@action<enter>           "Apply @action label and archive"
 macro index,pager Sw <save-message>=@waiting_for<enter>      "Apply @waiting_for label and archive"
-macro index,pager la <change-folder>=@action<enter>          "Switch to @action label"
-macro index,pager lw <change-folder>=@waiting_for<enter>     "Switch to @waiting_for label"
+
+macro index,pager ga <change-folder>=@action<enter>      " Go to @action label      "
+macro index,pager gw <change-folder>=@waiting_for<enter> " Go to @waiting_for label "
+macro index,pager gr <change-folder>=recent<enter>       " Go to recent mail folder "
+macro index,pager gi <change-folder>=INBOX<enter>        " Go to Google inbox       "
+macro index,pager gd <change-folder>=drafts<enter>       " Go to Google drafts      "
+macro index,pager gs <change-folder>=starred<enter>      " Go to starred messages   "
 
 # Offlineimap awayy
 macro index,pager O "<shell-escape>offlineimap<enter>"           "run offlineimap to sync all mail"
