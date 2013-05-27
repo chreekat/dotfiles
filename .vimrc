@@ -55,7 +55,7 @@ if isdirectory($HOME."/.vim/bundle/vundle")
 else
     echomsg "Vundle not installed! Hecka weirdness may ensue."
 endif
-set rtp+=~/.local/lib/python2.7/site-packages/Powerline-beta-py2.7.egg/powerline/bindings/vim
+set rtp+=~/.local/lib/python2.7/site-packages/powerline/bindings/vim
 
 ru macros/matchit.vim
 
@@ -84,15 +84,16 @@ set list
 set lcs=tab:\ \ ,trail:\ ,extends:>,precedes:<
 set mouse=
 set showcmd
+set noshowmode " Overkill with Powerline
 set sidescroll=1
-set sidescrolloff=1
+set sidescrolloff=3
 set smartcase ignorecase
 " set statusline=%f%m%r%h%w\%=[L:\%l\ C:\%c\ P:\%p%%]
 set nosol
 set sw=4
 set swb=useopen
 set titlestring=vi:\ %t%(\ %M%)%(\ (%{expand(\"%:~:.:h\")})%)%(\ %a%)
-set tw=80
+set tw=70
 set wildmode=longest:list:longest,list:full
 set wiw=40 nowrap " For shoots and googles
 set wmw=0 wmh=0
