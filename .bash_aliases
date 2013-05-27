@@ -16,6 +16,7 @@ alias f="fg"
 alias j="jobs"
 alias pd='pushd'
 alias df='df -h'
+alias o='offlineimap -qf INBOX'
 
 alias action_lists="riot ~/Org/Lists.riot"
 alias amv='audio_rename -p "Music/%a/%l/%{mA}%{n0}__%t" -R'
@@ -23,10 +24,10 @@ alias amv='audio_rename -p "Music/%a/%l/%{mA}%{n0}__%t" -R'
 #  TODO: ignore binary files?
 alias vimdiffem="vim \$(git status -s | awk '/^.M/ { print \$2 }')"
 
-alias sp="vim +set\ buftype=nofile +startinsert"
-
 # Hopefully, I will never understand TERM.
 alias tmux="TERM=screen-it tmux"
 
 # For safety
 alias apt-get="echo 'Use aptitude'"
+
+alias uu="sudo aptitude update && sudo aptitude safe-upgrade"
