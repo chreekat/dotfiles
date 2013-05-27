@@ -92,7 +92,6 @@ DOTS=(
     .ghci
     .gitconfig
     .gitignore
-    .gnupg
     .goobookrc
     .inputrc
     .irssi
@@ -103,7 +102,6 @@ DOTS=(
     .newsbeuter
     .offlineimap
     .offlineimaprc
-    .ssh
     .tmux
     .tmux.conf
     .toprc
