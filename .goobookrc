@@ -8,6 +8,6 @@ email: bryan.richter@gmail.com
 #;passwordeval: gpg --batch -d ~/.mutt/pw.gpg
 # The following are optional, defaults are shown
 cache_filename: ~/.goobook_cache
-cache_expiry_hours: 24
+cache_expiry_hours: 999999999999999999999
 #filter_groupless_contacts: yes
 

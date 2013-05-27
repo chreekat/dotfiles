@@ -6,10 +6,11 @@ folder-hook . exec collapse-all
 
 folder-hook .              set sort_aux = reverse-last-date-received
 folder-hook "INBOX|action" set sort_aux = last-date-received
+folder-hook "INBOX|action" exec first-entry
 
 alternates bryan.richter@gmail.com chreekat@gmail.com
 
-mailboxes =INBOX =drafts =sent =starred =trash =archive =@action =@waiting_for =recent
+mailboxes +INBOX +drafts +sent +starred +trash +archive +@action +@waiting_for +recent
 
 # Time before cancelling a connect attempt.
 set   connect_timeout=5
@@ -53,20 +54,20 @@ bind pager b previous-page
 
 #macro index,pager \# <save-message>=[Gmail].Trash     "Trash a Google message"
 
-macro index,pager A "<pipe-message>goobook add<return>" "add the sender address to Google contacts"
+macro index,pager A "<pipe-message>goobook add<enter><shell-escape>goobook reload<enter>" "add the sender address to Google contacts"
 bind index,pager a group-reply
 bind index,pager c mail
 bind index,pager m change-folder
 
-macro index,pager Sa <save-message>=@action<enter>           "Apply @action label and archive"
-macro index,pager Sw <save-message>=@waiting_for<enter>      "Apply @waiting_for label and archive"
+macro index,pager Sa <save-message>+@action<enter>           "Apply @action label and archive"
+macro index,pager Sw <save-message>+@waiting_for<enter>      "Apply @waiting_for label and archive"
 
-macro index,pager ga <change-folder>=@action<enter>      " Go to @action label      "
-macro index,pager gw <change-folder>=@waiting_for<enter> " Go to @waiting_for label "
-macro index,pager gr <change-folder>=recent<enter>       " Go to recent mail folder "
-macro index,pager gi <change-folder>=INBOX<enter>        " Go to Google inbox       "
-macro index,pager gd <change-folder>=drafts<enter>       " Go to Google drafts      "
-macro index,pager gs <change-folder>=starred<enter>      " Go to starred messages   "
+macro index,pager ga <change-folder>+@action<enter>      " Go to @action label      "
+macro index,pager gw <change-folder>+@waiting_for<enter> " Go to @waiting_for label "
+macro index,pager gr <change-folder>+recent<enter>       " Go to recent mail folder "
+macro index,pager gi <change-folder>+INBOX<enter>        " Go to Google inbox       "
+macro index,pager gd <change-folder>+drafts<enter>       " Go to Google drafts      "
+macro index,pager gs <change-folder>+starred<enter>      " Go to starred messages   "
 
 # Offlineimap awayy
 macro index,pager O "<shell-escape>offlineimap<enter>"           "run offlineimap to sync all mail"
