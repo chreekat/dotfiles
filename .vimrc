@@ -6,13 +6,14 @@ let g:instant_markdown_slow = 1
 
 let g:haskell_multiline_strings = 1
 
-let g:Powerline_symbols="unicode"
 let g:ctrlp_map = '<leader>t'
 
 let g:is_bash = 1
 
 let g:hpaste_author = 'chreekat'
 let g:haskell_autotags = 1
+
+let mapleader = ","
 
 " Vundle nonsense
 set nocompatible
@@ -37,21 +38,25 @@ if isdirectory($HOME."/.vim/bundle/vundle")
     Bundle 'msanders/snipmate.vim'
     Bundle 'godlygeek/tabular'
     Bundle 'panozzaj/vim-autocorrect'
-    Bundle 'dag/vim2hs'
+    "Bundle 'dag/vim2hs'
     Bundle 'tpope/vim-markdown'
-    Bundle 'suan/vim-instant-markdown'
-    Bundle 'lukaszkorecki/workflowish'
+    "Bundle 'suan/vim-instant-markdown'
+    "Bundle 'lukaszkorecki/workflowish'
     Bundle 'b4winckler/vim-angry'
     "Bundle 'Lokaltog/vim-powerline'
     Bundle 'kergoth/vim-hilinks'
     Bundle 'kien/ctrlp.vim'
     " BreakPts dependency
-    Bundle 'genutils'
-    Bundle 'vim-scripts/BreakPts'
+    "Bundle 'genutils'
+    "Bundle 'vim-scripts/BreakPts'
     Bundle 'chreekat/vim-paren-crosshairs'
     Bundle 'chreekat/vim-colors-lunatic'
     Bundle 'vim-scripts/VisIncr'
     " Bundle 'pbrisbin/html-template-syntax'
+    Bundle 'merijn/haskellFoldIndent'
+    Bundle 'Shougo/vimproc.vim'
+    Bundle 'eagletmt/ghcmod-vim'
+    Bundle 'sjl/gundo.vim'
 else
     echomsg "Vundle not installed! Hecka weirdness may ensue."
 endif
@@ -65,13 +70,14 @@ if isdirectory($HOME."/.vim/bundle/vim-colors-lunatic")
     colorscheme lunatic
 else
     echomsg "Skipping colorscheme cause it's no-findings."
-    colorscheme default
 endif
 
 set ai
 " set cpo+=J
+set cpo+=n
 set dict=/usr/share/dict/words
 set et
+set fillchars+=stl:=,stlnc:-
 set fo+=l
 set foldtext=BFoldtext()
 set gp=ack-grep\ -H\ --column
@@ -81,23 +87,29 @@ set modeline
 set is
 set laststatus=2 " Always show status
 set list
-set lcs=tab:\ \ ,trail:\ ,extends:>,precedes:<
+set lcs=tab:\ \ ,trail:⋅,extends:>,precedes:<
 set mouse=
+set showbreak=>>\ 
 set showcmd
-set noshowmode " Overkill with Powerline
 set sidescroll=1
-set sidescrolloff=3
+"set sidescrolloff=3
 set smartcase ignorecase
 " set statusline=%f%m%r%h%w\%=[L:\%l\ C:\%c\ P:\%p%%]
 set nosol
 set sw=4
 set swb=useopen
 set titlestring=vi:\ %t%(\ %M%)%(\ (%{expand(\"%:~:.:h\")})%)%(\ %a%)
-set tw=70
+set tw=75
 set wildmode=longest:list:longest,list:full
-set wiw=40 nowrap " For shoots and googles
+"set wiw=40 nowrap " For shoots and googles
 set wmw=0 wmh=0
+set whichwrap=<,>,[,] " arrow keys wrap
 set exrc
+if has("persistent_undo")
+    set undodir=~/.vim/tmp/undos
+    set undofile
+endif
+
 
 let g:sh_fold_enabled=1
 let g:tex_flavor="latex"
@@ -105,6 +117,8 @@ let g:Tex_DefaultTargetFormat="pdf"
 
 let g:haddock_browser = "/usr/bin/google-chrome"
 let g:haddock_indexfiledir = "~/.vim"
+
+map <F5> :GundoToggle<cr>
 
 map <Leader>e zfaB
 
@@ -156,6 +170,15 @@ nmap /// :call ToggleHighlight()<cr>
 " I just can't type z
 nmap ,. z
 
+" Brackets suck*
+nmap ,g [
+nmap ,c ]
+
+" Colon sucks
+nmap ,p :
+
+" * By "suck", I mean I suck at typing them correctly
+
 " The "Dominate Dragons" idea
 command! GQ silent Gcommit -am "quicksave"
 
@@ -206,6 +229,16 @@ function! BFoldtextRealz(foldstart, foldend)
     let firstline = substitute(firstline, '^class\s*', '', 'g')
 
     let textend = '|' . lines . '| ↓' . v:foldlevel
+
+    " Now, chop off as much of the firstline as necessary to show the fold info.
+    let windowWidth = WindowWidth()
+    let lineWidth = StringWidth(firstline)
+    let endWidth = StringWidth(textend)
+
+    if windowWidth < (lineWidth + endWidth)
+        let firstline = strpart(firstline, 0, windowWidth - endWidth - 1)
+        let firstline .= "…"
+    endif
 
     return firstline . repeat(" ", WindowWidth()-StringWidth(firstline.textend)) . textend
 endfunction
