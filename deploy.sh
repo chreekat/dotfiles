@@ -91,7 +91,6 @@ DOTS=(
     .emacs.d
     .ghci
     .gitconfig
-    .gitignore
     .goobookrc
     .inputrc
     .irssi
