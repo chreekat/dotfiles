@@ -30,4 +30,4 @@ alias tmux="TERM=screen-it tmux"
 # For safety
 alias apt-get="echo 'Use aptitude'"
 
-alias uu="sudo aptitude update && sudo aptitude safe-upgrade"
+alias uu="sudo aptitude update && sudo aptitude -y safe-upgrade"
