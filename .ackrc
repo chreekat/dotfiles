@@ -8,6 +8,7 @@
 --type-set=lucius=.lucius
 --type-set=cassius=.cassius
 --type-set=elm=.elm
+--type-set=go=.go
 # Ignore boring cabal stuff
 --ignore-dir=dist
 --ignore-dir=cabal-dev
