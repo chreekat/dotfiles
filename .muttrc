@@ -95,3 +95,5 @@ macro index <esc>m '\
 <tag-prefix><clear-flag>N\
 <tag-prefix><clear-flag>O\
 <untag-pattern>~T<enter>'             "mark all messages read"
+
+source ~/.mutt/crypto.rc
