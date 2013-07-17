@@ -13,6 +13,7 @@
 	quicksave = commit -am "Blah"
 	lp = log -p
 	ci = commit
+	root = rev-parse --show-toplevel
 [rebase]
 	autosquash = true
 [core]
@@ -24,3 +25,9 @@
 	remoteBranch = 14
 	HEAD = 4
 	tag = 6
+
+[color "diff"]
+	meta = 13 bold
+	commit = 12 reverse
+
+# vim: set noet :
