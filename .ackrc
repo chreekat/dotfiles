@@ -9,6 +9,7 @@
 --type-set=cassius=.cassius
 --type-set=elm=.elm
 --type-set=go=.go
+--type-set=cabal=.cabal
 # Ignore boring cabal stuff
 --ignore-dir=dist
 --ignore-dir=cabal-dev
