@@ -3,3 +3,5 @@
 :m + Control.Arrow
 :m + Control.Applicative
 :m + Data.Monoid
+
+:def R const $ return ":r"
