@@ -13,6 +13,8 @@ let g:is_bash = 1
 let g:hpaste_author = 'chreekat'
 let g:haskell_autotags = 1
 
+let g:ghcmod_ghc_options = ['-XTemplateHaskell', '-fno-warn-missing-signatures']
+
 let mapleader = ","
 
 " Vundle nonsense
@@ -60,7 +62,7 @@ if isdirectory($HOME."/.vim/bundle/vundle")
 else
     echomsg "Vundle not installed! Hecka weirdness may ensue."
 endif
-set rtp+=~/.local/lib/python2.7/site-packages/powerline/bindings/vim
+"set rtp+=~/.local/lib/python2.7/site-packages/powerline/bindings/vim
 
 ru macros/matchit.vim
 
@@ -101,12 +103,14 @@ set swb=useopen
 set titlestring=vi:\ %t%(\ %M%)%(\ (%{expand(\"%:~:.:h\")})%)%(\ %a%)
 set tw=75
 set wildmode=longest:list:longest,list:full
+set wildignore+=*.o,*.hi,dist
 "set wiw=40 nowrap " For shoots and googles
+let &wiw = &tw
 set wmw=0 wmh=0
 set whichwrap=<,>,[,] " arrow keys wrap
 set exrc
 if has("persistent_undo")
-    set undodir=~/.vim/tmp/undos
+    set undodir=~/.vim/undos
     set undofile
 endif
 
@@ -231,7 +235,7 @@ function! BFoldtextRealz(foldstart, foldend)
     let textend = '|' . lines . '| ↓' . v:foldlevel
 
     " Now, chop off as much of the firstline as necessary to show the fold info.
-    let windowWidth = WindowWidth()
+    let windowWidth = min([WindowWidth(), 80])
     let lineWidth = StringWidth(firstline)
     let endWidth = StringWidth(textend)
 
@@ -240,7 +244,7 @@ function! BFoldtextRealz(foldstart, foldend)
         let firstline .= "…"
     endif
 
-    return firstline . repeat(" ", WindowWidth()-StringWidth(firstline.textend)) . textend
+    return firstline . repeat(" ", windowWidth-StringWidth(firstline.textend)) . textend
 endfunction
 function! BFoldtext()
     return BFoldtextRealz(v:foldstart, v:foldend)
