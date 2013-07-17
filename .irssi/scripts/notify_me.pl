@@ -11,9 +11,9 @@ $VERSION = '0.1';
     contact => 'bryan.richter@gmail.com',
     name => "notify_me",
     description => "Uses notify-send when things show up.",
-    license => "Public Domain",
+    license => "WTFPL",
     url => "",
-    changed => "14 November 2011 12:00 PST",
+    changed => "15 July 2013",
 );
 
 sub notify_me {
@@ -22,7 +22,7 @@ sub notify_me {
        if (    # my name!
                $msg =~ /$nick/i ||
                # a question (but not one directed to someone else)
-               $msg =~ /\?/ && $msg !~ /^\S*:/ ||
+               # $msg =~ /\?/ && $msg !~ /^\S*:/ ||
                # word wars for nanowrimo
                $msg =~ /word war/) {
            system "notify-send", "$_[2]:", "$msg";
