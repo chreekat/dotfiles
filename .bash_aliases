@@ -31,3 +31,5 @@ alias tmux="TERM=screen-it tmux"
 alias apt-get="echo 'Use aptitude'"
 
 alias uu="sudo aptitude update && sudo aptitude -y safe-upgrade"
+
+alias b='git root >/dev/null 2>&1 && python ~/src/t/t.py --task-dir `git root` --list bugs'
