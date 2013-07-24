@@ -1,0 +1,3 @@
+[submodule ".mutt/lunatic-mutt"]
+	path = .mutt/lunatic-mutt
+	url = git@github.com:chreekat/lunatic-mutt.git
