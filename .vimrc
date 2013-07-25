@@ -1,22 +1,3 @@
-" Vundle bundle configs
-let g:syntastic_coffee_lint_options = "-f ~/Dropbox/bDotfiles/coffeelint.json"
-let g:syntastic_mode_map = {'active_filetypes': [], 'mode': 'passive', 'passive_filetypes': []}
-
-let g:instant_markdown_slow = 1
-
-let g:haskell_multiline_strings = 1
-
-let g:ctrlp_map = '<leader>t'
-
-let g:is_bash = 1
-
-let g:hpaste_author = 'chreekat'
-let g:haskell_autotags = 1
-
-let g:ghcmod_ghc_options = ['-XTemplateHaskell', '-fno-warn-missing-signatures']
-
-let mapleader = ","
-
 " Vundle nonsense
 set nocompatible
 filetype off
@@ -33,6 +14,9 @@ if isdirectory($HOME."/.vim/bundle/vundle")
     Bundle 'scrooloose/nerdcommenter'
     Bundle 'tpope/vim-unimpaired'
     Bundle 'tpope/vim-speeddating'
+
+    let g:syntastic_coffee_lint_options = "-f ~/Dropbox/bDotfiles/coffeelint.json"
+    let g:syntastic_mode_map = {'active_filetypes': [], 'mode': 'passive', 'passive_filetypes': []}
     Bundle 'scrooloose/syntastic'
     Bundle 'kchmck/vim-coffee-script'
     Bundle 'altercation/vim-colors-solarized'
@@ -42,23 +26,30 @@ if isdirectory($HOME."/.vim/bundle/vundle")
     Bundle 'panozzaj/vim-autocorrect'
     "Bundle 'dag/vim2hs'
     Bundle 'tpope/vim-markdown'
+
+    "let g:instant_markdown_slow = 1
     "Bundle 'suan/vim-instant-markdown'
     "Bundle 'lukaszkorecki/workflowish'
     Bundle 'b4winckler/vim-angry'
     "Bundle 'Lokaltog/vim-powerline'
     Bundle 'kergoth/vim-hilinks'
+
+    let g:ctrlp_map = '<leader>t'
     Bundle 'kien/ctrlp.vim'
-    " BreakPts dependency
     "Bundle 'genutils'
-    "Bundle 'vim-scripts/BreakPts'
+        "Bundle 'vim-scripts/BreakPts'
     Bundle 'chreekat/vim-paren-crosshairs'
     Bundle 'chreekat/vim-colors-lunatic'
     Bundle 'vim-scripts/VisIncr'
     " Bundle 'pbrisbin/html-template-syntax'
     Bundle 'merijn/haskellFoldIndent'
     Bundle 'Shougo/vimproc.vim'
+
+    let g:ghcmod_ghc_options = ['-XTemplateHaskell', '-fno-warn-missing-signatures']
     Bundle 'eagletmt/ghcmod-vim'
     Bundle 'sjl/gundo.vim'
+    Bundle 'kana/vim-textobj-user'
+        Bundle 'kana/vim-textobj-indent'
 else
     echomsg "Vundle not installed! Hecka weirdness may ensue."
 endif
@@ -73,6 +64,9 @@ if isdirectory($HOME."/.vim/bundle/vim-colors-lunatic")
 else
     echomsg "Skipping colorscheme cause it's no-findings."
 endif
+
+let g:is_bash = 1
+let mapleader = ","
 
 set ai
 " set cpo+=J
