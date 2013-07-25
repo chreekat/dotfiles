@@ -25,12 +25,9 @@ set forward_format    = "Fwd: %s"
 set from              = "bryan.richter@gmail.com"
 set help              = no
 set include           = yes
-set markers           = no
 set mark_old          = no
 set mbox_type         = Maildir
-set menu_scroll
 set pager_context     = 2
-set pager_index_lines = 10
 set pager_stop
 set postponed         = +drafts
 set realname          = "Bryan Richter"
@@ -76,7 +73,7 @@ macro index,pager o "<shell-escape>offlineimap -qf INBOX,@action<enter>" "run of
 set query_command = "goobook query %s"
 set certificate_file = "~/.mutt/certificates"
 
-source ~/.mutt/solarized.muttrc
+source ~/.mutt/lunatic-mutt/lunatic.muttrc
 
 # Losh was right about this
 macro index,pager C <copy-message>?<tab>
