@@ -95,12 +95,15 @@ if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
-# enable programmable completion features (you don't need to enable
-# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
-# sources /etc/bash.bashrc).
-if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
-    . /etc/bash_completion
+if [ -d /usr/local/etc/profile.d ]; then
+    for i in /usr/local/etc/profile.d/*.sh; do
+        if [ -r $i ]; then
+            . $i
+        fi
+    done
+    unset i
 fi
+
 stty -ixon
 
 if [ -d "$HOME/.cabal/bin" ] ; then
@@ -114,6 +117,8 @@ fi
 export LESS="-RFX"
 export PAGER=less
 export ACK_PAGER="less -RFX"
+
+export FIGNORE=*.o:*.hi
 
 export HISTSIZE=5000
 export HISTFILESIZE=5000
