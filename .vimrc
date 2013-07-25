@@ -81,11 +81,13 @@ set grepformat=%f:%l:%c:%m
 set hidden
 set modeline
 set is
+" SO MUCH BETTER
+set isfname-==
 set laststatus=2 " Always show status
 set list
-set lcs=tab:\ \ ,trail:⋅,extends:>,precedes:<
+set lcs=tab:>\ ,trail:⋅,extends:<,precedes:>
 set mouse=
-set showbreak=>>\ 
+set showbreak=<<<
 set showcmd
 set sidescroll=1
 "set sidescrolloff=3
@@ -303,6 +305,7 @@ augroup vimrc
     au BufEnter ~/src/Elm/* setl ts=8 noet noeol
     au BufEnter ~/src/serenade.js/*.coffee setl sw=2
     au BufEnter ~/src/angular-phonecat/* setl sw=2
+    au BufEnter ~/src/tasty/* setl sw=2
 
     " Reset compiler in case the file was renamed, since compiler has the
     " filename hardcoded thanks to vim-coffee-script making nearsighted
