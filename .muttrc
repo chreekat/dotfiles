@@ -42,6 +42,12 @@ set spoolfile         = +INBOX
 set ssl_force_tls     = yes
 set wait_key          = no
 
+ignore *
+unignore To:
+unignore Subject:
+unignore From:
+unignore Date:
+unignore Cc:
 
 macro index ,R "<enter-command>source ~/.muttrc<enter>" "Reload .muttrc"
 macro pager ,R "<exit>,R<enter>"                        "Reload .muttrc"
