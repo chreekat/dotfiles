@@ -124,6 +124,9 @@ export HISTSIZE=5000
 export HISTFILESIZE=5000
 # Lessee if this does what I want: ignore 1 and 2-letter commands
 export HISTIGNORE=?:??
+
+export LOCATE_PATH=~/.locate.db
+
 export PARINIT='rTbgqR B=.,?_A_a Q=_s>|'
 # Don't need this with tmux
 # expr $TERM : "screen" >/dev/null &&
