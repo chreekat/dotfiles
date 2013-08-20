@@ -76,7 +76,7 @@ macro index,pager gs <change-folder>+starred<enter>      " Go to starred message
 macro index,pager O "<shell-escape>offlineimap<enter>"           "run offlineimap to sync all mail"
 macro index,pager o "<shell-escape>offlineimap -qf INBOX,@action<enter>" "run offlineimap to sync inbox"
 
-set query_command = "goobook query %s"
+set query_command = "echo; grep -i '\t.*'%s ~/.google_contacts"
 set certificate_file = "~/.mutt/certificates"
 
 source ~/.mutt/lunatic-mutt/lunatic.muttrc
