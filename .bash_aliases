@@ -32,5 +32,4 @@ alias apt-get="echo 'Use aptitude'"
 
 alias uu="sudo aptitude update && sudo aptitude -y safe-upgrade"
 
-alias b='if git root >/dev/null 2>&1 ; then python ~/src/t/t.py --task-dir `git root` --list bugs; else echo "(No repo here)"; fi'
 alias t='python ~/src/t/t.py --task-dir ~/.todo --list todo'
