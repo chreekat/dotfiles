@@ -45,7 +45,7 @@ if isdirectory($HOME."/.vim/bundle/vundle")
     Bundle 'merijn/haskellFoldIndent'
     Bundle 'Shougo/vimproc.vim'
 
-    let g:ghcmod_ghc_options = ['-XTemplateHaskell', '-fno-warn-missing-signatures']
+    let g:ghcmod_ghc_options = ['-XTemplateHaskell']
     Bundle 'eagletmt/ghcmod-vim'
     Bundle 'sjl/gundo.vim'
     Bundle 'kana/vim-textobj-user'
@@ -72,6 +72,7 @@ set ai
 " set cpo+=J
 set cpo+=n
 set dict=/usr/share/dict/words
+set equalalways
 set et
 set fillchars+=stl:=,stlnc:-
 set fo+=l
@@ -102,7 +103,6 @@ set wildmode=longest:list:longest,list:full
 set wildignore+=*.o,*.hi,dist
 "set wiw=40 nowrap " For shoots and googles
 let &wiw = &tw
-set wmw=0 wmh=0
 set whichwrap=<,>,[,] " arrow keys wrap
 set exrc
 if has("persistent_undo")
