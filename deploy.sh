@@ -94,6 +94,7 @@ DOTS=(
     .goobookrc
     .inputrc
     .irssi
+    .mailcap
     .mutt
     .muttrc
     .ncmpcpp
