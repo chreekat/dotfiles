@@ -77,6 +77,7 @@ set et
 set fillchars+=stl:=,stlnc:-
 set fo+=l
 set foldtext=BFoldtext()
+set joinspaces!
 set gp=ack-grep\ -H\ --column
 set grepformat=%f:%l:%c:%m
 set hidden
