@@ -265,21 +265,65 @@ function! WordCount()
     return l:word_count
 endfunction
 
-fu! NanoStatus()
+fu! NanoStats()
+    let l:day_num = str2nr(strftime('%-d'))
+    let l:goal = 50000.0
+
+    "let l:goal_today = float2nr(ceil(50000.0*l:day_num/30) + 0.01)
+    let l:daily_goal = l:goal / 30
+    let l:goal_today = l:goal * l:day_num / 30
+
     let l:words_today = WordCount()
     let l:words_yesterday = system(
                 \ 'git log --pretty=oneline -n 1 '
                 \ . '| perl -ne "m%(\d+)/\d+% and print \$1"')
     let l:diff_today = l:words_today - l:words_yesterday
-    let l:day_num = str2nr(strftime('%-d'))
-    let l:goal_today = printf('%.0f', 50000*l:day_num/30)
-    return printf("%d/%d (+%d)", l:words_today, l:goal_today, l:diff_today)
+
+    let l:daily_pct = 100 * l:diff_today / l:daily_goal
+    let l:pct_today = 100 * l:words_today / l:goal_today
+    let l:pct = 100 * l:words_today / l:goal
+
+    return {
+          \ 'diff_today': l:diff_today,
+          \ 'daily_pct': l:daily_pct,
+          \ 'words_today': l:words_today,
+          \ 'goal_today': l:goal_today,
+          \ 'pct_today': l:pct_today,
+          \ 'words_yesterday': l:words_yesterday,
+          \ 'pct': l:pct
+          \ }
+endfu
+
+fu! NanoStatus()
+
+    let l:stats = NanoStats()
+    return printf(
+                \ '+%.0f(%.2f%%) today, %.0f/%.0f(%.2f%%) to date, %.2f%% overall',
+                \ l:stats.diff_today, l:stats.daily_pct,
+                \ l:stats.words_today, l:stats.goal_today,
+                \ l:stats.pct_today,
+                \ l:stats.pct)
+endfu
+
+fu! NanoDayPct(yesterday)
+    if !exists("b:nanoDayPct")
+        let b:nanoDayPct = "--"
+    endif
+
+    if index(["n", "i"], mode()) < 0
+        return b:nanoDayPct
+    endif
+
+    let l:pct = 100 * (WordCount() - a:yesterday) / 1667
+    let l:res = printf("%d%%", l:pct - l:pct % 5)
+    let b:nanoDayPct = l:res
+    return l:res
 endfu
 
 fu! Nanoize()
-    setl statusline=%f%m%r%h%w\%=%{NanoStatus()}
-                \\ [L:\%l\ C:\%c\ A:\%b\ H:\x%B\ P:\%p%%]
-    call SoftWordWrap()
+    let l:stats = NanoStats()
+    let b:words_yesterday = l:stats.words_yesterday
+    setl statusline=%<%f\ [%{NanoDayPct(b:words_yesterday)}]\ %h%m%r%=%-14.(%l,%c%V%)\ %P
 endfu
 
 fu! SoftWordWrap()
@@ -314,8 +358,9 @@ augroup vimrc
     au BufWrite ~/LoByMyHand/*.coffee compiler coffee|silent make
 
     " call SoftWordWrap() |
-    au BufRead *Nanowrimo/nanowrimo.txt nmap ,c :echo NanoStatus()<cr>
+    au BufRead nanowrimo.txt nmap ,ct :echo NanoStatus()<cr>
                 \|setl tw=72 fo+=a fp=par
+                \|call Nanoize()
                 " \|ru autocorrect.vim | ru dvorak.vim
 
     au BufNewFile ~/Dropbox/Project_Euler/p*.lhs :0r <abuf>:h/problem.skel |4
