@@ -275,7 +275,7 @@ fu! NanoStats()
 
     let l:words_today = WordCount()
     let l:words_yesterday = system(
-                \ 'git log --pretty=oneline -n 1 '
+                \ 'git log --before=0:00 --pretty=oneline -n 1 '
                 \ . '| perl -ne "m%(\d+)/\d+% and print \$1"')
     let l:diff_today = l:words_today - l:words_yesterday
 
@@ -359,6 +359,8 @@ augroup vimrc
 
     " call SoftWordWrap() |
     au BufRead nanowrimo.txt nmap ,ct :echo NanoStatus()<cr>
+                \|nmap ,Cc :exec 'Gcom -m "' . escape(NanoStatus(), '%') . '" %'<cr>
+                \|nmap ,Ca :exec 'Gcom --amend -m "' . escape(NanoStatus(), '%') . '" %'<cr>
                 \|setl tw=72 fo+=a fp=par
                 \|call Nanoize()
                 " \|ru autocorrect.vim | ru dvorak.vim
