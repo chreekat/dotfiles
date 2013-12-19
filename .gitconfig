@@ -7,6 +7,7 @@
 	ui = auto
 [alias]
 	lg = log --oneline --graph --decorate --all
+	lga = log --oneline --graph --decorate
 	st = status --short
 	d = diff
 	dc = diff --cached
@@ -25,9 +26,12 @@
 	remoteBranch = 14
 	HEAD = 4
 	tag = 6
-
 [color "diff"]
 	meta = 13 bold
 	commit = 12 reverse
-
+[merge]
+	tool = splice
+[mergetool "splice"]
+	cmd = "vim -f $BASE $LOCAL $REMOTE $MERGED -c 'SpliceInit'"
+	trustExitCode = true
 # vim: set noet :

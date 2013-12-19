@@ -17,7 +17,8 @@ if isdirectory($HOME."/.vim/bundle/vundle")
     Bundle 'tpope/vim-repeat'
 
     let g:syntastic_coffee_lint_options = "-f ~/Dropbox/bDotfiles/coffeelint.json"
-    let g:syntastic_mode_map = {'active_filetypes': [], 'mode': 'passive', 'passive_filetypes': []}
+    let g:syntastic_mode_map = {'active_filetypes': ["javascript"], 'mode': 'passive', 'passive_filetypes': []}
+    let g:syntastic_always_populate_loc_list=1
     Bundle 'scrooloose/syntastic'
     Bundle 'bitc/vim-hdevtools'
     Bundle 'kchmck/vim-coffee-script'
@@ -52,10 +53,15 @@ if isdirectory($HOME."/.vim/bundle/vundle")
     Bundle 'sjl/gundo.vim'
     Bundle 'kana/vim-textobj-user'
         Bundle 'kana/vim-textobj-indent'
+    Bundle 'bruno-/vim-vertical-move'
+    Bundle 'sjl/splice.vim'
+    Bundle 'othree/xml.vim'
 else
     echomsg "Vundle not installed! Hecka weirdness may ensue."
 endif
 "set rtp+=~/.local/lib/python2.7/site-packages/powerline/bindings/vim
+
+syn enable
 
 ru macros/matchit.vim
 
@@ -97,6 +103,7 @@ set sidescroll=1
 "set sidescrolloff=3
 set smartcase ignorecase
 " set statusline=%f%m%r%h%w\%=[L:\%l\ C:\%c\ P:\%p%%]
+set number relativenumber
 set nosol
 set sw=2
 set swb=useopen
@@ -156,16 +163,18 @@ map <leader># :if &nu \| set rnu \| elseif &rnu \|  set rnu! \| else \| set nu \
 " From :help E447
 map gf :e <cfile><cr>
 
+nmap <leader>u :windo update<cr>
+
 " Swap two words, like <m-t> in emacs
 nmap \t l2bdiw"_xea<space><esc>p
 
 " There is never a time I don't want this, I believe.
-noremap j gj
-noremap k gk
-imap <up> <c-o>k
-imap <down> <c-o>j
-nmap <up> k
-nmap <down> j
+"noremap j gj
+"noremap k gk
+"imap <up> <c-o>k
+"imap <down> <c-o>j
+"nmap <up> k
+"nmap <down> j
 " These don't work nice with nowrap, though
 "noremap 0 g0
 "noremap $ g$
