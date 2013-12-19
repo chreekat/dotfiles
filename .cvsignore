@@ -6,3 +6,4 @@ cabal-dev
 *.pyc
 *.o
 *.hi
+.redo

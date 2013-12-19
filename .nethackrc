@@ -6,7 +6,7 @@ OPTIONS=autoquiver
 OPTIONS=pickup_types:$
 
 # == Make things look nice ===================================
-OPTIONS=color,DECgraphics,hilite_pet,lit_corridor
+OPTIONS=color,DECgraphics,hilite_pet,lit_corridor,hpmon
 OPTIONS=menustyle:full
 
 # == Show extra stuff ========================================
@@ -15,7 +15,7 @@ OPTIONS=disclose:+i +a +v +g +c
 OPTIONS=scores:5 top scores/4 around my score/own scores
 
 OPTIONS=boulder:0
-OPTIONS=runmode:walk
+OPTIONS=runmode:run
 
 OPTIONS=msg_window:full
 
@@ -98,14 +98,3 @@ MENUCOLOR=" burnt .* \([a-z ;]+\)"=yellow&underline
 MENUCOLOR=" burned .* \([a-z ;]+\)"=yellow&underline
 MENUCOLOR=" rotted .* \([a-z ;]+\)"=yellow&underline
 MENUCOLOR=" damaged .* \([a-z ;]+\)"=yellow&underline
-
-# Last and most importantly
-# The "Do not put in the bag of holding" list
-#MENUCOLOR=" bag.*holding"=lightmagenta
-#MENUCOLOR=" wand.*cancellation"=lightmagenta
-#MENUCOLOR=" sack.*cancellation"=lightmagenta
-#MENUCOLOR="sack.*BOH"=lightmagenta
-#MENUCOLOR=" bag.*tricks"=lightmagenta
-#MENUCOLOR=" bag.*cancellation"=lightmagenta
-#MENUCOLOR="luckstone"=magenta
-#MENUCOLOR="bag.*BOH"=lightmagenta

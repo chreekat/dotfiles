@@ -13,3 +13,7 @@
 # Ignore boring cabal stuff
 --ignore-dir=dist
 --ignore-dir=cabal-dev
+--ignore-dir=node_modules
+
+--sort-files
+--color-filename=green

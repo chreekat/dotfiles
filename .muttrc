@@ -8,7 +8,7 @@ folder-hook .              set sort_aux = reverse-last-date-received
 folder-hook "INBOX|action" set sort_aux = last-date-received
 folder-hook "INBOX|action" exec first-entry
 
-alternates bryan.richter@gmail.com chreekat@gmail.com
+alternates bryan.richter@gmail.com chreekat@gmail.com b@chreekat.net
 
 mailboxes +INBOX +drafts +sent +starred +trash +archive +@action +@waiting_for +recent
 
@@ -22,7 +22,7 @@ set copy              = no
 set delete            = yes
 set folder            = $HOME/Mail
 set forward_format    = "Fwd: %s"
-set from              = "bryan.richter@gmail.com"
+set from              = "b@chreekat.net"
 set help              = no
 set include           = yes
 set mark_old          = no
@@ -31,8 +31,8 @@ set pager_context     = 2
 set pager_stop
 set postponed         = +drafts
 set realname          = "Bryan Richter"
+set recall = no # Recall manually with R
 set record            = "this/is/ignored"
-set reverse_name
 set sleep_time        = 0
 set smart_wrap
 set smtp_pass         = "`passgm`"
@@ -64,6 +64,7 @@ bind index,pager m change-folder
 
 macro index,pager Sa <save-message>+@action<enter>           "Apply @action label and archive"
 macro index,pager Sw <save-message>+@waiting_for<enter>      "Apply @waiting_for label and archive"
+macro index,pager Ss <save-message>+starred<enter>           "Star and archive"
 
 macro index,pager ga <change-folder>+@action<enter>      " Go to @action label      "
 macro index,pager gw <change-folder>+@waiting_for<enter> " Go to @waiting_for label "
@@ -71,6 +72,8 @@ macro index,pager gr <change-folder>+recent<enter>       " Go to recent mail fol
 macro index,pager gi <change-folder>+INBOX<enter>        " Go to Google inbox       "
 macro index,pager gd <change-folder>+drafts<enter>       " Go to Google drafts      "
 macro index,pager gs <change-folder>+starred<enter>      " Go to starred messages   "
+
+macro pager <Esc>v <exit><collapse-thread>
 
 # Offlineimap awayy
 macro index,pager O "<shell-escape>offlineimap<enter>"           "run offlineimap to sync all mail"

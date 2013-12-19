@@ -3,7 +3,8 @@
 
 [general]
 accounts = Gmail
-socktimeout = 10
+# google isn't snappy with imap
+socktimeout = 30
 fsync = false
 pythonfile=~/.offlineimap/helper.py
 

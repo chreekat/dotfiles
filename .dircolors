@@ -205,6 +205,7 @@ EXEC 01;31  # Unix
 .rb 32
 .hs 32
 .php 32
+.hamlet 32
 .htm 32
 .html 32
 .shtml 32

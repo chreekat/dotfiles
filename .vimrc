@@ -14,10 +14,12 @@ if isdirectory($HOME."/.vim/bundle/vundle")
     Bundle 'scrooloose/nerdcommenter'
     Bundle 'tpope/vim-unimpaired'
     Bundle 'tpope/vim-speeddating'
+    Bundle 'tpope/vim-repeat'
 
     let g:syntastic_coffee_lint_options = "-f ~/Dropbox/bDotfiles/coffeelint.json"
     let g:syntastic_mode_map = {'active_filetypes': [], 'mode': 'passive', 'passive_filetypes': []}
     Bundle 'scrooloose/syntastic'
+    Bundle 'bitc/vim-hdevtools'
     Bundle 'kchmck/vim-coffee-script'
     Bundle 'altercation/vim-colors-solarized'
     Bundle 'a.vim'
@@ -45,8 +47,8 @@ if isdirectory($HOME."/.vim/bundle/vundle")
     Bundle 'merijn/haskellFoldIndent'
     Bundle 'Shougo/vimproc.vim'
 
-    let g:ghcmod_ghc_options = ['-XTemplateHaskell']
-    Bundle 'eagletmt/ghcmod-vim'
+    "let g:ghcmod_ghc_options = ['-XTemplateHaskell']
+    "Bundle 'eagletmt/ghcmod-vim'
     Bundle 'sjl/gundo.vim'
     Bundle 'kana/vim-textobj-user'
         Bundle 'kana/vim-textobj-indent'
@@ -96,10 +98,12 @@ set sidescroll=1
 set smartcase ignorecase
 " set statusline=%f%m%r%h%w\%=[L:\%l\ C:\%c\ P:\%p%%]
 set nosol
-set sw=4
+set sw=2
 set swb=useopen
 set titlestring=vi:\ %t%(\ %M%)%(\ (%{expand(\"%:~:.:h\")})%)%(\ %a%)
 set tw=75
+" In testing!
+set virtualedit=onemore
 set wildmode=longest:list:longest,list:full
 set wildignore+=*.o,*.hi,dist
 "set wiw=40 nowrap " For shoots and googles
@@ -118,6 +122,8 @@ let g:Tex_DefaultTargetFormat="pdf"
 
 let g:haddock_browser = "/usr/bin/google-chrome"
 let g:haddock_indexfiledir = "~/.vim"
+
+map <leader>xo :!xdg-open %<cr><c-l>
 
 map <F5> :GundoToggle<cr>
 
@@ -146,6 +152,12 @@ nmap <C-w>M <C-w>\|<C-w>_
 
 " Toggle numbers. Maybe useless? Let's find out.
 map <leader># :if &nu \| set rnu \| elseif &rnu \|  set rnu! \| else \| set nu \| endif<cr>
+
+" From :help E447
+map gf :e <cfile><cr>
+
+" Swap two words, like <m-t> in emacs
+nmap \t l2bdiw"_xea<space><esc>p
 
 " There is never a time I don't want this, I believe.
 noremap j gj
@@ -355,7 +367,7 @@ augroup vimrc
     " Reset compiler in case the file was renamed, since compiler has the
     " filename hardcoded thanks to vim-coffee-script making nearsighted
     " accomodations for mis-named files.
-    au BufWrite ~/LoByMyHand/*.coffee compiler coffee|silent make
+    "au BufWrite ~/LoByMyHand/*.coffee compiler coffee|silent make
 
     " call SoftWordWrap() |
     au BufRead nanowrimo.txt nmap ,ct :echo NanoStatus()<cr>
@@ -366,6 +378,9 @@ augroup vimrc
                 " \|ru autocorrect.vim | ru dvorak.vim
 
     au BufNewFile ~/Dropbox/Project_Euler/p*.lhs :0r <abuf>:h/problem.skel |4
+    au BufNewFile *.html :0r ~/.vim/skel/html
+    au BufNewFile *.hamlet :0r ~/.vim/skel/hamlet
+    au BufNewFile ~/bin/* :0r ~/.vim/skel/bin | setf sh | 5
 aug END
 
 " This needs to be better... needs to reuse quickfix buffer.

@@ -1,2 +1,2 @@
-application/pdf; google-chrome "%s" & sleep 10
-text/html; google-chrome "%s" & sleep 10
+application/pdf; google-chrome %s & sleep 10
+text/html; w3m %s -T text/html

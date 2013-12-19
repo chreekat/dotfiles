@@ -33,3 +33,4 @@ alias apt-get="echo 'Use aptitude'"
 alias uu="sudo aptitude update && sudo aptitude -y safe-upgrade"
 
 alias t='python ~/src/t/t.py --task-dir ~/.todo --list todo'
+alias may='python ~/src/t/t.py --task-dir ~/.todo --list maybe'
