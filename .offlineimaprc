@@ -2,20 +2,25 @@
 # suit to get started fast.
 
 [general]
-accounts = Gmail
+accounts = Personal,Barobo
 # google isn't snappy with imap
 socktimeout = 30
 fsync = false
 pythonfile=~/.offlineimap/helper.py
 
-[Account Gmail]
-localrepository = Local
-remoterepository = Remote
+[Account Personal]
+localrepository = PersonalLocal
+remoterepository = PersonalRemote
 status_backend = sqlite
 
-[Repository Local]
+[Account Barobo]
+localrepository = BaroboLocal
+remoterepository = BaroboRemote
+status_backend = sqlite
+
+[Repository PersonalLocal]
 type = Maildir
-localfolders = ~/Mail
+localfolders = ~/Mail/Personal
 nametrans = lambda folder: {'drafts':  '[Gmail]/Drafts',
                             'sent':    '[Gmail]/Sent Mail',
                             'starred': '[Gmail]/Starred',
@@ -23,7 +28,7 @@ nametrans = lambda folder: {'drafts':  '[Gmail]/Drafts',
                             'archive': '[Gmail]/All Mail',
                             }.get(folder, folder)
 
-[Repository Remote]
+[Repository PersonalRemote]
 type = IMAP
 ssl = yes
 remotehost = imap.gmail.com
@@ -32,10 +37,39 @@ remoteuser = bryan.richter
 # >>> import keyring
 # >>> keyring.set_password("gmail", "username", "password")
 
-remotepasseval = password()
+remotepasseval = get_password("gmail", "bryan.richter@gmail.com")
 nametrans = lambda folder: {'[Gmail]/Drafts':    'drafts',
                             '[Gmail]/Sent Mail': 'sent',
                             '[Gmail]/Starred':   'starred',
                             '[Gmail]/Trash':     'trash',
                             '[Gmail]/All Mail':  'archive',
+                            }.get(folder, folder)
+
+[Repository BaroboLocal]
+type = Maildir
+localfolders = ~/Mail/Barobo
+nametrans = lambda folder: {'drafts':  '[Gmail]/Drafts',
+                            'sent':    '[Gmail]/Sent Mail',
+                            'starred': '[Gmail]/Starred',
+                            'trash':   '[Gmail]/Trash',
+                            'archive': '[Gmail]/All Mail',
+                            'important': '[Gmail]/Important',
+                            }.get(folder, folder)
+
+[Repository BaroboRemote]
+type = IMAP
+ssl = yes
+remotehost = imap.gmail.com
+remoteuser = bryan@barobo.com
+# To set the password, do:
+# >>> import keyring
+# >>> keyring.set_password("gmail", "username", "password")
+
+remotepasseval = get_password("gmail", "bryan@barobo.com")
+nametrans = lambda folder: {'[Gmail]/Drafts':    'drafts',
+                            '[Gmail]/Sent Mail': 'sent',
+                            '[Gmail]/Starred':   'starred',
+                            '[Gmail]/Trash':     'trash',
+                            '[Gmail]/All Mail':  'archive',
+                            '[Gmail]/Important': 'important',
                             }.get(folder, folder)
