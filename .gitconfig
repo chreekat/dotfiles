@@ -1,37 +1,42 @@
 [user]
-	name = Bryan Richter
-	email = b@chreekat.net
+    name = Bryan Richter
+    email = b@chreekat.net
 [credential]
-	helper = cache --timeout=3600
+    helper = cache --timeout=3600
 [color]
-	ui = auto
+    ui = auto
 [alias]
-	lg = log --oneline --graph --decorate --all
-	lga = log --oneline --graph --decorate
-	st = status --short
-	d = diff
-	dc = diff --cached
-	quicksave = commit -am "Blah"
-	lp = log -p
-	ci = commit
-	root = rev-parse --show-toplevel
+    # It's unintuitive, but I don't want the graph to be colored, so I
+    # specify 'no-color' right before adding a lot of color to other
+    # things.
+    # TODO: Use %C(auto) for decorations once i'm on git 1.8.3+.
+    lg = log --graph --no-color \
+        --pretty=format:'%C(10)%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(10)<%an>%Creset' \
+        --abbrev-commit --all
+    lga = log --graph --no-color \
+        --pretty=format:'%C(10)%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(10)<%an>%Creset' \
+        --abbrev-commit
+    st = status --short
+    d = diff
+    dc = diff --cached
+    quicksave = commit -am "Blah"
+    lp = log -p
+    ci = commit
+    root = rev-parse --show-toplevel
 [rebase]
-	autosquash = true
+    autosquash = true
 [core]
-	excludesfile = ~/.cvsignore
-[merge]
-	tool = vimdiff
+    excludesfile = ~/.cvsignore
 [color "decorate"]
-	branch = green
-	remoteBranch = 14
-	HEAD = 4
-	tag = 6
+    branch = green
+    remoteBranch = 14
+    HEAD = 4
+    tag = 6
 [color "diff"]
-	meta = 13 bold
-	commit = 12 reverse
+    meta = 13 bold
+    commit = 12 reverse
 [merge]
-	tool = splice
+    tool = splice
 [mergetool "splice"]
-	cmd = "vim -f $BASE $LOCAL $REMOTE $MERGED -c 'SpliceInit'"
-	trustExitCode = true
-# vim: set noet :
+    cmd = "vim -f $BASE $LOCAL $REMOTE $MERGED -c 'SpliceInit'"
+    trustExitCode = true
