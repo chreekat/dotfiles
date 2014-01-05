@@ -7,6 +7,7 @@ accounts = Personal,Barobo
 socktimeout = 30
 fsync = false
 pythonfile=~/.offlineimap/helper.py
+ui = Blinkenlights
 
 [Account Personal]
 localrepository = PersonalLocal
@@ -53,7 +54,6 @@ nametrans = lambda folder: {'drafts':  '[Gmail]/Drafts',
                             'starred': '[Gmail]/Starred',
                             'trash':   '[Gmail]/Trash',
                             'archive': '[Gmail]/All Mail',
-                            'important': '[Gmail]/Important',
                             }.get(folder, folder)
 
 [Repository BaroboRemote]
@@ -71,5 +71,4 @@ nametrans = lambda folder: {'[Gmail]/Drafts':    'drafts',
                             '[Gmail]/Starred':   'starred',
                             '[Gmail]/Trash':     'trash',
                             '[Gmail]/All Mail':  'archive',
-                            '[Gmail]/Important': 'important',
                             }.get(folder, folder)
