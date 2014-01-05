@@ -112,6 +112,9 @@ fi
 if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
+if [ -d "$HOME/.cabal/bin" ] ; then
+    PATH="$HOME/.cabal/bin:$PATH"
+fi
 if [ -d "$HOME/node_modules/.bin" ] ; then
     PATH="$HOME/node_modules/.bin:$PATH"
 fi
@@ -141,7 +144,7 @@ export BUP_DIR=$HOME/Dropbox/bup
 
 umask 0022
 
-export BROWSER=google-chrome
+export BROWSER=gnome-www-browser
 
 export EC2_PRIVATE_KEY=$HOME/certs/pk-KBRX5ZQKB4ETJM7VLY3LOCM5OKS2THP3.pem
 export EC2_CERT=$HOME/certs/cert-KBRX5ZQKB4ETJM7VLY3LOCM5OKS2THP3.pem
