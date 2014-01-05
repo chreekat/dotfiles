@@ -96,7 +96,7 @@ set sidescroll=1
 "set sidescrolloff=3
 set smartcase ignorecase
 " set statusline=%f%m%r%h%w\%=[L:\%l\ C:\%c\ P:\%p%%]
-set number relativenumber
+set number
 set nosol
 set sw=2
 set swb=useopen
