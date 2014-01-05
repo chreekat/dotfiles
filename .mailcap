@@ -1,2 +1,3 @@
-application/pdf; google-chrome %s & sleep 10
+application/pdf; evince %s
 text/html; w3m %s -T text/html
+image/*; eog %s
