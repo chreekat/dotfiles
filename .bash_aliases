@@ -34,3 +34,11 @@ alias uu="sudo aptitude update && sudo aptitude -y safe-upgrade"
 
 alias t='python ~/src/t/t.py --task-dir ~/.todo --list todo'
 alias may='python ~/src/t/t.py --task-dir ~/.todo --list maybe'
+
+alias ds="aptitude search"
+alias dsh="aptitude show"
+alias di="sudo aptitude install"
+
+alias bb="lb barobo"
+
+alias gd="git d"
