@@ -12,3 +12,4 @@
 .offlineimap/lock
 .offlineimap/pid
 .gnupg
+.vim/undos
