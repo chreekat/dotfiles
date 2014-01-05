@@ -1,0 +1,17 @@
+macro index <f2> "<change-folder>~/Mail/Barobo/INBOX<enter>"
+alternates bryan.richter@gmail.com chreekat@gmail.com b@chreekat.net
+set folder            = $HOME/Mail/Personal
+set from              = "b@chreekat.net"
+set smtp_pass         = "`passgm personal`"
+set smtp_url          = smtps://bryan.richter@smtp.gmail.com
+macro index,pager A "<pipe-message>goobook add<enter><shell-escape>goobook reload<enter>" "add the sender address to Google contacts"
+set query_command = "echo; grep -i '\t.*'%s ~/.google_contacts"
+
+unmailboxes *
+mailboxes +INBOX +drafts +sent +starred +trash +archive +@action +@waiting_for +recent
+set spoolfile         = +INBOX
+
+color status brightcolor8 color2
+set status_format = "[PERSONAL] $my_status_format"
+
+macro index,pager o "<sync-mailbox><shell-escape>offlineimap -a Personal -qf INBOX,@action<enter>" "run offlineimap to sync inbox"
