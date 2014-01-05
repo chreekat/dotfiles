@@ -17,17 +17,14 @@ if isdirectory($HOME."/.vim/bundle/vundle")
     Bundle 'tpope/vim-repeat'
 
     let g:syntastic_coffee_lint_options = "-f ~/Dropbox/bDotfiles/coffeelint.json"
-    let g:syntastic_mode_map = {'active_filetypes': ["javascript"], 'mode': 'passive', 'passive_filetypes': []}
     let g:syntastic_always_populate_loc_list=1
     Bundle 'scrooloose/syntastic'
-    Bundle 'bitc/vim-hdevtools'
     Bundle 'kchmck/vim-coffee-script'
     Bundle 'altercation/vim-colors-solarized'
     Bundle 'a.vim'
     Bundle 'msanders/snipmate.vim'
     Bundle 'godlygeek/tabular'
     Bundle 'panozzaj/vim-autocorrect'
-    "Bundle 'dag/vim2hs'
     Bundle 'tpope/vim-markdown'
 
     "let g:instant_markdown_slow = 1
@@ -48,14 +45,10 @@ if isdirectory($HOME."/.vim/bundle/vundle")
     Bundle 'merijn/haskellFoldIndent'
     Bundle 'Shougo/vimproc.vim'
 
-    "let g:ghcmod_ghc_options = ['-XTemplateHaskell']
-    "Bundle 'eagletmt/ghcmod-vim'
     Bundle 'sjl/gundo.vim'
-    Bundle 'kana/vim-textobj-user'
-        Bundle 'kana/vim-textobj-indent'
     Bundle 'bruno-/vim-vertical-move'
     Bundle 'sjl/splice.vim'
-    Bundle 'othree/xml.vim'
+    Bundle 'tpope/vim-abolish'
 else
     echomsg "Vundle not installed! Hecka weirdness may ensue."
 endif
