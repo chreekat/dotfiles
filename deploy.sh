@@ -33,8 +33,9 @@ confirm_no_clobber() {
     NOTADOT=''
 
     for i in ${DOTS[@]}; do
-        if [ ! -L $i -a -e $i ]; then
-            NOTADOT="${NOTADOT}$i "
+        dst=.$i
+        if [ ! -L $dst -a -e $dst ]; then
+            NOTADOT="${NOTADOT}$dst "
         fi
     done
 
@@ -74,39 +75,40 @@ confirm_have_goodies() {
 }
 
 link_dot() {
-    dot=$1
-    doo rm -f $dot
-    doo ln -s $EXPORT_DIR/$dot .
+    src=$1
+    dst=.$1
+    doo rm -f $dst
+    doo ln -s $EXPORT_DIR/$src $dst
 }
 
 # Initialize globals
 EXPORT_DIR=$(dirname "${PWD}/$0")
 DOTS=(
-    .ackrc
-    .bash_aliases
-    .bashrc
-    .cvsignore
-    .cvsrc
-    .dircolors
-    .emacs.d
-    .ghci
-    .gitconfig
-    .goobookrc
-    .inputrc
-    .irssi
-    .mailcap
-    .mutt
-    .muttrc
-    .ncmpcpp
-    .nethackrc
-    .newsbeuter
-    .offlineimap
-    .offlineimaprc
-    .tmux
-    .tmux.conf
-    .toprc
-    .vim
-    .vimrc
+    ackrc
+    bash_aliases
+    bashrc
+    cvsignore
+    cvsrc
+    dircolors
+    emacs.d
+    ghci
+    gitconfig
+    goobookrc
+    inputrc
+    irssi
+    mailcap
+    mutt
+    muttrc
+    ncmpcpp
+    nethackrc
+    newsbeuter
+    offlineimap
+    offlineimaprc
+    tmux
+    tmux.conf
+    toprc
+    vim
+    vimrc
 )
 
 # Fire missiles
