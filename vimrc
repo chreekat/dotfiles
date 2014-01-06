@@ -22,7 +22,7 @@ if isdirectory($HOME."/.vim/bundle/vundle")
     Bundle 'kchmck/vim-coffee-script'
     Bundle 'altercation/vim-colors-solarized'
     Bundle 'a.vim'
-    Bundle 'msanders/snipmate.vim'
+    "Bundle 'msanders/snipmate.vim'
     Bundle 'godlygeek/tabular'
     Bundle 'panozzaj/vim-autocorrect'
     Bundle 'tpope/vim-markdown'
