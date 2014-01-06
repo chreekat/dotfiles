@@ -98,6 +98,7 @@ DOTS=(
     goobookrc
     inputrc
     irssi
+    jshintrc
     mailcap
     mutt
     muttrc
