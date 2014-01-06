@@ -91,6 +91,8 @@ DOTS=(
     cvsrc
     dircolors
     emacs.d
+    fonts
+    fonts.conf.d
     ghci
     gitconfig
     goobookrc
@@ -104,6 +106,7 @@ DOTS=(
     newsbeuter
     offlineimap
     offlineimaprc
+    terminfo
     tmux
     tmux.conf
     toprc
