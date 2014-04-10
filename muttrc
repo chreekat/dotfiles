@@ -35,6 +35,7 @@ set sleep_time        = 0
 set smart_wrap
 set sort              = threads
 set ssl_force_tls     = yes
+set tmpdir            = ~/tmp
 set wait_key          = no
 
 ignore *
