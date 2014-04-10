@@ -106,18 +106,15 @@ fi
 
 stty -ixon
 
-if [ -d "$HOME/.cabal/bin" ] ; then
-    PATH="$HOME/.cabal/bin:$PATH"
-fi
-if [ -d "$HOME/.local/bin" ] ; then
-    PATH="$HOME/.local/bin:$PATH"
-fi
-if [ -d "$HOME/.cabal/bin" ] ; then
-    PATH="$HOME/.cabal/bin:$PATH"
-fi
-if [ -d "$HOME/node_modules/.bin" ] ; then
-    PATH="$HOME/node_modules/.bin:$PATH"
-fi
+for p in $HOME/.cabal/bin \
+         $HOME/.local/bin \
+         $HOME/node_modules/.bin \
+         /usr/lib/ccache; do
+    if [ -d "$p" ]; then
+        PATH=$p:$PATH
+    fi
+done
+export PATH
 
 # Bash options
 export CDPATH=~/LoByMyHand:~/src
