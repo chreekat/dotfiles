@@ -284,3 +284,6 @@ settings = {
 hilights = (
   { text = "chreekat"; color = "%M"; nick = "yes"; word = "yes"; }
 );
+ignores = (
+  { level = "JOINS PARTS QUITS MODES"; channels = ( "&bitlbee" ); }
+);
