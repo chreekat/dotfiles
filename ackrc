@@ -3,6 +3,7 @@
 #--type-add=text=.txt
 --type-set=coffee=.coffee
 --type-set=cabal=.cabal
+--type-set=ch=.ch
 --type-set=hamlet=.hamlet
 --type-set=julius=.julius
 --type-set=lucius=.lucius
@@ -10,10 +11,18 @@
 --type-set=elm=.elm
 --type-set=go=.go
 --type-set=cabal=.cabal
+--type-set=sass=.scss
 # Ignore boring cabal stuff
 --ignore-dir=dist
 --ignore-dir=cabal-dev
 --ignore-dir=node_modules
+# Stow dir is totes ignorable
+--ignore-dir=stow
+--ignore-dir=build
+--ignore-dir=.tmp
+--ignore-dir=bower_components
+--ignore-dir=node_modules
+--ignore-dir=.sass_cache
 
 --sort-files
 --color-filename=green
