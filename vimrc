@@ -18,6 +18,7 @@ if isdirectory($HOME."/.vim/bundle/vundle")
 
     let g:syntastic_coffee_lint_options = "-f ~/Dropbox/bDotfiles/coffeelint.json"
     let g:syntastic_always_populate_loc_list=1
+    let g:syntastic_mode_map = { "mode": "passive" }
     Bundle 'scrooloose/syntastic'
     Bundle 'kchmck/vim-coffee-script'
     Bundle 'altercation/vim-colors-solarized'
@@ -49,6 +50,7 @@ if isdirectory($HOME."/.vim/bundle/vundle")
     Bundle 'bruno-/vim-vertical-move'
     Bundle 'sjl/splice.vim'
     Bundle 'tpope/vim-abolish'
+    "Bundle 'atimholt/spiffy_foldtext'
 else
     echomsg "Vundle not installed! Hecka weirdness may ensue."
 endif
@@ -96,32 +98,35 @@ set sidescroll=1
 "set sidescrolloff=3
 set smartcase ignorecase
 " set statusline=%f%m%r%h%w\%=[L:\%l\ C:\%c\ P:\%p%%]
-set number
 set nosol
-set sw=2
+set sw=4
 set swb=useopen
 set titlestring=vi:\ %t%(\ %M%)%(\ (%{expand(\"%:~:.:h\")})%)%(\ %a%)
 set tw=75
+set updatetime=2000
 " In testing!
 set virtualedit=onemore
 set wildmode=longest:list:longest,list:full
 set wildignore+=*.o,*.hi,dist
 "set wiw=40 nowrap " For shoots and googles
-let &wiw = &tw
+let &wiw = &tw + 4
 set whichwrap=<,>,[,] " arrow keys wrap
-set exrc
 if has("persistent_undo")
     set undodir=~/.vim/undos
     set undofile
 endif
 
 
-let g:sh_fold_enabled=1
 let g:tex_flavor="latex"
 let g:Tex_DefaultTargetFormat="pdf"
 
 let g:haddock_browser = "/usr/bin/google-chrome"
 let g:haddock_indexfiledir = "~/.vim"
+
+
+" n always goes down, N always goes up
+nmap n /<cr>
+nmap N ?<cr>
 
 map <leader>xo :!xdg-open %<cr><c-l>
 
@@ -129,9 +134,9 @@ map <F5> :GundoToggle<cr>
 
 map <Leader>e zfaB
 
-nmap <Leader>V :tabe  ~/LoByMyHand/bDotfiles/.vimrc<cr>
+nmap <Leader>V :tabe  ~/LoByMyHand/bDotfiles/vimrc<cr>
 nmap <Leader>S :so ~/.vimrc<cr>
-nmap <Leader>L :tabe ~/LoByMyHand/bDotfiles/.vim/bundle/vim-colors-lunatic/colors/lunatic.vim<cr>
+nmap <Leader>L :tabe ~/LoByMyHand/bDotfiles/vim/bundle/vim-colors-lunatic/colors/lunatic.vim<cr>
 
 " Make <c-s> useful!
 nmap <c-s> :up<cr>
@@ -152,9 +157,6 @@ nmap <C-w>M <C-w>\|<C-w>_
 
 " Toggle numbers. Maybe useless? Let's find out.
 map <leader># :if &nu \| set rnu \| elseif &rnu \|  set rnu! \| else \| set nu \| endif<cr>
-
-" From :help E447
-map gf :e <cfile><cr>
 
 nmap <leader>u :windo update<cr>
 
@@ -179,8 +181,6 @@ function! ToggleHighlight()
         let @/ = input("Search: ", @/)
     endif
 endfunction
-
-nmap /// :call ToggleHighlight()<cr>
 
 " I just can't type z
 nmap ,. z
@@ -232,6 +232,7 @@ function! WindowWidth()
   return winwidth(0) - &fdc - &number*&numberwidth - signColumn - pad
 endfunction
 
+" I apologize for this name.
 function! BFoldtextRealz(foldstart, foldend)
     let lines = a:foldend - a:foldstart
     let commentPat = substitute(&cms, '%s', '.*', '')
@@ -243,19 +244,21 @@ function! BFoldtextRealz(foldstart, foldend)
     "   Syntactic white noise
     let firstline = substitute(firstline, '^class\s*', '', 'g')
 
-    let textend = '|' . lines . '| ↓' . v:foldlevel
+    let textend = '  |' . lines . '| ↓' . v:foldlevel . ' '
 
     " Now, chop off as much of the firstline as necessary to show the fold info.
     let windowWidth = min([WindowWidth(), 80])
     let lineWidth = StringWidth(firstline)
     let endWidth = StringWidth(textend)
 
-    if windowWidth < (lineWidth + endWidth)
+    if windowWidth < (lineWidth + endWidth) && windowWidth > endWidth
         let firstline = strpart(firstline, 0, windowWidth - endWidth - 1)
         let firstline .= "…"
     endif
 
-    return firstline . repeat(" ", windowWidth-StringWidth(firstline.textend)) . textend
+    return firstline
+                \ . repeat(" ", windowWidth-StringWidth(firstline.textend))
+                \ . textend
 endfunction
 function! BFoldtext()
     return BFoldtextRealz(v:foldstart, v:foldend)
@@ -380,9 +383,14 @@ augroup vimrc
                 " \|ru autocorrect.vim | ru dvorak.vim
 
     au BufNewFile ~/Dropbox/Project_Euler/p*.lhs :0r <abuf>:h/problem.skel |4
+    au BufNewFile *.html.hs :0r ~/.vim/skel/html.hs |$
     au BufNewFile *.html :0r ~/.vim/skel/html
     au BufNewFile *.hamlet :0r ~/.vim/skel/hamlet
     au BufNewFile ~/bin/* :0r ~/.vim/skel/bin | setf sh | 5
+    au BufRead Doxyfile :map <buffer> ,\ :!doxygen<cr><c-l>
+
+    au WinLeave * setl nowrap
+    au WinEnter * setl wrap
 aug END
 
 " This needs to be better... needs to reuse quickfix buffer.
