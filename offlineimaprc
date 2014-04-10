@@ -7,7 +7,6 @@ accounts = Personal,Barobo
 socktimeout = 30
 fsync = false
 pythonfile=~/.offlineimap/helper.py
-ui = Blinkenlights
 
 [Account Personal]
 localrepository = PersonalLocal
