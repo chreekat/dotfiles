@@ -1,6 +1,10 @@
 reset all
 unhook *
 
+# I never need this
+
+bind index,pager \# noop
+
 # Colllapse threads on viewing a folder
 folder-hook . exec collapse-all
 
