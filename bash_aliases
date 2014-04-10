@@ -42,3 +42,5 @@ alias di="sudo aptitude install"
 alias bb="lb barobo"
 
 alias gd="git d"
+
+alias git=hub
