@@ -147,3 +147,5 @@ export EC2_PRIVATE_KEY=$HOME/certs/pk-KBRX5ZQKB4ETJM7VLY3LOCM5OKS2THP3.pem
 export EC2_CERT=$HOME/certs/cert-KBRX5ZQKB4ETJM7VLY3LOCM5OKS2THP3.pem
 
 . /etc/bash_completion
+
+source ~/.bash/git.bash
