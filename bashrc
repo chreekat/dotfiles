@@ -148,4 +148,8 @@ export EC2_CERT=$HOME/certs/cert-KBRX5ZQKB4ETJM7VLY3LOCM5OKS2THP3.pem
 
 . /etc/bash_completion
 
+export MANPATH=/usr/share/man:/usr/local/share/man:$HOME/.local/share/man
+
+export BAROBO_DEV=true
+
 source ~/.bash/git.bash
