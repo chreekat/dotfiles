@@ -1,4 +1,4 @@
-macro index <f2> "<change-folder>~/Mail/Personal/INBOX<enter>"
+macro index,pager <f2> "<change-folder>~/Mail/Personal/INBOX<enter>"
 
 set folder            = $HOME/Mail/Barobo
 set from              = "bryan@barobo.com"

@@ -1,4 +1,4 @@
-macro index <f2> "<change-folder>~/Mail/Barobo/INBOX<enter>"
+macro index,pager <f2> "<change-folder>~/Mail/Barobo/INBOX<enter>"
 alternates bryan.richter@gmail.com chreekat@gmail.com b@chreekat.net
 set folder            = $HOME/Mail/Personal
 set from              = "b@chreekat.net"
