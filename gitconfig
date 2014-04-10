@@ -5,36 +5,26 @@
     helper = cache --timeout=3600
 [color]
     ui = auto
+[color "decorate"]
+    branch = 2
+    remoteBranch = 3
+    HEAD = 1
+    tag = 6
+[color "diff"]
+    meta = 13 bold
+    commit = 10
 [alias]
-    # It's unintuitive, but I don't want the graph to be colored, so I
-    # specify 'no-color' right before adding a lot of color to other
-    # things.
-    # TODO: Use %C(auto) for decorations once i'm on git 1.8.3+.
-    lg = log --graph --no-color \
-        --pretty=format:'%C(10)%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(10)<%an>%Creset' \
-        --abbrev-commit --all
-    lga = log --graph --no-color \
-        --pretty=format:'%C(10)%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(10)<%an>%Creset' \
-        --abbrev-commit
     st = status --short
     d = diff
     dc = diff --cached
-    quicksave = commit -am "Blah"
-    lp = log -p
+    qs = commit -am "QUICKSAVE"
     ci = commit
+    co = checkout
     root = rev-parse --show-toplevel
 [rebase]
     autosquash = true
 [core]
     excludesfile = ~/.cvsignore
-[color "decorate"]
-    branch = green
-    remoteBranch = 14
-    HEAD = 4
-    tag = 6
-[color "diff"]
-    meta = 13 bold
-    commit = 12 reverse
 [merge]
     tool = splice
 [mergetool "splice"]
