@@ -4,6 +4,7 @@ tags
 dist
 cabal-dev
 *.pyc
+*.pyo
 *.o
 *.hi
 .redo
