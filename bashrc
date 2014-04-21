@@ -146,7 +146,9 @@ export BROWSER=gnome-www-browser
 export EC2_PRIVATE_KEY=$HOME/certs/pk-KBRX5ZQKB4ETJM7VLY3LOCM5OKS2THP3.pem
 export EC2_CERT=$HOME/certs/cert-KBRX5ZQKB4ETJM7VLY3LOCM5OKS2THP3.pem
 
-. /etc/bash_completion
+if [ -e /etc/bash_completion ]; then
+    . /etc/bash_completion
+fi
 
 export MANPATH=/usr/share/man:/usr/local/share/man:$HOME/.local/share/man
 
