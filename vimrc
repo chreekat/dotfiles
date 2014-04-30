@@ -143,13 +143,6 @@ nmap <c-s> :up<cr>
 vmap <c-s> :w
 imap <c-s> <esc>:up<cr>
 
-" Escape key? No thanks
-vmap <Tab> <Esc>
-imap <Tab> <Esc>
-omap <Tab> <Esc>
-" Catches a standard fuck up I do:
-nmap r<Tab> <Esc>
-
 " Adds C-u to the undo stream:
 inoremap <C-u> <esc>S
 
@@ -173,6 +166,9 @@ nmap \t l2bdiw"_xea<space><esc>p
 " These don't work nice with nowrap, though
 "noremap 0 g0
 "noremap $ g$
+
+" Retrain tab
+imap <tab> <nop>
 
 " Quick toggle of hls
 function! ToggleHighlight()
