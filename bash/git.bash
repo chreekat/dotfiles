@@ -15,6 +15,7 @@ log_aliases () {
     alias lgf="$gl    --graph --all                       $std_format"
     alias lga="$gl    --graph       --first-parent        $std_format"
     alias lp="$gl  -p               --first-parent        $break_format"
+    alias lpf="$gl -p                                     $break_format"
 
     alias lg1="$gl    --graph --all --first-parent        $std_format | head -n 10"
 }
