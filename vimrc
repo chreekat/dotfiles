@@ -143,13 +143,6 @@ nmap <c-s> :up<cr>
 vmap <c-s> :w
 imap <c-s> <esc>:up<cr>
 
-" Escape key? No thanks
-vmap <Tab> <Esc>
-imap <Tab> <Esc>
-omap <Tab> <Esc>
-" Catches a standard fuck up I do:
-nmap r<Tab> <Esc>
-
 " Adds C-u to the undo stream:
 inoremap <C-u> <esc>S
 
@@ -173,6 +166,9 @@ nmap \t l2bdiw"_xea<space><esc>p
 " These don't work nice with nowrap, though
 "noremap 0 g0
 "noremap $ g$
+
+" Retrain tab
+imap <tab> <nop>
 
 " Quick toggle of hls
 function! ToggleHighlight()
@@ -247,7 +243,7 @@ function! BFoldtextRealz(foldstart, foldend)
     let textend = '  |' . lines . '| ↓' . v:foldlevel . ' '
 
     " Now, chop off as much of the firstline as necessary to show the fold info.
-    let windowWidth = min([WindowWidth(), 80])
+    let windowWidth = WindowWidth() " min([WindowWidth(), 80])
     let lineWidth = StringWidth(firstline)
     let endWidth = StringWidth(textend)
 
@@ -390,7 +386,7 @@ augroup vimrc
     au BufRead Doxyfile :map <buffer> ,\ :!doxygen<cr><c-l>
 
     au WinLeave * setl nowrap
-    au WinEnter * setl wrap
+    au WinEnter * if !&scrollbind|setl wrap|endif
 aug END
 
 " This needs to be better... needs to reuse quickfix buffer.
