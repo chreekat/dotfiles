@@ -152,4 +152,6 @@ export MANPATH=/usr/share/man:/usr/local/share/man:$HOME/.local/share/man
 
 export BAROBO_DEV=true
 
-source ~/.bash/git.bash
+for rc in ~/.bash/*.bash; do
+    source $rc
+done
