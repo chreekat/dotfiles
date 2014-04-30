@@ -243,7 +243,7 @@ function! BFoldtextRealz(foldstart, foldend)
     let textend = '  |' . lines . '| ↓' . v:foldlevel . ' '
 
     " Now, chop off as much of the firstline as necessary to show the fold info.
-    let windowWidth = min([WindowWidth(), 80])
+    let windowWidth = WindowWidth() " min([WindowWidth(), 80])
     let lineWidth = StringWidth(firstline)
     let endWidth = StringWidth(textend)
 
@@ -386,7 +386,7 @@ augroup vimrc
     au BufRead Doxyfile :map <buffer> ,\ :!doxygen<cr><c-l>
 
     au WinLeave * setl nowrap
-    au WinEnter * setl wrap
+    au WinEnter * if !&scrollbind|setl wrap|endif
 aug END
 
 " This needs to be better... needs to reuse quickfix buffer.
