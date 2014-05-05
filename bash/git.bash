@@ -23,3 +23,9 @@ log_aliases () {
 log_aliases
 
 alias pl="git pull --ff-only"
+
+br-clone () {
+  repo=$1
+  shift
+  git clone $repo -o barobo -c author.email=bryan@barobo.com $@
+}
