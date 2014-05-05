@@ -10,14 +10,14 @@ log_aliases () {
 
 
 
-    alias lg="$gl     --graph --all --first-parent        $std_format"
-    alias lgs="$gl    --graph --all --first-parent --stat $std_format"
-    alias lgf="$gl    --graph --all                       $std_format"
-    alias lga="$gl    --graph       --first-parent        $std_format"
-    alias lp="$gl  -p               --first-parent        $break_format"
-    alias lpf="$gl -p                                     $break_format"
+    alias lg="$gl     --graph --branches --first-parent        $std_format"
+    alias lgs="$gl    --graph --branches --first-parent --stat $std_format"
+    alias lgf="$gl    --graph --branches                       $std_format"
+    alias lga="$gl    --graph            --first-parent        $std_format"
+    alias lp="$gl  -p                    --first-parent        $break_format"
+    alias lpf="$gl -p                                        $break_format"
 
-    alias lg1="$gl    --graph --all --first-parent        $std_format | head -n 10"
+    alias lg1="$gl    --graph --branches --first-parent        $std_format | head -n 10"
 }
 
 log_aliases
