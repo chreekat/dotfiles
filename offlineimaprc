@@ -12,11 +12,13 @@ pythonfile=~/.offlineimap/helper.py
 localrepository = PersonalLocal
 remoterepository = PersonalRemote
 status_backend = sqlite
+maxage = 90
 
 [Account Barobo]
 localrepository = BaroboLocal
 remoterepository = BaroboRemote
 status_backend = sqlite
+maxage = 90
 
 [Repository PersonalLocal]
 type = Maildir
