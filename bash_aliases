@@ -44,3 +44,5 @@ alias bb="lb barobo"
 alias gd="git d"
 
 alias git=hub
+
+alias xo=">/dev/null 2>&1 xdg-open"
