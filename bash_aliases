@@ -21,9 +21,6 @@ alias o='offlineimap -qf INBOX'
 alias action_lists="riot ~/Org/Lists.riot"
 alias amv='audio_rename -p "Music/%a/%l/%{mA}%{n0}__%t" -R'
 
-#  TODO: ignore binary files?
-alias vimdiffem="vim \$(git status -s | awk '/^.M/ { print \$2 }')"
-
 # Hopefully, I will never understand TERM.
 alias tmux="TERM=screen-it tmux"
 
