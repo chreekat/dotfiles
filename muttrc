@@ -1,10 +1,6 @@
 reset all
 unhook *
 
-# I never need this
-
-bind index,pager \# noop
-
 # Colllapse threads on viewing a folder
 folder-hook . exec collapse-all
 
@@ -17,6 +13,7 @@ set   connect_timeout=5
 
 set beep_new          = yes
 set beep              = no
+unset collapse_unread
 set confirmappend     = no
 set copy              = no
 set delete            = yes
@@ -35,6 +32,7 @@ set sleep_time        = 0
 set smart_wrap
 set sort              = threads
 set ssl_force_tls     = yes
+set strict_threads    = yes
 set tmpdir            = ~/tmp
 set wait_key          = no
 
@@ -47,11 +45,15 @@ unignore Cc:
 
 auto_view text/html
 
+# Change a file's type to application/pgp — necessary for inline pgp
+macro index,pager ,p "<edit-type>application/pgp<enter>" "Change to pgp"
+
 macro index ,R "<enter-command>source ~/.muttrc<enter>" "Reload .muttrc"
 macro pager ,R "<exit>,R<enter>"                        "Reload .muttrc"
 bind pager b previous-page
 
-macro index,pager m "<change-folder>?<tab>"
+bind index,pager m change-folder
+# macro index,pager m "<change-folder>?<tab>"
 
 # gmail-mimic macros
 
@@ -66,7 +68,7 @@ macro index,pager Ss <save-message>+starred<enter>           "Star and archive"
 
 macro index,pager ga <change-folder>+@action<enter>      " Go to @action label      "
 macro index,pager gw <change-folder>+@waiting_for<enter> " Go to @waiting_for label "
-macro index,pager gr <change-folder>+recent<enter>       " Go to recent mail folder "
+macro index,pager gr <change-folder>+archive<enter>       " Go to archive"
 macro index,pager gi <change-folder>+INBOX<enter>        " Go to Google inbox       "
 macro index,pager gd <change-folder>+drafts<enter>       " Go to Google drafts      "
 macro index,pager gs <change-folder>+starred<enter>      " Go to starred messages   "
@@ -102,5 +104,7 @@ source ~/.mutt/crypto.rc
 
 folder-hook '.*Barobo.*' source ~/.mutt/account_barobo.rc
 folder-hook '.*Personal.*' source ~/.mutt/account_personal.rc
+# folder-hook '.*snowdrift-mail.*' source ~/.mutt/account_snowdrift.rc
 
-set spoolfile = ~/Mail/`~/lib/worktime`/INBOX
+#set spoolfile = ~/Mail/`~/lib/worktime`/INBOX
+set spoolfile = ~/Mail/Personal/INBOX

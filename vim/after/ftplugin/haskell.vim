@@ -1,13 +1,12 @@
-nmap <buffer> <leader>hc :GhcModCheck<cr>:cc<cr>
-nmap <buffer> <leader>hh :!haddock -o /tmp/haddock -h %<cr><c-l>
-nmap <buffer> <leader>hl :call append(0, "{-# LANGUAGE  #-}")<cr>:normal gg013l<cr>i
-nmap <buffer> <leader>hH :call <SID>openHaddock()<cr>
+try
+    compiler cabal
+catch /E666/
+endtry
 
-func! <SID>openHaddock()
-    let module = split(getline(search("^module", "nw")))[1]
-    let fn = "/tmp/haddock/" . tr(module, ".", "-") . ".html"
-    if filereadable(fn)
-        silent exec "!xdg-open " . fn
-        redraw!
-    endif
-endfunc
+noremap <leader>rr :exec "VimuxRunCommand \":l " . expand("%:.") . "\""<cr>
+noremap <leader>rl :VimuxRunLastCommand<cr>
+
+" Text-object representing a top-level function. Set for operater, visual,
+" and select modes.
+noremap af ?^\k<cr>o/<cr>{
+nunmap af

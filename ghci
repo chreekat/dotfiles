@@ -1,7 +1,11 @@
 :set prompt "|%s|\nλ "
 
-:m + Control.Arrow
-:m + Control.Applicative
-:m + Data.Monoid
+import Prelude
 
-:def R const $ return ":r"
+let ghciEscapeShellArg arg = "'" ++ concatMap (\x -> if x == '\'' then "'\"'\"'" else [x]) arg ++ "'"
+
+:def! R  const $ return ":r"
+:def! C  const $ return ":script /home/b/.ghci"
+:def! S  return . (":! hoogle --color --count=20 " ++) . ghciEscapeShellArg
+:def! SS return . (\x -> ":! hayoo " ++ x ++ "|less") . ghciEscapeShellArg
+:def! D  return . (":! hoogle --info " ++) . ghciEscapeShellArg

@@ -103,7 +103,9 @@ chatnets = {
 
 channels = (
   { name = "#irssi"; chatnet = "ircnet"; autojoin = "No"; },
-  { name = "silc"; chatnet = "silc"; autojoin = "No"; }
+  { name = "silc"; chatnet = "silc"; autojoin = "No"; },
+  { name = "#snowdrift"; chatnet = "Freenode"; autojoin = "yes"; },
+  { name = "#trustroots"; chatnet = "Freenode"; autojoin = "yes"; }
 );
 
 aliases = {
@@ -285,5 +287,8 @@ hilights = (
   { text = "chreekat"; color = "%M"; nick = "yes"; word = "yes"; }
 );
 ignores = (
-  { level = "JOINS PARTS QUITS MODES"; channels = ( "&bitlbee" ); }
+  {
+    level = "JOINS PARTS QUITS MODES";
+    channels = ( "&bitlbee", "#haskell" );
+  }
 );

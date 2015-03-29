@@ -106,6 +106,7 @@ DOTS=(
     ncmpcpp
     nethackrc
     newsbeuter
+    npmrc
     offlineimap
     offlineimaprc
     terminfo
@@ -114,6 +115,7 @@ DOTS=(
     toprc
     vim
     vimrc
+    w3m
 )
 
 # Fire missiles

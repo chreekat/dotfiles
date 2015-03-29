@@ -1,1 +1,1 @@
-set nocin nosi
+set nocin nosi fo+=j

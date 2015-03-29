@@ -3,7 +3,10 @@
 # for examples
 
 # If not running interactively, don't do anything
-[ -z "$PS1" ] && return
+case $- in
+    *i*) ;;
+      *) return;;
+esac
 
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
@@ -11,6 +14,10 @@ HISTCONTROL=ignoreboth
 
 # append to the history file, don't overwrite it
 shopt -s histappend
+
+# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
+HISTSIZE=1000000
+HISTFILESIZE=1000000
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -24,7 +31,7 @@ shopt -s globstar
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
 # set variable identifying the chroot you work in (used in the prompt below)
-if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
+if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
     debian_chroot=$(cat /etc/debian_chroot)
 fi
 
@@ -95,6 +102,17 @@ if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
+# enable programmable completion features (you don't need to enable
+# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
+# sources /etc/bash.bashrc).
+if ! shopt -oq posix; then
+  if [ -f /usr/share/bash-completion/bash_completion ]; then
+    . /usr/share/bash-completion/bash_completion
+  elif [ -f /etc/bash_completion ]; then
+    . /etc/bash_completion
+  fi
+fi
+
 if [ -d /usr/local/etc/profile.d ]; then
     for i in /usr/local/etc/profile.d/*.sh; do
         if [ -r $i ]; then
@@ -106,15 +124,12 @@ fi
 
 stty -ixon
 
-for p in $HOME/.cabal/bin \
-         $HOME/.local/bin \
-         $HOME/node_modules/.bin \
-         /usr/lib/ccache; do
-    if [ -d "$p" ]; then
-        PATH=$p:$PATH
-    fi
-done
-export PATH
+## FUNCTIONS
+
+mkcd () {
+    mkdir $@ &&
+    cd $@
+}
 
 # Bash options
 export CDPATH=~/LoByMyHand:~/src
@@ -126,8 +141,6 @@ export ACK_PAGER="less -RFX"
 
 export FIGNORE=*.o:*.hi
 
-export HISTSIZE=5000
-export HISTFILESIZE=5000
 # Lessee if this does what I want: ignore 1 and 2-letter commands
 export HISTIGNORE=?:??
 
@@ -146,10 +159,6 @@ export BROWSER=gnome-www-browser
 export EC2_PRIVATE_KEY=$HOME/certs/pk-KBRX5ZQKB4ETJM7VLY3LOCM5OKS2THP3.pem
 export EC2_CERT=$HOME/certs/cert-KBRX5ZQKB4ETJM7VLY3LOCM5OKS2THP3.pem
 
-if [ -e /etc/bash_completion ]; then
-    . /etc/bash_completion
-fi
-
 export MANPATH=/usr/share/man:/usr/local/share/man:$HOME/.local/share/man
 
 export BAROBO_DEV=true
@@ -157,3 +166,9 @@ export BAROBO_DEV=true
 for rc in ~/.bash/*.bash; do
     source $rc
 done
+
+# This is temporary until I figure out the right way to do it.
+export TERM=screen-it
+
+### Added by the Heroku Toolbelt
+export PATH="/usr/local/heroku/bin:$PATH"

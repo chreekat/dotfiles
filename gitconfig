@@ -3,6 +3,8 @@
     email = b@chreekat.net
 [credential]
     helper = cache --timeout=3600
+[core]
+    excludesfile = ~/.cvsignore
 [color]
     ui = auto
 [color "decorate"]
@@ -11,20 +13,22 @@
     HEAD = 1
     tag = 6
 [color "diff"]
-    meta = 13 bold
+    meta = 13 reverse
     commit = 10
 [alias]
-    st = status --short
+    st = status --short -b
     d = diff
     dc = diff --cached
     qs = commit -am "QUICKSAVE"
     ci = commit
     co = checkout
     root = rev-parse --show-toplevel
+    clown = clone
+    ignored = clean -ndX
 [rebase]
     autosquash = true
-[core]
-    excludesfile = ~/.cvsignore
+[fetch]
+    prune = true
 [merge]
     tool = splice
 [mergetool "splice"]

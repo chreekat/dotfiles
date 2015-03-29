@@ -33,8 +33,16 @@ alias t='python ~/src/t/t.py --task-dir ~/.todo --list todo'
 alias may='python ~/src/t/t.py --task-dir ~/.todo --list maybe'
 
 alias ds="aptitude search"
+
 alias dsh="aptitude show"
 alias di="sudo aptitude install"
+_pkgs () {
+  # from /usr/share/bash-completion/completions/aptitude
+  COMPREPLY=( $( apt-cache pkgnames $2 2> /dev/null ) )
+}
+complete -F _pkgs dsh
+complete -F _pkgs di
+complete -F _pkgs ds
 
 alias bb="lb barobo"
 
@@ -43,3 +51,10 @@ alias gd="git d"
 alias git=hub
 
 alias xo=">/dev/null 2>&1 xdg-open"
+
+alias cim="git commit -m"
+
+alias gdiff="vim +Gdiff"
+
+alias htag="git ls-tree -r HEAD --name-only | grep -E '*.hs' | xargs fast-tags"
+alias ag='ag --color --color-line-number=36 --color-path=32 --color-match="90;45" --pager less $@'
