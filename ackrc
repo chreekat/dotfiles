@@ -15,14 +15,17 @@
 # Ignore boring cabal stuff
 --ignore-dir=dist
 --ignore-dir=cabal-dev
+--ignore-dir=yesod-devel
 --ignore-dir=node_modules
 # Stow dir is totes ignorable
 --ignore-dir=stow
 --ignore-dir=build
 --ignore-dir=.tmp
+--ignore-dir=.hpc
 --ignore-dir=bower_components
 --ignore-dir=node_modules
 --ignore-dir=.sass_cache
-
+--ignore-dir=.cabal-sandbox
+--ignore-file=match:tags
 --sort-files
 --color-filename=green
