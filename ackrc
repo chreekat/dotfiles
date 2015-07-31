@@ -14,6 +14,7 @@
 --type-set=sass=.scss
 # Ignore boring cabal stuff
 --ignore-dir=dist
+--ignore-dir=dist-stack
 --ignore-dir=cabal-dev
 --ignore-dir=yesod-devel
 --ignore-dir=node_modules
@@ -26,6 +27,7 @@
 --ignore-dir=node_modules
 --ignore-dir=.sass_cache
 --ignore-dir=.cabal-sandbox
---ignore-file=match:tags
+--ignore-dir=.stack-work
+--ignore-file=match:^tags$
 --sort-files
 --color-filename=green

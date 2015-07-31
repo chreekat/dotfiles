@@ -3,9 +3,11 @@ use vars qw($VERSION %IRSSI);
 
 use Irssi;
 
-use Text::Wrap;
-
 my $nick = "chreekat";
+my %ignore_list = (
+    snowbot => 1
+);
+
 
 $VERSION = '0.1';
 %IRSSI = (
@@ -27,7 +29,7 @@ sub notify {
 sub notify_me {
     my ($srv, $msg, $sender, $senderAddr, $window) = @_;
 
-    if (!$window || $msg =~ /$nick/) {
+    if (!exists($ignore_list{$sender}) && (!$window || $msg =~ /$nick/)) {
         $msg =~ s/^{$nick}([,:] )?//;
         $window =~ s/.+/[$&]/;
         notify("$sender $window", "$msg");

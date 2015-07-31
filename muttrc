@@ -28,6 +28,8 @@ set postponed         = +drafts
 set realname          = "Bryan Richter"
 set recall = no # Recall manually with R
 set record            = "this/is/ignored"
+# Mainly so I have my own name for mailing lists
+set reverse_alias
 set sleep_time        = 0
 set smart_wrap
 set sort              = threads
@@ -44,6 +46,10 @@ unignore Date:
 unignore Cc:
 
 auto_view text/html
+
+# Jump to the w3m view of the html attachment
+macro index ,h v*<enter>q
+macro pager ,h qv*<enter>q<enter>
 
 # Change a file's type to application/pgp — necessary for inline pgp
 macro index,pager ,p "<edit-type>application/pgp<enter>" "Change to pgp"
@@ -68,15 +74,12 @@ macro index,pager Ss <save-message>+starred<enter>           "Star and archive"
 
 macro index,pager ga <change-folder>+@action<enter>      " Go to @action label      "
 macro index,pager gw <change-folder>+@waiting_for<enter> " Go to @waiting_for label "
-macro index,pager gr <change-folder>+archive<enter>       " Go to archive"
+macro index,pager gr <change-folder>+recent<enter>       " Go to recent"
 macro index,pager gi <change-folder>+INBOX<enter>        " Go to Google inbox       "
 macro index,pager gd <change-folder>+drafts<enter>       " Go to Google drafts      "
 macro index,pager gs <change-folder>+starred<enter>      " Go to starred messages   "
 
 macro pager <Esc>v <exit><collapse-thread>
-
-# Offlineimap awayy
-macro index,pager O "<sync-mailbox><shell-escape>offlineimap<enter>"           "run offlineimap to sync all mail"
 
 set certificate_file = "~/.mutt/certificates"
 
@@ -108,3 +111,12 @@ folder-hook '.*Personal.*' source ~/.mutt/account_personal.rc
 
 #set spoolfile = ~/Mail/`~/lib/worktime`/INBOX
 set spoolfile = ~/Mail/Personal/INBOX
+
+# Subscribe to snowdrift mailing lists
+subscribe .*@lists.snowdrift.coop
+
+alias snowdev dev@lists.snowdrift.coop (Snow Dev)
+alias snowdiscuss discuss@lists.snowdrift.coop (Snow Discuss)
+alias snowteam team@lists.snowdrift.coop (Snow Team)
+
+send2-hook lists.snowdrift.coop "set crypt_autosign = yes"

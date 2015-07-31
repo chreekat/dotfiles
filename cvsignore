@@ -7,3 +7,5 @@ cabal-dev
 *.o
 *.hi
 .redo
+.cabal-sandbox
+cabal.sandbox.config

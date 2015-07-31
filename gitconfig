@@ -16,15 +16,18 @@
     meta = 13 reverse
     commit = 10
 [alias]
+    m = merge -S
+    b = branch -vv
     st = status --short -b
     d = diff
     dc = diff --cached
     qs = commit -am "QUICKSAVE"
-    ci = commit
+    ci = commit -S
     co = checkout
     root = rev-parse --show-toplevel
     clown = clone
     ignored = clean -ndX
+    cp = cherry-pick
 [rebase]
     autosquash = true
 [fetch]

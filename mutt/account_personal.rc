@@ -14,4 +14,8 @@ set spoolfile         = +INBOX
 color status brightcolor8 color2
 set status_format = "[PERSONAL] $my_status_format"
 
-macro index,pager o "<sync-mailbox><shell-escape>offlineimap -a Personal -qf INBOX,@action<enter>" "run offlineimap to sync inbox"
+macro index,pager o \
+    "<sync-mailbox><shell-escape>offlineimap -a Personal -f INBOX,[Gmail]/Starred,snowdrift<enter>" "sync of inbox and starred"
+macro index,pager O "<sync-mailbox><shell-escape>offlineimap -a Personal -f INBOX,[Gmail]/Starred,snowdrift,@waiting_for,recent<enter>" "long thorough sync"
+
+macro index,pager gl <change-folder>+snowdrift<enter> " Go to snowdrift label"

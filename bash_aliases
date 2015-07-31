@@ -52,8 +52,6 @@ alias git=hub
 
 alias xo=">/dev/null 2>&1 xdg-open"
 
-alias cim="git commit -m"
-
 alias gdiff="vim +Gdiff"
 
 alias htag="git ls-tree -r HEAD --name-only | grep -E '*.hs' | xargs fast-tags"

@@ -18,13 +18,14 @@ __p_setprompt () {
 
   sandbox=$(__p_wutSandbox)
 
-  PS1="\[\e]0;\w\a\]${showLastRet}\[\e[${systemColor}\]\u@\h \[\e[0;33m\]\w\[\e[0m\]${showJobs}\$(__git_ps1) ${sandbox}\n\$ "
+  delim="\[\e[90;45m\] \[\e[0m\]"
+  PS1="${delim} \[\e]0;\w\a\]${showLastRet}\[\e[${systemColor}\]\u@\h \[\e[0;33m\]\w\[\e[0m\]${showJobs}\$(__git_ps1) ${sandbox}${delim} "
 }
 
 __p_wutSandbox () {
     sandbox=
     # Symlinks can be weird so let's just bail
-    if git root >/dev/null 2>&1 && echo $PWD | grep -q $(git root)
+    if git root >/dev/null 2>&1 && echo $PWD | grep -q $(git root) >/dev/null 2>&1
     then
         ldir=$PWD
         git_root=$(git root)
@@ -34,14 +35,14 @@ __p_wutSandbox () {
             then
                 if [ ! -e "$ldir/cabal.sandbox.config" ]
                 then
-                    sandbox="\[\e[31m(no sandbox)\[\e[0m"
+                    sandbox="\[\e[31m(no sandbox)\[\e[0m "
                 fi
                 break
             fi
             ldir=$(dirname $ldir)
         done
     fi
-    echo $sandbox
+    echo "$sandbox"
 }
 
 export PROMPT_COMMAND='lastRet=$?; __p_setprompt; unset lastRet'

@@ -11,3 +11,4 @@ offlineimap/Repository*
 offlineimap/lock
 offlineimap/pid
 vim/undos
+w3m/*

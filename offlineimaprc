@@ -6,7 +6,6 @@ accounts = Personal
 #,Barobo
 # google isn't snappy with imap
 socktimeout = 30
-fsync = false
 pythonfile=~/.offlineimap/helper.py
 
 [Account Personal]
@@ -14,12 +13,6 @@ localrepository = PersonalLocal
 remoterepository = PersonalRemote
 status_backend = sqlite
 maxage = 90
-
-#[Account Barobo]
-#localrepository = BaroboLocal
-#remoterepository = BaroboRemote
-#status_backend = sqlite
-#maxage = 90
 
 [Repository PersonalLocal]
 type = Maildir
@@ -34,6 +27,7 @@ nametrans = lambda folder: {'drafts':  '[Gmail]/Drafts',
 
 [Repository PersonalRemote]
 type = Gmail
+maxconnections = 3
 sslcacertfile = /etc/ssl/certs/ca-certificates.crt
 remoteuser = bryan.richter@gmail.com
 # To set the password, do:
@@ -47,30 +41,4 @@ nametrans = lambda folder: {'[Gmail]/Drafts':    'drafts',
                             '[Gmail]/Trash':     'trash',
                             '[Gmail]/All Mail':  'archive',
                             '[Gmail]/Chats':     'chats',
-                            }.get(folder, folder)
-
-[Repository BaroboLocal]
-type = Maildir
-localfolders = ~/Mail/Barobo
-nametrans = lambda folder: {'drafts':  '[Gmail]/Drafts',
-                            'sent':    '[Gmail]/Sent Mail',
-                            'starred': '[Gmail]/Starred',
-                            'trash':   '[Gmail]/Trash',
-                            'archive': '[Gmail]/All Mail',
-                            }.get(folder, folder)
-
-[Repository BaroboRemote]
-type = Gmail
-sslcacertfile = /etc/ssl/certs/ca-certificates.crt
-remoteuser = bryan@barobo.com
-# To set the password, do:
-# >>> import keyring
-# >>> keyring.set_password("gmail", "username", "password")
-
-remotepasseval = get_password("gmail", "barobo")
-nametrans = lambda folder: {'[Gmail]/Drafts':    'drafts',
-                            '[Gmail]/Sent Mail': 'sent',
-                            '[Gmail]/Starred':   'starred',
-                            '[Gmail]/Trash':     'trash',
-                            '[Gmail]/All Mail':  'archive',
                             }.get(folder, folder)

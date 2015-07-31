@@ -105,7 +105,10 @@ channels = (
   { name = "#irssi"; chatnet = "ircnet"; autojoin = "No"; },
   { name = "silc"; chatnet = "silc"; autojoin = "No"; },
   { name = "#snowdrift"; chatnet = "Freenode"; autojoin = "yes"; },
-  { name = "#trustroots"; chatnet = "Freenode"; autojoin = "yes"; }
+  { name = "#trustroots"; chatnet = "Freenode"; autojoin = "yes"; },
+  { name = "#haskell-stack"; chatnet = "Freenode"; autojoin = "yes"; },
+  { name = "#indiewebcamp"; chatnet = "Freenode"; autojoin = "yes"; },
+  { name = "#haskell"; chatnet = "Freenode"; autojoin = "yes"; }
 );
 
 aliases = {
@@ -281,6 +284,7 @@ settings = {
     # Solarized
     theme = "solarized-universal";
     hilight_color = "= %R";
+    autolog = "yes";
   };
 };
 hilights = (
@@ -290,5 +294,12 @@ ignores = (
   {
     level = "JOINS PARTS QUITS MODES";
     channels = ( "&bitlbee", "#haskell" );
-  }
+  },
+  { level = "JOINS PARTS QUITS MODES"; }
 );
+logs = {
+  "~/irclogs/snowdrift/sd-%Y-%m-%d" = {
+    level = "ALL";
+    items = ( { type = "target"; name = "#snowdrift"; } );
+  };
+};
