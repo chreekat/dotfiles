@@ -6,85 +6,37 @@ if isdirectory($HOME."/.vim/bundle/vundle")
     set rtp+=~/.vim/bundle/vundle/
     call vundle#rc()
 
-    " Bundle 'vim-haskell-syntax'
-    " let Vundle manage Vundle
+    Plugin 'a.vim'
+    Plugin 'chreekat/vim-colors-lunatic'
+    Plugin 'chreekat/vimin'
+    Plugin 'chrisbra/NrrwRgn'
+    Plugin 'godlygeek/tabular'
+    Plugin 'ivalkeen/vim-simpledb'
+    Plugin 'junegunn/goyo.vim'
+    Plugin 'kchmck/vim-coffee-script'
+    Plugin 'kergoth/vim-hilinks'
+    Plugin 'kien/ctrlp.vim'
+    Plugin 'mbbill/undotree'
+    Plugin 'msanders/snipmate.vim'
+    Plugin 'pbrisbin/vim-syntax-shakespeare'
+    Plugin 'romainl/Apprentice'
+    Plugin 'Shougo/vimproc.vim'
+    Plugin 'SirVer/ultisnips'
+    Plugin 'tpope/vim-abolish'
+    Plugin 'tpope/vim-commentary'
+    Plugin 'tpope/vim-eunuch'
+    Plugin 'tpope/vim-fugitive'
+    Plugin 'tpope/vim-repeat'
+    Plugin 'tpope/vim-surround'
+    Plugin 'tpope/vim-unimpaired'
+    Plugin 'vim-pandoc/vim-pandoc-syntax'
+    Plugin 'vim-scripts/VisIncr'
     " required!
-    Bundle 'gmarik/vundle'
-    Bundle 'tpope/vim-fugitive'
-    Bundle 'tpope/vim-surround'
-    Bundle 'tpope/vim-commentary'
-    Bundle 'tpope/vim-unimpaired'
-    Bundle 'tpope/vim-speeddating'
-    Bundle 'tpope/vim-repeat'
-
-    let g:syntastic_coffee_lint_options = "-f ~/Dropbox/bDotfiles/coffeelint.json"
-    let g:syntastic_always_populate_loc_list=1
-    let g:syntastic_mode_map = { "mode": "passive" }
-    Bundle 'scrooloose/syntastic'
-    Bundle 'kchmck/vim-coffee-script'
-    Bundle 'altercation/vim-colors-solarized'
-    Bundle 'a.vim'
-    "Bundle 'msanders/snipmate.vim'
-    Bundle 'SirVer/ultisnips'
-    Bundle 'godlygeek/tabular'
-    Bundle 'panozzaj/vim-autocorrect'
-    Bundle 'tpope/vim-markdown'
-    Bundle 'kergoth/vim-hilinks'
-    Bundle 'chreekat/vimin'
-
-    let g:ctrlp_map = '<leader>t'
-    Bundle 'kien/ctrlp.vim'
-    "Bundle 'genutils'
-        "Bundle 'vim-scripts/BreakPts'
-    Bundle 'chreekat/vim-colors-lunatic'
-    Bundle 'vim-scripts/VisIncr'
-    " Bundle 'pbrisbin/html-template-syntax'
-    "Bundle 'merijn/haskellFoldIndent'
-    Bundle 'Shougo/vimproc.vim'
-
-    Bundle 'sjl/gundo.vim'
-    Bundle 'bruno-/vim-vertical-move'
-    Bundle 'sjl/splice.vim'
-    Bundle 'tpope/vim-abolish'
-    "Bundle 'atimholt/spiffy_foldtext'
-    Bundle 'honza/vim-snippets'
-    Bundle 'vim-scripts/camelcasemotion'
-    Bundle 'PeterRincker/vim-argumentative'
-    " Argumentative config
-    nmap [; <Plug>Argumentative_Prev
-    nmap ]; <Plug>Argumentative_Next
-    xmap [; <Plug>Argumentative_XPrev
-    xmap ]; <Plug>Argumentative_XNext
-    nmap <; <Plug>Argumentative_MoveLeft
-    nmap >; <Plug>Argumentative_MoveRight
-    xmap ia <Plug>Argumentative_InnerTextObject
-    xmap aa <Plug>Argumentative_OuterTextObject
-    omap ia <Plug>Argumentative_OpPendingInnerTextObject
-    omap aa <Plug>Argumentative_OpPendingOuterTextObject
-
-    " vim2hs config
-    let g:haskell_autotags             = 1
-    let g:haskell_folding              = 1
-    let g:haskell_conceal              = 1
-    let g:haskell_conceal_enumerations = 1
-    " Bundle 'dag/vim2hs'
-    Bundle 'benmills/vimux'
-
-    " vim-tmux-nav config
-    let g:tmux_navigator_no_mappings = 1
-
-    nnoremap <silent> <C-@><C-h> :TmuxNavigateLeft<cr>
-    nnoremap <silent> <C-@><C-j> :TmuxNavigateDown<cr>
-    nnoremap <silent> <C-@><C-k> :TmuxNavigateUp<cr>
-    nnoremap <silent> <C-@><C-l> :TmuxNavigateRight<cr>
-    nnoremap <silent> <C-@><C-\> :TmuxNavigatePrevious<cr>
-    Bundle 'christoomey/vim-tmux-navigator'
-    Bundle 'airblade/vim-gitgutter'
-    Bundle 'romainl/Apprentice'
+    Plugin 'VundleVim/Vundle.vim'
 else
     echomsg "Vundle not installed! Hecka weirdness may ensue."
 endif
-"set rtp+=~/.local/lib/python2.7/site-packages/powerline/bindings/vim
+set rtp+=~/LoByMyHand/vim-simple-md
 
 syn enable
 
@@ -107,19 +59,24 @@ else
 endif
 
 let g:is_bash = 1
-let mapleader = ","
+let g:mapleader = "-"
+
+""
+"" SETTINGS
+""
 
 set ai
 " set cpo+=J
 set cpo+=n
 set dict=/usr/share/dict/words
 set diffopt+=vertical
-set equalalways
+set equalalways!
 set et
 set fillchars+=stl:⬧,stlnc:⬦,vert:⬦,fold:\ 
 set fo+=l
 set foldtext=BFoldtext()
-set history=10000
+set foldopen=
+set history=100000
 set joinspaces!
 set gp=ack-grep\ -H\ --column
 set grepformat=%f:%l:%c:%m
@@ -146,16 +103,15 @@ set tw=75
 set updatetime=2000
 " No bell
 set vb t_vb=
-set wildmode=longest:list:longest,list:full
+set wildmode=list:full,full
 set wildignore+=*.o,*.hi,dist
 "set wiw=40 nowrap " For shoots and googles
-let &wiw = &tw + 4
+" let &wiw = &tw + 4
 set whichwrap=<,>,[,] " arrow keys wrap
 if has("persistent_undo")
     set undodir=~/.vim/undos
     set undofile
 endif
-
 
 let g:tex_flavor="latex"
 let g:Tex_DefaultTargetFormat="pdf"
@@ -163,15 +119,27 @@ let g:Tex_DefaultTargetFormat="pdf"
 let g:haddock_browser = "/usr/bin/google-chrome"
 let g:haddock_indexfiledir = "~/.vim"
 
+""
+"" MAPPINGS
+""
+
+" CtrlP maps
+nnoremap -f :CtrlP<cr>
+nnoremap -b :CtrlPBuffer<cr>
+
+" Show lines we've jumped to (helps with folds)
+" But, no: 1. hides "SEARCH WRAPPED" message. 2. "press enter to continue"
+" nnoremap n n:echo getline('.')<cr>
+" nnoremap N N:echo getline('.')<cr>
+" nnoremap # #:echo getline('.')<cr>
+" nnoremap * *:echo getline('.')<cr>
+
 " Heads on stakes! Don't do this!
 " You always think it's a good idea, but it isn't.
 "nnoremap <c-p> <c-w>h
 "nnoremap <c-j> <c-w>j
 "nnoremap <c-k> <c-w>k
 "nnoremap <c-n> <c-w>l
-
-" Get to a buffer
-nnoremap gb :ls<CR>:b<Space>
 
 noremap <leader>v :vsp<cr>
 
@@ -181,15 +149,12 @@ vnoremap p "0p
 " Unless I do
 vnoremap <leader>p p
 
-" Simple buffer picker
-noremap <leader>b :ls<cr>:b<space>
-
 " I never want ex mode.
 nmap Q <nop>
 
 noremap <leader>xo :!xdg-open %<cr><c-l>
 
-noremap <F5> :GundoToggle<cr>
+noremap <F5> :UndotreeToggle<cr>
 
 noremap <Leader>e zfaB
 
@@ -231,24 +196,23 @@ function! ToggleHighlight()
     endif
 endfunction
 
-" I just can't type z
-nmap ,. z
-
 " Try to get useful linenumbers?
 " Doh, ? and / also use cmap. Need to set a buflocal var maybe.
 "nnoremap : :set nu<cr>:
 "cnoremap <cr> <home>set nonu\|<cr>
 
+"
+" Commands
+"
+
+" Trim whitespace thx
+command! -range Trim <line1>,<line2>s/ *$//
 
 " The "Dominate Dragons" idea
 command! GQ silent Gcommit -am "quicksave"
 
 " Makes the Alternate plugin (a.vim) easier for Dvorak
 command! Z A
-
-" A command to advance to the next vimdiffem'd file.
-command! Go argu|on|n|Gdiff
-command! Gop argu|on|prev|Gdiff
 
 " Function for turning space-indenting into tab-indenting
 function! SpaceToTab(numSpaces) range
@@ -308,7 +272,7 @@ function! BFoldtextRealz(foldstart, foldend)
     "   Syntactic white noise
     let firstline = substitute(firstline, '^class\s*', '', 'g')
     "   Fold markers at end of line
-    let firstline = substitue(firstline, '\s*{{{\d*$', '', '')
+    let firstline = substitute(firstline, '\s*{{{\d*$', '', '')
 
     let textend = '  |' . lines . '| ↓' . v:foldlevel . ' '
 
@@ -410,13 +374,16 @@ fu! Nanoize()
 endfu
 
 fu! SoftWordWrap()
-    setl lbr nolist tw=0 wrap sbr= fo-=a
+    setl lbr nolist tw=99999999999999999 wrap sbr= fo-=a
     noremap <buffer> 0 g0
     noremap <buffer> $ g$
     noremap <buffer> g0 0
     noremap <buffer> g$ $
     noremap <buffer> j gj
     noremap <buffer> k gk
+    noremap <buffer> G G$g0
+    nmap <buffer> D d$
+    nmap <buffer> dd 0D
     " Disabling formatting!
     noremap <buffer> gw <nop>
     noremap <buffer> gq <nop>
@@ -427,7 +394,7 @@ command! SoftWordWrap call SoftWordWrap()
 augroup vimrc
     au!
     " Move to last-known position when entering file. See :he 'quote
-    au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
+    " au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
 
     " New file? Immediately start insert mode.
     " NOPE.  This fucks up too many things (e.g. command-t)
@@ -437,6 +404,9 @@ augroup vimrc
     au BufEnter ~/src/serenade.js/*.coffee setl sw=2
     au BufEnter ~/src/angular-phonecat/* setl sw=2
     au BufEnter ~/src/tasty/* setl sw=2
+    au BufEnter *.hamlet setl sw=2
+    au BufEnter,BufNewFile *.md setf markdown
+    au BufEnter,BufNewFile .ghci setf haskell
 
     " Reset compiler in case the file was renamed, since compiler has the
     " filename hardcoded thanks to vim-coffee-script making nearsighted
@@ -454,7 +424,7 @@ augroup vimrc
     au BufNewFile ~/Dropbox/Project_Euler/p*.lhs :0r <abuf>:h/problem.skel |4
     au BufNewFile *.html.hs :0r ~/.vim/skel/html.hs |$
     au BufNewFile *.html :0r ~/.vim/skel/html
-    au BufNewFile *.hamlet :0r ~/.vim/skel/hamlet
+    " au BufNewFile *.hamlet :0r ~/.vim/skel/hamlet
     au BufNewFile ~/bin/* :0r ~/.vim/skel/bin | setf sh | 5
     au BufRead Doxyfile :map <buffer> ,\ :!doxygen<cr><c-l>
 

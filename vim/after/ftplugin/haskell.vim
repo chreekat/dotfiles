@@ -1,29 +1,15 @@
-try
-    compiler cabal
-catch /E666/
-endtry
-
-noremap <leader>rR :exec "VimuxRunCommand \":l " . expand("%:.") . "\""<cr>
-noremap <leader>rr :exec "VimuxRunCommand \":r\""<cr>
-noremap <leader>rl :VimuxRunLastCommand<cr>
-noremap <leader>rg :exec "VimuxRunCommand \"ghcid\""<cr>
-noremap <leader>rb :VimuxScrollUpInspect<cr>
-noremap <leader>rf :VimuxScrollDownInspect<cr>
-noremap <leader>rq :VimuxCloseRunner<cr>
-
-
-" Text-object representing a top-level function. Set for operater, visual,
-" and select modes.
-noremap af ?^\k<cr>o/<cr>{
-nunmap af
+"
+" General Haskell Stuff
+"
 
 " Add quote (prime) to list of keyword chars
-set isk+='
+compiler ghc
 
-set efm=%f:%l:%c:\ %t%*[^:]:\ %m,%W%f:%l:%c:\ Warning:,%C\ \ \ \ %m,%Z,%E%f:%l:%c:,%E%f:%l:%c:\ %m
+setl isk+='
+setl tags+=tags.codex
 
-noremap -ge ?^module<cr>
-noremap -gi ?^import<cr>
+nnoremap <buffer> <leader>ge ?^module<cr>
+nnoremap <buffer> <leader>gi ?^import<cr>
 
 function! s:updateTags(f)
     if filewritable("tags")
@@ -31,7 +17,19 @@ function! s:updateTags(f)
     endif
 endfunc
 
+"
+" Jumping to TLD ("names")
+"
+
+noremap <buffer> <leader>n :call search('^\w', 'W')<cr>
+noremap <buffer> <leader>N :call search('^\w', 'Wb')<cr>
+
+
+"
+" Autocommand plumbing
+"
+
 augroup afterHaskell
-    au!
+    au! * <buffer>
     au BufWritePost <buffer> call s:updateTags(expand('%'))
 aug END
