@@ -3,7 +3,7 @@
 
 log_aliases () {
     gl='git log --color=always --date=short'
-    line='%C(10)%h │%G? %GK│%Creset %C(4)%s%Creset%C(auto).%d%C(10) %cd, %an%Creset'
+    line='%C(10)%h │%Creset %C(4)%s%Creset%C(auto).%d%C(10) %cd, %an% GK%Creset'
     std_format="--pretty=tformat:'$line'"
     big_break='%C(13 bold)********************************************************************************%C(reset)%n'
     break_format="--pretty=tformat:'$big_break$line'"

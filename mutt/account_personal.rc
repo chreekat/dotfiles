@@ -1,7 +1,7 @@
 /* macro index,pager <f2> "<change-folder>~/snowdrift-mail/chreekat<enter>" */
 alternates bryan.richter@gmail.com chreekat@gmail.com b@chreekat.net
 set folder            = $HOME/Mail/Personal
-set from              = "bryan.richter@gmail.com"
+set from              = "b@chreekat.net"
 set smtp_pass         = "`passgm personal`"
 set smtp_url          = smtps://bryan.richter@smtp.gmail.com
 macro index,pager A "<pipe-message>goobook add<enter><shell-escape>goobook reload<enter>" "add the sender address to Google contacts"

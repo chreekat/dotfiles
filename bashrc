@@ -127,7 +127,7 @@ stty -ixon
 ## FUNCTIONS
 
 mkcd () {
-    mkdir $@ &&
+    mkdir -p $@ &&
     cd $@
 }
 

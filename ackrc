@@ -29,5 +29,7 @@
 --ignore-dir=.cabal-sandbox
 --ignore-dir=.stack-work
 --ignore-file=match:^tags$
+--ignore-file=match:^tags\..*$
+--ignore-file=match:.*.map$
 --sort-files
 --color-filename=green

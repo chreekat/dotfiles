@@ -16,7 +16,7 @@
     meta = 13 reverse
     commit = 10
 [alias]
-    m = merge -S
+    m = merge -S --no-ff
     b = branch -vv
     st = status --short -b
     d = diff
@@ -32,8 +32,8 @@
     autosquash = true
 [fetch]
     prune = true
-[merge]
-    tool = splice
+; [merge]
+;     tool = splice
 [mergetool "splice"]
     cmd = "vim -f $BASE $LOCAL $REMOTE $MERGED -c 'SpliceInit'"
     trustExitCode = true

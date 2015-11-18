@@ -31,6 +31,14 @@ servers = (
     use_ssl = "yes";
     ssl_verify = "yes";
     autoconnect = "yes";
+  },
+  {
+    address = "irc.snoonet.org";
+    chatnet = "Snoonet";
+    port = "6697";
+    use_ssl = "yes";
+    ssl_verify = "yes";
+    autoconnect = "yes";
   }
 );
 
@@ -99,6 +107,7 @@ chatnets = {
   SILC = { type = "SILC"; };
   Ubuntu = { type = "IRC"; };
   Freenode = { type = "IRC"; };
+  Snoonet = { type = "IRC"; };
 };
 
 channels = (
@@ -106,9 +115,7 @@ channels = (
   { name = "silc"; chatnet = "silc"; autojoin = "No"; },
   { name = "#snowdrift"; chatnet = "Freenode"; autojoin = "yes"; },
   { name = "#trustroots"; chatnet = "Freenode"; autojoin = "yes"; },
-  { name = "#haskell-stack"; chatnet = "Freenode"; autojoin = "yes"; },
-  { name = "#indiewebcamp"; chatnet = "Freenode"; autojoin = "yes"; },
-  { name = "#haskell"; chatnet = "Freenode"; autojoin = "yes"; }
+  { name = "#haskell-stack"; chatnet = "Freenode"; autojoin = "yes"; }
 );
 
 aliases = {

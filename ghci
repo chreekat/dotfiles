@@ -1,6 +1,6 @@
 :set prompt "|%s|\nλ "
 
-import Prelude
+-- import Prelude
 -- 
 -- let ghciEscapeShellArg arg = "'" ++ concatMap (\x -> if x == '\'' then "'\"'\"'" else [x]) arg ++ "'"
 -- 

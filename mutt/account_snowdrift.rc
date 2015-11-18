@@ -1,0 +1,10 @@
+macro index,pager <f2> "<change-folder>~/Mail/Personal/INBOX<enter>"
+
+/* set folder = $HOME/snowdrift-mail */
+set from = "chreekat@snowdrift.coop"
+
+unmailboxes *
+/* mailboxes chreekat */
+
+/* set spoolfile = +chreekat */
+color status brightcolor8 color2

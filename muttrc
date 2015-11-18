@@ -11,11 +11,12 @@ folder-hook "INBOX|action" exec first-entry
 # Time before cancelling a connect attempt.
 set   connect_timeout=5
 
+# These paradoxical options cause a visual bell
 set beep_new          = yes
 set beep              = no
-unset collapse_unread
+
+# unset collapse_unread
 set confirmappend     = no
-set copy              = no
 set delete            = yes
 set forward_format    = "Fwd: %s"
 set help              = no
@@ -27,25 +28,34 @@ set pager_stop
 set postponed         = +drafts
 set realname          = "Bryan Richter"
 set recall = no # Recall manually with R
-set record            = "this/is/ignored"
+
+# No copying of sent mail, since it's going through google.
+set copy = no
+set record = "this/is/ignored"
+
 # Mainly so I have my own name for mailing lists
 set reverse_alias
-set sleep_time        = 0
-set smart_wrap
-set sort              = threads
-set ssl_force_tls     = yes
-set strict_threads    = yes
-set tmpdir            = ~/tmp
-set wait_key          = no
 
+# These seems to have no useful effect (?)
+set sleep_time = 0
+set wait_key = no
+
+# Wrap at word boundaries
+set smart_wrap
+
+set sort = threads
+set ssl_force_tls = yes
+
+# Don't foolishly thread on subject alone
+set strict_threads = yes
+
+# Headers to show by default
 ignore *
 unignore To:
 unignore Subject:
 unignore From:
 unignore Date:
 unignore Cc:
-
-auto_view text/html
 
 # Jump to the w3m view of the html attachment
 macro index ,h v*<enter>q
@@ -112,11 +122,17 @@ folder-hook '.*Personal.*' source ~/.mutt/account_personal.rc
 #set spoolfile = ~/Mail/`~/lib/worktime`/INBOX
 set spoolfile = ~/Mail/Personal/INBOX
 
-# Subscribe to snowdrift mailing lists
+# LISTS
+
 subscribe .*@lists.snowdrift.coop
+subscribe .*@googlegroups.com
+subscribe .*@haskell.org
+
 
 alias snowdev dev@lists.snowdrift.coop (Snow Dev)
 alias snowdiscuss discuss@lists.snowdrift.coop (Snow Discuss)
 alias snowteam team@lists.snowdrift.coop (Snow Team)
+alias snowport portland@lists.snowdrift.coop (Snow Portland)
+alias haskellcafe haskell-cafe@haskell.org (Haskell-Cafe)
 
 send2-hook lists.snowdrift.coop "set crypt_autosign = yes"

@@ -16,15 +16,30 @@ sdpush () {
     git push && git push github
 }
 
+sdsyncgithub () {
+    git pull && git push github
+}
+
 sddbdump () {
-    file=snowdrift_production--$(date -Iminutes)
+    file=$(pwd)/snowdrift_production--$(date -Iminutes)
     ssh `sd-main-dns` sudo -u postgres pg_dump -Fc snowdrift_production \
         | cat > $file
     gpg -se -r wolftune -r 20068bfb $file
+    rm $file
     echo ${file}.gpg | xsel -i -b
     echo ${file}.gpg copied to clipboard.
 }
 
+_sdmaybetest () {
+    res=0
+    read -p "Run tests? " a
+    if [ "$a" = "y" ]
+    then
+        make test
+        res=$?
+    fi
+    return $res
+}
 sdmr () {
     ref=$(git symbolic-ref HEAD)
     branch=${ref##refs/heads/}
@@ -37,14 +52,7 @@ sdmr () {
 	EOF
     if [ -n "$branch" ]
     then
-        read -p "Run tests? "
-        if [ -n "$REPLY" ]
-        then
-            test=./test.sh
-        else
-            test=true
-        fi
-        if $test
+        if _sdmaybetest
         then
             git push -u ck-gitlab &&
             xdg-open "$url"
@@ -56,4 +64,29 @@ sdmr () {
 
 sdpr () {
     xdg-open https://github.com/snowdriftcoop/snowdrift/pull/$1
+}
+
+sddeploy () {
+    sdpush &&
+    ./keter.sh
+}
+
+sdtest () {
+    doit () {
+        stack build $@ && stack test $@
+    }
+    if [ "$1" = "merge" ]
+    then
+        doit --flag Snowdrift:-dev --flag Snowdrift:merge
+    else
+        doit $@
+    fi
+}
+
+mypush () {
+    git push && git push chreekat
+}
+
+yesim () {
+    vim $@ -S ~/.vim/yesod.vim
 }
