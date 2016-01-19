@@ -13,3 +13,6 @@ offlineimap/pid
 vim/undos
 w3m/*
 vim/view
+mutt/mailboxes.rc
+mutt/aliases
+mutt/subscriptions
