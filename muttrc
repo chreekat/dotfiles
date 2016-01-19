@@ -97,9 +97,12 @@ bind index,pager c mail
 # Sketchy configurations
 #
 
+macro index,pager o '<sync-mailbox><shell-escape>offlineimap -qo -u basic -f INBOX<enter>' \
+                    "run offlineimap to quickly sync inbox"
+
 # Jump to the w3m view of the html attachment
-macro index ,h v*<enter>q
-macro pager ,h qv*<enter>q<enter>
+macro index ,h v*<enter>q          "View as html"
+macro pager ,h qv*<enter>q<enter>  "View as html"
 
 # Change a file's type to application/pgp — necessary for inline pgp
 macro index,pager ,p "<edit-type>application/pgp<enter>" "Change to pgp"

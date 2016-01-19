@@ -16,7 +16,7 @@ alias f="fg"
 alias j="jobs"
 alias pd='pushd'
 alias df='df -h'
-alias o='offlineimap -qf INBOX'
+alias o='offlineimap -q -o -u basic -f INBOX'
 
 alias action_lists="riot ~/Org/Lists.riot"
 alias amv='audio_rename -p "Music/%a/%l/%{mA}%{n0}__%t" -R'
@@ -43,8 +43,6 @@ _pkgs () {
 complete -F _pkgs dsh
 complete -F _pkgs di
 complete -F _pkgs ds
-
-alias bb="lb barobo"
 
 alias gd="git d"
 
