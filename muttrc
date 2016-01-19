@@ -1,61 +1,101 @@
+#
+# RESET (makes reloading configuration work nicely)
+#
+
 reset all
 unhook *
+unmailboxes *
 
-# Colllapse threads on viewing a folder
+#
+# Accounts, subscriptions, and other personal things.
+#
+
+set spoolfile = +Personal/INBOX
+source ~/.mutt/crypto.rc
+source ~/.mutt/mailboxes.rc
+source ~/.mutt/subscriptions
+source ~/.mutt/aliases
+source ~/.mutt/lunatic-mutt/lunatic.muttrc
+folder-hook Personal  'set from = "b@chreekat.net" ; \
+                       set smtp_pass = "`passgm gmail personal`" ; \
+                       set smtp_url = "smtps://bryan.richter@smtp.gmail.com" ; \
+                       color status brightcolor8 color2'
+folder-hook Snowdrift 'set from = "bryan@snowdrift.coop" ; \
+                       set smtp_pass = "`passgm snowdrift me`" ; \
+                       set smtp_url = "smtp://bryan@snowdrift.coop@mx1.snowdrift.coop:587" ; \
+                       color status brightcolor8 color4'
+
+alternates -group me b@chreekat.net \
+                     bryan.richter@gmail.com \
+                     chreekat@gmail.com \
+                     chreekat@keybase.io
+alternates -group me -group work bryan@snowdrift.coop
+macro index,pager gi <change-folder>+Personal/INBOX<enter>   "Go to Google inbox"
+macro index,pager gs <change-folder>+Personal/starred<enter> "Go to starred messages"
+macro index,pager gr <change-folder>+Personal/recent<enter>  "Go to recent"
+macro index,pager gS <change-folder>+Snowdrift/INBOX<enter>  "Go to Snowdrift inbox"
+macro index,pager gc <change-folder>+sent<enter>             "Go to sent (\"composed\") messages"
+
+#
+# Sensible defaults
+#
+
+# Collapse threads on viewing a folder
 folder-hook . exec collapse-all
 
-folder-hook .              set sort_aux = reverse-last-date-received
-folder-hook "INBOX|action" set sort_aux = last-date-received
-folder-hook "INBOX|action" exec first-entry
-
-# Time before cancelling a connect attempt.
-set   connect_timeout=5
+folder-hook .               set sort_aux = reverse-last-date-received
+folder-hook "INBOX|starred" set sort_aux = last-date-received
+folder-hook "INBOX|starred" exec first-entry
 
 # These paradoxical options cause a visual bell
-set beep_new          = yes
-set beep              = no
+set beep_new = yes
+set beep     = no
 
-# unset collapse_unread
-set confirmappend     = no
-set delete            = yes
-set forward_format    = "Fwd: %s"
-set help              = no
-set include           = yes
-set mark_old          = no
-set mbox_type         = Maildir
-set pager_context     = 2
+# Mostly understandable
+set alias_file       = ~/.mutt/aliases
+set certificate_file = ~/.mutt/certificates
+set confirmappend    = no
+set connect_timeout  = 5  # modern default
+set crypt_autosign   = yes
+set delete           = yes
+set forward_format   = "Fwd: %s"
+set help             = no
+set include          = yes
+set mark_old         = no
+set mbox_type        = Maildir
+set pager_context    = 2
 set pager_stop
-set postponed         = +drafts
-set realname          = "Bryan Richter"
-set recall = no # Recall manually with R
-
-# No copying of sent mail, since it's going through google.
-set copy = no
-set record = "this/is/ignored"
-
-# Mainly so I have my own name for mailing lists
-set reverse_alias
+set postponed        = ~/Mail/postponed
+set realname         = "Bryan Richter"
+set recall           = no # Recall manually with R
+set record           = ~/Mail/sent
+set reverse_alias    # For mailing lists, mainly
+set sort             = threads
+set smart_wrap
+set ssl_force_tls    = yes
+set strict_threads   = yes
+set timeout          = 15
 
 # These seems to have no useful effect (?)
 set sleep_time = 0
 set wait_key = no
 
-# Wrap at word boundaries
-set smart_wrap
-
-set sort = threads
-set ssl_force_tls = yes
-
-# Don't foolishly thread on subject alone
-set strict_threads = yes
-
 # Headers to show by default
-ignore *
+ignore   *
 unignore To:
 unignore Subject:
 unignore From:
 unignore Date:
 unignore Cc:
+
+# Gmail-esque
+bind pager       b previous-page
+bind index,pager a group-reply
+bind index,pager c mail
+
+#
+# Sketchy configurations
+#
 
 # Jump to the w3m view of the html attachment
 macro index ,h v*<enter>q
@@ -64,40 +104,10 @@ macro pager ,h qv*<enter>q<enter>
 # Change a file's type to application/pgp — necessary for inline pgp
 macro index,pager ,p "<edit-type>application/pgp<enter>" "Change to pgp"
 
-macro index ,R "<enter-command>source ~/.muttrc<enter>" "Reload .muttrc"
-macro pager ,R "<exit>,R<enter>"                        "Reload .muttrc"
-bind pager b previous-page
-
-bind index,pager m change-folder
-# macro index,pager m "<change-folder>?<tab>"
-
-# gmail-mimic macros
-
-#macro index,pager \# <save-message>=[Gmail].Trash     "Trash a Google message"
-
-bind index,pager a group-reply
-bind index,pager c mail
-
-macro index,pager Sa <save-message>+@action<enter>           "Apply @action label and archive"
-macro index,pager Sw <save-message>+@waiting_for<enter>      "Apply @waiting_for label and archive"
-macro index,pager Ss <save-message>+starred<enter>           "Star and archive"
-
-macro index,pager ga <change-folder>+@action<enter>      " Go to @action label      "
-macro index,pager gw <change-folder>+@waiting_for<enter> " Go to @waiting_for label "
-macro index,pager gr <change-folder>+recent<enter>       " Go to recent"
-macro index,pager gi <change-folder>+INBOX<enter>        " Go to Google inbox       "
-macro index,pager gd <change-folder>+drafts<enter>       " Go to Google drafts      "
-macro index,pager gs <change-folder>+starred<enter>      " Go to starred messages   "
-
 macro pager <Esc>v <exit><collapse-thread>
 
-set certificate_file = "~/.mutt/certificates"
-
-source ~/.mutt/lunatic-mutt/lunatic.muttrc
-
-# Losh was right about this
-macro index,pager C <copy-message>?<tab>
-macro index,pager s <save-message>?<tab>
+# Jump straight to list of mailboxes
+macro index,pager m <change-folder>?<tab>
 
 # Something to mark a whole folder as 'read'
 # Line by line,
@@ -112,27 +122,3 @@ macro index <esc>m '\
 <tag-prefix><clear-flag>N\
 <tag-prefix><clear-flag>O\
 <untag-pattern>~T<enter>'             "mark all messages read"
-
-source ~/.mutt/crypto.rc
-
-folder-hook '.*Barobo.*' source ~/.mutt/account_barobo.rc
-folder-hook '.*Personal.*' source ~/.mutt/account_personal.rc
-# folder-hook '.*snowdrift-mail.*' source ~/.mutt/account_snowdrift.rc
-
-#set spoolfile = ~/Mail/`~/lib/worktime`/INBOX
-set spoolfile = ~/Mail/Personal/INBOX
-
-# LISTS
-
-subscribe .*@lists.snowdrift.coop
-subscribe .*@googlegroups.com
-subscribe .*@haskell.org
-
-
-alias snowdev dev@lists.snowdrift.coop (Snow Dev)
-alias snowdiscuss discuss@lists.snowdrift.coop (Snow Discuss)
-alias snowteam team@lists.snowdrift.coop (Snow Team)
-alias snowport portland@lists.snowdrift.coop (Snow Portland)
-alias haskellcafe haskell-cafe@haskell.org (Haskell-Cafe)
-
-send2-hook lists.snowdrift.coop "set crypt_autosign = yes"
