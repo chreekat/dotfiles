@@ -1,6 +1,7 @@
 --type-add=xml=.rss
 --type-add=haskell=.hsc
 #--type-add=text=.txt
+--type-set=markdown=.md
 --type-set=coffee=.coffee
 --type-set=cabal=.cabal
 --type-set=ch=.ch
@@ -13,23 +14,23 @@
 --type-set=cabal=.cabal
 --type-set=sass=.scss
 # Ignore boring cabal stuff
+--ignore-dir=.cabal-sandbox
+--ignore-dir=.hpc
+--ignore-dir=.sass_cache
+--ignore-dir=.stack-work
+--ignore-dir=.tmp
+--ignore-dir=bower_components
+--ignore-dir=build
+--ignore-dir=cabal-dev
 --ignore-dir=dist
 --ignore-dir=dist-stack
---ignore-dir=cabal-dev
---ignore-dir=yesod-devel
 --ignore-dir=node_modules
-# Stow dir is totes ignorable
+--ignore-dir=node_modules
+--ignore-dir=static/tmp
 --ignore-dir=stow
---ignore-dir=build
---ignore-dir=.tmp
---ignore-dir=.hpc
---ignore-dir=bower_components
---ignore-dir=node_modules
---ignore-dir=.sass_cache
---ignore-dir=.cabal-sandbox
---ignore-dir=.stack-work
+--ignore-dir=yesod-devel
+--ignore-file=match:.*.map$
 --ignore-file=match:^tags$
 --ignore-file=match:^tags\..*$
---ignore-file=match:.*.map$
 --sort-files
 --color-filename=green

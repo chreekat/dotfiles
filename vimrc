@@ -13,6 +13,7 @@ if isdirectory($HOME."/.vim/bundle/vundle")
     Plugin 'godlygeek/tabular'
     Plugin 'ivalkeen/vim-simpledb'
     Plugin 'junegunn/goyo.vim'
+    Plugin 'junegunn/vim-easy-align'
     Plugin 'kchmck/vim-coffee-script'
     Plugin 'kergoth/vim-hilinks'
     Plugin 'kien/ctrlp.vim'
@@ -31,6 +32,7 @@ if isdirectory($HOME."/.vim/bundle/vundle")
     Plugin 'tpope/vim-unimpaired'
     Plugin 'vim-pandoc/vim-pandoc-syntax'
     Plugin 'vim-scripts/VisIncr'
+    Plugin 'wellle/targets.vim'
     " required!
     Plugin 'VundleVim/Vundle.vim'
 else
@@ -98,12 +100,13 @@ set splitright
 set nosol
 set sw=4
 set swb=useopen
+set ttimeoutlen=100
 set titlestring=vi:\ %t%(\ %M%)%(\ (%{expand(\"%:~:.:h\")})%)%(\ %a%)
 set tw=75
 set updatetime=2000
 " No bell
 set vb t_vb=
-set wildmode=list:full,full
+set wildmode=list:longest,full
 set wildignore+=*.o,*.hi,dist
 "set wiw=40 nowrap " For shoots and googles
 " let &wiw = &tw + 4
@@ -123,9 +126,17 @@ let g:haddock_indexfiledir = "~/.vim"
 "" MAPPINGS
 ""
 
+" easy-align
+xmap <leader>a <Plug>(EasyAlign)
+nmap <leader>a <Plug>(EasyAlign)
+
+" Find a long line
+nnoremap <leader>l :call search('^.\{81,}')
+nnoremap <leader>L :call search('^.\{81,}', 'b')
+
 " CtrlP maps
-nnoremap -f :CtrlP<cr>
-nnoremap -b :CtrlPBuffer<cr>
+nnoremap <leader>f :CtrlP<cr>
+nnoremap <leader>b :CtrlPBuffer<cr>
 
 " Show lines we've jumped to (helps with folds)
 " But, no: 1. hides "SEARCH WRAPPED" message. 2. "press enter to continue"

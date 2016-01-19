@@ -39,3 +39,7 @@
     trustExitCode = true
 [push]
     default = simple
+[merge]
+	tool = vimdiff
+[rerere]
+	enabled = true

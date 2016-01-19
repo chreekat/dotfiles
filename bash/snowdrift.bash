@@ -21,13 +21,23 @@ sdsyncgithub () {
 }
 
 sddbdump () {
-    file=$(pwd)/snowdrift_production--$(date -Iminutes)
+    # This is almost ISO 8601 format, except tar and bash don't like ':' in
+    # filenames. Replaced with '.'.
+    stamp=$(date +%FT%H.%m%z)
+
+    prodfile=snowdrift_production--${stamp}
+    mxfile=snowdrift_mx1--${stamp}
+    dumpfile=$(pwd)/snowdrift_dbs--${stamp}.tar.gz
+
     ssh `sd-main-dns` sudo -u postgres pg_dump -Fc snowdrift_production \
-        | cat > $file
-    gpg -se -r wolftune -r 20068bfb $file
-    rm $file
-    echo ${file}.gpg | xsel -i -b
-    echo ${file}.gpg copied to clipboard.
+        | cat > $prodfile
+    ssh mx1.snowdrift.coop /home/ubuntu/civicrm-dump.sh \
+        | cat > $mxfile
+    tar czf $dumpfile $prodfile $mxfile
+    gpg -se -r wolftune -r 20068bfb $dumpfile
+    rm $prodfile $mxfile $dumpfile
+    echo ${dumpfile}.gpg | xsel -i -b
+    echo ${dumpfile}.gpg copied to clipboard.
 }
 
 _sdmaybetest () {
@@ -68,6 +78,7 @@ sdpr () {
 
 sddeploy () {
     sdpush &&
+    touch src/Settings/StaticFiles.hs &&
     ./keter.sh
 }
 
@@ -89,4 +100,8 @@ mypush () {
 
 yesim () {
     vim $@ -S ~/.vim/yesod.vim
+}
+
+sd-filelink () {
+    xdg-open https://git.gnu.io/snowdrift/snowdrift/tree/master/${1}\#L${2}
 }

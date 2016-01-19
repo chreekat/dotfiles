@@ -33,3 +33,11 @@ augroup afterHaskell
     au! * <buffer>
     au BufWritePost <buffer> call s:updateTags(expand('%'))
 aug END
+
+"
+" Add alignment for 't'ype annotations
+"
+if !exists("g:easy_align_delimiters")
+    let g:easy_align_delimiters = {}
+endif
+let g:easy_align_delimiters["t"] = { 'pattern': '->\|=>\|::' }

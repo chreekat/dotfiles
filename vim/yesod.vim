@@ -13,15 +13,15 @@ set tags+=tags.yesod
 
 command! -nargs=*
     \ GhciRepl
-    \ let g:tmux_haskell_repl_cmd="<args>"
-    \ |let g:tmux_haskell_repl=1
+    \ let g:ghci_repl_cmd="<args>"
+    \ |let g:ghci_repl=1
 
 command! GhciRestart
     \ call s:ghciCmd("C-d")
     \| call s:ghciCmd("stack\\ ghci\\ --no-load")
 
-
 command! GhciReload call s:ghciReload()
+command! GhciClear  call s:ghciClear()
 
 " 2. Once set up, I want to reload and run a command on each write.
 let s:ghciPane = 2
@@ -50,13 +50,13 @@ function! s:ghciClear()
 endfunc
 
 function! s:ghciRunReplCmd()
-    if exists('g:tmux_haskell_repl_cmd')
-        call s:ghciCmd(g:tmux_haskell_repl_cmd)
+    if exists('g:ghci_repl_cmd')
+        call s:ghciCmd(g:ghci_repl_cmd)
     endif
 endfunc
 
 function! s:ghciReload()
-    if exists('g:tmux_haskell_repl')
+    if exists('g:ghci_repl')
         call s:ghciClear()
         call s:ghciCmd(":r")
         call s:ghciRunReplCmd()
@@ -64,7 +64,7 @@ function! s:ghciReload()
 endfunction
 
 function! s:ghciReloadWith(cmd)
-    if exists('g:tmux_haskell_repl')
+    if exists('g:ghci_repl')
         call s:ghciSendKeys("C-c")
         " Sometimes the C-l seems to get swallowed...
         sleep 20m
@@ -115,7 +115,8 @@ GhciRepl main
 augroup yesod
     au!
     au BufWritePost */templates/*.hamlet call s:touchTemplateUser(expand('%:s?templates/??:r'))
-    au BufWritePost */messages/* call system("touch src/Foundation.hs")|GhciRestart
+    au BufWritePost */messages/*  call system("touch src/Foundation.hs")|GhciReload
+    au BufWritePost config/routes  call system("touch src/Foundation.hs")|GhciReload
     au BufWritePost */messages/* call system("~/lib/message-tags")
     au BufWritePost *.hs GhciReload
     au BufRead,BufNewFile *.hs call s:templateJumping()
