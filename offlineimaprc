@@ -1,28 +1,40 @@
-# Sample minimal config file.  Copy this to ~/.offlineimaprc and edit to
-# suit to get started fast.
-
 [general]
-accounts = Personal
-#,Barobo
+accounts = Personal, Snowdrift
 # google isn't snappy with imap
 socktimeout = 30
 pythonfile=~/.offlineimap/helper.py
+maxsyncaccounts=2
+ui=quiet
+
+[mbnames]
+enabled = yes
+filename = ~/.mutt/mailboxes.rc
+header = "mailboxes "
+peritem = "+%(accountname)s/%(foldername)s"
+sep = " "
+footer = "\n"
 
 [Account Personal]
 localrepository = PersonalLocal
 remoterepository = PersonalRemote
 status_backend = sqlite
+# Autorefresh increments in all accounts are primes close to 180, divided
+# by 60.
+# 179s
+autorefresh=2.983333
+
+[Account Snowdrift]
+localrepository = SnowdriftLocal
+remoterepository = SnowdriftRemote
+status_backend = sqlite
+# 181s
+autorefresh=3.016667
 
 [Repository PersonalLocal]
 type = Maildir
 localfolders = ~/Mail/Personal
-nametrans = lambda folder: {'drafts':  '[Gmail]/Drafts',
-                            'sent':    '[Gmail]/Sent Mail',
-                            'starred': '[Gmail]/Starred',
-                            'trash':   '[Gmail]/Trash',
-                            'archive': '[Gmail]/All Mail',
-                            'chats':   '[Gmail]/Chats',
-                            }.get(folder, folder)
+nametrans = lambda folder: { 'starred': '[Gmail]/Starred'
+                           }.get(folder, folder)
 
 [Repository PersonalRemote]
 type = Gmail
@@ -34,10 +46,26 @@ remoteuser = bryan.richter@gmail.com
 # >>> keyring.set_password("gmail", "username", "password")
 
 remotepasseval = get_password("gmail", "personal")
-nametrans = lambda folder: {'[Gmail]/Drafts':    'drafts',
-                            '[Gmail]/Sent Mail': 'sent',
-                            '[Gmail]/Starred':   'starred',
-                            '[Gmail]/Trash':     'trash',
-                            '[Gmail]/All Mail':  'archive',
-                            '[Gmail]/Chats':     'chats',
-                            }.get(folder, folder)
+folderfilter = lambda f: f in ['[Gmail]/Starred'
+                              ,'recent'
+                              ,'@maybe'
+                              ,'upcoming'
+                              ,'@waiting_for'
+                              ,'INBOX'
+                              ]
+nametrans = lambda folder: {'[Gmail]/Starred':   'starred'
+                           }.get(folder, folder)
+
+[Repository SnowdriftLocal]
+type = Maildir
+localfolders= ~/Mail/Snowdrift
+
+[Repository SnowdriftRemote]
+type = IMAP
+ssl = yes
+maxconnections = 3
+remotehost = mx1.snowdrift.coop
+remoteuser = bryan@snowdrift.coop
+remotepasseval = str(get_password("snowdrift", "me"))
+sslcacertfile = /etc/ssl/certs/ca-certificates.crt
+folderfilter = lambda f: f in ['INBOX']
