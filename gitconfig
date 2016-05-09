@@ -6,7 +6,7 @@
 [core]
     excludesfile = ~/.cvsignore
 [color]
-    ui = auto
+	ui = auto
 [color "decorate"]
     branch = 2
     remoteBranch = 3
@@ -28,6 +28,7 @@
     clown = clone
     ignored = clean -ndX
     cp = cherry-pick
+    which = ls-tree -r HEAD --name-only
 [rebase]
     autosquash = true
 [fetch]
@@ -41,5 +42,8 @@
     default = simple
 [merge]
 	tool = vimdiff
+	gpgsign = true
 [rerere]
 	enabled = true
+[commit]
+	gpgsign = true
