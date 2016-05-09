@@ -4,7 +4,7 @@ accounts = Personal, Snowdrift
 socktimeout = 30
 pythonfile=~/.offlineimap/helper.py
 maxsyncaccounts=2
-ui=quiet
+ui=basic
 
 [mbnames]
 enabled = yes
@@ -18,17 +18,11 @@ footer = "\n"
 localrepository = PersonalLocal
 remoterepository = PersonalRemote
 status_backend = sqlite
-# Autorefresh increments in all accounts are primes close to 180, divided
-# by 60.
-# 179s
-autorefresh=2.983333
 
 [Account Snowdrift]
 localrepository = SnowdriftLocal
 remoterepository = SnowdriftRemote
 status_backend = sqlite
-# 181s
-autorefresh=3.016667
 
 [Repository PersonalLocal]
 type = Maildir
@@ -48,8 +42,7 @@ remoteuser = bryan.richter@gmail.com
 remotepasseval = get_password("gmail", "personal")
 folderfilter = lambda f: f in ['[Gmail]/Starred'
                               ,'recent'
-                              ,'@maybe'
-                              ,'upcoming'
+                              ,'@upcoming'
                               ,'@waiting_for'
                               ,'INBOX'
                               ]
@@ -68,4 +61,4 @@ remotehost = mx1.snowdrift.coop
 remoteuser = bryan@snowdrift.coop
 remotepasseval = str(get_password("snowdrift", "me"))
 sslcacertfile = /etc/ssl/certs/ca-certificates.crt
-folderfilter = lambda f: f in ['INBOX']
+folderfilter = lambda f: f in ['INBOX', '@action']

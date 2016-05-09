@@ -19,11 +19,15 @@ source ~/.mutt/lunatic-mutt/lunatic.muttrc
 folder-hook Personal  'set from = "b@chreekat.net" ; \
                        set smtp_pass = "`passgm gmail personal`" ; \
                        set smtp_url = "smtps://bryan.richter@smtp.gmail.com" ; \
-                       color status brightcolor8 color2'
+                       color status brightcolor8 color2 ; \
+                       bind index,pager d delete-message ; \
+                       bind index,pager \Cd delete-thread'
 folder-hook Snowdrift 'set from = "bryan@snowdrift.coop" ; \
                        set smtp_pass = "`passgm snowdrift me`" ; \
                        set smtp_url = "smtp://bryan@snowdrift.coop@mx1.snowdrift.coop:587" ; \
-                       color status brightcolor8 color4'
+                       color status brightcolor8 color4 ; \
+                       macro index,pager d <save-message>=Snowdrift/archive<enter> ; \
+                       bind index,pager \Cd noop'
 
 alternates -group me b@chreekat.net \
                      bryan.richter@gmail.com \
@@ -31,10 +35,13 @@ alternates -group me b@chreekat.net \
                      chreekat@keybase.io
 alternates -group me -group work bryan@snowdrift.coop
 macro index,pager gi <change-folder>+Personal/INBOX<enter>   "Go to Google inbox"
-macro index,pager gs <change-folder>+Personal/starred<enter> "Go to starred messages"
+macro index,pager gt <change-folder>+Personal/starred<enter> "Go to starred messages"
 macro index,pager gr <change-folder>+Personal/recent<enter>  "Go to recent"
-macro index,pager gS <change-folder>+Snowdrift/INBOX<enter>  "Go to Snowdrift inbox"
+macro index,pager gs <change-folder>+Snowdrift/INBOX<enter>  "Go to Snowdrift inbox"
 macro index,pager gc <change-folder>+sent<enter>             "Go to sent (\"composed\") messages"
+
+# Define mailboxes besides those defined by offlineimap.
+mailboxes "=Snowdrift/archive" "/var/mail/b" "=sent"
 
 #
 # Sensible defaults
@@ -97,7 +104,11 @@ bind index,pager c mail
 # Sketchy configurations
 #
 
-macro index,pager o '<sync-mailbox><shell-escape>offlineimap -qo -u basic -f INBOX<enter>' \
+# I don't ever use shell-escape, but I do need an escape hatch for message
+# deletion. That's because I unbound 'd' to untrain a bad deletion habit.
+bind index,pager ! delete-message
+
+macro index,pager o '<sync-mailbox><shell-escape>offlineimap -qo -u basic -f INBOX -k mbnames:enabled=false<enter>' \
                     "run offlineimap to quickly sync inbox"
 
 # Jump to the w3m view of the html attachment
@@ -111,6 +122,7 @@ macro pager <Esc>v <exit><collapse-thread>
 
 # Jump straight to list of mailboxes
 macro index,pager m <change-folder>?<tab>
+macro index,pager s <save-message>?<tab>
 
 # Something to mark a whole folder as 'read'
 # Line by line,
