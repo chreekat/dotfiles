@@ -54,3 +54,7 @@ alias gdiff="vim +Gdiff"
 
 alias htag="git ls-tree -r HEAD --name-only | grep -E '*.hs' | xargs fast-tags"
 alias ag='ag --color --color-line-number=36 --color-path=32 --color-match="90;45" --pager less $@'
+
+alias IN="vim -S ~/.vim/IN.in.vim ~/IN.in"
+
+alias git-week='lgf --since=`date +%Y-%m-%d -d "last week"` --author=chreekat'
