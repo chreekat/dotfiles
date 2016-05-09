@@ -6,38 +6,12 @@ sd () {
     xdg-open https://snowdrift.coop/p/snowdrift/t/$1
 }
 
-sd-main-dns () {
-    aws --profile snowdrift \
-        ec2 describe-instances --instance-ids i-81a6df28 \
-        --query 'Reservations[].Instances[].PublicDnsName'
-}
-
 sdpush () {
     git push && git push github
 }
 
 sdsyncgithub () {
     git pull && git push github
-}
-
-sddbdump () {
-    # This is almost ISO 8601 format, except tar and bash don't like ':' in
-    # filenames. Replaced with '.'.
-    stamp=$(date +%FT%H.%m%z)
-
-    prodfile=snowdrift_production--${stamp}
-    mxfile=snowdrift_mx1--${stamp}
-    dumpfile=$(pwd)/snowdrift_dbs--${stamp}.tar.gz
-
-    ssh `sd-main-dns` sudo -u postgres pg_dump -Fc snowdrift_production \
-        | cat > $prodfile
-    ssh mx1.snowdrift.coop /home/ubuntu/civicrm-dump.sh \
-        | cat > $mxfile
-    tar czf $dumpfile $prodfile $mxfile
-    gpg -se -r wolftune -r 20068bfb $dumpfile
-    rm $prodfile $mxfile $dumpfile
-    echo ${dumpfile}.gpg | xsel -i -b
-    echo ${dumpfile}.gpg copied to clipboard.
 }
 
 _sdmaybetest () {
