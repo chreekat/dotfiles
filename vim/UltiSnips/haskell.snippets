@@ -4,3 +4,10 @@ endsnippet
 snippet iq "import (qualified)" b
 import qualified ${1:Module} as $2
 endsnippet
+snippet dummy "Dummy route" b
+get${1:Route}R :: Handler Html
+get$1R = defaultLayout [whamlet|$1|]
+endsnippet
+snippet sqltype ""
+MonadIO m => ${1} -> SqlPersistT m ${3:(${2})}
+endsnippet

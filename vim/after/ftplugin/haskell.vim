@@ -6,7 +6,7 @@
 compiler ghc
 
 setl isk+='
-setl tags+=tags.codex
+setl tags+=codex.tags,*/codex.tags
 
 nnoremap <buffer> <leader>ge ?^module<cr>
 nnoremap <buffer> <leader>gi ?^import<cr>

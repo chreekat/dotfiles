@@ -117,6 +117,7 @@ augroup yesod
     au BufWritePost */templates/*.hamlet call s:touchTemplateUser(expand('%:s?templates/??:r'))
     au BufWritePost */messages/*  call system("touch src/Foundation.hs")|GhciReload
     au BufWritePost config/routes  call system("touch src/Foundation.hs")|GhciReload
+    au BufWritePost config/models  call system("touch src/Model.hs")|GhciReload
     au BufWritePost */messages/* call system("~/lib/message-tags")
     au BufWritePost *.hs GhciReload
     au BufRead,BufNewFile *.hs call s:templateJumping()

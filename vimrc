@@ -4,6 +4,7 @@ filetype off
 
 if isdirectory($HOME."/.vim/bundle/vundle")
     set rtp+=~/.vim/bundle/vundle/
+    let g:vundle_default_git_proto = 'git'
     call vundle#rc()
 
     Plugin 'a.vim'
@@ -14,20 +15,25 @@ if isdirectory($HOME."/.vim/bundle/vundle")
     Plugin 'ivalkeen/vim-simpledb'
     Plugin 'junegunn/goyo.vim'
     Plugin 'junegunn/vim-easy-align'
+    " Plugin 'junegunn/vim-peekaboo'
     Plugin 'kchmck/vim-coffee-script'
     Plugin 'kergoth/vim-hilinks'
-    Plugin 'kien/ctrlp.vim'
+    Plugin 'ctrlpvim/ctrlp.vim'
     Plugin 'mbbill/undotree'
     Plugin 'msanders/snipmate.vim'
     Plugin 'pbrisbin/vim-syntax-shakespeare'
+    Plugin 'pgilad/vim-skeletons'
     Plugin 'romainl/Apprentice'
     Plugin 'Shougo/vimproc.vim'
     Plugin 'SirVer/ultisnips'
+    Plugin 'timcharper/textile.vim'
     Plugin 'tpope/vim-abolish'
+    Plugin 'tpope/vim-characterize'
     Plugin 'tpope/vim-commentary'
     Plugin 'tpope/vim-eunuch'
     Plugin 'tpope/vim-fugitive'
     Plugin 'tpope/vim-repeat'
+    Plugin 'tpope/vim-sleuth'
     Plugin 'tpope/vim-surround'
     Plugin 'tpope/vim-unimpaired'
     Plugin 'vim-pandoc/vim-pandoc-syntax'
@@ -41,18 +47,19 @@ endif
 set rtp+=~/LoByMyHand/vim-simple-md
 
 syn enable
+filetype plugin indent on
 
 ru macros/matchit.vim
 
-filetype plugin indent on
+""
+"" PLUGIN CONFIG
+""
 
-" This is adapted from
-" http://vim.wikia.com/wiki/Windo_and_restore_current_window
-function! KeepWin(command)
-  let currwin=winnr()
-  execute a:command
-  execute currwin . 'wincmd w'
-endfunction
+let g:nrrw_rgn_vert = 1
+
+""
+"" COLORSCHEME
+""
 
 if isdirectory($HOME."/.vim/bundle/vim-colors-lunatic")
     colorscheme lunatic
@@ -95,6 +102,7 @@ set showbreak=↪
 set showcmd
 set sidescroll=1
 "set sidescrolloff=3
+set splitbelow
 set splitright
 " set statusline=%f%m%r%h%w\%=[L:\%l\ C:\%c\ P:\%p%%]
 set nosol
@@ -211,6 +219,9 @@ endfunction
 " Doh, ? and / also use cmap. Need to set a buflocal var maybe.
 "nnoremap : :set nu<cr>:
 "cnoremap <cr> <home>set nonu\|<cr>
+
+" Insert today's date.
+inoremap <F9> <c-r>=system("ddate -1")<cr>
 
 "
 " Commands
@@ -401,6 +412,14 @@ fu! SoftWordWrap()
 
 endfu
 command! SoftWordWrap call SoftWordWrap()
+
+" This is adapted from
+" http://vim.wikia.com/wiki/Windo_and_restore_current_window
+function! KeepWin(command)
+  let currwin=winnr()
+  execute a:command
+  execute currwin . 'wincmd w'
+endfunction
 
 augroup vimrc
     au!
