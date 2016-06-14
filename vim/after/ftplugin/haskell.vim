@@ -2,32 +2,33 @@
 " General Haskell Stuff
 "
 
-" Add quote (prime) to list of keyword chars
 compiler ghc
 
+" Add quote (prime) to list of keyword chars
 setl isk+='
-setl tags+=codex.tags,*/codex.tags
+setl tags+=tags.codex,*/tags.codex
+setl keywordprg=xdg-open\ https://www.stackage.org/lts/hoogle?q=\
 
+"
+" Jump to typical file locations (note: should probably make these markers)
+"    exports
 nnoremap <buffer> <leader>ge ?^module<cr>
+"    imports
 nnoremap <buffer> <leader>gi ?^import<cr>
+
+" Jumping to TLD ("names")
+noremap <buffer> <leader>n :call search('^\w', 'W')<cr>
+noremap <buffer> <leader>N :call search('^\w', 'Wb')<cr>
+
+"
+" Autocommand plumbing
+"
 
 function! s:updateTags(f)
     if filewritable("tags")
         call system("fast-tags " . a:f)
     endif
 endfunc
-
-"
-" Jumping to TLD ("names")
-"
-
-noremap <buffer> <leader>n :call search('^\w', 'W')<cr>
-noremap <buffer> <leader>N :call search('^\w', 'Wb')<cr>
-
-
-"
-" Autocommand plumbing
-"
 
 augroup afterHaskell
     au! * <buffer>

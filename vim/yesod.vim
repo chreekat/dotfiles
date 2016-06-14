@@ -101,9 +101,9 @@ endfunc
 "
 
 function! s:templateJumping()
-    nnoremap <buffer> <leader>th :exec ":e templates/" . expand("<cfile>") . ".hamlet"<cr>
-    nnoremap <buffer> <leader>tc :exec ":e templates/" . expand("<cfile>") . ".cassius"<cr>
-    nnoremap <buffer> <leader>tj :exec ":e templates/" . expand("<cfile>") . ".julius"<cr>
+    nnoremap <buffer> <leader>th :exec ":find **/templates/" . expand("<cfile>") . ".hamlet"<cr>
+    nnoremap <buffer> <leader>tc :exec ":find **/templates/" . expand("<cfile>") . ".cassius"<cr>
+    nnoremap <buffer> <leader>tj :exec ":find **/templates/" . expand("<cfile>") . ".julius"<cr>
 endfunc
 
 "

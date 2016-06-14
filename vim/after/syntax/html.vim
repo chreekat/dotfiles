@@ -1,2 +1,2 @@
-set fo-=t
-set fo+=j
+setl fo-=t
+setl fo+=j

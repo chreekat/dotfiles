@@ -32,5 +32,6 @@
 --ignore-file=match:.*.map$
 --ignore-file=match:^tags$
 --ignore-file=match:^tags\..*$
+--ignore-file=match:^codex.tags$
 --sort-files
 --color-filename=green

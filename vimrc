@@ -7,8 +7,9 @@ if isdirectory($HOME."/.vim/bundle/vundle")
     let g:vundle_default_git_proto = 'git'
     call vundle#rc()
 
-    Plugin 'a.vim'
     Plugin 'chreekat/vim-colors-lunatic'
+
+    Plugin 'a.vim'
     Plugin 'chreekat/vimin'
     Plugin 'chrisbra/NrrwRgn'
     Plugin 'godlygeek/tabular'
@@ -24,6 +25,7 @@ if isdirectory($HOME."/.vim/bundle/vundle")
     Plugin 'pbrisbin/vim-syntax-shakespeare'
     Plugin 'pgilad/vim-skeletons'
     Plugin 'romainl/Apprentice'
+    Plugin 'rstacruz/sparkup'
     Plugin 'Shougo/vimproc.vim'
     Plugin 'SirVer/ultisnips'
     Plugin 'timcharper/textile.vim'
@@ -76,7 +78,7 @@ let g:mapleader = "-"
 
 set ai
 " set cpo+=J
-set cpo+=n
+set cpo+=nM
 set dict=/usr/share/dict/words
 set diffopt+=vertical
 set equalalways!
@@ -222,6 +224,8 @@ endfunction
 
 " Insert today's date.
 inoremap <F9> <c-r>=system("ddate -1")<cr>
+" Insert the time
+inoremap <F10> <c-r>=system("ddate -t")<cr>
 
 "
 " Commands

@@ -29,6 +29,8 @@ folder-hook Snowdrift 'set from = "bryan@snowdrift.coop" ; \
                        macro index,pager d <save-message>=Snowdrift/archive<enter> ; \
                        bind index,pager \Cd noop'
 
+folder-hook /var/mail/b 'bind index,pager d delete-message'
+
 alternates -group me b@chreekat.net \
                      bryan.richter@gmail.com \
                      chreekat@gmail.com \

@@ -1,2 +1,2 @@
 " Keep object literals in hand.
-set cino+={1s
+setl cino+={1s

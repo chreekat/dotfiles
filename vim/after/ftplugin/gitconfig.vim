@@ -1,1 +1,1 @@
-set noet
+setl noet

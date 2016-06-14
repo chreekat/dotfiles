@@ -5,6 +5,7 @@
     helper = cache --timeout=3600
 [core]
     excludesfile = ~/.cvsignore
+	quotepath = off
 [color]
 	ui = auto
 [color "decorate"]
