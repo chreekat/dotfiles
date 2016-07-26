@@ -16,8 +16,8 @@ channels = (
   { name = "#trustroots"; chatnet = "Freenode"; autojoin = "yes"; },
   { name = "#haskell-stack"; chatnet = "Freenode"; autojoin = "yes"; },
   { name = "#hackercouch"; chatnet = "Freenode"; autojoin = "yes"; },
-  { name = "#tasty"; chatnet = "Freenode"; autojoin = "yes"; },
-  { name = "#yesod"; chatnet = "Freenode"; autojoin = "yes"; }
+  { name = "#yesod"; chatnet = "Freenode"; autojoin = "yes"; },
+  { name = "#vim"; chatnet = "Freenode"; autojoin = "yes"; }
 );
 
 aliases = {
@@ -160,7 +160,7 @@ hilights = (
   { text = "chreekat"; color = "%M"; nick = "yes"; word = "yes"; }
 );
 ignores = (
-  { level = "JOINS"; channels = ( "&bitlbee", "#haskell" ); },
+  { level = "JOINS"; channels = ( "&bitlbee", "#haskell", "#vim" ); },
   { level = "PARTS QUITS MODES NICKS"; }
 );
 logs = {

@@ -7,7 +7,7 @@ compiler ghc
 " Add quote (prime) to list of keyword chars
 setl isk+='
 setl tags+=tags.codex,*/tags.codex
-setl keywordprg=xdg-open\ https://www.stackage.org/lts/hoogle?q=\
+setl keywordprg=xdg-open\ http://localhost:5555/?hoogle=\
 
 "
 " Jump to typical file locations (note: should probably make these markers)

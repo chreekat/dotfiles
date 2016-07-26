@@ -18,6 +18,10 @@
 --ignore-dir=.hpc
 --ignore-dir=.sass_cache
 --ignore-dir=.stack-work
+--ignore-dir=.stack-devel
+--ignore-dir=.stack-test
+--ignore-dir=.stack-work-deploy
+--ignore-dir=.stack-work
 --ignore-dir=.tmp
 --ignore-dir=bower_components
 --ignore-dir=build

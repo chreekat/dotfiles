@@ -2,10 +2,11 @@
 set nocompatible
 filetype off
 
-if isdirectory($HOME."/.vim/bundle/vundle")
-    set rtp+=~/.vim/bundle/vundle/
+let vundle = $HOME . "/.vim/bundle/Vundle.vim"
+if isdirectory(vundle)
+    let &rtp .= "," . vundle
     let g:vundle_default_git_proto = 'git'
-    call vundle#rc()
+    call vundle#begin()
 
     Plugin 'chreekat/vim-colors-lunatic'
 
@@ -34,9 +35,11 @@ if isdirectory($HOME."/.vim/bundle/vundle")
     Plugin 'tpope/vim-commentary'
     Plugin 'tpope/vim-eunuch'
     Plugin 'tpope/vim-fugitive'
+    Plugin 'tpope/vim-obsession'
     Plugin 'tpope/vim-repeat'
-    Plugin 'tpope/vim-sleuth'
+    " Plugin 'tpope/vim-sleuth'
     Plugin 'tpope/vim-surround'
+    Plugin 'tpope/vim-flagship'
     Plugin 'tpope/vim-unimpaired'
     Plugin 'vim-pandoc/vim-pandoc-syntax'
     Plugin 'vim-scripts/VisIncr'
@@ -47,9 +50,11 @@ else
     echomsg "Vundle not installed! Hecka weirdness may ensue."
 endif
 set rtp+=~/LoByMyHand/vim-simple-md
+set rtp+=~/src/vim-tmuxify
 
+call vundle#end()
+filetype plugin on
 syn enable
-filetype plugin indent on
 
 ru macros/matchit.vim
 
@@ -58,6 +63,7 @@ ru macros/matchit.vim
 ""
 
 let g:nrrw_rgn_vert = 1
+let g:undotree_SetFocusWhenToggle = 1
 
 ""
 "" COLORSCHEME
@@ -100,6 +106,7 @@ set laststatus=2 " Always show status
 set list
 set lcs=tab:┊\ ,trail:·,extends:<,precedes:>
 set mouse=
+set path=. " Defaults include /usr/include, no thanks
 set showbreak=↪
 set showcmd
 set sidescroll=1

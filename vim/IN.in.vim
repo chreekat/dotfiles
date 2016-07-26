@@ -13,3 +13,9 @@ let @n = "^vg_y:let @/ = @0n"
 
 nnoremap <buffer> <F8> :lgrep "waiting for:" %<cr>
 nnoremap <buffer> <F7> :lgrep "next action:" %<cr>
+
+" This is needed for all prose files, really, but we'll start with just
+" this one.
+setl smartcase
+
+vmap <buffer> <leader>m d'i>p<c-o><c-o>
