@@ -38,4 +38,4 @@
 --ignore-file=match:^tags\..*$
 --ignore-file=match:^codex.tags$
 --sort-files
---color-filename=green
+--color-filename=blue

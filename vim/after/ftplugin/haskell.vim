@@ -6,9 +6,12 @@ compiler ghc
 
 " Add quote (prime) to list of keyword chars
 setl isk+='
-setl tags+=tags.codex,*/tags.codex
+setl tags+=codex.tags,*/codex.tags
 setl keywordprg=xdg-open\ http://localhost:5555/?hoogle=\
 
+" Includes
+let &l:include = "^import\\s*\\%(qualified\\)\\?\\s*"
+let &l:includeexpr = "substitute(v:fname, '\\.', '/', 'g') . '.hs'"
 "
 " Jump to typical file locations (note: should probably make these markers)
 "    exports

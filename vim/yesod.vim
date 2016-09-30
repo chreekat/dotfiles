@@ -24,10 +24,10 @@ command! GhciReload call s:ghciReload()
 command! GhciClear  call s:ghciClear()
 
 " 2. Once set up, I want to reload and run a command on each write.
-let s:ghciPane = 2
+let g:ghciPane = 2
 
 function! s:ghciSendKeys(str)
-    call system("tmux send-keys -t " . s:ghciPane . " " . a:str)
+    call system("tmux send-keys -t " . g:ghciPane . " " . a:str)
 endfunc
 
 function! s:ghciCmd(cmd)
@@ -46,7 +46,7 @@ function! s:ghciClear()
     " Sometimes the C-l seems to get swallowed...
     sleep 20m
     call s:ghciSendKeys("C-l")
-    call system("tmux clear-history -t " . s:ghciPane)
+    call system("tmux clear-history -t " . g:ghciPane)
 endfunc
 
 function! s:ghciRunReplCmd()
@@ -69,7 +69,7 @@ function! s:ghciReloadWith(cmd)
         " Sometimes the C-l seems to get swallowed...
         sleep 20m
         call s:ghciSendKeys("C-l")
-        call system("tmux clear-history -t " . s:ghciPane)
+        call system("tmux clear-history -t " . g:ghciPane)
         call s:ghciCmd(":r")
         call s:ghciCmd(a:cmd)
     endif
@@ -80,7 +80,7 @@ function! s:loadGhciErrors()
         let b:ghciErrFile = tempname()
     endif
 
-    return s:loadErrors(s:ghciPane)
+    return s:loadErrors(g:ghciPane)
 endfunction
 
 " 3. If there are boo boos, I want to be able to load them up.

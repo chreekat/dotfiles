@@ -1,0 +1,14 @@
+snippet ss "with count" b
+select count(*) from (
+select ${1}
+from "user"
+where ${2}
+) a
+endsnippet
+snippet ssi "with count for import" b
+select count(*) from (
+select u.id, u.email, u.hash, u.created_ts
+from "user" u
+where ${1}
+) a
+endsnippet

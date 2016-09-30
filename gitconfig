@@ -4,6 +4,7 @@
 [credential]
     helper = cache --timeout=3600
 [core]
+    ; autocrlf = input
     excludesfile = ~/.cvsignore
 	quotepath = off
 [color]

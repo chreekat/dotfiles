@@ -2,6 +2,7 @@
 _darcs
 tags*
 .*.sw[po]
+.sw[po]
 cabal-dev
 *.pyc
 *.pyo

@@ -1,4 +1,5 @@
 " Vundle nonsense. Probably unnecessary.
+" Note that 'nocompatible' sets 'viminfo'
 set nocompatible
 filetype off
 
@@ -10,8 +11,7 @@ if isdirectory(vundle)
 
     Plugin 'chreekat/vim-colors-lunatic'
 
-    Plugin 'a.vim'
-    Plugin 'chreekat/vimin'
+    Plugin 'nacitar/a.vim'
     Plugin 'chrisbra/NrrwRgn'
     Plugin 'godlygeek/tabular'
     Plugin 'ivalkeen/vim-simpledb'
@@ -26,6 +26,7 @@ if isdirectory(vundle)
     Plugin 'pbrisbin/vim-syntax-shakespeare'
     Plugin 'pgilad/vim-skeletons'
     Plugin 'romainl/Apprentice'
+    Plugin 'romainl/vim-tinyMRU'
     Plugin 'rstacruz/sparkup'
     Plugin 'Shougo/vimproc.vim'
     Plugin 'SirVer/ultisnips'
@@ -51,6 +52,8 @@ else
 endif
 set rtp+=~/LoByMyHand/vim-simple-md
 set rtp+=~/src/vim-tmuxify
+set rtp+=~/src/vim-colors-solarized
+set rtp+=~/LoByMyHand/vimin
 
 call vundle#end()
 filetype plugin on
@@ -95,7 +98,8 @@ set foldtext=BFoldtext()
 set foldopen=
 set history=100000
 set joinspaces!
-set gp=ack-grep\ -H\ --column
+" set gp=ack-grep\ -H\ --column
+set gp=rg\ -n\ --column
 set grepformat=%f:%l:%c:%m
 set hidden
 set modeline
@@ -106,7 +110,7 @@ set laststatus=2 " Always show status
 set list
 set lcs=tab:┊\ ,trail:·,extends:<,precedes:>
 set mouse=
-set path=. " Defaults include /usr/include, no thanks
+set path=**/,, " Defaults include /usr/include, no thanks
 set showbreak=↪
 set showcmd
 set sidescroll=1
@@ -184,8 +188,6 @@ noremap <leader>xo :!xdg-open %<cr><c-l>
 
 noremap <F5> :UndotreeToggle<cr>
 
-noremap <Leader>e zfaB
-
 nnoremap <Leader>V :tabe  ~/LoByMyHand/bDotfiles/vimrc<cr>
 nnoremap <Leader>S :so ~/.vimrc<cr>
 nnoremap <Leader>L :tabe ~/LoByMyHand/bDotfiles/vim/bundle/vim-colors-lunatic/colors/lunatic.vim<cr>
@@ -239,7 +241,7 @@ inoremap <F10> <c-r>=system("ddate -t")<cr>
 "
 
 " Trim whitespace thx
-command! -range Trim <line1>,<line2>s/ *$//
+command! -range Trim <line1>,<line2>s/\s\+$//
 
 " The "Dominate Dragons" idea
 command! GQ silent Gcommit -am "quicksave"
@@ -471,5 +473,9 @@ augroup vimrc
 
     "au WinLeave * setl nowrap
     "au WinEnter * if !&scrollbind|setl wrap|endif
+
+    " These are reached via codex tags and I don't care to track the
+    " buffers.
+    au BufEnter ~/.cabal/packages/hackage.haskell.org/* setl nobuflisted buftype=nowrite
 aug END
 
