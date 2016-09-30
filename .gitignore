@@ -16,3 +16,4 @@ vim/view
 mutt/mailboxes.rc
 mutt/aliases
 mutt/subscriptions
+mutt/certificates
