@@ -479,3 +479,23 @@ augroup vimrc
     au BufEnter ~/.cabal/packages/hackage.haskell.org/* setl nobuflisted buftype=nowrite
 aug END
 
+func! Typewriter()
+    if !exists('b:typewriter_mode')
+        imap <buffer> <c-w> <nop>
+        imap <buffer> <bs> <nop>
+        map <buffer> x <nop>
+        map <buffer> d <nop>
+        map <buffer> c <nop>
+        map <buffer> s <nop>
+        map <buffer> S <nop>
+        map <buffer> D <nop>
+        map <buffer> C <nop>
+        let b:typewriter_mode=1
+    else
+        imapclear <buffer>
+        mapclear <buffer>
+        unlet b:typewriter_mode
+    endif
+endfunction
+
+com! Typewriter call Typewriter()
