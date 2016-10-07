@@ -155,7 +155,9 @@ settings = {
     hilight_color = "= %R";
     autolog = "yes";
     show_names_on_join = "no";
+    beep_when_away = "no";
   };
+  "fe-common/irc" = { show_away_once = "no"; };
 };
 hilights = (
   { text = "chreekat"; color = "%M"; nick = "yes"; word = "yes"; }

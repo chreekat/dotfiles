@@ -99,7 +99,7 @@ set foldopen=
 set history=100000
 set joinspaces!
 " set gp=ack-grep\ -H\ --column
-set gp=rg\ -n\ --column
+set gp=rg\ --vimgrep
 set grepformat=%f:%l:%c:%m
 set hidden
 set modeline
@@ -121,7 +121,7 @@ set splitright
 set nosol
 set sw=4
 set swb=useopen
-set ttimeoutlen=100
+set ttimeoutlen=20
 set titlestring=vi:\ %t%(\ %M%)%(\ (%{expand(\"%:~:.:h\")})%)%(\ %a%)
 set tw=75
 set updatetime=2000
