@@ -1,24 +1,12 @@
 " I <3 vim
 CompilerSet efm =
-    \%Z,
     \%C\ \ \ \ %m,
-    \%-GOk%.%#,
-    \%-GFailed%.%#,
-    \%-G<interactive>%.%#,
-    \%-G\|%.%#,
-    \%-Gλ%.%#,
-    \%-G>%.%#,
-    \%-G[%.%#,
     \%-G\\\\s%#,
-    \%-G%.%#...,
-    \%-G127.0.0.1%.%#,
-    \%-A--\ %m,
-    \%-G%.%#:\ build,
-    \%-G$%.%#,
     \%E%f:%l:%c:\ Error:\ %m,
     \%E%f:%l:%c:\ Error:,
     \%W%f:%l:%c:\ Warning:\ %m,
     \%W%f:%l:%c:\ Warning:,
     \%E%f:%l:%c:\ %m,
     \%E%f:%l:%c:,
-    \%E%f:%l:\ %m
+    \%E%f:%l:\ %m,
+    \%-G%.%#
