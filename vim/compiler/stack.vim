@@ -11,4 +11,4 @@ CompilerSet efm =
     \%E\ %#%f:%l:\ %m,
     \%-G%.%#
 
-CompilerSet mp = stack\ build\ --fast
+CompilerSet mp=stack\ build\ --fast
