@@ -88,15 +88,14 @@ DOTS=(
     bash
     bash_aliases
     bashrc
-    cvsignore
     cvsrc
     dircolors
-    emacs.d
     fonts
     fonts.conf.d
     ghci
     gitconfig
     goobookrc
+    ignore
     inputrc
     irssi
     jshintrc
