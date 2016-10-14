@@ -13,7 +13,6 @@ if isdirectory(vundle)
 
     Plugin 'nacitar/a.vim'
     Plugin 'chrisbra/NrrwRgn'
-    Plugin 'godlygeek/tabular'
     Plugin 'ivalkeen/vim-simpledb'
     Plugin 'junegunn/goyo.vim'
     Plugin 'junegunn/vim-easy-align'
@@ -92,11 +91,12 @@ set dict=/usr/share/dict/words
 set diffopt+=vertical
 set equalalways!
 set et
-set fillchars+=stl:⬧,stlnc:⬦,vert:⬦,fold:\ 
+set fillchars+=vert:│
 set fo+=l
 set foldtext=BFoldtext()
 set foldopen=
-set history=100000
+" vim8 sets a max of 10000
+set history=10000
 set joinspaces!
 " set gp=ack-grep\ -H\ --column
 set gp=rg\ --vimgrep
