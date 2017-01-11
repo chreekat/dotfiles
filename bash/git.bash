@@ -2,40 +2,29 @@
 # variable reuse. (And hey, four less characters to type.)
 
 log_aliases () {
-    gl='git log --color=always --date=short'
-    line='%C(10)%h │%Creset %s%C(auto).%d%C(10) %cd, %an% GK%Creset'
-    std_format="--pretty=tformat:'$line'"
-    big_break='%C(13 bold)********************************************************************************%C(reset)%n'
-    break_format="--pretty=tformat:'$big_break$line'"
+    local gl='git log --color=always --date=short --graph'
 
+    local line='%C(10)%h │%Creset %s%C(auto).%d%C(10) %cd, %an% GK%Creset'
+    local std_format="--pretty=tformat:'$line'"
 
+    local big_break='%C(13 bold)********************************************************************************%C(reset)%n'
+    local break_format="--pretty=tformat:'$big_break$line'"
 
-    alias lg="$gl     --graph --branches --first-parent --remotes       $std_format"
-    alias lgs="$gl    --graph --branches --first-parent --remotes --stat $std_format"
-    alias lgf="$gl    --graph --branches         --remotes              $std_format"
-    alias lgsff="$gl   --graph --branches         --remotes       --stat $std_format"
-    alias lga="$gl    --graph             --first-parent                 $std_format"
-    alias lgaff="$gl   --graph                                            $std_format"
-    alias lp="$gl  -p                     --first-parent                 $break_format"
-    alias lpff="$gl -p                                                    $break_format"
-    alias lgg="lg | head -n 20"
-    alias lgss="lgs | head -n 20"
-    alias lgff="lgf | head -n 20"
-    alias lgsf="lgsff | head -n 20"
-    alias lgaa="lga | head -n 20"
-    alias lgaf="lgaff | head -n 20"
-    alias lpp="lp | head -n 20"
-    alias lpf="lpff | head -n 20"
+    declare -A aliases
+    aliases[lg]="$gl --first-parent $std_format"
+    aliases[la]="$gl --all          $std_format"
+    aliases[lgs]="${aliases[lg]} --stat"
+    aliases[las]="${aliases[la]} --stat"
+    aliases[lg1]="${aliases[lg]} | head -n 20"
+    aliases[la1]="${aliases[la]} | head -n 20"
 
-    alias lg1="$gl    --graph --branches --first-parent  --remotes      $std_format | head -n 10"
+    for a in ${!aliases[@]}
+    do
+        alias $a="${aliases[$a]}"
+    done
 }
 
 log_aliases
-
-# FIXME wtf is this? Did I write this?
-addsubrepo () {
-  git submodule add $(git -C $1 remote -v | cut -f2| grep -v fetch | cut -f1 -d' ')
-}
 
 alias regit="source ~/.bash/git.bash"
 alias cim="git ci -m"
