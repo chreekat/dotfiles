@@ -16,4 +16,7 @@ vim/bundle
 vim/.netrwhist
 vim/undos
 vim/view
+weechat/logs
+weechat/sec.conf
+weechat/slack.cache
 w3m/*
