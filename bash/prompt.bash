@@ -1,8 +1,8 @@
 __p_dbstat=
 __p_setdbstat () {
-  if [ -d .postgres-work ]; then
+  if [ -n "$PGDATA" ]; then
       __p_dbstat=" (\[\e[31m\]db✗\[\e[0m\])"
-      pidfile=.postgres-work/data/postmaster.pid
+      pidfile=$PGDATA/postmaster.pid
       if [ -e $pidfile ]; then
           pid=$(head -n1 $pidfile)
           if ps $pid >/dev/null 2>&1; then

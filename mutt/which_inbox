@@ -1,0 +1,8 @@
+#!/bin/bash
+
+if test $(date +%u) -le 5 -a $(date +%H) -lt 17
+then
+    echo "Formaltech"
+else
+    echo "Personal"
+fi

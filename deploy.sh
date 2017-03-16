@@ -114,6 +114,7 @@ DOTS=(
     toprc
     vim
     vimrc
+    weechat
     w3m
 )
 

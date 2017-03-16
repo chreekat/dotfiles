@@ -31,6 +31,8 @@
     ignored = clean -ndX
     cp = cherry-pick
     which = ls-tree -r HEAD --name-only
+    sm = submodule
+    smap = submodule foreach
 [rebase]
     autosquash = true
 [fetch]
@@ -49,3 +51,7 @@
 	enabled = true
 [commit]
 	gpgsign = true
+[diff]
+	mnemonicprefix = true
+[grep]
+	linenumber = true

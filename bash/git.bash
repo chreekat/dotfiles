@@ -2,21 +2,21 @@
 # variable reuse. (And hey, four less characters to type.)
 
 log_aliases () {
-    local gl='git log --color=always --date=short --graph'
+    local gl='git log --date=short --graph'
 
-    local line='%C(10)%h │%Creset %s%C(auto).%d%C(10) %cd, %an% GK%Creset'
-    local std_format="--pretty=tformat:'$line'"
+    local single_line='%C(6)%h%Creset %s%C(auto).%d %C(4)%cd, %an% GK%Creset'
 
-    local big_break='%C(13 bold)********************************************************************************%C(reset)%n'
-    local break_format="--pretty=tformat:'$big_break$line'"
+    local multi_line='%C(6)│       │%n%C(6)│%h│%Creset %s%C(auto).%d%C(4) %cd, %an% GK%n%C(6)│       │%Creset'
 
     declare -A aliases
-    aliases[lg]="$gl --first-parent $std_format"
-    aliases[la]="$gl --all          $std_format"
+    aliases[lg]="$gl --first-parent --pretty=tformat:'$single_line'"
+    aliases[la]="$gl --all          --pretty=tformat:'$single_line'"
     aliases[lgs]="${aliases[lg]} --stat"
     aliases[las]="${aliases[la]} --stat"
     aliases[lg1]="${aliases[lg]} | head -n 20"
     aliases[la1]="${aliases[la]} | head -n 20"
+    aliases[lgp]="$gl -p --first-parent --pretty=tformat:'$multi_line'"
+    aliases[lap]="$gl -p --all          --pretty=tformat:'$multi_line'"
 
     for a in ${!aliases[@]}
     do

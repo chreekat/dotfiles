@@ -10,7 +10,7 @@ unmailboxes *
 # Accounts, subscriptions, and other personal things.
 #
 
-set spoolfile = +Personal/INBOX
+set spoolfile = +`~/.mutt/which_inbox`/INBOX
 source ~/.mutt/crypto.rc
 source ~/.mutt/mailboxes.rc
 source ~/.mutt/subscriptions
@@ -28,6 +28,13 @@ folder-hook Snowdrift 'set from = "bryan@snowdrift.coop" ; \
                        color status brightcolor8 color4 ; \
                        macro index,pager d <save-message>=Snowdrift/archive<enter> ; \
                        bind index,pager \Cd noop'
+folder-hook Formaltech \
+    'set from = "bryan.richter@formal.tech" ; \
+     set smtp_pass = "`passgm gmail formaltech`" ; \
+     set smtp_url = "smtps://bryan.richter@formal.tech@smtp.gmail.com" ; \
+     color status brightcolor8 color5 ; \
+     bind index,pager d delete-message ; \
+     bind index,pager \Cd delete-thread'
 
 folder-hook /var/mail/b 'bind index,pager d delete-message'
 folder-hook Snowdrift/archive 'bind index,pager d delete-message'
@@ -36,7 +43,8 @@ alternates -group me b@chreekat.net \
                      bryan.richter@gmail.com \
                      chreekat@gmail.com \
                      chreekat@keybase.io
-alternates -group me -group work bryan@snowdrift.coop
+alternates -group me -group work bryan@snowdrift.coop \
+                                 bryan.richter@formal.tech
 macro index,pager gi <change-folder>+Personal/INBOX<enter>   "Go to Google inbox"
 macro index,pager gt <change-folder>+Personal/starred<enter> "Go to starred messages"
 macro index,pager gr <change-folder>+Personal/recent<enter>  "Go to recent"
@@ -53,8 +61,9 @@ mailboxes "=Snowdrift/archive" "/var/mail/b" "=sent"
 # Collapse threads on viewing a folder
 folder-hook . exec collapse-all
 
+folder-hook .               set sort = threaded
 folder-hook .               set sort_aux = reverse-last-date-received
-folder-hook "INBOX|starred" set sort_aux = last-date-received
+folder-hook "INBOX|starred" set sort = date-received
 folder-hook "INBOX|starred" exec first-entry
 
 # These paradoxical options cause a visual bell
@@ -70,8 +79,8 @@ set crypt_autosign   = yes
 set delete           = yes
 set forward_format   = "Fwd: %s"
 set help             = no
+#set implicit_autoview = yes
 set include          = yes
-set mark_old         = no
 set mbox_type        = Maildir
 set pager_context    = 2
 set pager_stop
@@ -103,6 +112,11 @@ bind pager       b previous-page
 bind index,pager a group-reply
 bind index,pager c mail
 
+# In lieu of setting up mailcap in a way that makes mutt do the right thing, I
+# offer the following
+macro pager <F4> :set\ implicit_autoview<enter>q<enter>
+macro pager <F3> :unset\ implicit_autoview<enter>q<enter>
+
 #
 # Sketchy configurations
 #
@@ -115,8 +129,8 @@ macro index,pager o '<sync-mailbox><shell-escape>offlineimap -qo -u basic -f INB
                     "run offlineimap to quickly sync inbox"
 
 # Jump to the w3m view of the html attachment
-macro index ,h v*<enter>q          "View as html"
-macro pager ,h qv*<enter>q<enter>  "View as html"
+macro index ,h v/text/html<enter><enter>q          "View as html"
+macro pager ,h qv/text/html<enter><enter>q<enter>  "View as html"
 
 # Change a file's type to application/pgp — necessary for inline pgp
 macro index,pager ,p "<edit-type>application/pgp<enter>" "Change to pgp"

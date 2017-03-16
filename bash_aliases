@@ -18,11 +18,10 @@ alias pd='pushd'
 alias df='df -h'
 alias o='offlineimap -q -o -u basic -f INBOX -k mbnames:enabled=false'
 
+alias rg='rg --pretty'
+
 alias action_lists="riot ~/Org/Lists.riot"
 alias amv='audio_rename -p "Music/%a/%l/%{mA}%{n0}__%t" -R'
-
-# Hopefully, I will never understand TERM.
-alias tmux="TERM=screen-it tmux"
 
 # For safety
 alias apt-get="echo 'Use aptitude'"
@@ -57,4 +56,4 @@ alias ag='ag --color --color-line-number=36 --color-path=32 --color-match="90;45
 
 alias IN="vim -S ~/.vim/IN.in.vim ~/IN.in"
 
-alias git-week='lgf --since=`date +%Y-%m-%d -d "last week"` --author=chreekat'
+alias git-week='la --since=`date +%Y-%m-%d -d "last week"` --author=chreekat'

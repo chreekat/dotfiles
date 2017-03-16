@@ -163,9 +163,11 @@ hilights = (
   { text = "chreekat"; color = "%M"; nick = "yes"; word = "yes"; }
 );
 ignores = (
-  { level = "JOINS"; channels = ( "&bitlbee", "#haskell", "#vim" ); },
-  { level = "PARTS QUITS MODES NICKS"; },
-  { level = "JOINS PARTS QUITS"; channels = ( "#stripe" ); }
+  {
+    level = "JOINS PARTS QUITS";
+    channels = ( "&bitlbee", "#haskell", "#vim", "#stripe" );
+  },
+  { level = "MODES NICKS"; }
 );
 logs = {
   "~/irclogs/snowdrift/sd-%Y-%m-%d" = {

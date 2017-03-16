@@ -155,7 +155,7 @@ export BUP_DIR=$HOME/Dropbox/bup
 
 umask 0022
 
-export BROWSER=gnome-www-browser
+export BROWSER=x-www-browser
 
 export EC2_PRIVATE_KEY=$HOME/certs/pk-KBRX5ZQKB4ETJM7VLY3LOCM5OKS2THP3.pem
 export EC2_CERT=$HOME/certs/cert-KBRX5ZQKB4ETJM7VLY3LOCM5OKS2THP3.pem
@@ -169,7 +169,10 @@ for rc in ~/.bash/*.bash; do
 done
 
 # This is temporary until I figure out the right way to do it.
-export TERM=screen-it
+if [ -z "$TMUX" ]
+then
+    export TERM=screen-it
+fi
 
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
