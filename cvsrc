@@ -1,6 +1,0 @@
-cvs -rq
-update -Pd
-diff -u
-release -d
-log -NS
-tag -c
