@@ -20,14 +20,15 @@ if isdirectory(vundle)
     Plugin 'kchmck/vim-coffee-script'
     Plugin 'kergoth/vim-hilinks'
     Plugin 'ctrlpvim/ctrlp.vim'
+    Plugin 'mattn/emmet-vim'
     Plugin 'mbbill/undotree'
     Plugin 'msanders/snipmate.vim'
     Plugin 'pbrisbin/vim-syntax-shakespeare'
     Plugin 'pgilad/vim-skeletons'
     Plugin 'romainl/Apprentice'
     Plugin 'romainl/vim-tinyMRU'
-    Plugin 'rstacruz/sparkup'
     Plugin 'Shougo/vimproc.vim'
+    Plugin 'skywind3000/asyncrun.vim'
     Plugin 'SirVer/ultisnips'
     Plugin 'timcharper/textile.vim'
     Plugin 'tpope/vim-abolish'
@@ -91,7 +92,7 @@ set dict=/usr/share/dict/words
 set diffopt+=vertical
 set equalalways!
 set et
-set fillchars+=vert:│
+set fillchars+=vert:┆
 set fo+=l
 set foldtext=BFoldtext()
 set foldopen=
@@ -128,7 +129,7 @@ set updatetime=2000
 " No bell
 set vb t_vb=
 set wildmode=list:longest,full
-set wildignore+=*.o,*.hi,dist
+set wildignore+=*.o,*.hi,dist,*.dyn_o,*.dyn_hi
 "set wiw=40 nowrap " For shoots and googles
 " let &wiw = &tw + 4
 set whichwrap=<,>,[,] " arrow keys wrap
@@ -235,6 +236,8 @@ endfunction
 inoremap <F9> <c-r>=system("ddate -1")<cr>
 " Insert the time
 inoremap <F10> <c-r>=system("ddate -t")<cr>
+" Both! :D
+imap <F11> <F9>T<F10>
 
 "
 " Commands

@@ -2,8 +2,6 @@
 " General Haskell Stuff
 "
 
-compiler ghc
-
 " Add quote (prime) to list of keyword chars
 setl isk+='
 setl tags+=codex.tags,*/codex.tags

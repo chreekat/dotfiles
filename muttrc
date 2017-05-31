@@ -16,18 +16,28 @@ source ~/.mutt/mailboxes.rc
 source ~/.mutt/subscriptions
 source ~/.mutt/aliases
 source ~/.mutt/lunatic-mutt/lunatic.muttrc
-folder-hook Personal  'set from = "b@chreekat.net" ; \
-                       set smtp_pass = "`passgm gmail personal`" ; \
-                       set smtp_url = "smtps://bryan.richter@smtp.gmail.com" ; \
-                       color status brightcolor8 color2 ; \
-                       bind index,pager d delete-message ; \
-                       bind index,pager \Cd delete-thread'
-folder-hook Snowdrift 'set from = "bryan@snowdrift.coop" ; \
-                       set smtp_pass = "`passgm snowdrift me`" ; \
-                       set smtp_url = "smtp://bryan@snowdrift.coop@mx1.snowdrift.coop:587" ; \
-                       color status brightcolor8 color4 ; \
-                       macro index,pager d <save-message>=Snowdrift/archive<enter> ; \
-                       bind index,pager \Cd noop'
+folder-hook B_Chreekat \
+    'set from = "b@chreekat.net" ; \
+    set smtp_pass = "`passgm google.com b@chreekat.net`" ; \
+    set smtp_url = "smtps://b@chreekat.net@smtp.gmail.com" ; \
+    color status brightcolor8 color2 ; \
+    bind index,pager d delete-message ; \
+    bind index,pager \Cd delete-thread'
+folder-hook Personal \
+    'set from = "bryan.richter@gmail.com" ; \
+    set smtp_pass = "`passgm gmail personal`" ; \
+    set smtp_url = "smtps://bryan.richter@smtp.gmail.com" ; \
+    color status brightcolor9 color2 ; \
+    bind index,pager d delete-message ; \
+    bind index,pager \Cd delete-thread'
+folder-hook Snowdrift \
+    'set from = "bryan@snowdrift.coop" ; \
+    set smtp_pass = "`passgm snowdrift me`" ; \
+    set smtp_url = "smtp://bryan@snowdrift.coop@mx1.snowdrift.coop:587" ; \
+    color status brightcolor8 color4 ; \
+    macro index,pager d <save-message>=Snowdrift/archive<enter> ; \
+    macro index,pager ! <save-message>=Snowdrift/_spam<enter> ; \
+    bind index,pager \Cd noop'
 folder-hook Formaltech \
     'set from = "bryan.richter@formal.tech" ; \
      set smtp_pass = "`passgm gmail formaltech`" ; \
@@ -79,8 +89,12 @@ set crypt_autosign   = yes
 set delete           = yes
 set forward_format   = "Fwd: %s"
 set help             = no
-#set implicit_autoview = yes
 set include          = yes
+# Use a mutt-specific override, then fall back to mutt's defaults. (I don't
+# think there's a option += foo syntax, like in vim)
+# 
+# I only need this for text/html.
+set mailcap_path     = ~/.mutt/mailcap:~/.mailcap:/usr/share/mutt/mailcap:/etc/mailcap:/etc/mailcap:/usr/etc/mailcap:/usr/local/etc/mailcap
 set mbox_type        = Maildir
 set pager_context    = 2
 set pager_stop

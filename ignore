@@ -13,5 +13,3 @@ cabal-dev
 cabal.sandbox.config
 vimux.err
 Session.vim
-# temporary
-*.nix

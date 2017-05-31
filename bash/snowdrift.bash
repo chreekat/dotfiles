@@ -7,11 +7,11 @@ sd () {
 }
 
 sdpush () {
-    git push && git push github
+    git push origin $@ && git push github $@
 }
 
 sdsyncgithub () {
-    git pull && git push github
+    git pull origin && git push github
 }
 
 _sdmaybetest () {

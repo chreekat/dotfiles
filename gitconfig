@@ -7,6 +7,7 @@
     ; autocrlf = input
     excludesfile = ~/.ignore
 	quotepath = off
+	longpaths = true
 [color]
 	ui = auto
 [color "decorate"]
@@ -19,10 +20,11 @@
     commit = 10
 [alias]
     m = merge -S --no-ff
+    mr = !sh -c 'git fetch $1 merge-requests/$2/head:mr-$1-$2 && git checkout mr-$1-$2' -
     b = branch -vv
     st = status --short -b
-    d = diff
-    dc = diff --cached
+    d = diff --color-words=.
+    dc = diff --color-words=. --cached
     qs = commit -am "QUICKSAVE"
     ci = commit -S
     co = checkout

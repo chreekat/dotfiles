@@ -1,9 +1,9 @@
 [general]
-accounts = Personal, Snowdrift, Formaltech
+accounts = B_Chreekat, Personal, Snowdrift, Formaltech
 # google isn't snappy with imap
 socktimeout = 30
 pythonfile=~/.offlineimap/helper.py
-maxsyncaccounts=2
+maxsyncaccounts=1
 ui=basic
 
 [mbnames]
@@ -13,6 +13,11 @@ header = "mailboxes "
 peritem = "+%(accountname)s/%(foldername)s"
 sep = " "
 footer = "\n"
+
+[Account B_Chreekat]
+localrepository = B_ChreekatLocal
+remoterepository = B_ChreekatRemote
+status_backend = sqlite
 
 [Account Personal]
 localrepository = PersonalLocal
@@ -29,6 +34,30 @@ localrepository = FormaltechLocal
 remoterepository = FormaltechRemote
 status_backend = sqlite
 
+[Repository B_ChreekatLocal]
+type = Maildir
+localfolders = ~/Mail/B_Chreekat
+nametrans = lambda folder: { 'starred': '[Gmail]/Starred'
+                           }.get(folder, folder)
+
+[Repository B_ChreekatRemote]
+type = Gmail
+maxconnections = 3
+sslcacertfile = /etc/ssl/certs/ca-certificates.crt
+remoteuser = b@chreekat.net
+# To set the password, do:
+# >>> import keyring
+# >>> keyring.set_password("gmail", "username", "password")
+remotepasseval = get_password("google.com", "b@chreekat.net")
+folderfilter = lambda f: f in ['[Gmail]/Starred'
+                              ,'recent'
+                              ,'@upcoming'
+                              ,'@waiting_for'
+                              ,'INBOX'
+                              ]
+nametrans = lambda folder: {'[Gmail]/Starred':   'starred'
+                           }.get(folder, folder)
+
 [Repository PersonalLocal]
 type = Maildir
 localfolders = ~/Mail/Personal
@@ -43,7 +72,6 @@ remoteuser = bryan.richter@gmail.com
 # To set the password, do:
 # >>> import keyring
 # >>> keyring.set_password("gmail", "username", "password")
-
 remotepasseval = get_password("gmail", "personal")
 folderfilter = lambda f: f in ['[Gmail]/Starred'
                               ,'recent'
@@ -82,7 +110,6 @@ remoteuser = bryan.richter@formal.tech
 # To set the password, do:
 # >>> import keyring
 # >>> keyring.set_password("gmail", "username", "password")
-
 remotepasseval = get_password("gmail", "formaltech")
 folderfilter = lambda f: f in ['[Gmail]/Starred'
                               ,'recent'

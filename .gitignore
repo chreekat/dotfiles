@@ -20,3 +20,4 @@ weechat/logs
 weechat/sec.conf
 weechat/slack.cache
 w3m/*
+weechat/weechat.log

@@ -7,3 +7,4 @@ iabbrev ex expenses
 iabbrev trans expenses:transport:transit
 iabbrev ns New Seasons
 iabbrev br expenses:food:bar
+iabbrev wal Google Wallet

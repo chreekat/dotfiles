@@ -127,7 +127,7 @@ stty -ixon
 
 ## FUNCTIONS
 
-mkcd () {
+md () {
     mkdir -p $@ &&
     cd $@
 }
@@ -160,7 +160,7 @@ export BROWSER=x-www-browser
 export EC2_PRIVATE_KEY=$HOME/certs/pk-KBRX5ZQKB4ETJM7VLY3LOCM5OKS2THP3.pem
 export EC2_CERT=$HOME/certs/cert-KBRX5ZQKB4ETJM7VLY3LOCM5OKS2THP3.pem
 
-export MANPATH=/usr/share/man:/usr/local/share/man:$HOME/.local/share/man
+export MANPATH=/usr/share/man:/usr/local/share/man:$HOME/.local/share/man:$HOME/.nix-profile/share/man
 
 export BAROBO_DEV=true
 
@@ -176,3 +176,30 @@ fi
 
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
+## Added by Master Password
+mpw() {
+    _copy() {
+        if hash pbcopy 2>/dev/null; then
+            pbcopy
+        elif hash xclip 2>/dev/null; then
+            xclip -selection clip
+        else
+            cat; echo 2>/dev/null
+            return
+        fi
+        echo >&2 "Copied!"
+    }
+
+    # Empty the clipboard
+    :| _copy 2>/dev/null
+
+    # Ask for the user's name and password if not yet known.
+    MP_FULLNAME=${MP_FULLNAME:-$(ask 'Your Full Name:')}
+
+    # Start Master Password and copy the output.
+    printf %s "$(MP_FULLNAME=$MP_FULLNAME command mpw "$@")" | _copy
+    # Later, clear the clipboard again
+    (sleep 20; :| _copy 2>/dev/null)&
+    disown
+}
+export MP_FULLNAME=Bryan\ Thomas\ Richter
