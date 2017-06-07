@@ -24,6 +24,8 @@
     b = branch -vv
     st = status --short -b
     d = diff --color-words=.
+    # Rebase with pgp sigs. Only useful for my own commits obvs
+    rb = rebase --exec 'git commit -S --amend -C'
     dc = diff --color-words=. --cached
     qs = commit -am "QUICKSAVE"
     ci = commit -S

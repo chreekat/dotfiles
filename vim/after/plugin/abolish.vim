@@ -4,3 +4,4 @@ Abolish fundoation foundation
 Abolish phares phrase
 Abolish accomodoation accomodation
 Abolish passpharse passphrase
+Abolish cofnig config

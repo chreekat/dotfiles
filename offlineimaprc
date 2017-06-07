@@ -51,6 +51,7 @@ remoteuser = b@chreekat.net
 remotepasseval = get_password("google.com", "b@chreekat.net")
 folderfilter = lambda f: f in ['[Gmail]/Starred'
                               ,'recent'
+                              ,'@haskell'
                               ,'@upcoming'
                               ,'@waiting_for'
                               ,'INBOX'

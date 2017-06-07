@@ -1,8 +1,5 @@
 #!/bin/bash
 
-# Common options (like the default ll and friends)
-alias grep='grep --perl-regexp'
-
 alias n="LC_COLLATE=C ls"
 alias n.="n -ad .*"
 alias na="n -a"

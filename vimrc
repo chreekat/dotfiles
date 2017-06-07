@@ -1,17 +1,32 @@
-call plug#begin('~/.vim/bundle')
-    Plug 'chrisbra/NrrwRgn', { 'on': 'NR' }
-    Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }
-    Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
-    Plug 'tpope/vim-abolish'
-    Plug 'tpope/vim-eunuch'
-    Plug 'tpope/vim-flagship'
-    Plug 'tpope/vim-fugitive'
-    Plug 'ultimatecoder/goyo-doc'
-    Plug '~/LoByMyHand/vim-simple-md'
-    Plug '~/LoByMyHand/passhole'
-    Plug '~/LoByMyHand/vimin'
-    Plug 'vim-scripts/VisIncr'
-call plug#end()
+function! PlugLoad(loc, pluglist)
+    call plug#begin(a:loc)
+    for p in a:pluglist
+        if type(p) == v:t_string
+            let cmd = "Plug '" . p . "'"
+        else
+            let pname = remove(p, 'plug')
+            let cmd = "Plug '" . pname . "', " . string(p)
+        endif
+        exec cmd
+    endfor
+    call plug#end()
+endfunction
+
+call PlugLoad('~/.vim/bundle',
+    \[{'plug': 'chrisbra/NrrwRgn', 'on': 'NR' }
+    \,{'plug': 'junegunn/goyo.vim', 'on': 'Goyo' }
+    \,{'plug': 'mbbill/undotree', 'on': 'UndotreeToggle' }
+    \,'tpope/vim-abolish'
+    \,'tpope/vim-eunuch'
+    \,'tpope/vim-flagship'
+    \,'tpope/vim-fugitive'
+    \,'ultimatecoder/goyo-doc'
+    \,'~/LoByMyHand/vim-simple-md'
+    \,'~/LoByMyHand/passhole'
+    \,'~/LoByMyHand/vimin'
+    \,'vim-scripts/VisIncr'
+    \,'~/src/Haskell/intero/vim'
+    \])
 
 ""
 "" C O N F I G U R A T I O N
@@ -23,6 +38,8 @@ set formatoptions+=j
 set hidden
 set modeline
 " ^ Debian apparently resets modeline, which is on by vim default
+set shiftround
+" ^ Make << and >> act like i_^t and i_^d
 set showcmd
 set ttimeoutlen=20
 if has("persistent_undo")
@@ -35,7 +52,7 @@ runtime shifted_fkeys.vim
 
 "" My preferences
 filetype indent off
-set splitbelow
+set completeopt+=menuone
 set splitright
 
 set foldopen=
@@ -202,3 +219,6 @@ function! GFPrompt()
     endtry
 endfunction
 nnoremap gf :call GFPrompt()<cr>
+
+" Ranged search (M like perl's m///)
+command! -range=% -nargs=1 M normal /\%><line1>l\%<<line2>l<args><cr>
