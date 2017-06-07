@@ -21,3 +21,4 @@ weechat/sec.conf
 weechat/slack.cache
 w3m/*
 weechat/weechat.log
+vim/autoload/plug.vim.old
