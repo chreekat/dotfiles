@@ -1,7 +1,9 @@
 Abolish availabel available
-Abolish {solu,migra}tino {}tion
+Abolish {sugges,solu,migra}tino{s,} {}tion{}
 Abolish fundoation foundation
 Abolish phares phrase
 Abolish accomodoation accomodation
 Abolish passpharse passphrase
 Abolish cofnig config
+Abolish caputerd captured
+Abolish woudl would

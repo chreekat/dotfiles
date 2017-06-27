@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Temp, since I keep using it by accident
+alias lp="echo Are you sure?"
+
 alias n="LC_COLLATE=C ls"
 alias n.="n -ad .*"
 alias na="n -a"
@@ -45,7 +48,8 @@ complete -F _pkgs dsh
 complete -F _pkgs di
 complete -F _pkgs ds
 
-alias gd="git d"
+alias gd="git diff"
+alias gdw="git d"
 
 alias git=hub
 
@@ -55,7 +59,5 @@ alias gdiff="vim +Gdiff"
 
 alias htag="git ls-tree -r HEAD --name-only | grep -E '*.hs' | xargs fast-tags"
 alias ag='ag --color --color-line-number=36 --color-path=32 --color-match="90;45" --pager less $@'
-
-alias IN="vim -S ~/.vim/IN.in.vim ~/IN.in"
 
 alias git-week='la --since=`date +%Y-%m-%d -d "last week"` --author=chreekat'

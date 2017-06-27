@@ -19,24 +19,25 @@
     meta = 13 reverse
     commit = 10
 [alias]
+    b = branch -vv
+    ci = commit -S
+    clown = clone
+    co = checkout
+    cp = cherry-pick
+    d = diff --color-words=.
+    dc = diff --color-words=. --cached
+    ignored = clean -ndX
     m = merge -S --no-ff
     mr = !sh -c 'git fetch $1 merge-requests/$2/head:mr-$1-$2 && git checkout mr-$1-$2' -
-    b = branch -vv
-    st = status --short -b
-    d = diff --color-words=.
+    pull-file = !sh -c "'git show ${2:+$1}:${GIT_PREFIX}${2:-$1}'" -
+    qs = commit -am "QUICKSAVE"
     # Rebase with pgp sigs. Only useful for my own commits obvs
     rb = rebase --exec 'git commit -S --amend -C'
-    dc = diff --color-words=. --cached
-    qs = commit -am "QUICKSAVE"
-    ci = commit -S
-    co = checkout
     root = rev-parse --show-toplevel
-    clown = clone
-    ignored = clean -ndX
-    cp = cherry-pick
-    which = ls-tree -r HEAD --name-only
     sm = submodule
     smap = submodule foreach
+    st = status --short -b
+    which = ls-tree -r HEAD --name-only
 [rebase]
     autosquash = true
 [fetch]

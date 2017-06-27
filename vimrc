@@ -61,8 +61,8 @@ set foldopen=
 set incsearch
 set nojoinspaces
 set pastetoggle=<F2>
-set path=.,,**
-" Make s a synonym for z, which I always mistype
+set path=.,,
+" | Make s a synonym for z, which I always mistype
 nmap s z
 nmap ss zz
 
@@ -89,7 +89,7 @@ set grepformat=%f:%l:%c:%m,%f:%l:%m
 ""
 
 " Make zM take a count, like G, setting an absolute foldlevel.
-nnoremap zM :<c-u>let &foldlevel=v:count<cr>
+nnoremap zM :let &foldlevel=v:count<cr>
 
 " Make [[ and ]] support { being somewhere other than column 1
 nnoremap [[ :call search('^\S\&.*{$', 'bsW')<cr>
@@ -100,6 +100,9 @@ nnoremap ]] :call search('^\S\&.*{$', 'sW')<cr>
 ""
 
 " (Note pastetoggle=<F2>)
+
+" More useful (?) F1
+nnoremap <F1> :b <c-d>
 
 " Jump to vimrc
 nnoremap <F3> :tabe ~/.vimrc<cr>
@@ -121,6 +124,10 @@ nnoremap ]q :cnext<cr>
 nnoremap [q :cprev<cr>
 nnoremap ]j :lnext<cr>
 nnoremap [j :lprev<cr>
+cnoremap <SID>VUMS <<<<<\\|>>>>>\\|=====<cr>
+" ^ 'Vimrc Unimpaired Marker Search'
+nmap ]c /<SID>VUMS
+nmap [c ?<SID>VUMS
 
 
 nmap ]<space> <f2>o<esc><f2>'[
@@ -147,8 +154,7 @@ command! TRIM %Trim
 augroup vimrc
     au!
     au BufRead ~/.hledger.journal runtime hledger-main-journal.vim
-    au BufRead ~/IN.in call system("tmux setw automatic-rename")
-    au BufUnload ~/IN.in call system("tmux setw automatic-rename")
+    au BufRead ~/IN.in runtime IN.in.vim
 augroup END
 
 "" GLOBAL AUTOCMDS
@@ -198,7 +204,7 @@ function! SpaceToTab(numSpaces) range
 endfunction
 
 " Flatten for export
-noremap -f :g/./,/^$/join<cr>
+noremap -f :g/./,/^$/-join<cr>
 ounmap -f
 
 " Prompt for missing files with 'gf'
