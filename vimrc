@@ -12,21 +12,23 @@ function! PlugLoad(loc, pluglist)
     call plug#end()
 endfunction
 
-call PlugLoad('~/.vim/bundle',
-    \[{'plug': 'chrisbra/NrrwRgn', 'on': 'NR' }
-    \,{'plug': 'junegunn/goyo.vim', 'on': 'Goyo' }
-    \,{'plug': 'mbbill/undotree', 'on': 'UndotreeToggle' }
-    \,'tpope/vim-abolish'
-    \,'tpope/vim-eunuch'
-    \,'tpope/vim-flagship'
-    \,'tpope/vim-fugitive'
-    \,'ultimatecoder/goyo-doc'
-    \,'~/LoByMyHand/vim-simple-md'
-    \,'~/LoByMyHand/passhole'
-    \,'~/LoByMyHand/vimin'
-    \,'vim-scripts/VisIncr'
-    \,'~/src/Haskell/intero/vim'
-    \])
+"call PlugLoad('~/.vim/bundle',
+"    \[{'plug': 'chrisbra/NrrwRgn', 'on': 'NR' }
+"    \,{'plug': 'junegunn/goyo.vim', 'on': 'Goyo' }
+"    \,{'plug': 'mbbill/undotree', 'on': 'UndotreeToggle' }
+"    \,'othree/html5.vim'
+"    \,'tpope/vim-abolish'
+"    \,'tpope/vim-eunuch'
+"    \,'tpope/vim-flagship'
+"    \,'tpope/vim-fugitive'
+"    \,'tpope/vim-obsession'
+"    \,'ultimatecoder/goyo-doc'
+"    \,'~/LoByMyHand/vim-simple-md'
+"    \,'~/LoByMyHand/passhole'
+"    \,'~/LoByMyHand/vimin'
+"    \,'vim-scripts/VisIncr'
+"    \,'~/src/Haskell/intero/vim'
+"    \])
 
 ""
 "" C O N F I G U R A T I O N

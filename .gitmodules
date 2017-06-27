@@ -1,3 +1,33 @@
 [submodule "mutt/lunatic-mutt"]
 	path = mutt/lunatic-mutt
 	url = git@github.com:chreekat/lunatic-mutt.git
+[submodule "vim/pack/ALL/start/undotree"]
+	path = vim/pack/ALL/start/undotree
+	url = git://github.com/mbbill/undotree.git
+[submodule "vim/pack/ALL/start/html5.vim"]
+	path = vim/pack/ALL/start/html5.vim
+	url = git://github.com/othree/html5.vim.git
+[submodule "vim/pack/ALL/start/vim-abolish"]
+	path = vim/pack/ALL/start/vim-abolish
+	url = git://github.com/tpope/vim-abolish.git
+[submodule "vim/pack/ALL/start/vim-eunuch"]
+	path = vim/pack/ALL/start/vim-eunuch
+	url = git://github.com/tpope/vim-eunuch.git
+[submodule "vim/pack/ALL/start/vim-flagship"]
+	path = vim/pack/ALL/start/vim-flagship
+	url = git://github.com/tpope/vim-flagship.git
+[submodule "vim/pack/ALL/start/vim-obsession"]
+	path = vim/pack/ALL/start/vim-obsession
+	url = git://github.com/tpope/vim-obsession.git
+[submodule "vim/pack/ALL/start/goyo-doc"]
+	path = vim/pack/ALL/start/goyo-doc
+	url = git://github.com/ultimatecoder/goyo-doc.git
+[submodule "vim/pack/ALL/start/VisIncr"]
+	path = vim/pack/ALL/start/VisIncr
+	url = git://github.com/vim-scripts/VisIncr.git
+[submodule "vim/pack/ALL/start/goyo.vim"]
+	path = vim/pack/ALL/start/goyo.vim
+	url = git://github.com/junegunn/goyo.vim.git
+[submodule "vim/pack/ALL/start/NrrwRgn"]
+	path = vim/pack/ALL/start/NrrwRgn
+	url = git://github.com/chrisbra/NrrwRgn.git
