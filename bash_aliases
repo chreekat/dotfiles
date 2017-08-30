@@ -23,8 +23,6 @@ alias o='offlineimap -q -o -u basic -f INBOX -k mbnames:enabled=false'
 alias h=hledger
 alias q=quarg
 
-alias rg='rg --pretty'
-
 alias action_lists="riot ~/Org/Lists.riot"
 alias amv='audio_rename -p "Music/%a/%l/%{mA}%{n0}__%t" -R'
 
@@ -51,8 +49,6 @@ complete -F _pkgs ds
 alias gd="git diff"
 alias gdw="git d"
 
-alias git=hub
-
 alias xo=">/dev/null 2>&1 xdg-open"
 
 alias gdiff="vim +Gdiff"
@@ -61,3 +57,5 @@ alias htag="git ls-tree -r HEAD --name-only | grep -E '*.hs' | xargs fast-tags"
 alias ag='ag --color --color-line-number=36 --color-path=32 --color-match="90;45" --pager less $@'
 
 alias git-week='la --since=`date +%Y-%m-%d -d "last week"` --author=chreekat'
+
+alias xp='xclip -selection clipboard'

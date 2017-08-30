@@ -2,6 +2,7 @@ let current_compiler = "ghc"
 
 " I <3 vim
 CompilerSet efm =
+    \%C\(bound\ at,
     \%C\ \ \ \ %m,
     \%-G\\\\s%#,
     \%E%f:%l:%c:\ Error:\ %m,

@@ -1,0 +1,74 @@
+#
+# LUNATIC
+#
+# A style theme for mutt, comprised of configuration options that determine
+# both layout and coloring.
+#
+# The colors will only look proper if you have applied the Solarized
+# 16-color hack to your terminal's palette.
+
+# LAYOUT {{{1
+
+set status_chars = " !  "
+set markers = yes
+set menu_scroll
+set pager_index_lines = 10
+set status_on_top = yes
+# Original index_format:
+#                       + date in sender's tz
+#                       |           + From/To
+#                       |           |        + number of lines
+#                + flags|           |        |   + num bytes
+#            +num|      |           |        |   |    + subject
+#           "%4C %Z %{%b %d} %-15.15L (%?l?%4l&%4c?) %s"
+set index_format = "%Z│%-20.20L│%-20.20F%?M?╟[%M] &║?%s%* │%[%_d-%b %H:%M] "
+set pager_format = "%n —— %s"
+
+# This is the default, sans the 40-character filename limit. This is
+# not ideal; I'd prefer truncating when necessary, but preserving the
+# rightmost portion.
+set attach_format = "%u%D%I %t%4n %T%d%> [%.7m/%.10M, %.6e%?C?, %C?, %s] "
+set status_format = "%f %r %?u?(%u new)? %?M?[%M in limited view]? %* %?t?Tagged: %t?%?d? Deleted: %d?"
+set folder_format = "%2C %N %-30.30f %d"
+# COLORS {{{1
+
+color header default default .
+color body default default .
+color index default default .
+color attachment default default
+color bold       default default
+color error      default default
+color hdrdefault default default
+color indicator  default color59
+color markers    default default
+color message    default default
+color normal     default default
+color quoted     default default
+color quoted1    default default
+color quoted2    default default
+color quoted3    default default
+color quoted4    default default
+color search     default default
+color signature  default default
+color status     default default
+color tilde      default default
+color tree       default default
+color underline  default default
+#color object foreground background
+#
+#  • attachment
+#  • bold (highlighting bold patterns in the body of messages)
+#  • error (error messages printed by Mutt)
+#  • hdrdefault (default color of the message header in the pager)
+#  • indicator (arrow or bar used to indicate the current item in a menu)
+#  • markers (the “+” markers at the beginning of wrapped lines in the pager)
+#  • message (informational messages)
+#  • normal
+#  • quoted (text matching $quote_regexp in the body of a message)
+#  • quoted1, quoted2, ..., quotedN (higher levels of quoting)
+#  • search (highlighting of words in the pager)
+#  • signature
+#  • status (mode lines used to display info about the mailbox or message)
+#  • tilde (the “~” used to pad blank lines in the pager)
+#  • tree (thread tree drawn in the message index and attachment menu)
+#  • underline (highlighting underlined patterns in the body of messages)

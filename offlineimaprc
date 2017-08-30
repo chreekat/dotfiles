@@ -1,5 +1,5 @@
 [general]
-accounts = B_Chreekat, Personal, Snowdrift, Formaltech
+accounts = B_Chreekat, Snowdrift
 # google isn't snappy with imap
 socktimeout = 30
 pythonfile=~/.offlineimap/helper.py
@@ -14,24 +14,13 @@ peritem = "+%(accountname)s/%(foldername)s"
 sep = " "
 footer = "\n"
 
+##
+##
+##
+
 [Account B_Chreekat]
 localrepository = B_ChreekatLocal
 remoterepository = B_ChreekatRemote
-status_backend = sqlite
-
-[Account Personal]
-localrepository = PersonalLocal
-remoterepository = PersonalRemote
-status_backend = sqlite
-
-[Account Snowdrift]
-localrepository = SnowdriftLocal
-remoterepository = SnowdriftRemote
-status_backend = sqlite
-
-[Account Formaltech]
-localrepository = FormaltechLocal
-remoterepository = FormaltechRemote
 status_backend = sqlite
 
 [Repository B_ChreekatLocal]
@@ -41,6 +30,11 @@ nametrans = lambda folder: { 'starred': '[Gmail]/Starred'
                            }.get(folder, folder)
 
 [Repository B_ChreekatRemote]
+# This option would be nice, but requires configuring oauth through some various
+# bullshit, and i don't feel like doing that right now.
+# Default:
+#    auth_mechanisms = GSSAPI, XOAUTH2, CRAM-MD5, PLAIN, LOGIN
+auth_mechanisms = GSSAPI, CRAM-MD5, PLAIN, LOGIN
 type = Gmail
 maxconnections = 3
 sslcacertfile = /etc/ssl/certs/ca-certificates.crt
@@ -59,10 +53,20 @@ folderfilter = lambda f: f in ['[Gmail]/Starred'
 nametrans = lambda folder: {'[Gmail]/Starred':   'starred'
                            }.get(folder, folder)
 
+##
+##
+##
+
+[Account Personal]
+localrepository = PersonalLocal
+remoterepository = PersonalRemote
+status_backend = sqlite
+
 [Repository PersonalLocal]
 type = Maildir
 localfolders = ~/Mail/Personal
 nametrans = lambda folder: { 'starred': '[Gmail]/Starred'
+                           , 'ALL': '[Gmail]/All Mail'
                            }.get(folder, folder)
 
 [Repository PersonalRemote]
@@ -75,13 +79,23 @@ remoteuser = bryan.richter@gmail.com
 # >>> keyring.set_password("gmail", "username", "password")
 remotepasseval = get_password("gmail", "personal")
 folderfilter = lambda f: f in ['[Gmail]/Starred'
-                              ,'recent'
+                              ,'[Gmail]/All Mail'
                               ,'@upcoming'
                               ,'@waiting_for'
                               ,'INBOX'
                               ]
 nametrans = lambda folder: {'[Gmail]/Starred':   'starred'
+                           ,'[Gmail]/All Mail': 'ALL'
                            }.get(folder, folder)
+
+##
+##
+##
+
+[Account Snowdrift]
+localrepository = SnowdriftLocal
+remoterepository = SnowdriftRemote
+status_backend = sqlite
 
 [Repository SnowdriftLocal]
 type = Maildir
@@ -95,28 +109,4 @@ remotehost = mx1.snowdrift.coop
 remoteuser = bryan@snowdrift.coop
 remotepasseval = str(get_password("snowdrift", "me"))
 sslcacertfile = /etc/ssl/certs/ca-certificates.crt
-folderfilter = lambda f: f in ['INBOX', '@action']
-
-[Repository FormaltechLocal]
-type = Maildir
-localfolders = ~/Mail/Formaltech
-nametrans = lambda folder: { 'starred': '[Gmail]/Starred'
-                           }.get(folder, folder)
-
-[Repository FormaltechRemote]
-type = Gmail
-maxconnections = 3
-sslcacertfile = /etc/ssl/certs/ca-certificates.crt
-remoteuser = bryan.richter@formal.tech
-# To set the password, do:
-# >>> import keyring
-# >>> keyring.set_password("gmail", "username", "password")
-remotepasseval = get_password("gmail", "formaltech")
-folderfilter = lambda f: f in ['[Gmail]/Starred'
-                              ,'recent'
-                              ,'@upcoming'
-                              ,'@waiting_for'
-                              ,'INBOX'
-                              ]
-nametrans = lambda folder: {'[Gmail]/Starred':   'starred'
-                           }.get(folder, folder)
+folderfilter = lambda f: f in ['INBOX', 'starred']

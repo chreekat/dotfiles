@@ -10,39 +10,40 @@ unmailboxes *
 # Accounts, subscriptions, and other personal things.
 #
 
-set spoolfile = +`~/.mutt/which_inbox`/INBOX
+set spoolfile = +B_Chreekat/INBOX
 source ~/.mutt/crypto.rc
 source ~/.mutt/mailboxes.rc
 source ~/.mutt/subscriptions
 source ~/.mutt/aliases
-source ~/.mutt/lunatic-mutt/lunatic.muttrc
+#source ~/.mutt/lunatic-mutt/lunatic.muttrc
+source ~/.mutt/default-color.muttrc
+#set smtp_pass = "`passgm google.com b@chreekat.net`" ; \
 folder-hook B_Chreekat \
     'set from = "b@chreekat.net" ; \
-    set smtp_pass = "`passgm google.com b@chreekat.net`" ; \
     set smtp_url = "smtps://b@chreekat.net@smtp.gmail.com" ; \
-    color status brightcolor8 color2 ; \
+    color status color7 color2 ; \
     bind index,pager d delete-message ; \
     bind index,pager \Cd delete-thread'
+#set smtp_pass = "`passgm gmail personal`" ; \
 folder-hook Personal \
     'set from = "bryan.richter@gmail.com" ; \
-    set smtp_pass = "`passgm gmail personal`" ; \
     set smtp_url = "smtps://bryan.richter@smtp.gmail.com" ; \
-    color status brightcolor9 color2 ; \
+    color status brightcolor0 color2 ; \
     bind index,pager d delete-message ; \
     bind index,pager \Cd delete-thread'
+#set smtp_pass = "`passgm snowdrift me`" ; \
 folder-hook Snowdrift \
     'set from = "bryan@snowdrift.coop" ; \
-    set smtp_pass = "`passgm snowdrift me`" ; \
     set smtp_url = "smtp://bryan@snowdrift.coop@mx1.snowdrift.coop:587" ; \
-    color status brightcolor8 color4 ; \
+    color status brightcolor0 color4 ; \
     macro index,pager d <save-message>=Snowdrift/archive<enter> ; \
     macro index,pager ! <save-message>=Snowdrift/_spam<enter> ; \
     bind index,pager \Cd noop'
+#set smtp_pass = "`passgm gmail formaltech`" ; \
 folder-hook Formaltech \
     'set from = "bryan.richter@formal.tech" ; \
-     set smtp_pass = "`passgm gmail formaltech`" ; \
      set smtp_url = "smtps://bryan.richter@formal.tech@smtp.gmail.com" ; \
-     color status brightcolor8 color5 ; \
+     color status brightcolor0 color5 ; \
      bind index,pager d delete-message ; \
      bind index,pager \Cd delete-thread'
 
@@ -71,7 +72,7 @@ mailboxes "=Snowdrift/archive" "/var/mail/b" "=sent"
 # Collapse threads on viewing a folder
 folder-hook . exec collapse-all
 
-folder-hook .               set sort = threaded
+folder-hook .               set sort = threads
 folder-hook .               set sort_aux = reverse-last-date-received
 folder-hook "INBOX|starred" set sort = date-received
 folder-hook "INBOX|starred" exec first-entry

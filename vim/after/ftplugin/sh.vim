@@ -1,1 +1,1 @@
-set mp=shellcheck\ -f\ gcc\ %
+setlocal mp=shellcheck\ -f\ gcc\ %

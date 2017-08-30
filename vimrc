@@ -1,40 +1,9 @@
-function! PlugLoad(loc, pluglist)
-    call plug#begin(a:loc)
-    for p in a:pluglist
-        if type(p) == v:t_string
-            let cmd = "Plug '" . p . "'"
-        else
-            let pname = remove(p, 'plug')
-            let cmd = "Plug '" . pname . "', " . string(p)
-        endif
-        exec cmd
-    endfor
-    call plug#end()
-endfunction
-
-"call PlugLoad('~/.vim/bundle',
-"    \[{'plug': 'chrisbra/NrrwRgn', 'on': 'NR' }
-"    \,{'plug': 'junegunn/goyo.vim', 'on': 'Goyo' }
-"    \,{'plug': 'mbbill/undotree', 'on': 'UndotreeToggle' }
-"    \,'othree/html5.vim'
-"    \,'tpope/vim-abolish'
-"    \,'tpope/vim-eunuch'
-"    \,'tpope/vim-flagship'
-"    \,'tpope/vim-fugitive'
-"    \,'tpope/vim-obsession'
-"    \,'ultimatecoder/goyo-doc'
-"    \,'~/LoByMyHand/vim-simple-md'
-"    \,'~/LoByMyHand/passhole'
-"    \,'~/LoByMyHand/vimin'
-"    \,'vim-scripts/VisIncr'
-"    \,'~/src/Haskell/intero/vim'
-"    \])
-
 ""
 "" C O N F I G U R A T I O N
 ""
 
 "" Sane defaults
+set backspace=indent,eol,start
 set expandtab
 set formatoptions+=j
 set hidden
@@ -50,21 +19,26 @@ if has("persistent_undo")
 endif
 set wildignore+=*.o,*.hi,dist,*.dyn_o,*.dyn_hi,.git,.stack-work
 set wildmode=list:longest,full
+" Make the whitespace after numbered list required
+set formatlistpat=^\\s*\\d\\+[\\]:.)}\\t\ ]\\s
 runtime shifted_fkeys.vim
 
 "" My preferences
 filetype indent off
+filetype plugin on
 set completeopt+=menuone
-set splitright
-
 set foldopen=
+set history=5000
 set incsearch
 set nojoinspaces
 set pastetoggle=<F2>
 set path=.,,
+set splitright
+
 " | Make s a synonym for z, which I always mistype
 nmap s z
 nmap ss zz
+vmap s z
 
 "" My plugin preferences
 let g:goyo_width = 84
@@ -89,7 +63,7 @@ set grepformat=%f:%l:%c:%m,%f:%l:%m
 ""
 
 " Make zM take a count, like G, setting an absolute foldlevel.
-nnoremap zM :let &foldlevel=v:count<cr>
+nnoremap zM :<c-u>let &foldlevel=v:count<cr>
 
 " Make [[ and ]] support { being somewhere other than column 1
 nnoremap [[ :call search('^\S\&.*{$', 'bsW')<cr>
@@ -108,7 +82,7 @@ nnoremap <F1> :b <c-d>
 nnoremap <F3> :tabe ~/.vimrc<cr>
 
 " Open the undotree
-nnoremap <F5> :UndotreeToggle<cr>
+nnoremap <F4> :UndotreeToggle<cr>
 
 " Insert today's date, in two formats
 inoremap <F9> <c-r>=system("date +%Y-%m-%d $@ \| perl -pe chomp")<cr>
@@ -126,9 +100,8 @@ nnoremap ]j :lnext<cr>
 nnoremap [j :lprev<cr>
 cnoremap <SID>VUMS <<<<<\\|>>>>>\\|=====<cr>
 " ^ 'Vimrc Unimpaired Marker Search'
-nmap ]c /<SID>VUMS
-nmap [c ?<SID>VUMS
-
+map ]c /<SID>VUMS
+map [c ?<SID>VUMS
 
 nmap ]<space> <f2>o<esc><f2>'[
 nmap [<space> <f2>O<esc><f2>
