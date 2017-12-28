@@ -12,6 +12,7 @@ set modeline
 set shiftround
 " ^ Make << and >> act like i_^t and i_^d
 set showcmd
+set switchbuf=useopen
 set ttimeoutlen=20
 if has("persistent_undo")
     set undodir=~/.vim/undos
@@ -30,10 +31,15 @@ set completeopt+=menuone
 set foldopen=
 set history=5000
 set incsearch
+set laststatus=1
 set nojoinspaces
 set pastetoggle=<F2>
 set path=.,,
+set showtabline=1
 set splitright
+set switchbuf+=split
+
+packadd! matchit
 
 " | Make s a synonym for z, which I always mistype
 nmap s z
@@ -43,6 +49,7 @@ vmap s z
 "" My plugin preferences
 let g:goyo_width = 84
 let g:undotree_WindowLayout = 4
+let g:easy_align_delimiters = {'>': {'pattern': '::\|->\|=>'}}
 
 "" In the absence of file- or filetype-specific options, these are the defaults
 "" I want.
@@ -107,8 +114,19 @@ nmap ]<space> <f2>o<esc><f2>'[
 nmap [<space> <f2>O<esc><f2>
 " ^ Uses pastetoggle
 
-nnoremap >P ]P>']
-nnoremap >p ]p>']
+function! VimrcIndentPaste(reg, dent, dir)
+    set nofoldenable
+    exec 'normal "' . a:reg . ']' . a:dir . a:dent . "']"
+    set foldenable
+endfu
+
+for dent in ['>','<']
+    for dire in ['p','P']
+        exec 'nnoremap ' . dent . dire . " :call VimrcIndentPaste(v:register, '".dent."', '".dire."')<cr>zv"
+    endfor
+endfor
+unlet dire dent
+" ^ Indented pasting
 
 " Paste-and-format, returning to the top (as p and P do normally)
 nmap >q >p']gq'[
@@ -128,6 +146,8 @@ augroup vimrc
     au!
     au BufRead ~/.hledger.journal runtime hledger-main-journal.vim
     au BufRead ~/IN.in runtime IN.in.vim
+    " Show context in quickfix for GHC's sake
+    au BufReadPost quickfix setl so=3
 augroup END
 
 "" GLOBAL AUTOCMDS
