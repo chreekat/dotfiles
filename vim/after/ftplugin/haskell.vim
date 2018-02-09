@@ -22,5 +22,4 @@ function! s:choose_compiler()
     let compiler = choices[keys(choices)[choice - 1]]
     let &mp = l:compiler
 endfunction
-
 nnoremap <buffer> <F5> :call <SID>choose_compiler()<cr>

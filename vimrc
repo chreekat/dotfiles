@@ -37,7 +37,6 @@ set pastetoggle=<F2>
 set path=.,,
 set showtabline=1
 set splitright
-set switchbuf+=split
 
 packadd! matchit
 
@@ -91,14 +90,17 @@ nnoremap <F3> :tabe ~/.vimrc<cr>
 " Open the undotree
 nnoremap <F4> :UndotreeToggle<cr>
 
+" Open url at point. Interwebs, you say?
+nnoremap <F6> :call system("firefox " . expand('<cWORD>'))<cr>
+
 " Insert today's date, in two formats
 inoremap <F9> <c-r>=system("date +%Y-%m-%d $@ \| perl -pe chomp")<cr>
-inoremap <S-F9> <c-r>=system("date +%Y%m%d $@ \| perl -pe chomp")<cr>
+inoremap <F9><F9> <c-r>=system("date +%Y%m%d $@ \| perl -pe chomp")<cr>
 
 " Insert the time
 inoremap <F10> <c-r>=system("date +%H:%M $@ \| perl -pe chomp")<cr>
 " Both! :D
-imap <F11> <F9>T<F10>
+imap <F10><F10> <F9>T<F10>
 
 " Unimpaired-inspired maps
 nnoremap ]q :cnext<cr>
@@ -107,22 +109,23 @@ nnoremap ]j :lnext<cr>
 nnoremap [j :lprev<cr>
 cnoremap <SID>VUMS <<<<<\\|>>>>>\\|=====<cr>
 " ^ 'Vimrc Unimpaired Marker Search'
-map ]c /<SID>VUMS
-map [c ?<SID>VUMS
+" TODO: don't clobber the real ]c, [c
+"map ]c /<SID>VUMS
+"map [c ?<SID>VUMS
 
 nmap ]<space> <f2>o<esc><f2>'[
 nmap [<space> <f2>O<esc><f2>
 " ^ Uses pastetoggle
 
 function! VimrcIndentPaste(reg, dent, dir)
-    set nofoldenable
+    "mkview!
     exec 'normal "' . a:reg . ']' . a:dir . a:dent . "']"
-    set foldenable
+    "loadview
 endfu
 
 for dent in ['>','<']
     for dire in ['p','P']
-        exec 'nnoremap ' . dent . dire . " :call VimrcIndentPaste(v:register, '".dent."', '".dire."')<cr>zv"
+        exec 'nnoremap ' . dent . dire . " :call VimrcIndentPaste(v:register, '".dent."', '".dire."')<cr>"
     endfor
 endfor
 unlet dire dent
@@ -162,17 +165,19 @@ augroup END
 ""
 "" These don't change the scheme so much as the UI.
 function! s:vimrc_highlighting()
-    hi clear DiffText
+    hi DiffText ctermfg=Green ctermbg=5
     hi clear Folded
+    hi DiffDelete ctermfg=Red
     hi Folded ctermfg=16777200
     hi Search ctermbg=404055
     hi MatchParen ctermfg=14 ctermbg=0
 endfunction
 augroup vimrc_highlighting
     au!
-    au ColorScheme * call s:vimrc_highlighting() 
+    "au ColorScheme * call s:vimrc_highlighting() 
 augroup END
-doautocmd ColorScheme
+"doautocmd ColorScheme
+colorscheme apprentice
 
 ""
 "" Things that should be plugins?
