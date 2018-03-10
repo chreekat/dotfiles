@@ -1,5 +1,6 @@
 setlocal iskeyword+='
 setlocal includeexpr=(substitute(v:fname,'\\.','/','g').'.hs')
+setlocal equalprg=brittany
 
 augroup after_haskell
     autocmd!
