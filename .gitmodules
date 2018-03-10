@@ -34,3 +34,6 @@
 [submodule "vim/pack/ALL/start/vim-coffee-script"]
 	path = vim/pack/ALL/start/vim-coffee-script
 	url = https://github.com/kchmck/vim-coffee-script
+[submodule "vim/pack/ALL/start/vimin"]
+	path = vim/pack/ALL/start/vimin
+	url = git@github.com:chreekat/vimin.git
