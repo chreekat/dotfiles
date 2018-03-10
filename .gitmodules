@@ -37,3 +37,9 @@
 [submodule "vim/pack/ALL/start/vimin"]
 	path = vim/pack/ALL/start/vimin
 	url = git@github.com:chreekat/vimin.git
+[submodule "vim/pack/ALL/start/Apprentice"]
+	path = vim/pack/ALL/start/Apprentice
+	url = https://github.com/romainl/Apprentice
+[submodule "vim/pack/ALL/start/vim-fugitive"]
+	path = vim/pack/ALL/start/vim-fugitive
+	url = git://github.com/tpope/vim-fugitive.git
