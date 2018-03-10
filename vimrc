@@ -90,17 +90,17 @@ nnoremap <F3> :tabe ~/.vimrc<cr>
 " Open the undotree
 nnoremap <F4> :UndotreeToggle<cr>
 
-" Open url at point. Interwebs, you say?
-nnoremap <F6> :call system("firefox " . expand('<cWORD>'))<cr>
+" Open url (or anything, I guess) at point. Interwebs, you say?
+nnoremap <F6> :call system("xdg-open " . expand('<cWORD>'))<cr>
 
 " Insert today's date, in two formats
 inoremap <F9> <c-r>=system("date +%Y-%m-%d $@ \| perl -pe chomp")<cr>
-inoremap <F9><F9> <c-r>=system("date +%Y%m%d $@ \| perl -pe chomp")<cr>
+inoremap <S-F9> <c-r>=system("date +%Y%m%d $@ \| perl -pe chomp")<cr>
 
 " Insert the time
 inoremap <F10> <c-r>=system("date +%H:%M $@ \| perl -pe chomp")<cr>
 " Both! :D
-imap <F10><F10> <F9>T<F10>
+imap <S-F10> <F9>T<F10>
 
 " Unimpaired-inspired maps
 nnoremap ]q :cnext<cr>
@@ -184,6 +184,7 @@ colorscheme apprentice
 ""
 
 " Function for turning space-indenting into tab-indenting
+" FIXME: replace with calls to [un]expand(1)
 function! SpaceToTab(numSpaces) range
     let scmd = a:firstline . "," . a:lastline . "s/^\\(\\%(@@\\)*\\)@@/\\1\\t"
     let spaces = ""
@@ -228,3 +229,11 @@ nnoremap gf :call GFPrompt()<cr>
 
 " Ranged search (M like perl's m///)
 command! -range=% -nargs=1 M normal /\%><line1>l\%<<line2>l<args><cr>
+
+" romainl's quick tabular alignment
+function! Align()
+	'<,'>!column -t -o ' '
+	normal gv=
+endfunction
+
+xnoremap <silent> <leader>= :<c-u>silent call Align()<cr>
