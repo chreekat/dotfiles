@@ -43,3 +43,6 @@
 [submodule "vim/pack/ALL/start/vim-fugitive"]
 	path = vim/pack/ALL/start/vim-fugitive
 	url = git://github.com/tpope/vim-fugitive.git
+[submodule "vim/pack/ALL/start/pgsql.vim"]
+	path = vim/pack/ALL/start/pgsql.vim
+	url = https://github.com/exu/pgsql.vim
