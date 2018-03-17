@@ -46,3 +46,6 @@
 [submodule "vim/pack/ALL/start/pgsql.vim"]
 	path = vim/pack/ALL/start/pgsql.vim
 	url = https://github.com/exu/pgsql.vim
+[submodule "vim/pack/ALL/start/vim-repeat"]
+	path = vim/pack/ALL/start/vim-repeat
+	url = https://github.com/tpope/vim-repeat/
