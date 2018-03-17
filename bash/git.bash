@@ -11,10 +11,11 @@ log_aliases () {
     declare -A aliases
     aliases[gl]="$gitlog --first-parent --pretty=tformat:'$single_line'"
     aliases[gla]="$gitlog --all          --pretty=tformat:'$single_line'"
-    aliases[gls]="${aliases[lg]} --stat"
-    aliases[glas]="${aliases[la]} --stat"
-    aliases[gl1]="${aliases[lg]} | head -n 20"
-    aliases[gla1]="${aliases[la]} | head -n 20"
+    aliases[glf]="$gitlog                --pretty=tformat:'$single_line'"
+    aliases[gls]="${aliases[gl]} --stat"
+    aliases[glas]="${aliases[gla]} --stat"
+    aliases[gl1]="${aliases[gl]} | head -n 20"
+    aliases[gla1]="${aliases[gla]} | head -n 20"
     aliases[glp]="$gitlog  -p --first-parent --pretty=tformat:'$multi_line'"
     aliases[glap]="$gitlog -p --all          --pretty=tformat:'$multi_line'"
 
@@ -26,4 +27,5 @@ log_aliases () {
 
 log_aliases
 
+alias gd=git\ diff
 alias regit="source ~/.bash/git.bash"

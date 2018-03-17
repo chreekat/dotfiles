@@ -9,30 +9,26 @@
 	quotepath = off
 	longpaths = true
 [color]
-	ui = auto
+	ui = true
 [color "decorate"]
     branch = 2
     remoteBranch = 3
     HEAD = 1
     tag = 6
-[color "diff"]
-    meta = 13 reverse
-    commit = 10
 [alias]
     b = branch -vv
     rb = rebase
     co = checkout
     ci = commit
+    # Commit without quotes
+    cim = !sh -c 'git commit -m \"$*\"' -
     cp = cherry-pick
-    d = diff --color-words=.
-    dc = diff --color-words=. --cached
+    d = diff
+    dc = diff --cached
     ignored = clean -ndX
     m = merge --no-ff
-    mr = !sh -c 'git fetch $1 merge-requests/$2/head:mr-$1-$2 && git checkout mr-$1-$2' -
-    mrpull = !sh -c 'git checkout mr-$1-$2 && git fetch $1 merge-requests/$2/head && git merge --ff-only FETCH_HEAD' -
-    pull-file = !sh -c "'git show ${2:+$1}:${GIT_PREFIX}${2:-$1}'" -
     qs = commit -am "QUICKSAVE"
-    # Rebase with pgp sigs. Only useful for my own commits obvs
+    pull-file = !sh -c "'git show ${2:+$1}:${GIT_PREFIX}${2:-$1}'" -
     root = rev-parse --show-toplevel
     sm = submodule
     smap = submodule foreach

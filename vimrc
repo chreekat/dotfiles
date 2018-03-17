@@ -7,6 +7,8 @@ set backspace=indent,eol,start
 set expandtab
 set formatoptions+=j
 set hidden
+set makeprg=make\ -k
+" ^ Keep going, and report all failures
 set modeline
 " ^ Debian apparently resets modeline, which is on by vim default
 set shiftround
@@ -53,6 +55,7 @@ let g:easy_align_delimiters = {'>': {'pattern': '::\|->\|=>'}}
 "" In the absence of file- or filetype-specific options, these are the defaults
 "" I want.
 let g:is_bash=1
+let g:sql_type_default = 'pgsql'
 set autoindent
 set shiftwidth=4
 set textwidth=80
@@ -105,8 +108,8 @@ imap <S-F10> <F9>T<F10>
 " Unimpaired-inspired maps
 nnoremap ]q :cnext<cr>
 nnoremap [q :cprev<cr>
-nnoremap ]j :lnext<cr>
-nnoremap [j :lprev<cr>
+nnoremap ]l :lnext<cr>
+nnoremap [l :lprev<cr>
 cnoremap <SID>VUMS <<<<<\\|>>>>>\\|=====<cr>
 " ^ 'Vimrc Unimpaired Marker Search'
 " TODO: don't clobber the real ]c, [c
@@ -139,10 +142,12 @@ nmap >Q >P']gq'[
 command! -range Trim <line1>,<line2>s/\s\+$//
 command! TRIM %Trim
 
+" Grep *
+nmap <leader>* :grep -w <c-r><c-w><cr>
 
 ""
 "" O T H E R   C O N F I G U R A T I O N
-"" 
+""
 
 "" FILE SPECIFIC SETTINGS
 augroup vimrc
@@ -174,7 +179,7 @@ function! s:vimrc_highlighting()
 endfunction
 augroup vimrc_highlighting
     au!
-    "au ColorScheme * call s:vimrc_highlighting() 
+    "au ColorScheme * call s:vimrc_highlighting()
 augroup END
 "doautocmd ColorScheme
 colorscheme apprentice
