@@ -2,6 +2,8 @@ setlocal iskeyword+='
 setlocal includeexpr=(substitute(v:fname,'\\.','/','g').'.hs')
 setlocal equalprg=brittany
 
+compiler ghc
+
 augroup after_haskell
     autocmd!
     autocmd BufWrite <buffer> call s:update_tags(expand("<afile>"))
