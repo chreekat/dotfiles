@@ -1,13 +1,13 @@
 let s:nnops = [ 'd', 'c', 's', 'x', 'v', 'S' ]
-let s:inops = [ '<bs>', '<c-t>', '<c-d>', '<c-o>' ]
+let s:inops = [ '<bs>', '<c-t>', '<c-d>', '<c-o>', '<c-w>' ]
 
 com! -nargs=0 Typewriter
     \ if !exists("b:typewriter")
-    \ | call Typewriter()
-    \ | else | call TypewriterReset()
+    \ | call s:typewriter()
+    \ | else | call s:typewriterReset()
     \ | endif
 
-fu! Typewriter ()
+fu! s:typewriter ()
     for c in s:nnops
         exec 'nnoremap <buffer> ' . c . ' <nop>'
     endfor
@@ -15,11 +15,17 @@ fu! Typewriter ()
         exec 'inoremap <buffer> ' . c . ' <nop>'
     endfor
     let b:typewriter = 1
-    Goyo 80
+    if !exists("Goyo")
+        Goyo 80
+    else
+        echom "Consider installing Goyo"
+    endif
 endfu
 
-fu! TypewriterReset ()
-    Goyo!
+fu! s:typewriterReset ()
+    if exists("Goyo")
+        Goyo!
+    endif
     for c in s:nnops
         exec 'nunmap <buffer> ' . c
     endfor
