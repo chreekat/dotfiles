@@ -15,7 +15,7 @@ fu! s:typewriter ()
         exec 'inoremap <buffer> ' . c . ' <nop>'
     endfor
     let b:typewriter = 1
-    if !exists("Goyo")
+    if exists(":Goyo")
         Goyo 80
     else
         echom "Consider installing Goyo"
@@ -23,7 +23,7 @@ fu! s:typewriter ()
 endfu
 
 fu! s:typewriterReset ()
-    if exists("Goyo")
+    if exists(":Goyo")
         Goyo!
     endif
     for c in s:nnops
