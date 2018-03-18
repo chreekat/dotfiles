@@ -8,16 +8,16 @@
 	path = vim/pack/ALL/start/html5.vim
 	url = git://github.com/othree/html5.vim.git
 [submodule "vim/pack/ALL/start/vim-abolish"]
-	path = vim/pack/ALL/start/vim-abolish
+	path = vim/pack/ALL/start/abolish
 	url = git://github.com/tpope/vim-abolish.git
 [submodule "vim/pack/ALL/start/vim-eunuch"]
-	path = vim/pack/ALL/start/vim-eunuch
+	path = vim/pack/ALL/start/eunuch
 	url = git://github.com/tpope/vim-eunuch.git
 [submodule "vim/pack/ALL/start/vim-flagship"]
-	path = vim/pack/ALL/start/vim-flagship
+	path = vim/pack/ALL/start/flagship
 	url = git://github.com/tpope/vim-flagship.git
 [submodule "vim/pack/ALL/start/vim-obsession"]
-	path = vim/pack/ALL/start/vim-obsession
+	path = vim/pack/ALL/start/obsession
 	url = git://github.com/tpope/vim-obsession.git
 [submodule "vim/pack/ALL/start/goyo-doc"]
 	path = vim/pack/ALL/start/goyo-doc
@@ -32,7 +32,7 @@
 	path = vim/pack/ALL/start/NrrwRgn
 	url = git://github.com/chrisbra/NrrwRgn.git
 [submodule "vim/pack/ALL/start/vim-coffee-script"]
-	path = vim/pack/ALL/start/vim-coffee-script
+	path = vim/pack/ALL/start/coffee-script
 	url = https://github.com/kchmck/vim-coffee-script
 [submodule "vim/pack/ALL/start/vimin"]
 	path = vim/pack/ALL/start/vimin
@@ -41,11 +41,11 @@
 	path = vim/pack/ALL/start/Apprentice
 	url = https://github.com/romainl/Apprentice
 [submodule "vim/pack/ALL/start/vim-fugitive"]
-	path = vim/pack/ALL/start/vim-fugitive
+	path = vim/pack/ALL/start/fugitive
 	url = git://github.com/tpope/vim-fugitive.git
 [submodule "vim/pack/ALL/start/pgsql.vim"]
 	path = vim/pack/ALL/start/pgsql.vim
 	url = https://github.com/exu/pgsql.vim
 [submodule "vim/pack/ALL/start/vim-repeat"]
-	path = vim/pack/ALL/start/vim-repeat
+	path = vim/pack/ALL/start/repeat
 	url = https://github.com/tpope/vim-repeat/
