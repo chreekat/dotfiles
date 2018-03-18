@@ -17,6 +17,7 @@
     tag = 6
 [alias]
     b = branch -vv
+    r = remote -v
     rb = rebase
     co = checkout
     ci = commit
