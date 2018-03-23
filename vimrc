@@ -4,9 +4,13 @@
 
 "" Sane defaults
 set backspace=indent,eol,start
+set breakat-=.,
+" ^ These break numbers in half.
 set expandtab
 set formatoptions+=j
 set hidden
+set linebreak
+" ^ Break lines in sensible places, not in the middle of a word
 set makeprg=make\ -k
 " ^ Keep going, and report all failures
 set modeline
