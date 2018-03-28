@@ -14,6 +14,7 @@ log_aliases () {
     aliases[glf]="$gitlog                --pretty=tformat:'$single_line'"
     aliases[gls]="${aliases[gl]} --stat"
     aliases[glas]="${aliases[gla]} --stat"
+    aliases[glfs]="${aliases[glf]} --stat"
     aliases[gl1]="${aliases[gl]} | head -n 20"
     aliases[gla1]="${aliases[gla]} | head -n 20"
     aliases[glp]="$gitlog  -p --first-parent --pretty=tformat:'$multi_line'"
