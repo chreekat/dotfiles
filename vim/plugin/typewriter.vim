@@ -1,5 +1,5 @@
 let s:nnops = [ 'd', 'c', 's', 'x', 'v', 'S' ]
-let s:inops = [ '<bs>', '<c-t>', '<c-d>', '<c-o>', '<c-w>' ]
+let s:inops = [ '<bs>', '<c-t>', '<c-d>', '<c-o>', '<c-w>', '<c-u>' ]
 
 com! -nargs=0 Typewriter
     \ if !exists("b:typewriter")
