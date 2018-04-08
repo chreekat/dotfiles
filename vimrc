@@ -76,6 +76,7 @@ set grepformat=%f:%l:%c:%m,%f:%l:%m
 ""
 
 " Make zM take a count, like G, setting an absolute foldlevel.
+" NB: <c-u> is for v:count
 nnoremap zM :<c-u>let &foldlevel=v:count<cr>
 
 " Make [[ and ]] support { being somewhere other than column 1
@@ -124,15 +125,28 @@ nmap ]<space> <f2>o<esc><f2>'[
 nmap [<space> <f2>O<esc><f2>
 " ^ Uses pastetoggle
 
-function! VimrcIndentPaste(reg, dent, dir)
+" Yank the WORD here
+nnoremap \w "+yiW
+
+" Yank the whole damn doc
+command! Y %y+
+
+function! VimrcIndentPaste(count, reg, dent, dir)
     "mkview!
-    exec 'normal "' . a:reg . ']' . a:dir . a:dent . "']"
+    exec 'normal "' . a:reg . ']' . a:dir
+    let c = a:count
+    while c > 0
+        exec 'normal ' . a:dent . "']"
+        let c = c - 1
+    endwhile
     "loadview
 endfu
 
 for dent in ['>','<']
     for dire in ['p','P']
-        exec 'nnoremap ' . dent . dire . " :call VimrcIndentPaste(v:register, '".dent."', '".dire."')<cr>"
+        " Need the <c-u> to clear the '<,'>, which we don't actually want (see
+        " :help v:count)
+        exec 'nnoremap ' . dent . dire . " :<c-u>call VimrcIndentPaste(v:count1, v:register, '".dent."', '".dire."')<cr>"
     endfor
 endfor
 unlet dire dent
