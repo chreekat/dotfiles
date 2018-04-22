@@ -107,6 +107,7 @@ DOTS=(
     npmrc
     offlineimap
     offlineimaprc
+    profile
     terminfo
     tmux
     tmux.conf
