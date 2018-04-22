@@ -1,51 +1,30 @@
-# ~/.bashrc: executed by bash(1) for non-login shells.
-# see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
-# for examples
-
-# If not running interactively, don't do anything
-case $- in
-    *i*) ;;
-      *) return;;
-esac
-
-# don't put duplicate lines or lines starting with space in the history.
-# See bash(1) for more options
-HISTCONTROL=ignoreboth
-
-# append to the history file, don't overwrite it
 shopt -s histappend
-
-# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=100000
-HISTFILESIZE=100000
-HISTTIMEFORMAT="│%F %k:%M:%S│ "
-
-# Alias definitions.
-# You may want to put all your additions into a separate file like
-# ~/.bash_aliases, instead of adding them here directly.
-# See /usr/share/doc/bash-doc/examples in the bash-doc package.
-
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
-fi
-
-stty -ixon
-
-## FUNCTIONS
-
-md () {
-    mkdir -p $@ &&
-    cd $@
-}
-
-# Probably something is non-normalized here:
-export LESS="-RFX"
+export LESS=-iRFX
 export PAGER=less
-
+export MPW_FULLNAME="Bryan Thomas Richter"
+export HISTCONTROL=ignoreboth
+export HISTSIZE=-1
+export HISTFILESIZE=10000
+export HISTTIMEFORMAT="│%F %k:%M:%S│ "
+export PATH="~/.local/bin:$PATH"
+export PS0='\e[2;31m[\#/\! @ \t]\e[0m\n'
 export FIGNORE=*.o:*.hi
+stty -ixon
+. ~/.bash/git.bash
 
-export PARINIT='rTbgqR B=.,?_A_a Q=_s>|'
+## ALIASES
 
-for rc in ~/.bash/*.bash; do
-    source $rc
-done
+alias f=fg
+alias g=git
+alias jb=jobs
+alias pd=pushd
+alias xo=xdg-open
+alias xp='xclip -selection clipboard'
+
+# Pretty ripgrep, with less
+prg () { rg -p $@ | less; }
+
+# Oft-used
+md () {
+    mkdir -p $1 && cd $1
+}

@@ -86,7 +86,6 @@ EXPORT_DIR=$(dirname "${PWD}/$0")
 DOTS=(
     ackrc
     bash
-    bash_aliases
     bashrc
     cvsrc
     dircolors
