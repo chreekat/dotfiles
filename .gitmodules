@@ -52,3 +52,6 @@
 [submodule "vim/pack/ALL/start/gfm-syntax"]
 	path = vim/pack/ALL/start/gfm-syntax
 	url = https://github.com/rhysd/vim-gfm-syntax
+[submodule "vim/pack/ALL/start/ledger"]
+	path = vim/pack/ALL/start/ledger
+	url = https://github.com/ledger/vim-ledger
