@@ -18,7 +18,6 @@ set modeline
 set shiftround
 " ^ Make << and >> act like i_^t and i_^d
 set showcmd
-set switchbuf=useopen
 set ttimeoutlen=20
 if has("persistent_undo")
     set undodir=~/.vim/undos
@@ -43,6 +42,16 @@ set pastetoggle=<F2>
 set path=.,,
 set showtabline=1
 set splitright
+" Ignored Haskell suffixes
+set suffixes+=.dyn_hi-boot,hi-boot,o-boot,hs-boot
+" Prefer things with suffixes
+set suffixes+=,,
+
+"" My anti-preferences
+" I used to think 'useopen' was a decent default, but it messes up :stag and
+" friends when jumping to a tag in the same buffer. That's weird and
+" unfortunate.
+"set switchbuf=useopen
 
 packadd! matchit
 
@@ -55,15 +64,17 @@ vmap s z
 let g:goyo_width = 84
 let g:undotree_WindowLayout = 4
 let g:easy_align_delimiters = {'>': {'pattern': '::\|->\|=>'}}
+let g:ledger_bin = 'hledger'
 
 "" In the absence of file- or filetype-specific options, these are the defaults
 "" I want.
 let g:is_bash=1
 let g:sql_type_default = 'pgsql'
 set autoindent
-set shiftwidth=4
-set textwidth=80
 set formatoptions+=nl
+set shiftwidth=4
+set softtabstop=4
+set textwidth=80
 
 ""
 "" Tool integrations
@@ -113,13 +124,17 @@ imap <S-F10> <F9>T<F10>
 " Unimpaired-inspired maps
 nnoremap ]q :cnext<cr>
 nnoremap [q :cprev<cr>
+nnoremap ]Q :cnfile<cr>
+nnoremap [Q :cpfile<cr>
 nnoremap ]l :lnext<cr>
 nnoremap [l :lprev<cr>
 cnoremap <SID>VUMS <<<<<\\|>>>>>\\|=====<cr>
 " ^ 'Vimrc Unimpaired Marker Search'
-" TODO: don't clobber the real ]c, [c
-"map ]c /<SID>VUMS
-"map [c ?<SID>VUMS
+map ]C /<SID>VUMS
+map [C ?<SID>VUMS
+
+" See error context
+command! CC cc|cl!+3
 
 nmap ]<space> <f2>o<esc><f2>'[
 nmap [<space> <f2>O<esc><f2>
@@ -129,17 +144,17 @@ nmap [<space> <f2>O<esc><f2>
 nnoremap \w "+yiW
 
 " Yank the whole damn doc
-command! Y %y+
+command! -range=% Y <line1>,<line2>y+
 
 function! VimrcIndentPaste(count, reg, dent, dir)
-    "mkview!
+    setl nofoldenable
     exec 'normal "' . a:reg . ']' . a:dir
     let c = a:count
     while c > 0
         exec 'normal ' . a:dent . "']"
         let c = c - 1
     endwhile
-    "loadview
+    set foldenable
 endfu
 
 for dent in ['>','<']
@@ -198,9 +213,11 @@ endfunction
 augroup vimrc_highlighting
     au!
     "au ColorScheme * call s:vimrc_highlighting()
+    au ColorScheme * hi comment ctermfg=red
 augroup END
 "doautocmd ColorScheme
 colorscheme apprentice
+
 
 ""
 "" Things that should be plugins?
@@ -259,4 +276,4 @@ function! Align()
 	normal gv=
 endfunction
 
-xnoremap <silent> <leader>= :<c-u>silent call Align()<cr>
+xnoremap <silent> <leader>a !column -t -o ' '<cr>
