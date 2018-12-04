@@ -1,5 +1,6 @@
 Abolish availabel available
-Abolish {sugges,solu,migra}tino{s,} {}tion{}
+Abolish {estima,sugges,solu,migra}tino{s,} {}tion{}
+Abolish fonud found
 Abolish fundoation foundation
 Abolish phares phrase
 Abolish accomodoation accomodation
@@ -7,3 +8,6 @@ Abolish passpharse passphrase
 Abolish cofnig config
 Abolish caputerd captured
 Abolish woudl would
+Abolish wolud would
+Abolish taht that
+Abolish teh the

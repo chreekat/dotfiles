@@ -7,7 +7,7 @@ let s:did_open_html = 0
 let s:file = "/tmp/vim-simple-md.html"
 
 func! s:convert()
-    call system("pandoc -s -t html5 -o " . s:file . ' ' . expand('%'))
+    call system("pandoc -s -r markdown_github -w html -o " . s:file . ' ' . expand('%'))
 endfunc
 
 func! s:toggle()
@@ -27,3 +27,6 @@ func! s:toggle()
 endfunc
 
 command! -buffer MarkdownHtml call s:toggle()
+
+" Override the html override. :/
+setl sw=4

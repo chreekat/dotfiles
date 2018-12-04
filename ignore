@@ -1,6 +1,7 @@
 .stack-work
 _darcs
 tags*
+TAGS
 .*.sw[po]
 .sw[po]
 cabal-dev

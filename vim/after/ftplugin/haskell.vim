@@ -4,6 +4,8 @@ setlocal equalprg=brittany
 
 compiler ghc
 
+syn sync fromstart
+
 augroup after_haskell
     autocmd!
     autocmd BufWrite <buffer> call s:update_tags(expand("<afile>"))
@@ -26,3 +28,7 @@ function! s:choose_compiler()
     let &mp = l:compiler
 endfunction
 nnoremap <buffer> <F5> :call <SID>choose_compiler()<cr>
+
+command! -buffer Hlint cexpr system("hlint ".expand("%"))
+command! -buffer -range Dollar sil <line1>|sil exe "normal $F$caw("|sil <line2>|sil normal A)
+command! -buffer -range=% Hindent <line1>,<line2>!hindent --indent-size 4

@@ -17,19 +17,26 @@
     tag = 6
 [alias]
     b = branch -vv
-    r = remote -v
-    rb = rebase
-    co = checkout
     ci = commit
     # Commit without quotes
     cim = !sh -c 'git commit -m \"$*\"' -
+    co = checkout
     cp = cherry-pick
     d = diff
     dc = diff --cached
+    g = grep
     ignored = clean -ndX
-    m = merge --no-ff
+    lf = log --follow
+    m = merge
+    # Usage and expansions:
+    # git pu        -> git push -u origin <current branch>
+    # git pu foo    -> git push -u foo <current branch>
+    # git pu foo br -> git push -u foo br:br
+    pu = !sh -c "'git push -u ${1:-origin} ${1:+${2:+$2:}}${2:-$(git rev-parse --abbrev-ref HEAD)}'" -
+    pull-file = !sh -c "'git show \"${2:+$1}\":${GIT_PREFIX}\"${2:-$1}\"'" -
     qs = commit -am "QUICKSAVE"
-    pull-file = !sh -c "'git show ${2:+$1}:${GIT_PREFIX}${2:-$1}'" -
+    r = remote -v
+    rb = rebase
     root = rev-parse --show-toplevel
     sm = submodule
     smap = submodule foreach
@@ -60,3 +67,9 @@
 	mnemonicprefix = true
 [grep]
 	linenumber = true
+[pager]
+	log = ~/lib/diff-highlight | less
+	show = ~/lib/diff-highlight | less
+	diff = ~/lib/diff-highlight | less
+[interactive]
+	diffFilter = /home/b/lib/diff-highlight

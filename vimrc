@@ -41,6 +41,7 @@ set nojoinspaces
 set pastetoggle=<F2>
 set path=.,,
 set showtabline=1
+set showfulltag
 set splitright
 " Ignored Haskell suffixes
 set suffixes+=.dyn_hi-boot,hi-boot,o-boot,hs-boot
@@ -65,6 +66,8 @@ let g:goyo_width = 84
 let g:undotree_WindowLayout = 4
 let g:easy_align_delimiters = {'>': {'pattern': '::\|->\|=>'}}
 let g:ledger_bin = 'hledger'
+" Fold markdown by headers, etc
+let g:markdown_folding = 1
 
 "" In the absence of file- or filetype-specific options, these are the defaults
 "" I want.
@@ -100,6 +103,10 @@ nnoremap ]] :call search('^\S\&.*{$', 'sW')<cr>
 
 " (Note pastetoggle=<F2>)
 
+" Format all the things
+nnoremap <leader><cr> gw
+nnoremap <leader><cr><cr> gwap
+
 " More useful (?) F1
 nnoremap <F1> :b <c-d>
 
@@ -132,13 +139,15 @@ cnoremap <SID>VUMS <<<<<\\|>>>>>\\|=====<cr>
 " ^ 'Vimrc Unimpaired Marker Search'
 map ]C /<SID>VUMS
 map [C ?<SID>VUMS
-
-" See error context
-command! CC cc|cl!+3
-
 nmap ]<space> <f2>o<esc><f2>'[
 nmap [<space> <f2>O<esc><f2>
 " ^ Uses pastetoggle
+
+" Dr Chip's highlight group display
+nmap <silent> <leader>hg   :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<cr>
+
+" See error context
+command! CC cc|cl!+3
 
 " Yank the WORD here
 nnoremap \w "+yiW
@@ -215,9 +224,9 @@ augroup vimrc_highlighting
     "au ColorScheme * call s:vimrc_highlighting()
     au ColorScheme * hi comment ctermfg=red
 augroup END
-"doautocmd ColorScheme
+doautocmd ColorScheme
 colorscheme apprentice
-
+"set bg=light
 
 ""
 "" Things that should be plugins?
