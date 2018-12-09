@@ -68,8 +68,8 @@
 [grep]
 	linenumber = true
 [pager]
-	log = ~/lib/diff-highlight | less
-	show = ~/lib/diff-highlight | less
-	diff = ~/lib/diff-highlight | less
+	#log = ~/lib/diff-highlight | less
+	#show = ~/lib/diff-highlight | less
+	#diff = ~/lib/diff-highlight | less
 [interactive]
-	diffFilter = /home/b/lib/diff-highlight
+	#diffFilter = /home/b/lib/diff-highlight
