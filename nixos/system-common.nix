@@ -146,7 +146,7 @@
     isNormalUser = true;
     uid = 1000;
     group = "b";
-    extraGroups = ["users" "wheel" "vboxusers" "docker"];
+    extraGroups = ["users" "wheel" "vboxusers" "docker" "video"];
   };
 
   # Automatic updates.
