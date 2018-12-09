@@ -116,6 +116,8 @@ DOTS=(
     vimrc
     weechat
     w3m
+    xmonad
+    Xresources
 )
 
 # Fire missiles
