@@ -1,7 +1,6 @@
 { config, lib, pkgs, ... }:
 
 {
-  hardware.bluetooth.enable = true;
   hardware.pulseaudio.enable = true;
   hardware.pulseaudio.package = pkgs.pulseaudioFull;
   networking.networkmanager.enable = true;
@@ -30,11 +29,13 @@
     ]) ++ (with pkgs; [
       # categories suck
         anki
-        bup
         freecad
         nethack
         shutter
         # steam ## Issues with libvulkan
+      # personal admin tools
+        bup
+        keepassxc
       # development
         bats
         bfg-repo-cleaner
@@ -56,7 +57,6 @@
         gimp
         inkscape
         ktorrent
-        mendeley
         vlc
         handbrake # Rips DVD to video files
         audacity
@@ -127,9 +127,6 @@
   ## Configure programs.
   programs.bash.enableCompletion = true;
 
-  # Enable gpg-agent on login
-  programs.ssh.startAgent = true;
-
   # Redshift + Geoclue
   services.geoclue2.enable = true;
   services.redshift = {
@@ -138,6 +135,8 @@
     #latitude = "40.67";
     #longitude = "-73.98";
   };
+
+  programs.gnupg.agent = { enable = true; enableSSHSupport = true; };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.extraGroups.b = {
