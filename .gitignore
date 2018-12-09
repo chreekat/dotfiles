@@ -25,3 +25,4 @@ vim/autoload/plug.vim.old
 vim/spell
 xmonad/xmonad.errors
 xmonad/xmonad-x86_64-linux
+xmonad/xmonad.state
