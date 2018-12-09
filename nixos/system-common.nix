@@ -3,7 +3,18 @@
 {
   hardware.pulseaudio.enable = true;
   hardware.pulseaudio.package = pkgs.pulseaudioFull;
+  hardware.bluetooth.enable = true;
   networking.networkmanager.enable = true;
+
+  # Use the systemd-boot EFI boot loader.
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
+
+  # Use tmpfs tmp
+  boot.tmpOnTmpfs = true;
+  boot.cleanTmpDir = true;
+
+  time.timeZone = "Europe/Helsinki";
 
   fonts.fonts = [ pkgs.fira-mono pkgs.fira-code pkgs.open-dyslexic ];
   fonts.fontconfig.defaultFonts.monospace = [ "Fira Mono" ];
@@ -97,6 +108,7 @@
         unzip
         xclip
         xorg.xev
+        rxvt_unicode
         # yq # Missing from 17.09
       # Web
         chromium
@@ -127,6 +139,18 @@
   ## Configure programs.
   programs.bash.enableCompletion = true;
 
+  services.keybase.enable = true;
+  virtualisation.docker.enable = true;
+  virtualisation.docker.enableOnBoot = false;
+  virtualisation.virtualbox.host.enable = true;
+
+
+  # Allow the video group to change backlight brightness
+  services.udev.extraRules = ''
+    ACTION=="add", SUBSYSTEM=="backlight", KERNEL=="intel_backlight", RUN+="${pkgs.coreutils}/bin/chgrp video /sys/class/backlight/%k/brightness"
+    ACTION=="add", SUBSYSTEM=="backlight", KERNEL=="intel_backlight", RUN+="${pkgs.coreutils}/bin/chmod g+w /sys/class/backlight/%k/brightness"
+  '';
+
   # Redshift + Geoclue
   services.geoclue2.enable = true;
   services.redshift = {
@@ -134,6 +158,18 @@
     provider = "geoclue2";
     #latitude = "40.67";
     #longitude = "-73.98";
+  };
+
+  # Enable CUPS to print documents.
+  services.printing.enable = true;
+
+  # Enable the X11 windowing system.
+  services.xserver = {
+    enable = true;
+    layout = "dvorak";
+    xkbOptions = "eurosign:e";
+    libinput.enable = true;
+    windowManager.xmonad.enable = true;
   };
 
   programs.gnupg.agent = { enable = true; enableSSHSupport = true; };
@@ -151,4 +187,18 @@
 
   # Automatic updates.
   system.autoUpgrade.enable = true;
+
+  # Let commands use these caches if they want.
+  nix.trustedBinaryCaches = [
+    "http://devdatabrary2.home.nyu.edu:5000/"
+    "http://nixcache.devs.relexsolutions.com/"
+  ];
+  nix.binaryCachePublicKeys = [
+    "devdatabrary2.home.nyu.edu-1:xpI1XOvf7czNv0+0/1ajpgotpOnUMTUBBF9v97D5/yk="
+    "databrary.cachix.org-1:jOz34d80mzekR2pjkK9JCczPi2TKeifQ/OHYcg8I6tg="
+    "nixcache.devs.relexsolutions.com-1:PRveyTUC6M1NGXo4Dg29CXsdc+KQOPPa7bRoXeLgGyI="
+  ];
+  nix.extraOptions = ''
+    secret-key-files = /etc/nix/nix-store-key.sec
+  '';
 }
