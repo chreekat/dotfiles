@@ -89,8 +89,6 @@ DOTS=(
     bashrc
     cvsrc
     dircolors
-    fonts
-    fonts.conf.d
     ghci
     gitconfig
     goobookrc
