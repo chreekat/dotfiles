@@ -42,11 +42,11 @@
         anki
         freecad
         nethack
-        shutter
         # steam ## Issues with libvulkan
       # personal admin tools
         bup
         keepassxc
+        mpw
       # development
         bats
         bfg-repo-cleaner
@@ -56,7 +56,6 @@
         ripgrep
         tmux
         vim_configurable
-        xcape
         virtualbox
         vagrant
       # media
@@ -72,7 +71,6 @@
         handbrake # Rips DVD to video files
         audacity
         gitAndTools.git-annex
-
       # linux
         (sox.override { enableLame = true; })
         bc
@@ -92,10 +90,8 @@
         jre
         lshw
         moreutils # vidir and other goodies
-        mpw
         ncdu
         nix-bash-completions
-        nmap
         nmap
         openssl
         pandoc
@@ -106,10 +102,14 @@
         sshuttle
         tree
         unzip
+        # yq # Missing from 17.09
+      # Xorg (in concert with enabling xmonad)
+        rxvt_unicode
+        xcape
         xclip
         xorg.xev
-        rxvt_unicode
-        # yq # Missing from 17.09
+        xsecurelock
+        xss-lock
       # Web
         chromium
         firefox
