@@ -5,6 +5,7 @@ xset s blank
 # Set up keyboard
 setxkbmap -option ctrl:nocaps
 xcape
+xset r rate 300 100
 
 # Lock with xsecurelock/dimmer
 xss-lock \
