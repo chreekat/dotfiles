@@ -115,6 +115,7 @@ DOTS=(
     weechat
     w3m
     xmonad
+    xsession
     Xresources
 )
 
