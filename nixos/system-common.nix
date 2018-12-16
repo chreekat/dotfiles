@@ -154,12 +154,11 @@
   '';
 
   # Redshift + Geoclue
-  services.geoclue2.enable = true;
   services.redshift = {
     enable = true;
-    provider = "geoclue2";
-    #latitude = "40.67";
-    #longitude = "-73.98";
+    #provider = "geoclue2"; # Broken for now
+    latitude = "60.2443";
+    longitude = "24.8800";
   };
 
   # Enable CUPS to print documents.
