@@ -23,7 +23,7 @@ calc_new_brightness () {
     max=${2:?}
     cur=${3:?}
 
-    incr=1000
+    let "incr = ${max} / 20"
 
     calc=
     case $dir in
