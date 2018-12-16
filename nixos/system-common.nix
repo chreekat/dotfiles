@@ -110,6 +110,7 @@
         xorg.xev
         xsecurelock
         xss-lock
+        dmenu
       # Web
         chromium
         firefox
