@@ -19,4 +19,7 @@ myKeys conf@(XConfig {modMask = modm}) =
             spawn "/home/b/.xmonad/chg_intel_brightness.sh up")
         , ((0, xK_XF86MonBrightnessDown),
             spawn "/home/b/.xmonad/chg_intel_brightness.sh down")
+        , ((modm, xK_l),
+            -- screensaver
+            spawn "xset s activate")
         ]

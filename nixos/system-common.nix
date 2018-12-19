@@ -190,16 +190,12 @@
 
   # Let commands use these caches if they want.
   nix.trustedBinaryCaches = [
-    "http://devdatabrary2.home.nyu.edu:5000"
-    "http://nixcache.devs.relexsolutions.com"
+    "http://devdatabrary2.home.nyu.edu:5000/"
+    "http://nixcache.devs.relexsolutions.com/"
   ];
   nix.binaryCachePublicKeys = [
     "devdatabrary2.home.nyu.edu-1:xpI1XOvf7czNv0+0/1ajpgotpOnUMTUBBF9v97D5/yk="
     "databrary.cachix.org-1:jOz34d80mzekR2pjkK9JCczPi2TKeifQ/OHYcg8I6tg="
     "nixcache.devs.relexsolutions.com-1:PRveyTUC6M1NGXo4Dg29CXsdc+KQOPPa7bRoXeLgGyI="
   ];
-
-  # Except the above doesn't work as specified, and you have to specify a
-  # trusted user, as well.
-  nix.trustedUsers = [ "@wheel" ];
 }

@@ -101,6 +101,8 @@ nnoremap ]] :call search('^\S\&.*{$', 'sW')<cr>
 "" S H O R T C U T S
 ""
 
+let mapleader = " "
+
 " (Note pastetoggle=<F2>)
 
 " Format all the things
@@ -135,10 +137,6 @@ nnoremap ]Q :cnfile<cr>
 nnoremap [Q :cpfile<cr>
 nnoremap ]l :lnext<cr>
 nnoremap [l :lprev<cr>
-cnoremap <SID>VUMS <<<<<\\|>>>>>\\|=====<cr>
-" ^ 'Vimrc Unimpaired Marker Search'
-map ]C /<SID>VUMS
-map [C ?<SID>VUMS
 nmap ]<space> <f2>o<esc><f2>'[
 nmap [<space> <f2>O<esc><f2>
 " ^ Uses pastetoggle

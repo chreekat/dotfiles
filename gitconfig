@@ -28,6 +28,7 @@
     ignored = clean -ndX
     lf = log --follow
     m = merge
+    mt = mergetool
     # Usage and expansions:
     # git pu        -> git push -u origin <current branch>
     # git pu foo    -> git push -u foo <current branch>
@@ -46,8 +47,9 @@
     autosquash = true
 [fetch]
     prune = true
-; [merge]
-;     tool = splice
+[mergetool "mergetool_helper"]
+    cmd = "vim -f -d $LOCAL $BASE $REMOTE $MERGED -c '4wincmd w | wincmd J | packadd mergetool_helper'"
+    trustExitCode = true
 [mergetool "splice"]
     cmd = "vim -f $BASE $LOCAL $REMOTE $MERGED -c 'SpliceInit'"
     trustExitCode = true
@@ -57,7 +59,7 @@
     default = simple
     gpgSign = "if-asked"
 [merge]
-	tool = vimdiff
+        tool = mergetool_helper
 	gpgsign = true
 [rerere]
 	enabled = true
