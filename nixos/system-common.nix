@@ -56,7 +56,6 @@
         ripgrep
         tmux
         vim_configurable
-        virtualbox
         vagrant
       # media
         beets
@@ -144,7 +143,7 @@
   services.keybase.enable = true;
   virtualisation.docker.enable = true;
   virtualisation.docker.enableOnBoot = false;
-  virtualisation.virtualbox.host.enable = true;
+  #virtualisation.virtualbox.host.enable = true;
 
 
   # Allow the video group to change backlight brightness
