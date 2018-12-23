@@ -186,7 +186,7 @@
   };
 
   # Automatic updates.
-  system.autoUpgrade.enable = true;
+  system.autoUpgrade.enable = false;
 
   # Let commands use these caches if they want.
   nix.trustedBinaryCaches = [

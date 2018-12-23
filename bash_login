@@ -40,7 +40,7 @@ export MP_FULLNAME="Bryan Thomas Richter"
 export MPW_FULLNAME="Bryan Thomas Richter"
 export HISTCONTROL=ignoreboth
 export HISTSIZE=-1
-export HISTFILESIZE=1000000
+export HISTFILESIZE=100000
 export HISTTIMEFORMAT="│%F %k:%M:%S│ "
 for i in "$HOME/bin" "$HOME/.local/bin"; do
     if [ -d "$i" ] ; then
