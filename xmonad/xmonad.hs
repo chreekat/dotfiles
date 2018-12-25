@@ -3,7 +3,7 @@ import qualified Data.Map as M
 
 main = xmonad defaultConfig
     { modMask = mod4Mask
-    , terminal = "urxvt"
+    , terminal = "urxvtc -ls"
     , keys = myKeys
     }
 

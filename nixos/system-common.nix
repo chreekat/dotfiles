@@ -140,36 +140,43 @@
   ## Configure programs.
   programs.bash.enableCompletion = true;
 
-  services.keybase.enable = true;
   virtualisation.docker.enable = true;
   virtualisation.docker.enableOnBoot = false;
   #virtualisation.virtualbox.host.enable = true;
 
+  ##
+  ## SERVICES
+  ##
+  services = {
+    keybase.enable = true;
 
-  # Allow the video group to change backlight brightness
-  services.udev.extraRules = ''
-    ACTION=="add", SUBSYSTEM=="backlight", KERNEL=="intel_backlight", RUN+="${pkgs.coreutils}/bin/chgrp video /sys/class/backlight/%k/brightness"
-    ACTION=="add", SUBSYSTEM=="backlight", KERNEL=="intel_backlight", RUN+="${pkgs.coreutils}/bin/chmod g+w /sys/class/backlight/%k/brightness"
-  '';
+    # Allow the video group to change backlight brightness
+    udev.extraRules = ''
+        ACTION=="add", SUBSYSTEM=="backlight", KERNEL=="intel_backlight", RUN+="${pkgs.coreutils}/bin/chgrp video /sys/class/backlight/%k/brightness"
+        ACTION=="add", SUBSYSTEM=="backlight", KERNEL=="intel_backlight", RUN+="${pkgs.coreutils}/bin/chmod g+w /sys/class/backlight/%k/brightness"
+    '';
 
-  # Redshift + Geoclue
-  services.redshift = {
-    enable = true;
-    #provider = "geoclue2"; # Broken for now
-    latitude = "60.2443";
-    longitude = "24.8800";
-  };
+    # Redshift + Geoclue
+    redshift = {
+        enable = true;
+        #provider = "geoclue2"; # Broken for now
+        latitude = "60.2443";
+        longitude = "24.8800";
+    };
 
-  # Enable CUPS to print documents.
-  services.printing.enable = true;
+    # Enable CUPS to print documents.
+    printing.enable = true;
 
-  # Enable the X11 windowing system.
-  services.xserver = {
-    enable = true;
-    layout = "dvorak";
-    xkbOptions = "eurosign:e";
-    libinput.enable = true;
-    windowManager.xmonad.enable = true;
+    # Enable the X11 windowing system.
+    xserver = {
+        enable = true;
+        layout = "dvorak";
+        xkbOptions = "eurosign:e";
+        libinput.enable = true;
+        windowManager.xmonad.enable = true;
+    };
+
+    urxvtd.enable = true;
   };
 
   programs.gnupg.agent = { enable = true; enableSSHSupport = true; };

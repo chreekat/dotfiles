@@ -18,7 +18,6 @@ run_initial_apps () {
         -- xsecurelock &
 
     # So hawt
-    urxvt -e tmux &
     xmonad
 }
 
