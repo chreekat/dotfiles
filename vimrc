@@ -20,6 +20,7 @@ set shiftround
 set showcmd
 set ttimeoutlen=20
 if has("persistent_undo")
+    call mkdir($HOME . "/.vim/undos", "p", 0700)
     set undodir=~/.vim/undos
     set undofile
 endif
