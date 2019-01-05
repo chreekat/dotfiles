@@ -104,6 +104,7 @@
         # yq # Missing from 17.09
       # Xorg (in concert with enabling xmonad)
         dmenu
+        pavucontrol
         rxvt_unicode
         xcape
         xclip
@@ -149,6 +150,7 @@
   ##
   services = {
     keybase.enable = true;
+    kbfs.enable = true;
 
     # Allow the video group to change backlight brightness
     udev.extraRules = ''
