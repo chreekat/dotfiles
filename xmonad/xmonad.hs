@@ -37,6 +37,7 @@ main = xmonad defaultConfig
     , keys = myKeys
     }
 
+-- | Discovered with xev
 xK_XF86MonBrightnessUp, xK_XF86MonBrightnessDown :: KeySym
 xK_XF86MonBrightnessUp = 0x1008ff02
 xK_XF86MonBrightnessDown = 0x1008ff03
