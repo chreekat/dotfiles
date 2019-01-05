@@ -30,11 +30,14 @@ instance LayoutClass MinOneMain a where
 
 main = xmonad defaultConfig
     { modMask = mod4Mask
-    , terminal = "urxvtc -ls"
+    , borderWidth = 1
+    , focusedBorderColor = "#262626"
+    , normalBorderColor = "#bcbcbc"
     , clickJustFocuses = True
     , focusFollowsMouse = False
-    , layoutHook = MinOneMain (Tall 1 (3/100) (53/100)) ||| Full
     , keys = myKeys
+    , layoutHook = MinOneMain (Tall 1 (3/100) (53/100)) ||| Full
+    , terminal = "urxvtc -ls"
     }
 
 -- | Discovered with xev
