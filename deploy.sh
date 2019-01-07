@@ -87,6 +87,7 @@ DOTS=(
     ackrc
     bash
     bash_login
+    ctags
     cvsrc
     dircolors
     ghci
