@@ -67,3 +67,6 @@
 [submodule "vim/pack/ALL/start/passhole"]
 	path = vim/pack/ALL/start/passhole
 	url = git@github.com:chreekat/passhole
+[submodule "vim/pack/ALL/start/elm-vim"]
+	path = vim/pack/ALL/start/elm-vim
+	url = https://github.com/ElmCast/elm-vim
