@@ -36,7 +36,7 @@ main = xmonad defaultConfig
     , clickJustFocuses = True
     , focusFollowsMouse = False
     , keys = myKeys
-    , layoutHook = MinOneMain (Tall 1 (3/100) (53/100)) ||| Full
+    , layoutHook = MinOneMain (Tall 1 (3/100) (53/100)) ||| Full ||| Mirror (MinOneMain (Tall 1 (3/100) (1/3)))
     , terminal = "urxvtc -ls"
     }
 
