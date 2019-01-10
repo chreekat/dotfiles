@@ -17,6 +17,9 @@ run_initial_apps () {
         --transfer-sleep-lock \
         -- xsecurelock &
 
+    # Run the flameshot service (it's a service! :o Add it as a local service!)
+    flameshot &
+
     # So hawt
     xmonad
 }

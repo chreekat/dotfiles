@@ -56,4 +56,6 @@ myKeys conf@(XConfig {modMask = modm}) =
         , ((modm, xK_a),
             -- screensaver
             spawn "xset s activate")
+        , ((0, xK_Print),
+            spawn "flameshot gui")
         ]

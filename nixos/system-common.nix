@@ -104,6 +104,7 @@
         # yq # Missing from 17.09
       # Xorg (in concert with enabling xmonad)
         dmenu
+        flameshot
         pavucontrol
         rxvt_unicode
         xcape
