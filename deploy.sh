@@ -107,6 +107,7 @@ DOTS=(
     offlineimap
     offlineimaprc
     profile
+    screenlayout
     terminfo
     tmux
     tmux.conf
