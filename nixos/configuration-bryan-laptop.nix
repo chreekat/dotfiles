@@ -28,10 +28,13 @@
     docker.enable = true;
   };
 
-  users.extraUsers.b = {
+  users.users.b = {
     extraGroups = ["vboxusers" "docker"];
   };
 
+  environment.systemPackages = with pkgs; [
+    ansible
+  ];
   # Relex VPN
   #networking.relexVpn = {
   #  enable = true;
