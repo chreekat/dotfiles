@@ -45,17 +45,28 @@ xK_XF86MonBrightnessUp, xK_XF86MonBrightnessDown :: KeySym
 xK_XF86MonBrightnessUp = 0x1008ff02
 xK_XF86MonBrightnessDown = 0x1008ff03
 
-myKeys conf@(XConfig {modMask = modm}) =
-    keyList `M.union` (keys defaultConfig conf)
-  where
-    keyList = M.fromList
-        [ ((0, xK_XF86MonBrightnessUp),
-            spawn "/home/b/.xmonad/chg_intel_brightness.sh up")
-        , ((0, xK_XF86MonBrightnessDown),
-            spawn "/home/b/.xmonad/chg_intel_brightness.sh down")
-        , ((modm, xK_a),
-            -- screensaver
-            spawn "xset s activate")
-        , ((0, xK_Print),
-            spawn "flameshot gui")
-        ]
+myKeys conf@(XConfig { modMask = modm }) =
+  keyList `M.union` (keys defaultConfig conf)
+ where
+  keyList = M.fromList
+    (  [ ( (0, xK_XF86MonBrightnessUp)
+         , spawn "/home/b/.xmonad/chg_intel_brightness.sh up"
+         )
+       , ( (0, xK_XF86MonBrightnessDown)
+         , spawn "/home/b/.xmonad/chg_intel_brightness.sh down"
+         )
+       , ( (modm, xK_a)
+         ,
+             -- screensaver
+           spawn "xset s activate"
+         )
+       , ((0, xK_Print), spawn "flameshot gui")
+       ]
+    -- Xinerama screens with dvorak-friendlier bindings: g, c, r
+    ++ [ ( (modm .|. m, key)
+         , screenWorkspace sc >>= flip whenJust (windows . f)
+         )
+       | (key, sc) <- zip [xK_g, xK_c, xK_r] [0 ..]
+       , (f  , m ) <- [(W.view, 0), (W.shift, shiftMask)]
+       ]
+    )
