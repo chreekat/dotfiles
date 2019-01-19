@@ -19,9 +19,6 @@
 [submodule "vim/pack/ALL/start/vim-obsession"]
 	path = vim/pack/ALL/start/obsession
 	url = git://github.com/tpope/vim-obsession.git
-[submodule "vim/pack/ALL/start/goyo-doc"]
-	path = vim/pack/ALL/start/goyo-doc
-	url = git://github.com/ultimatecoder/goyo-doc.git
 [submodule "vim/pack/ALL/start/VisIncr"]
 	path = vim/pack/ALL/start/VisIncr
 	url = git://github.com/vim-scripts/VisIncr.git
