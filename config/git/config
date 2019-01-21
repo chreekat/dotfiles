@@ -43,6 +43,7 @@
     smap = submodule foreach
     st = status --short -b
     which = ls-tree -r HEAD --name-only
+    wt = worktree
 [rebase]
     autosquash = true
 [fetch]
