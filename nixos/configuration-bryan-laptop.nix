@@ -1,15 +1,10 @@
 { config, pkgs, ... }:
 
 {
-  networking.hostName = "bryan-laptop";
-  networking.search = [ "relex.fi" "relexsolutions.com" ];
-  system.stateVersion = "18.09";
-
-  imports =
-    [ /etc/nixos/hardware-configuration.nix
-      /etc/nixos/system-common.nix
-      #/etc/nixos/relex-vpn.nix
-    ];
+  imports = [
+    /etc/nixos/hardware-configuration.nix
+    /etc/nixos/system-common.nix
+  ];
 
   # LUKS
   boot.initrd.luks.devices = [
@@ -20,25 +15,24 @@
     }
   ];
 
-  virtualisation = {
-    virtualbox.host = {
-      enable = true;
-      headless = true;
-    };
-    docker.enable = true;
-  };
+  environment.systemPackages = with pkgs; [
+    ansible
+  ];
+
+  networking.hostName = "bryan-laptop";
+  networking.search = [ "relex.fi" "relexsolutions.com" ];
 
   users.users.b = {
     extraGroups = ["vboxusers" "docker"];
   };
 
-  environment.systemPackages = with pkgs; [
-    ansible
-  ];
-  # Relex VPN
-  #networking.relexVpn = {
-  #  enable = true;
-  #  ipaUsername = "bryan.richter";
-  #  sharedSecret = "psittacines";
-  #};
+  virtualisation = {
+    virtualbox.host = {
+      enable = true;
+      headless = true;
+    };
+  };
+
+  system.stateVersion = "18.09";
+
 }

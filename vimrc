@@ -43,7 +43,7 @@ set pastetoggle=<F2>
 set path=.,,
 set showtabline=1
 set showfulltag
-set splitright
+set splitbelow
 " Ignored Haskell suffixes
 set suffixes+=.dyn_hi-boot,hi-boot,o-boot,hs-boot
 " Prefer things with suffixes

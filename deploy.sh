@@ -77,7 +77,8 @@ confirm_have_goodies() {
 link_dot() {
     src=$1
     dst=.$1
-    doo rm -f $dst
+    doo rm -f "$dst"
+    doo mkdir -p $(dirname "$dst")
     doo ln -s $EXPORT_DIR/$src $dst
 }
 
@@ -87,11 +88,11 @@ DOTS=(
     ackrc
     bash
     bash_login
+    config/git/config
     ctags
     cvsrc
     dircolors
     ghci
-    gitconfig
     goobookrc
     ignore
     inputrc
