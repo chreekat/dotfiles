@@ -42,6 +42,7 @@
         anki
         freecad
         nethack
+        drive
         # steam ## Issues with libvulkan
       # personal admin tools
         bup
