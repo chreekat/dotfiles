@@ -142,10 +142,6 @@
   ## Configure programs.
   programs.bash.enableCompletion = true;
 
-  virtualisation.docker.enable = true;
-  virtualisation.docker.enableOnBoot = false;
-  #virtualisation.virtualbox.host.enable = true;
-
   ##
   ## SERVICES
   ##
