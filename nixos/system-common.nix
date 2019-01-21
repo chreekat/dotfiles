@@ -172,7 +172,10 @@
         layout = "dvorak";
         xkbOptions = "eurosign:e";
         libinput.enable = true;
-        windowManager.xmonad.enable = true;
+        windowManager.xmonad = {
+          enable = true;
+          enableContribAndExtras = true;
+        };
     };
 
     urxvtd.enable = true;

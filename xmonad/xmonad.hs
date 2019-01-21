@@ -4,6 +4,8 @@ import           Data.Foldable   (msum)
 import qualified Data.Map        as M
 import           XMonad
 import qualified XMonad.StackSet as W
+import           XMonad.Util.Paste (pasteString)
+import           Data.Time (getCurrentTime, utctDay, showGregorian)
 
 -- | A custom Tall that doesn't paradoxically allow zero windows in the main
 -- space.
@@ -54,6 +56,10 @@ myKeys conf@(XConfig { modMask = modm }) =
          )
        , ( (0, xK_XF86MonBrightnessDown)
          , spawn "/home/b/.xmonad/chg_intel_brightness.sh down"
+         )
+       , ( (modm, xK_F9)
+         , pasteString
+           =<< (fmap (showGregorian . utctDay) (liftIO getCurrentTime))
          )
        , ( (modm, xK_a)
          ,
