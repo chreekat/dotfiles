@@ -4,6 +4,7 @@
   imports = [
     /etc/nixos/hardware-configuration.nix
     /etc/nixos/system-common.nix
+    /home/b/RELEX/the-repo/support/mordor-local-dev.module.nix
   ];
 
   # LUKS
