@@ -112,8 +112,6 @@
         xclip
         xorg.xev
         xorg.xmessage
-        xsecurelock
-        xss-lock
       # Web
         chromium
         firefox
@@ -141,7 +139,20 @@
   };
 
   ## Configure programs.
-  programs.bash.enableCompletion = true;
+  programs = {
+    bash.enableCompletion = true;
+    gnupg.agent = {
+      enable = true;
+      enableSSHSupport = true;
+    };
+    xss-lock = {
+      enable = true;
+      lockerCommand = lib.concatStringsSep " " [
+        "--notifier=${pkgs.xsecurelock}/libexec/xsecurelock/dimmer"
+        "--transfer-sleep-lock ${pkgs.xsecurelock}/bin/xsecurelock"
+      ];
+    };
+  };
 
   ##
   ## SERVICES
@@ -181,8 +192,6 @@
 
     urxvtd.enable = true;
   };
-
-  programs.gnupg.agent = { enable = true; enableSSHSupport = true; };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.extraGroups.b = {

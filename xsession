@@ -11,12 +11,6 @@ configure_X () {
 }
 
 run_initial_apps () {
-    # Lock with xsecurelock/dimmer
-    xss-lock \
-        --notifier=$(dirname $(readlink $(which xsecurelock)))/../libexec/xsecurelock/dimmer \
-        --transfer-sleep-lock \
-        -- xsecurelock &
-
     # Run the flameshot service (it's a service! :o Add it as a local service!)
     flameshot &
 
