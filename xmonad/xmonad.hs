@@ -32,8 +32,8 @@ instance LayoutClass MinOneMain a where
 
 main = xmonad defaultConfig
     { modMask = mod4Mask
-    , borderWidth = 1
-    , focusedBorderColor = "#262626"
+    , borderWidth = 8
+    , focusedBorderColor = "#af5f5f"
     , normalBorderColor = "#bcbcbc"
     , clickJustFocuses = True
     , focusFollowsMouse = False
