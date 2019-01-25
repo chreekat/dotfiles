@@ -57,7 +57,6 @@
         ripgrep
         tmux
         vim_configurable
-        vagrant
       # media
         beets
         digikam
@@ -197,11 +196,11 @@
   users.extraGroups.b = {
     gid = 1000;
   };
-  users.extraUsers.b = {
+  users.users.b = {
     isNormalUser = true;
     uid = 1000;
     group = "b";
-    extraGroups = ["users" "wheel" "vboxusers" "docker" "video"];
+    extraGroups = ["users" "wheel" "video"];
   };
 
   # Automatic updates.

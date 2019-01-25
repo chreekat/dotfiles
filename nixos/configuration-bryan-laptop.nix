@@ -23,17 +23,7 @@
   networking.hostName = "bryan-laptop";
   networking.search = [ "relex.fi" "relexsolutions.com" ];
 
-  users.users.b = {
-    extraGroups = ["vboxusers" "docker"];
-  };
-
-  virtualisation = {
-    virtualbox.host = {
-      enable = true;
-      headless = true;
-    };
-  };
+  relex.developer = "b";
 
   system.stateVersion = "18.09";
-
 }
