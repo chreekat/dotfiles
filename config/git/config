@@ -28,6 +28,7 @@
     ignored = clean -ndX
     lf = log --follow
     m = merge
+    mff = merge --ff-only
     mt = mergetool
     # Usage and expansions:
     # git pu        -> git push -u origin <current branch>
