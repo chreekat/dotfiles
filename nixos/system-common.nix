@@ -209,7 +209,6 @@
   # Let commands use these caches if they want.
   nix.trustedBinaryCaches = [
     "http://devdatabrary2.home.nyu.edu:5000/"
-    "http://nixcache.devs.relexsolutions.com/"
   ];
   nix.binaryCachePublicKeys = [
     "devdatabrary2.home.nyu.edu-1:xpI1XOvf7czNv0+0/1ajpgotpOnUMTUBBF9v97D5/yk="
