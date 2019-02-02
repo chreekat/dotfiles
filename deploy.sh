@@ -91,7 +91,6 @@ DOTS=(
     config/git/config
     ctags
     cvsrc
-    dircolors
     ghci
     goobookrc
     ignore

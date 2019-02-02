@@ -55,6 +55,10 @@ for i in $HOME/.bash/*.bash; do
     . $i
 done
 
+# Running dircolors with defaults is, for some reason, different than not
+# running dircolors.
+. <(dircolors)
+
 ## ALIASES + FUNCTIONS
 
 alias f=fg
