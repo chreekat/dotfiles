@@ -146,10 +146,16 @@
     };
     xss-lock = {
       enable = true;
-      lockerCommand = lib.concatStringsSep " " [
-        "--notifier=${pkgs.xsecurelock}/libexec/xsecurelock/dimmer"
-        "--transfer-sleep-lock ${pkgs.xsecurelock}/bin/xsecurelock"
-      ];
+      lockerCommand =
+        let
+          runlock = pkgs.writeScript "xsecurelockWithBlank" ''
+            XSECURELOCK_BLANK_TIMEOUT=5 ${pkgs.xsecurelock}/bin/xsecurelock
+          '';
+        in
+          lib.concatStringsSep " " [
+            "--notifier=${pkgs.xsecurelock}/libexec/xsecurelock/dimmer"
+            "--transfer-sleep-lock ${runlock}"
+          ];
     };
   };
 
