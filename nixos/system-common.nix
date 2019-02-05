@@ -1,23 +1,18 @@
 { config, lib, pkgs, ... }:
 
 {
-  hardware.pulseaudio.enable = true;
-  hardware.pulseaudio.package = pkgs.pulseaudioFull;
-  hardware.bluetooth.enable = true;
-  networking.networkmanager.enable = true;
+  boot = {
+    # Use the systemd-boot EFI boot loader.
+    loader.systemd-boot.enable = true;
+    loader.efi.canTouchEfiVariables = true;
 
-  # Use the systemd-boot EFI boot loader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+    # Use tmpfs tmp
+    tmpOnTmpfs = true;
+    cleanTmpDir = true;
+  };
 
-  # Use tmpfs tmp
-  boot.tmpOnTmpfs = true;
-  boot.cleanTmpDir = true;
-
-  time.timeZone = "Europe/Helsinki";
-
-  fonts.fonts = [ pkgs.fira-mono pkgs.fira-code pkgs.open-dyslexic ];
-  fonts.fontconfig.defaultFonts.monospace = [ "Fira Mono" ];
+  # Include man section 3. >:(
+  documentation.dev.enable = true;
 
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
@@ -88,6 +83,7 @@
         jq
         jre
         lshw
+        manpages # OBVIOUSLY
         moreutils # vidir and other goodies
         ncdu
         nix-bash-completions
@@ -137,6 +133,25 @@
     PARINIT = "rTbgqR B=.,?_A_a Q=_s>|";
   };
 
+  fonts.fonts = [ pkgs.fira-mono pkgs.fira-code pkgs.open-dyslexic ];
+  fonts.fontconfig.defaultFonts.monospace = [ "Fira Mono" ];
+
+  hardware.bluetooth.enable = true;
+  hardware.pulseaudio.enable = true;
+  hardware.pulseaudio.package = pkgs.pulseaudioFull;
+
+  networking.networkmanager.enable = true;
+
+  # Let commands use these caches if they want.
+  nix.trustedBinaryCaches = [
+    "http://devdatabrary2.home.nyu.edu:5000/"
+  ];
+  nix.binaryCachePublicKeys = [
+    "devdatabrary2.home.nyu.edu-1:xpI1XOvf7czNv0+0/1ajpgotpOnUMTUBBF9v97D5/yk="
+    "databrary.cachix.org-1:jOz34d80mzekR2pjkK9JCczPi2TKeifQ/OHYcg8I6tg="
+    "nixcache.devs.relexsolutions.com-1:PRveyTUC6M1NGXo4Dg29CXsdc+KQOPPa7bRoXeLgGyI="
+  ];
+
   ## Configure programs.
   programs = {
     bash.enableCompletion = true;
@@ -155,9 +170,6 @@
     };
   };
 
-  ##
-  ## SERVICES
-  ##
   services = {
     keybase.enable = true;
     kbfs.enable = true;
@@ -194,6 +206,8 @@
     urxvtd.enable = true;
   };
 
+  time.timeZone = "Europe/Helsinki";
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.extraGroups.b = {
     gid = 1000;
@@ -204,17 +218,4 @@
     group = "b";
     extraGroups = ["users" "wheel" "video"];
   };
-
-  # Automatic updates.
-  system.autoUpgrade.enable = false;
-
-  # Let commands use these caches if they want.
-  nix.trustedBinaryCaches = [
-    "http://devdatabrary2.home.nyu.edu:5000/"
-  ];
-  nix.binaryCachePublicKeys = [
-    "devdatabrary2.home.nyu.edu-1:xpI1XOvf7czNv0+0/1ajpgotpOnUMTUBBF9v97D5/yk="
-    "databrary.cachix.org-1:jOz34d80mzekR2pjkK9JCczPi2TKeifQ/OHYcg8I6tg="
-    "nixcache.devs.relexsolutions.com-1:PRveyTUC6M1NGXo4Dg29CXsdc+KQOPPa7bRoXeLgGyI="
-  ];
 }
