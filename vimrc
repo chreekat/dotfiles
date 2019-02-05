@@ -221,7 +221,7 @@ endfunction
 augroup vimrc_highlighting
     au!
     "au ColorScheme * call s:vimrc_highlighting()
-    au ColorScheme * hi comment ctermfg=red
+    au ColorScheme * hi Comment ctermfg=137
 augroup END
 doautocmd ColorScheme
 colorscheme apprentice

@@ -2,6 +2,7 @@ Abolish {estima,sugges,solu,migra}tino{s,} {}tion{}
 Abolish accomodoation accomodation
 Abolish availabel available
 Abolish caputerd captured
+Abolish cennoct connect
 Abolish cofnig config
 Abolish fonud found
 Abolish fundoation foundation
