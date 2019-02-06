@@ -6,7 +6,7 @@
 
   imports =
     [ /etc/nixos/hardware-configuration.nix
-      /etc/nixos/system-common.nix
+      ./system-common.nix
     ];
 
   # LUKS is where root and swap hide.

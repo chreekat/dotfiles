@@ -3,8 +3,9 @@
 {
   imports = [
     /etc/nixos/hardware-configuration.nix
-    /etc/nixos/system-common.nix
+    ./system-common.nix
     /home/b/RELEX/the-repo/support/mordor-local-dev.module.nix
+    ./relex-vpn.nix
   ];
 
   # LUKS
@@ -24,6 +25,7 @@
   networking.search = [ "relex.fi" "relexsolutions.com" ];
 
   relex.developer = "b";
+  relex.vpn.username = "bryan.richter";
 
   system.stateVersion = "18.09";
 }
