@@ -1,3 +1,4 @@
+# vi: ft=gitconfig
 [user]
     name = Bryan Richter
     email = b@chreekat.net
@@ -30,11 +31,14 @@
     m = merge
     mff = merge --ff-only
     mt = mergetool
-    # Usage and expansions:
+    # # alias.pu usage and expansions:
     # git pu        -> git push -u origin <current branch>
     # git pu foo    -> git push -u foo <current branch>
     # git pu foo br -> git push -u foo br:br
     pu = !sh -c "'git push -u ${1:-origin} ${1:+${2:+$2:}}${2:-$(git rev-parse --abbrev-ref HEAD)}'" -
+    # # alias.pull-file usage and expansions:
+    # git pull-file blah.hs          -> show the file from HEAD
+    # git pull-file tree-ish blah.hs -> show blah.hs from tree-ish
     pull-file = !sh -c "'git show \"${2:+$1}\":${GIT_PREFIX}\"${2:-$1}\"'" -
     qs = commit -am "QUICKSAVE"
     r = remote -v
