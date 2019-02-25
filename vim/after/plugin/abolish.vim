@@ -9,6 +9,7 @@ Abolish fundoation foundation
 Abolish passpharse passphrase
 Abolish phares phrase
 Abolish sitll still
+Abolish shrikning shrinking
 Abolish taht that
 Abolish teh the
 Abolish watned wanted
