@@ -3,6 +3,7 @@
 import           Data.Foldable   (msum)
 import qualified Data.Map        as M
 import           XMonad
+import           XMonad.Actions.GridSelect
 import qualified XMonad.StackSet as W
 import           XMonad.Util.Paste (pasteString)
 import           Data.Time (getCurrentTime, utctDay, showGregorian)
@@ -90,12 +91,15 @@ myKeys conf@(XConfig { modMask = modm }) =
        -- Now need to have resize too.
        , ((modm, xK_d), sendMessage Shrink)
        , ((modm, xK_l), sendMessage Expand)
+
+       -- Try gridselect
+       , ((modm, xK_r), goToSelected defaultGSConfig)
        ]
-    -- Xinerama screens with dvorak-friendlier bindings: g, c, r
+    -- Xinerama screens with dvorak-friendlier bindings: g, c
     ++ [ ( (modm .|. m, key)
          , screenWorkspace sc >>= flip whenJust (windows . f)
          )
-       | (key, sc) <- zip [xK_g, xK_c, xK_r] [0 ..]
+       | (key, sc) <- zip [xK_g, xK_c] [0 ..]
        , (f  , m ) <- [(W.view, 0), (W.shift, shiftMask)]
        ]
     )
