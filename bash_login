@@ -102,3 +102,11 @@ md () {
 #}
 #source `fzf-share`/completion.bash
 #source `fzf-share`/key-bindings.bash
+
+# Dump some info when creating a new shell
+if [ ! -v TMUX ]; then
+    echo -n 'Battery: '
+    ~/.tmux/bat.sh
+    echo 'Tmux: '
+    tmux ls | awk '{print "  ", $0}'
+fi
