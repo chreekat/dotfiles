@@ -108,5 +108,5 @@ if [ ! -v TMUX ]; then
     echo -n 'Battery: '
     ~/.tmux/bat.sh
     echo 'Tmux: '
-    tmux ls | awk '{print "  ", $0}'
+    tmux ls |& awk '{print "  ", $0}'
 fi
