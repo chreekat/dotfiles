@@ -118,6 +118,7 @@
         mumble
         thunderbird
         weechat
+        wire-desktop
       # devops
         awscli
         nixops

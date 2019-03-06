@@ -108,8 +108,9 @@ md () {
 
 # Dump some info when creating a new shell
 if [ ! -v TMUX ]; then
+    date
     echo -n 'Battery: '
     ~/.tmux/bat.sh
     echo 'Tmux: '
-    tmux ls | awk '{print "  ", $0}'
+    tmux ls |& awk '{print "  ", $0}'
 fi

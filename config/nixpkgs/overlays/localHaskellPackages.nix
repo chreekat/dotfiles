@@ -16,6 +16,7 @@ self: super: {
         };
       hlint = selfHS.callCabal2nix "hlint" /home/b/src/hlint {};
       pomohoro = self.haskell.lib.doJailbreak superHS.pomohoro;
+      #suavemente = superHS.callHackage "suavemente" "0.1.0.0" {};
     };
   };
 }

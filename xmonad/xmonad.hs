@@ -45,8 +45,11 @@ main = xmonad defaultConfig
 
 -- | Discovered with xev
 xK_XF86MonBrightnessUp, xK_XF86MonBrightnessDown :: KeySym
-xK_XF86MonBrightnessUp = 0x1008ff02
+xK_XF86MonBrightnessUp   = 0x1008ff02
 xK_XF86MonBrightnessDown = 0x1008ff03
+-- xK_XF86AudioLowerVolume  = 0x1008ff11
+-- xK_XF86AudioMute         = 0x1008ff12
+-- xK_XF86AudioRaiseVolume  = 0x1008ff13
 
 myKeys conf@(XConfig { modMask = modm }) =
   keyList `M.union` (keys defaultConfig conf)
