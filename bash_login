@@ -80,6 +80,9 @@ complete -o bashdefault -o default -o nospace -F __git_wrap__git_main g
 # Pretty ripgrep, with less
 prg () { rg -p $@ | less; }
 
+# ripgrep to vim
+qrg () { vim -q <(rg --vimgrep "$@"); }
+
 md () {
     mkdir -p $1 && cd $1
 }
