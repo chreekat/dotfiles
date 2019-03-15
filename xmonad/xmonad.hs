@@ -72,10 +72,13 @@ myKeys conf@(XConfig { modMask = modm }) =
        , ( (0, xK_Print)
          , spawn "flameshot gui"
          )
+       , ( (modm .|. shiftMask, xK_f)
+         , spawn "firefox"
+         )
        -- # Dvorak fuckery
        -- shift-c was stolen
        -- kill window
-       , ( (modm, xK_F4)
+       , ( (modm, xK_w)
          , kill
          )
         -- mod-t was stolen
