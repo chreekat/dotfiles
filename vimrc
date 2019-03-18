@@ -120,7 +120,7 @@ nnoremap <F3> :tabe ~/.vimrc<cr>
 nnoremap <F4> :UndotreeToggle<cr>
 
 " Open url (or anything, I guess) at point. Interwebs, you say?
-nnoremap <F6> :call system("xdg-open " . expand('<cWORD>'))<cr>
+nnoremap <F6> :call system(printf("xdg-open %s &", expand('<cWORD>')))<cr>
 
 " Insert today's date, in two formats
 inoremap <F9> <c-r>=system("date +%Y-%m-%d $@ \| perl -pe chomp")<cr>

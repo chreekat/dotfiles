@@ -38,6 +38,8 @@
         freecad
         nethack
         drive
+        syncthing
+        syncthing-cli
         # steam ## Issues with libvulkan
       # personal admin tools
         bup
@@ -84,13 +86,13 @@
         jre
         lshw
         manpages # OBVIOUSLY
-        moreutils # vidir and other goodies
         ncdu
         nix-bash-completions
         nmap
         openssl
         pandoc
         par
+        perlPackages.vidir
         python
         qdirstat
         sqlite
@@ -140,6 +142,8 @@
   hardware.bluetooth.enable = true;
   hardware.pulseaudio.enable = true;
   hardware.pulseaudio.package = pkgs.pulseaudioFull;
+
+  i18n.consoleUseXkbConfig = true;
 
   networking.networkmanager.enable = true;
 

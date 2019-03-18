@@ -6,10 +6,11 @@ Abolish cennoct connect
 Abolish cofnig config
 Abolish fonud found
 Abolish fundoation foundation
+Abolish ogal goal
 Abolish passpharse passphrase
 Abolish phares phrase
-Abolish sitll still
 Abolish shrikning shrinking
+Abolish sitll still
 Abolish taht that
 Abolish teh the
 Abolish watned wanted
