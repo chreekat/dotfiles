@@ -45,8 +45,15 @@ let
     sleep 5
 
     ip route add 84.20.147.37 via $LOCAL_GATEWAY
-    ip route add default via $REMOTE_ENDPOINT
-    ip route delete default via $LOCAL_GATEWAY
+
+    # The things we actually want from the VPN
+    # Wiki
+    ip route add 10.201.185.89 via $REMOTE_ENDPOINT
+    # Gitlab
+    ip route add 10.201.7.240 via $REMOTE_ENDPOINT
+    # gw1.relex.fi
+    ip route add 83.150.98.71 via $REMOTE_ENDPOINT
+    # ???
   '';
 
   stop = ''
