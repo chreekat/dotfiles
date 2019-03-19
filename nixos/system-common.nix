@@ -38,7 +38,6 @@
         freecad
         nethack
         drive
-        syncthing
         syncthing-cli
         # steam ## Issues with libvulkan
       # personal admin tools
@@ -178,11 +177,7 @@
     keybase.enable = true;
     kbfs.enable = true;
 
-    # Allow the video group to change backlight brightness
-    udev.extraRules = ''
-        ACTION=="add", SUBSYSTEM=="backlight", KERNEL=="intel_backlight", RUN+="${pkgs.coreutils}/bin/chgrp video /sys/class/backlight/%k/brightness"
-        ACTION=="add", SUBSYSTEM=="backlight", KERNEL=="intel_backlight", RUN+="${pkgs.coreutils}/bin/chmod g+w /sys/class/backlight/%k/brightness"
-    '';
+    printing.enable = true;
 
     # Redshift + Geoclue
     redshift = {
@@ -192,8 +187,15 @@
         longitude = "24.8800";
     };
 
-    # Enable CUPS to print documents.
-    printing.enable = true;
+    syncthing.enable = true;
+
+    # Allow the video group to change backlight brightness
+    udev.extraRules = ''
+        ACTION=="add", SUBSYSTEM=="backlight", KERNEL=="intel_backlight", RUN+="${pkgs.coreutils}/bin/chgrp video /sys/class/backlight/%k/brightness"
+        ACTION=="add", SUBSYSTEM=="backlight", KERNEL=="intel_backlight", RUN+="${pkgs.coreutils}/bin/chmod g+w /sys/class/backlight/%k/brightness"
+    '';
+
+    urxvtd.enable = true;
 
     # Enable the X11 windowing system.
     xserver = {
@@ -206,8 +208,6 @@
           enableContribAndExtras = true;
         };
     };
-
-    urxvtd.enable = true;
   };
 
   time.timeZone = "Europe/Helsinki";
