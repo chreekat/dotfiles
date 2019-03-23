@@ -197,12 +197,19 @@
 
     urxvtd.enable = true;
 
-    # Enable the X11 windowing system.
+    # Enable and configure the X11 windowing system.
     xserver = {
         enable = true;
         layout = "dvorak";
-        xkbOptions = "eurosign:e";
+        xkbOptions = "ctrl:nocaps";
+        autoRepeatDelay = 300;
+        autoRepeatInterval = 10;
         libinput.enable = true;
+        multitouch = {
+          enable = true;
+          ignorePalm = true;
+        };
+        wacom.enable = true;
         windowManager.xmonad = {
           enable = true;
           enableContribAndExtras = true;
