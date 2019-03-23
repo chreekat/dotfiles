@@ -100,6 +100,7 @@
         unzip
         # yq # Missing from 17.09
       # Xorg (in concert with enabling xmonad)
+        arandr
         dmenu
         flameshot
         pavucontrol
