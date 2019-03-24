@@ -1,4 +1,4 @@
-Abolish {estima,sugges,solu,migra}tino{s,} {}tion{}
+Abolish {combina,estima,sugges,solu,migra}tino{s,} {}tion{}
 Abolish accomodoation accomodation
 Abolish availabel available
 Abolish caputerd captured
