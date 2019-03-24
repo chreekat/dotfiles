@@ -200,21 +200,58 @@
 
     # Enable and configure the X11 windowing system.
     xserver = {
+      enable = true;
+      autoRepeatDelay = 300;
+      autoRepeatInterval = 10;
+      libinput.enable = true;
+      multitouch = {
         enable = true;
-        layout = "dvorak";
-        xkbOptions = "ctrl:nocaps";
-        autoRepeatDelay = 300;
-        autoRepeatInterval = 10;
-        libinput.enable = true;
-        multitouch = {
-          enable = true;
-          ignorePalm = true;
-        };
-        wacom.enable = true;
-        windowManager.xmonad = {
-          enable = true;
-          enableContribAndExtras = true;
-        };
+        ignorePalm = true;
+      };
+      wacom.enable = true;
+      windowManager.xmonad = {
+        enable = true;
+        enableContribAndExtras = true;
+      };
+
+      ## X KEYBOARD MAP
+
+      # Basic keyboard setup that gets reused by the console via
+      # i18n.consoleUseXkbConfig.
+      layout = "dvorak";
+      xkbOptions = "ctrl:nocaps";
+
+      # Actual keyboard config
+      #
+      # Add some Nordic characters to an otherwise US-Dvorak layout.
+      #
+      # NixOS' support for xkeyboard-config has a high impedance mismatch.
+      displayManager.sessionCommands =
+        let
+          xkbcomp = "${pkgs.xorg.xkbcomp}/bin/xkbcomp";
+          mykeymap = builtins.toFile "mykeymap" ''
+            xkb_keymap {
+                    xkb_keycodes  { include "evdev+aliases(qwerty)"	};
+                    xkb_types     { include "complete"	};
+                    xkb_compat    { include "complete"	};
+                    xkb_symbols   {
+                        include "pc+us(dvorak)+us:2+inet(evdev)+group(shifts_toggle)"
+                        include "ctrl(nocaps)+compose(lctrl)+level3(ralt_switch)"
+                        include "eurosign(4)"
+
+                        key <AD01> { [ NoSymbol, NoSymbol, aring, Aring ] };
+                        key <AD11> { [ NoSymbol, NoSymbol, dead_acute ] };
+                        key <AC01> { [ NoSymbol, NoSymbol, adiaeresis, Adiaeresis ] };
+                        key <AC02> { [ NoSymbol, NoSymbol, odiaeresis, Odiaeresis ] };
+                    };
+                    xkb_geometry  { include "pc(pc104)"	};
+            };
+          '';
+          compiledKeymap = pkgs.runCommand "compiled-xkb-keymap" {} ''
+            ${xkbcomp} ${mykeymap} $out 2>&-
+          '';
+        in
+          "${xkbcomp} ${compiledKeymap} $DISPLAY";
     };
   };
 
