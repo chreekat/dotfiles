@@ -1,7 +1,22 @@
---langdef=Elm
---langmap=Elm:.elm
---regex-Elm=/^ *([[:lower:]][[:alnum:]_]+)[[:blank:]]*:[^:].*->.*/\1/f,function,functions/
---regex-Elm=/^ *([[:lower:]][[:alnum:]_]+)[[:blank:]]*:[^:][^-]+$/\1/c,constant,constants/
---regex-Elm=/^port +([[:lower:]][[:alnum:]_]+)[[:blank:]]*:[^:]/\1/p,port,ports/
---regex-Elm=/^type +([[:upper:]][[:alnum:]_]+)/\1/t,type,types/
---regex-Elm=/^type[[:blank:]]+alias[[:blank:]]+([[:upper:]][[:alnum:]_]+)/\1/a,type-alias,type-aliases/
+# Need to know definition, reference, kind, role, field, extra.
+# definition: a 'definition' tag, the standard default
+# reference: a 'reference' tag (use site?)
+# fields: various info attached to a tag. Essential fields are
+#  input: name of source file
+#  name: thing being tagged
+#  pattern: find the name in the input (fuzzy find)
+#  line: line number in input where name was found
+#
+#  other fields are
+#  kind: the *kind* of language object (e.g. for C: macro, function, variable)
+#  see example of extra field like 'qualified'
+#
+# role: a new idea, specifies how the language object is being used
+# (consider a reference to a package: it could be imported or defined)
+#
+# WORK IN PROGRESS
+#--langdef=elm
+#--map-elm=+.elm
+#--kinddef-elm=t,top-level declaration,top-level declarations
+#
+#--regex-elm=/^([[:alnum:]]*)/\1/t/
