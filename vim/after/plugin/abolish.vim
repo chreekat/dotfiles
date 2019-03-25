@@ -6,6 +6,7 @@ Abolish cennoct connect
 Abolish cofnig config
 Abolish fonud found
 Abolish fundoation foundation
+Abolish mabye maybe
 Abolish ogal goal
 Abolish passpharse passphrase
 Abolish phares phrase

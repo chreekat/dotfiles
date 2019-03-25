@@ -35,9 +35,9 @@
     ]) ++ (with pkgs; [
       # categories suck
         anki
+        drive
         freecad
         nethack
-        drive
         syncthing-cli
         # steam ## Issues with libvulkan
       # personal admin tools
@@ -54,18 +54,18 @@
         tmux
         vim_configurable
       # media
+        audacity
         beets
         digikam
         ghostscript
-        graphviz
-        imagemagick
         gimp
+        gitAndTools.git-annex
+        graphviz
+        handbrake # Rips DVD to video files
+        imagemagick
         inkscape
         ktorrent
         vlc
-        handbrake # Rips DVD to video files
-        audacity
-        gitAndTools.git-annex
       # linux
         (sox.override { enableLame = true; })
         bc

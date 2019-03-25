@@ -41,6 +41,8 @@ set laststatus=1
 set nojoinspaces
 set pastetoggle=<F2>
 set path=.,,
+" Try to make sure :hardcopy doesn't work, because it sux
+set printdevice=do_not_use
 set showtabline=1
 set showfulltag
 set splitbelow
@@ -275,13 +277,11 @@ function! GFPrompt()
 endfunction
 nnoremap gf :call GFPrompt()<cr>
 
-" Ranged search (M like perl's m///)
+" M: Ranged search (M like perl's m///)
 command! -range=% -nargs=1 M normal /\%><line1>l\%<<line2>l<args><cr>
 
-" romainl's quick tabular alignment
-function! Align()
-	'<,'>!column -t -o ' '
-	normal gv=
-endfunction
+" Columns: romainl's quick tabular alignment
+command! -range Columns :<line1>,<line2>!column -t -o ' '
 
-xnoremap <silent> <leader>a !column -t -o ' '<cr>
+" Hardcopy: Use iconv and enscript to dump thy text
+command! -range=% Hardcopy :<line1>,<line2>w !iconv -f UTF-8 -t 8859_1//TRANSLIT | enscript -2rBh
