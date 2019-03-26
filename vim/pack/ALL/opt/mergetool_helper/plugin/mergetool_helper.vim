@@ -25,6 +25,11 @@ nnoremap <SID>CLM :windo diffo<cr>:sb LOCAL<cr>:difft<cr>:4wincmd w<cr>:difft<cr
 nmap <leader>clm <SID>CLM
 nmap <leader>cml <SID>CLM
 
+" rm = REMOTE, MERGED
+nnoremap <SID>CRM :windo diffo<cr>:sb REMOTE<cr>:difft<cr>:4wincmd w<cr>:difft<cr>
+nmap <leader>crm <SID>CRM
+nmap <leader>cmr <SID>CRM
+
 " a = all
 nnoremap <leader>ca :windo difft<cr>
 
