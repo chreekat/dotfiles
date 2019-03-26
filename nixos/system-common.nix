@@ -137,7 +137,6 @@ in
         flameshot
         pavucontrol
         rekey
-        rxvt_unicode
         xcape
         xclip
         xorg.xev
