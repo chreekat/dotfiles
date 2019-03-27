@@ -6,7 +6,6 @@
     ./system-common.nix
     /home/b/RELEX/the-repo/support/mordor-local-dev.module.nix
     ./relex-vpn.nix
-    ./relex-specific.nix
   ];
 
   # LUKS
