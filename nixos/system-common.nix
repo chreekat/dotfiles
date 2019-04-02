@@ -169,7 +169,7 @@ in
     PARINIT = "rTbgqR B=.,?_A_a Q=_s>|";
   };
 
-  fonts.fonts = [ pkgs.fira-mono pkgs.fira-code pkgs.open-dyslexic ];
+  fonts.fonts = [ pkgs.fira-mono pkgs.noto-fonts-emoji pkgs.noto-fonts ];
   fonts.fontconfig.defaultFonts.monospace = [ "Fira Mono" ];
 
   hardware.bluetooth.enable = true;
