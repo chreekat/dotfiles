@@ -67,3 +67,6 @@
 [submodule "vim/pack/ALL/start/elm-vim"]
 	path = vim/pack/ALL/start/elm-vim
 	url = https://github.com/ElmCast/elm-vim
+[submodule "vim/pack/ALL/start/dhall-syntax"]
+	path = vim/pack/ALL/start/dhall-syntax
+	url = https://github.com/vmchale/dhall-vim
