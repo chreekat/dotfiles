@@ -1,2 +1,1 @@
-" Upstream bug: expandtab is set in official yaml plugin ffs
-setl noexpandtab
+setl sw=2
