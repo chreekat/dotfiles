@@ -18,7 +18,7 @@ let
                 xkb_types     { include "complete"	};
                 xkb_compat    { include "complete"	};
                 xkb_symbols   {
-                    include "pc+us(dvorak)+us:2+inet(evdev)+group(shifts_toggle)"
+                    include "pc+us(dvorak)+inet(evdev)"
                     include "ctrl(nocaps)+compose(lctrl)+level3(ralt_switch)"
                     include "eurosign(4)"
 
