@@ -99,6 +99,8 @@ in
         inkscape
         ktorrent
         vlc
+        transmission
+        tor-browser-bundle-bin
       # linux
         (sox.override { enableLame = true; })
         bc
