@@ -26,8 +26,6 @@ if has("persistent_undo")
 endif
 set wildignore+=*.o,*.hi,dist,*.dyn_o,*.dyn_hi,.git,.stack-work
 set wildmode=list:longest,full
-" Make the whitespace after numbered list required
-set formatlistpat=^\\s*\\d\\+[\\]:.)}\\t\ ]\\s
 runtime shifted_fkeys.vim
 
 "" My preferences
@@ -35,6 +33,11 @@ filetype indent off
 filetype plugin on
 set completeopt+=menuone
 set foldopen=
+" * Allow single letters as items, too. (This will break if a sentence ends with
+"   "... I.", and ends on a newline, but c'est la vie.
+" * Require some kind of list marker, not just whitespace
+" * Require whitespace after the marker
+let &formatlistpat = '^\s*\(\d\+\|[[:alnum:]]\)[\]:.)}]\s\+'
 set history=5000
 set incsearch
 set laststatus=1
