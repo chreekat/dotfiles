@@ -221,6 +221,10 @@ in
         #provider = "geoclue2"; # Broken for now
         latitude = "60.2443";
         longitude = "24.8800";
+        temperature = {
+          day = 6500;
+          night = 6000;
+        };
     };
 
     syncthing.enable = true;
