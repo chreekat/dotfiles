@@ -64,23 +64,16 @@ in
       pandoc
       stack
       # stack2nix ## BUSTED lol
-      threadscope
+      # threadscope ## Marked as broken
     ]) ++ (with pkgs; [
       # categories suck
         anki
         drive
-        freecad
-        nethack
-        syncthing-cli
         # steam ## Issues with libvulkan
       # personal admin tools
         bup
         keepassxc
-        mpw
       # development
-        bats
-        bfg-repo-cleaner
-        bench
         universal-ctags
         git
         ripgrep
@@ -94,27 +87,20 @@ in
         gimp
         gitAndTools.git-annex
         graphviz
+        gv
         handbrake # Rips DVD to video files
         imagemagick
         inkscape
-        ktorrent
-        vlc
-        transmission
         tor-browser-bundle-bin
+        transmission
+        vlc
       # linux
         (sox.override { enableLame = true; })
         bc
-        bind
-        binutils
-        enscript
         fd
-        file
         fzf
         gdb
         gnumake
-        gparted
-        gv
-        html-tidy
         htop
         jq
         jre
@@ -123,7 +109,6 @@ in
         ncdu
         nix-bash-completions
         nmap
-        openssl
         pandoc
         par
         perlPackages.vidir
@@ -226,8 +211,6 @@ in
           night = 6000;
         };
     };
-
-    syncthing.enable = true;
 
     # Allow the video group to change backlight brightness
     udev.extraRules = ''
