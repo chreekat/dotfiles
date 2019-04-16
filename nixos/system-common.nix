@@ -98,6 +98,7 @@ in
         (sox.override { enableLame = true; })
         bc
         fd
+        file
         fzf
         gdb
         gnumake
