@@ -49,6 +49,7 @@ confirm_no_clobber() {
 
 confirm_have_goodies() {
     NOFINDINGS=''
+    ISDIR=''
 
     if [ ! -e "$EXPORT_DIR" ]; then
         errm "\n  ABORT\n\n  Where ya gonna copy them files from again?"
@@ -60,16 +61,21 @@ confirm_have_goodies() {
         goody="$EXPORT_DIR/$i"
         # Exists, is readable?
         if [ ! -r "$goody" ]; then
-            NOFINDINGS="${NOFINDINGS}$i"
-        # Searchable if directory?
-        elif [ -d "$goody" -a ! -x "$goody" ]; then
-            NOFINDINGS="${NOFINDINGS}$i"
+            NOFINDINGS="${NOFINDINGS}$i "
+        # Is directory? We used to allow this, but now dem goodies is goin in
+        # the nix store.
+        elif [ -d "$goody" ]; then
+            ISDIR="${ISDIR}$i "
         fi
     done
 
     if [ -n "$NOFINDINGS" ]; then
         errm "\n  ABORT\n\n  These goodies don't exist in a state we can use!"
         errm "    $NOFINDINGS"
+        exit 2
+    elif [ -n "$ISDIR" ]; then
+        errm "\n  ABORT\n\n  These goodies are directories! Can't be having that!"
+        errm "    $ISDIR"
         exit 2
     fi
 }
@@ -83,36 +89,51 @@ link_dot() {
 }
 
 # Initialize globals
-EXPORT_DIR=$(dirname "${PWD}/$0")
+EXPORT_DIR=@EXPORT_DIR@
 DOTS=(
     ackrc
-    bash
+    bash/git.bash
+    bash/haskell.bash
+    bash/snowdrift.bash
+    bash/vim-tag-completion.bash
     bash_login
     config/git/config
+    config/urxvt/themes/apprentice
+    config/urxvt/themes/solarized-light
     ctags
     cvsrc
     ghci
     ignore
     inputrc
-    irssi
+    irssi/config
+    irssi/default.theme
+    irssi/scripts/autorun/cap_sasl.pl
+    irssi/scripts/autorun/notify_me.pl
+    irssi/scripts/cap_sasl-1.5.pl
+    irssi/solarized-universal.theme
     jshintrc
     mailcap
-    mutt
+    mutt/crypto.rc
+    mutt/default-color.muttrc
+    mutt/lunatic-mutt
+    mutt/mailcap
+    mutt/which_inbox
     muttrc
     nethackrc
     npmrc
-    offlineimap
+    offlineimap/helper.py
     offlineimaprc
     profile
-    terminfo
-    tmux
+    terminfo/s/screen
+    tmux/bat.sh
     tmux.conf
     toprc
     vim
     vimrc
     weechat
-    w3m
-    xmonad
+    w3m/keymap
+    xmonad/chg_intel_brightness.sh
+    xmonad/xmonad.hs
     xsession
     Xresources
 )
