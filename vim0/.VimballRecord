@@ -1,2 +1,0 @@
-hlint.vba: call delete('/home/b/.vim/compiler/hlint.vim')
-hilinks.vba: call delete('/home/b/.vim//plugin/hilinks.vim')|call delete('/home/b/.vim//doc/hilinks.txt')

@@ -1,6 +1,6 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-set -e
+set -Eeuo pipefail
 
 # Utility functions
 
@@ -92,7 +92,6 @@ DOTS=(
     ctags
     cvsrc
     ghci
-    goobookrc
     ignore
     inputrc
     irssi
@@ -100,14 +99,11 @@ DOTS=(
     mailcap
     mutt
     muttrc
-    ncmpcpp
     nethackrc
-    newsbeuter
     npmrc
     offlineimap
     offlineimaprc
     profile
-    screenlayout
     terminfo
     tmux
     tmux.conf
