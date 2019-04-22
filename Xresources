@@ -22,7 +22,12 @@ XTerm*renderFont: true
 XTerm*faceName: FiraMono
 XTerm*faceSize: 12
 
-! Apprentice colors
+URxvt.perl-ext-common: color-themes
+URxvt.color-themes.themedir:  ~/.config/urxvt/themes
+URxvt.keysym.M-C-n:  perl:color-themes:next
+URxvt.keysym.M-C-p:  perl:color-themes:prev
+
+! Apprentice colors by default
 *.foreground: #BCBCBC
 *.background: #262626
 *.color0:     #1C1C1C
