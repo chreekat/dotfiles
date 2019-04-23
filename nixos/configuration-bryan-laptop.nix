@@ -32,7 +32,6 @@
 
   nixpkgs.overlays = [ (import ./relex-overlays.nix) ];
 
-  relex.developer = "b";
   relex.vpn.username = "bryan.richter";
 
   services = {
