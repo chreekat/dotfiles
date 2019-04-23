@@ -4,6 +4,7 @@ with lib;
 
 let
 
+  localGatewaySave = "/var/run/vpnc/LOCAL_GATEWAY";
   buildVpnc = key: value: ''
     IPSec gateway ${value.gateway}
     IPSec ID ${value.id}
@@ -22,15 +23,19 @@ let
     if [ ! -d /var/run/vpnc ]; then
       mkdir -p /var/run/vpnc
     fi
-    echo -ne $LOCAL_GATEWAY > /var/run/vpnc/LOCAL_GATEWAY
+    # This file also serves as a flag, used in 'down'
+    echo -ne $LOCAL_GATEWAY > ${localGatewaySave}
   '';
   down = pkgs.writeScript "down" ''
     #!${pkgs.bash}/bin/bash
     PATH=${makeBinPath [pkgs.nettools pkgs.iproute]}:$PATH
 
-    LOCAL_GATEWAY=$(cat /var/run/vpnc/LOCAL_GATEWAY)
-    ip route add default via $LOCAL_GATEWAY
-    ip route del default dev tun0
+    if [ -e ${localGatewaySave} ]; then
+      LOCAL_GATEWAY=$(cat ${localGatewaySave})
+      ip route add default via $LOCAL_GATEWAY
+      ip route del default dev tun0
+      rm ${localGatewaySave}
+    fi
   '';
   buildService = key: value: nameValuePair "vpnc-${key}" {
     description = "VPNC for ${key}";
