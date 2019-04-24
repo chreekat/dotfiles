@@ -56,11 +56,18 @@
 
   system.stateVersion = "18.09";
 
-  users.users.b.extraGroups = ["docker"];
+  users.users.b.extraGroups = ["docker" "vboxusers"];
 
-  # For running Degustacion
-  virtualisation.docker = {
-    enable = true;
-    enableOnBoot = false;
+  virtualisation = {
+    # For running Degustacion
+    docker = {
+      enable = true;
+      enableOnBoot = false;
+    };
+    # For local environments
+    virtualbox = {
+      host.enable = true;
+      host.headless = true;
+    };
   };
 }
