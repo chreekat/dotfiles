@@ -1,4 +1,4 @@
-Abolish {combina,estima,sugges,solu,migra}tino{s,} {}tion{}
+Abolish abolihs abolish
 Abolish accomodoation accomodation
 Abolish availabel available
 Abolish caputerd captured
@@ -8,6 +8,7 @@ Abolish fonud found
 Abolish fundoation foundation
 Abolish mabye maybe
 Abolish ogal goal
+Abolish othre other
 Abolish passpharse passphrase
 Abolish phares phrase
 Abolish shrikning shrinking
@@ -17,3 +18,5 @@ Abolish teh the
 Abolish watned wanted
 Abolish wolud would
 Abolish woudl would
+Abolish {combina,estima,sugges,solu,migra}tino{s,} {}tion{}
+Abolish {our,them}selevs {}selves
