@@ -4,7 +4,6 @@
   imports = [
     /etc/nixos/hardware-configuration.nix
     ./system-common.nix
-    ./relex-vpn.nix
     ./mats-vpnc-service.nix
   ];
 
@@ -42,7 +41,7 @@
 
   nixpkgs.overlays = [ (import ./relex-overlays.nix) ];
 
-  relex.vpn.username = "bryan.richter";
+  #relex.vpn.username = "bryan.richter";
 
   services = {
     # RELEX policy
