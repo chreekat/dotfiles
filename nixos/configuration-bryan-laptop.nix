@@ -30,6 +30,16 @@
     search = [ "relex.fi" "relexsolutions.com" ];
   };
 
+  # RELEX cache
+  nix = {
+    trustedBinaryCaches = [
+      "http://cache.mordor.relexsolutions.com/"
+    ];
+    binaryCachePublicKeys = [
+      "nixcache.devs.relexsolutions.com-1:PRveyTUC6M1NGXo4Dg29CXsdc+KQOPPa7bRoXeLgGyI="
+    ];
+  };
+
   nixpkgs.overlays = [ (import ./relex-overlays.nix) ];
 
   relex.vpn.username = "bryan.richter";
