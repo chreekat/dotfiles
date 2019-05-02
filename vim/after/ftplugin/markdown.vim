@@ -7,7 +7,7 @@ let s:did_open_html = 0
 let s:file = "/tmp/vim-simple-md.html"
 
 func! s:convert()
-    call system("pandoc -s -r markdown_github -w html -o " . s:file . ' ' . expand('%'))
+    call system("pandoc -s -r markdown -w html -o " . s:file . ' ' . expand('%'))
 endfunc
 
 func! s:toggle()
