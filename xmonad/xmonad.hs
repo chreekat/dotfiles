@@ -1,5 +1,7 @@
-{-# LANGUAGE FlexibleInstances #-}
-{-# LANGUAGE MultiParamTypeClasses #-}
+{-# LANGUAGE FlexibleInstances
+           , MultiParamTypeClasses
+           , TemplateHaskell
+           #-}
 import           Data.Foldable   (msum)
 import qualified Data.Map        as M
 import           XMonad
@@ -7,6 +9,10 @@ import           XMonad.Actions.GridSelect
 import qualified XMonad.StackSet as W
 import           XMonad.Util.Paste (pasteString)
 import           Data.Time (getCurrentTime, utctDay, showGregorian)
+import Control.Lens
+
+makeLensesWith (lensRules & lensField .~ mappingNamer ((:[]) . ("_" ++))) ''W.Stack
+makeLensesWith (lensRules & lensField .~ mappingNamer ((:[]) . ("_" ++))) ''W.Screen
 
 -- | A custom Tall that doesn't paradoxically allow zero windows in the main
 -- space.
@@ -99,8 +105,13 @@ myKeys conf@(XConfig { modMask = modm }) =
        -- Try gridselect
        , ((modm, xK_r), goToSelected defaultGSConfig)
 
+       -- # Xinerama controls
+       -- Change focus
        , ((modm, xK_c), windows (screenStack W.focusDown'))
        , ((modm, xK_g), windows (screenStack W.focusUp'))
+       -- Reorder screens
+       , ((modm .|. shiftMask, xK_c), windows (screenStack swapScreenDown))
+       , ((modm .|. shiftMask, xK_g), windows (screenStack swapScreenUp))
        ]
     )
 
@@ -128,6 +139,30 @@ screenStack stackAction ss =
         , W.visible = (W.up screenStack) <> (W.down screenStack)
         }
 
+-- | Swap the focused workspace with the one on the next screen
+swapScreenDown, swapScreenUp :: W.Stack (W.Screen w l a s b) -> W.Stack (W.Screen w l a s b)
+swapScreenDown ws =
+    let
+    curWs = ws ^. _focus . _workspace
+    downWs = ws ^? _down . _head . _workspace
+    revUps = reverse (ws ^. _up)
+    upWs = revUps ^? _head . _workspace
+    in
+    case downWs of
+        Just d -> ws & _focus . _workspace .~ d
+                     & _down . _head . _workspace .~ curWs
+        _ -> case upWs of
+            Just u ->
+                let
+                ups = reverse (revUps & _head . _workspace .~ curWs)
+                in
+                ws & _focus . _workspace .~ u
+                   & _up .~ ups
+            _ -> ws
+
+swapScreenUp = reverseStack . swapScreenDown . reverseStack
+    where
+        reverseStack (W.Stack t ls rs) = W.Stack t rs ls
 -- cheat sheet from XMonad sources.
 {-
 
