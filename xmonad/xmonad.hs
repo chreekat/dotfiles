@@ -78,9 +78,7 @@ myKeys conf@(XConfig { modMask = modm }) =
        -- # Dvorak fuckery
        -- shift-c was stolen
        -- kill window
-       , ( (modm, xK_w)
-         , kill
-         )
+       , ( (modm, xK_w) , kill)
         -- mod-t was stolen
         -- sink floating window into tiling
        , ( (modm, xK_s)
@@ -100,15 +98,35 @@ myKeys conf@(XConfig { modMask = modm }) =
 
        -- Try gridselect
        , ((modm, xK_r), goToSelected defaultGSConfig)
-       ]
-    -- Xinerama screens with dvorak-friendlier bindings: g, c
-    ++ [ ( (modm .|. m, key)
-         , screenWorkspace sc >>= flip whenJust (windows . f)
-         )
-       | (key, sc) <- zip [xK_g, xK_c] [0 ..]
-       , (f  , m ) <- [(W.view, 0), (W.shift, shiftMask)]
+
+       , ((modm, xK_c), windows (screenStack W.focusDown'))
+       , ((modm, xK_g), windows (screenStack W.focusUp'))
        ]
     )
+
+-- Manipulate visible screens as a stack. Converts the screens to a stack and
+-- modifies them with whatever stack operation you desire. (Hint:
+-- "W.focusDown'")
+screenStack
+    :: Ord s
+    => (W.Stack (W.Screen w l a s b)
+        -> (W.Stack (W.Screen w l a s b)))
+    -> W.StackSet w l a s b
+    -> W.StackSet w l a s b
+screenStack stackAction ss =
+    let
+    currentScreenId = W.screen (W.current ss)
+    screenStack =
+        stackAction
+            (W.Stack
+                (W.current ss)
+                (filter ((< currentScreenId) . W.screen) (W.visible ss))
+                (filter ((> currentScreenId) . W.screen) (W.visible ss)))
+    in
+    ss
+        { W.current = W.focus (screenStack)
+        , W.visible = (W.up screenStack) <> (W.down screenStack)
+        }
 
 -- cheat sheet from XMonad sources.
 {-
