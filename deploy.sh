@@ -89,6 +89,8 @@ DOTS=(
     bash
     bash_login
     config/git/config
+    config/urxvt/themes/apprentice
+    config/urxvt/themes/solarized-light
     ctags
     cvsrc
     ghci
