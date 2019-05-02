@@ -235,6 +235,7 @@ in
       windowManager.xmonad = {
         enable = true;
         enableContribAndExtras = true;
+        extraPackages = p : [ p.lens ];
       };
 
       ## X KEYBOARD MAP
