@@ -23,6 +23,8 @@ w3m/*
 weechat/weechat.log
 vim/autoload/plug.vim.old
 vim/spell
-xmonad/xmonad.errors
 xmonad/xmonad-x86_64-linux
+xmonad/xmonad.dyn_hi
+xmonad/xmonad.dyn_o
+xmonad/xmonad.errors
 xmonad/xmonad.state
