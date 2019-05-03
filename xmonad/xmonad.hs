@@ -67,6 +67,12 @@ myKeys conf@(XConfig { modMask = modm }) =
        , ( (0, xK_XF86MonBrightnessDown)
          , spawn "/home/b/.xmonad/chg_intel_brightness.sh down"
          )
+       , ( (modm, xK_Up)
+         , spawn "/home/b/.xmonad/chg_intel_brightness.sh up"
+         )
+       , ( (modm, xK_Down)
+         , spawn "/home/b/.xmonad/chg_intel_brightness.sh down"
+         )
        , ( (modm, xK_F9)
          , (pasteString . showGregorian . utctDay) =<< (liftIO getCurrentTime)
          )
