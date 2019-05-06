@@ -53,23 +53,19 @@ in
     (with pkgs.haskellPackages; [
       cabal-install
       cabal2nix
-      # codex ## broken in 18.03
       fast-tags
       ghc
       hasktags
       hledger
       hledger-ui
       hpack
-      # hpack-convert ## BUSTED, lol?
       pandoc
       stack
-      # stack2nix ## BUSTED lol
-      # threadscope ## Marked as broken
+      stylish-haskell
     ]) ++ (with pkgs; [
       # categories suck
         anki
         drive
-        # steam ## Issues with libvulkan
       # personal admin tools
         bup
         keepassxc
