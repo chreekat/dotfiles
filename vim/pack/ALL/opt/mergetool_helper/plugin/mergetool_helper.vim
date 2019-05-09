@@ -5,6 +5,24 @@ set swb=useopen
 " order you specify them in.
 "
 
+"
+" USAGE:
+"
+" First, add the following to your git config:
+"
+"     [mergetool "mergetool_helper"]
+"         cmd = "vim -f -d $LOCAL $BASE $REMOTE $MERGED -c '4wincmd w | wincmd J | packadd mergetool_helper'"
+"         trustExitCode = true
+"
+" Note the use of :packadd.
+"
+" Then, either specify the tool with `git mergetool --tool mergetool_helper`, or
+" set it as the default by setting merge.tool = mergetool_helper. See
+" git-config(1) for details.
+"
+" Tip: You can abort a resolution with :cq.
+"
+
 " lb = LOCAL, BASE
 nnoremap <SID>CLB :windo diffo<cr>:sb BASE<cr>:difft<cr>:sb LOCAL<cr>:difft<cr>
 nmap <leader>clb <SID>CLB
@@ -33,7 +51,10 @@ nmap <leader>cmr <SID>CRM
 " a = all
 nnoremap <leader>ca :windo difft<cr>
 
+" n = none
+nnoremap <leader>cn :windo diffoff<cr>
 
+" TODO: Use search() to avoid overwriting "/.
 cnoremap <SID>VUMS <<<<<\\|>>>>>\\|=====<cr>
 " ^ 'Vimrc Unimpaired Marker Search'
 map ]C /<SID>VUMS

@@ -56,9 +56,6 @@
 [mergetool "mergetool_helper"]
     cmd = "vim -f -d $LOCAL $BASE $REMOTE $MERGED -c '4wincmd w | wincmd J | packadd mergetool_helper'"
     trustExitCode = true
-[mergetool "splice"]
-    cmd = "vim -f $BASE $LOCAL $REMOTE $MERGED -c 'SpliceInit'"
-    trustExitCode = true
 [commit]
     gpgSign = true
 [push]
