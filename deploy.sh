@@ -60,10 +60,10 @@ confirm_have_goodies() {
         goody="$EXPORT_DIR/$i"
         # Exists, is readable?
         if [ ! -r "$goody" ]; then
-            NOFINDINGS="${NOFINDINGS}$i"
+            NOFINDINGS="${NOFINDINGS}$i "
         # Searchable if directory?
         elif [ -d "$goody" -a ! -x "$goody" ]; then
-            NOFINDINGS="${NOFINDINGS}$i"
+            NOFINDINGS="${NOFINDINGS}$i "
         fi
     done
 
