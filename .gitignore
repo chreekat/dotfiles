@@ -8,6 +8,7 @@ ncmpcpp/error.log
 newsbeuter/cache.db*
 newsbeuter/history.*
 newsbeuter/urls
+nixos/vpnc-secret
 offlineimap/Account*
 offlineimap/lock
 offlineimap/pid
