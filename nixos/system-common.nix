@@ -108,7 +108,6 @@ in
         nmap
         pandoc
         par
-        perlPackages.vidir
         python
         qdirstat
         sqlite
