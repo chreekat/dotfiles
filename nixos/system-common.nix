@@ -39,8 +39,9 @@ in
     loader.systemd-boot.enable = true;
     loader.efi.canTouchEfiVariables = true;
 
-    # Use tmpfs tmp
-    tmpOnTmpfs = true;
+    # Don't use tmpOnTmpfs, because I actually use all that ram when compiling
+    # Haskell
+    tmpOnTmpfs = false;
     cleanTmpDir = true;
   };
 

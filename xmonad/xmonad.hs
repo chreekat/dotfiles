@@ -1,15 +1,18 @@
-{-# LANGUAGE FlexibleInstances
-           , MultiParamTypeClasses
-           , TemplateHaskell
-           #-}
-import           Data.Foldable   (msum)
-import qualified Data.Map        as M
-import           XMonad
-import           XMonad.Actions.GridSelect
-import qualified XMonad.StackSet as W
-import           XMonad.Util.Paste (pasteString)
-import           Data.Time (getCurrentTime, utctDay, showGregorian)
+{-# LANGUAGE FlexibleInstances     #-}
+{-# LANGUAGE MultiParamTypeClasses #-}
+{-# LANGUAGE TemplateHaskell       #-}
+{-# LANGUAGE ViewPatterns          #-}
+
 import Control.Lens
+import Data.Foldable   (msum)
+import Data.List (sortOn)
+import Data.Time (getCurrentTime, utctDay, showGregorian)
+-- import Text.Show.Pretty
+import XMonad
+import XMonad.Actions.GridSelect
+import XMonad.Util.Paste (pasteString)
+import qualified Data.Map        as M
+import qualified XMonad.StackSet as W
 
 makeLensesWith (lensRules & lensField .~ mappingNamer ((:[]) . ("_" ++))) ''W.Stack
 makeLensesWith (lensRules & lensField .~ mappingNamer ((:[]) . ("_" ++))) ''W.Screen
@@ -48,6 +51,11 @@ main = xmonad defaultConfig
     , layoutHook = MinOneMain (Tall 1 (3/100) (1/2)) ||| Full ||| Mirror (MinOneMain (Tall 1 (3/100) (1/2)))
     , terminal = "urxvtc -ls"
     }
+
+-- DEBUG
+-- simpleView (W.StackSet c vs _ _) = (simp c, map simp vs)
+--   where
+--   simp s = (W.tag (W.workspace s), W.screen s)
 
 -- | Discovered with xev
 xK_XF86MonBrightnessUp, xK_XF86MonBrightnessDown :: KeySym
@@ -100,6 +108,12 @@ myKeys conf@(XConfig { modMask = modm }) =
        , ( (modm, xK_s)
          , withFocused (windows . W.sink)
          )
+
+       -- DEBUG
+       -- , ( (modm, xK_F4)
+       --   , withWindowSet (\ws -> spawn ("echo '" ++ ppShow (simpleView ws) ++ "' | xmessage -file - ")))
+       -- NB: helpCommand = spawn ("echo " ++ show help ++ " | xmessage -file -")
+
        -- modm-j and -k are real finger twisters
        -- modify the window order
        , ((modm .|. shiftMask, xK_h), windows W.swapDown)
@@ -137,20 +151,29 @@ screenStack
 screenStack stackAction ss =
     let
     currentScreenId = W.screen (W.current ss)
-    screenStack =
-        stackAction
-            (W.Stack
-                (W.current ss)
-                (filter ((< currentScreenId) . W.screen) (W.visible ss))
-                (filter ((> currentScreenId) . W.screen) (W.visible ss)))
+    (reverse -> ups, downs) =
+        splitOn
+            ((>= currentScreenId) . W.screen)
+            (sortOn W.screen (W.visible ss))
+    screenStack = stackAction (W.Stack (W.current ss) ups downs)
     in
     ss
         { W.current = W.focus (screenStack)
         , W.visible = (W.up screenStack) <> (W.down screenStack)
         }
 
+-- | lame splitOn implementation
+splitOn :: (a -> Bool) -> [a] -> ([a], [a])
+splitOn f xs = splitOn' f xs []
+    where
+    splitOn' _ [] a = (reverse a, [])
+    splitOn' f (x : xs) a
+        | f x = (reverse a, x : xs)
+        | otherwise = splitOn' f xs (x : a)
+
 -- | Swap the focused workspace with the one on the next screen
-swapScreenDown, swapScreenUp :: W.Stack (W.Screen w l a s b) -> W.Stack (W.Screen w l a s b)
+swapScreenDown, swapScreenUp
+    :: W.Stack (W.Screen w l a s b) -> W.Stack (W.Screen w l a s b)
 swapScreenDown ws =
     let
     curWs = ws ^. _focus . _workspace
