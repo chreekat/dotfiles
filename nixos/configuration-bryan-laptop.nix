@@ -7,6 +7,9 @@
     ./mats-vpnc-service.nix
   ];
 
+  # Need all ram for building...
+  boot.tmpOnTmpfs = false;
+
   # LUKS
   boot.initrd.luks.devices = [
     {
