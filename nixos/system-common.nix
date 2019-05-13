@@ -12,7 +12,7 @@ let
     # Fuck me, right?
     pkgs.writeShellScriptBin "rekey"
       ''
-        <<EOF cat | ${pkgs.xorg.xkbcomp}/bin/xkbcomp - $DISPLAY
+        <<EOF cat | ${pkgs.xorg.xkbcomp}/bin/xkbcomp - $DISPLAY &>/dev/null
         xkb_keymap {
                 xkb_keycodes  { include "evdev+aliases(qwerty)"	};
                 xkb_types     { include "complete"	};

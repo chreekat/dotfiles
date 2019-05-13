@@ -76,6 +76,10 @@ myKeys conf@(XConfig { modMask = modm }) =
        , ( (modm, xK_F9)
          , (pasteString . showGregorian . utctDay) =<< (liftIO getCurrentTime)
          )
+       -- Run my rekey function
+       , ( (modm, xK_F12)
+         , spawn "rekey"
+         )
        , ( (modm, xK_a)
          ,
            -- screensaver
