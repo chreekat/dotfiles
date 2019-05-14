@@ -34,6 +34,7 @@ let
       '';
 in
 {
+  imports = [ ./lorri/direnv/nixos.nix ];
   boot = {
     # Use the systemd-boot EFI boot loader.
     loader.systemd-boot.enable = true;
@@ -73,6 +74,7 @@ in
       # development
         universal-ctags
         git
+        (import ./lorri {})
         ripgrep
         tmux
         vim_configurable
