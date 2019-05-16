@@ -4,6 +4,7 @@ configure_X () {
     # (procedural) and arguments to Xserver itself.
     xset s 180 5
     xset s blank
+    xsetroot -mod 16 16 -bg "#262626"
 }
 
 run_initial_apps () {
