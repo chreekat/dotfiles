@@ -152,8 +152,8 @@ screenStack stackAction ss =
     let
     currentScreenId = W.screen (W.current ss)
     (reverse -> ups, downs) =
-        splitOn
-            ((>= currentScreenId) . W.screen)
+        span
+            ((< currentScreenId) . W.screen)
             (sortOn W.screen (W.visible ss))
     screenStack = stackAction (W.Stack (W.current ss) ups downs)
     in
@@ -161,15 +161,6 @@ screenStack stackAction ss =
         { W.current = W.focus (screenStack)
         , W.visible = (W.up screenStack) <> (W.down screenStack)
         }
-
--- | lame splitOn implementation
-splitOn :: (a -> Bool) -> [a] -> ([a], [a])
-splitOn f xs = splitOn' f xs []
-    where
-    splitOn' _ [] a = (reverse a, [])
-    splitOn' f (x : xs) a
-        | f x = (reverse a, x : xs)
-        | otherwise = splitOn' f xs (x : a)
 
 -- | Swap the focused workspace with the one on the next screen
 swapScreenDown, swapScreenUp
