@@ -94,6 +94,7 @@ DOTS=(
     ctags
     cvsrc
     ghci
+    gnupg/gpg-agent.conf
     ignore
     inputrc
     irssi
