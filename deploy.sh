@@ -87,6 +87,7 @@ EXPORT_DIR=$(dirname "${PWD}/$0")
 DOTS=(
     ackrc
     bash
+    bashrc
     bash_login
     config/git/config
     config/urxvt/themes/apprentice
