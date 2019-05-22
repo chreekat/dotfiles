@@ -72,6 +72,7 @@ in
         bup
         keepassxc
       # development
+        entr
         universal-ctags
         git
         (import ./lorri {})
