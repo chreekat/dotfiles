@@ -189,7 +189,8 @@ in
         lib.concatStringsSep " " [
           "--notifier=${pkgs.xsecurelock}/libexec/xsecurelock/dimmer"
           "--transfer-sleep-lock --"
-          "env XSECURELOCK_BLANK_TIMEOUT=5 ${pkgs.xsecurelock}/bin/xsecurelock"
+          # This needs to be shared with the value in xsession.
+          "env XSECURELOCK_BLANK_TIMEOUT=10 ${pkgs.xsecurelock}/bin/xsecurelock"
         ];
     };
   };
