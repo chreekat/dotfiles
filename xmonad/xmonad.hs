@@ -134,8 +134,8 @@ myKeys conf@(XConfig { modMask = modm }) =
        , ((modm, xK_c), windows (screenStack W.focusDown'))
        , ((modm, xK_g), windows (screenStack W.focusUp'))
        -- Reorder screens
-       , ((modm .|. shiftMask, xK_c), windows (screenStack swapScreenDown))
-       , ((modm .|. shiftMask, xK_g), windows (screenStack swapScreenUp))
+       , ((modm .|. shiftMask, xK_c), windows (screenStack (W.focusDown' . swapScreenDown)))
+       , ((modm .|. shiftMask, xK_g), windows (screenStack (W.focusUp' . swapScreenUp)))
        ]
     )
 
