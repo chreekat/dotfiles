@@ -12,7 +12,7 @@ function! s:diffEm(commit)
     function! s:godiff() closure
         exec "Gdiff" a:commit
     endfunc
-    silent let changedFiles = systemlist("git diff --name-only " . a:commit)
+    silent let changedFiles = systemlist("git diff --name-only --relative " . a:commit)
     if v:shell_error == 0
         command! DiffOff call s:diffOff()
         command! Godiff call s:godiff()
