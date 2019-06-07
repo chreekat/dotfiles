@@ -202,6 +202,9 @@ augroup vimrc
     au BufRead ~/IN.in runtime IN.in.vim
     " Show context in quickfix for GHC's sake
     au BufReadPost quickfix setl so=3
+
+    " Why isn't this here?
+    au BufRead,BufNewFile Vagrantfile setf ruby
 augroup END
 
 "" GLOBAL AUTOCMDS
