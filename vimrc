@@ -291,3 +291,8 @@ command! -range Columns :<line1>,<line2>!column -t -o ' '
 
 " Hardcopy: Use iconv and enscript to dump thy text
 command! -range=% Hardcopy :<line1>,<line2>w !iconv -f UTF-8 -t 8859_1//TRANSLIT | enscript -2rBh
+
+" Simplistic mappings for making headers
+noremap <leader>h1- yy2pkv$r-jjv$r-
+noremap <leader>h1# yy2pkv$r#jjv$r#
+noremap <leader>h1" yy2pkv$r"jjv$r"
