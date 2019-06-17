@@ -1,19 +1,20 @@
 setlocal iskeyword+='
 setlocal includeexpr=(substitute(v:fname,'\\.','/','g').'.hs')
-setlocal equalprg=brittany
 
 compiler ghc
 
 syn sync fromstart
 
 augroup after_haskell
-    autocmd!
-    autocmd BufWrite <buffer> call s:update_tags(expand("<afile>"))
+    autocmd! * <buffer>
+    autocmd BufWritePost <buffer> call s:update_tags()
 augroup END
 
-function! s:update_tags(f)
-    if filewritable("tags")
-        call system("fast-tags " . a:f)
+function! s:update_tags()
+    if filewritable("tags") == 1
+        call job_start(
+            \["/bin/sh", "-c", "git ls-files *.hs | xargs fast-tags"],
+            \{"in_io":"null","out_io":"null","err_io":"null"})
     endif
 endfunc
 
