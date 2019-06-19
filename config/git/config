@@ -69,7 +69,6 @@
 [commit]
 	gpgsign = true
 [diff]
-	mnemonicprefix = true
 	colorMoved = zebra
 [grep]
 	linenumber = true
