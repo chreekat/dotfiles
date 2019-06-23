@@ -61,7 +61,6 @@ in
       hledger
       hledger-ui
       hpack
-      pandoc
       stack
       stylish-haskell
     ]) ++ (with pkgs; [
