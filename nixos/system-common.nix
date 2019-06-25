@@ -158,9 +158,12 @@ in
   fonts.fonts = [ pkgs.fira-mono pkgs.noto-fonts-emoji pkgs.noto-fonts ];
   fonts.fontconfig.defaultFonts.monospace = [ "Fira Mono" ];
 
-  hardware.bluetooth.enable = true;
-  hardware.pulseaudio.enable = true;
-  hardware.pulseaudio.package = pkgs.pulseaudioFull;
+  hardware = {
+    bluetooth.enable = true;
+    cpu.intel.updateMicrocode = true;
+    pulseaudio.enable = true;
+    pulseaudio.package = pkgs.pulseaudioFull;
+  };
 
   i18n.consoleUseXkbConfig = true;
 
