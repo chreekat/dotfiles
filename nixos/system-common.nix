@@ -67,6 +67,7 @@ in
       # categories suck
         anki
         drive
+        (import ./smos/nix/release.nix).smos-static
       # personal admin tools
         bup
         keepassxc
