@@ -73,3 +73,6 @@
 [submodule "nixos/lorri"]
 	path = nixos/lorri
 	url = https://github.com/target/lorri
+[submodule "nixos/smos"]
+	path = nixos/smos
+	url = https://github.com/NorfairKing/smos
