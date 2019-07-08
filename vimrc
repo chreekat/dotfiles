@@ -128,11 +128,11 @@ nnoremap <F4> :UndotreeToggle<cr>
 nnoremap <F6> :call system(printf("xdg-open %s &", expand('<cWORD>')))<cr>
 
 " Insert today's date, in two formats
-inoremap <F9> <c-r>=system("date +%Y-%m-%d $@ \| perl -pe chomp")<cr>
-inoremap <S-F9> <c-r>=system("date +%Y%m%d $@ \| perl -pe chomp")<cr>
+inoremap <expr> <F9> strftime("%Y-%m-%d")
+inoremap <expr> <S-F9> strftime("%Y%m%d")
 
 " Insert the time
-inoremap <F10> <c-r>=system("date +%H:%M $@ \| perl -pe chomp")<cr>
+inoremap <expr> <F10> strftime("%H:%M")
 " Both! :D
 imap <S-F10> <F9>T<F10>
 
