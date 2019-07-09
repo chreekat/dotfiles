@@ -32,6 +32,24 @@ let
         };
         EOF
       '';
+
+  # Handy tool for tracking works in progress
+  bugs =
+    let
+      losh-t = pkgs.pythonPackages.buildPythonApplication {
+        pname = "losh-t";
+        version = "1.2.0";
+        src = fetchGit {
+          url = "https://github.com/sjl/t";
+        };
+      };
+
+    in
+    pkgs.writeScriptBin "b" ''
+      set -Eeou pipefail
+      topLevel=$(git rev-parse --show-toplevel)
+      ${losh-t}/bin/t --task-dir $topLevel --list bugs $@
+    '';
 in
 {
   imports = [ ./lorri/direnv/nixos.nix ];
@@ -72,6 +90,7 @@ in
         bup
         keepassxc
       # development
+        bugs
         entr
         universal-ctags
         git
