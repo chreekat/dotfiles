@@ -47,7 +47,7 @@ let
     in
     pkgs.writeScriptBin "b" ''
       set -Eeou pipefail
-      topLevel=$(git rev-parse --show-toplevel)
+      topLevel=$(git rev-parse --git-common-dir)
       ${losh-t}/bin/t --task-dir $topLevel --list bugs $@
     '';
 in
