@@ -16,6 +16,8 @@
     remoteBranch = 3
     HEAD = 1
     tag = 6
+[commit]
+    verbose = true
 [alias]
     b = branch -vv
     ci = commit
