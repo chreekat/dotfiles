@@ -6,35 +6,38 @@ let current_compiler = "ghc"
 
 let efmlist = []
 
-" - Lines to ignore. Vim appears to be treating spaces as filename elements,
-"   attempting to open "In file included from src/Databrary/Store/avFrame.h" as
-"   a file.
+" Lines to ignore. Vim appears to be treating spaces as filename elements,
+" attempting to open "In file included from src/Databrary/Store/avFrame.h" as a
+" file.
 ""
 let efmlist += ["%-GIn file included from%.%#"]
 
-" - One-line errors
+" GHC has multiple ways of specifying error location.
 ""
 
-" Up to some ghc version, only the start column was specified
-let efmlist += ["%f:%l:%c: %trror: %m"]
-let efmlist += ["%f:%l:%c: %tarning: %m"]
-" Later, ranges were specified, which we must ignore
-let efmlist += ["%f:%l:%c-%*\\\\d: %trror: %m"]
-let efmlist += ["%f:%l:%c-%*\\\\d: %tarning: %m"]
-
-" - Multiline errors.
-"
-" Just pull the second line (view the rest of the error with cl! and friends).
-""
+let locSpecifier = []
 
 " Up to some ghc version, only the start column was specified
-let efmlist += ["%E%f:%l:%c: fatal:"]
-let efmlist += ["%E%f:%l:%c: error:"]
-let efmlist += ["%W%f:%l:%c: warning:"]
+let locSpecifier += ["%f:%l:%c: "]
+
 " Later, ranges were specified, which we must ignore
-let efmlist += ["%E%f:%l:%c-%*\\\\d: fatal:"]
-let efmlist += ["%E%f:%l:%c-%*\\\\d: error:"]
-let efmlist += ["%W%f:%l:%c-%*\\\\d:: warning:"]
+let locSpecifier += ["%f:%l:%c-%*\\\\d: "]
+
+for loc in locSpecifier
+    " One-line errors
+    ""
+    let efmlist += [loc . "%trror: %m"]
+    let efmlist += [loc . "%tarning: %m"]
+
+    " Multiline errors.
+    "
+    " Just pull the second line (view the rest of the error with cl! and
+    " friends).
+    ""
+    let efmlist += ["%E" . loc . "fatal:"]
+    let efmlist += ["%E" . loc . "error:"]
+    let efmlist += ["%W" . loc . "warning:"]
+endfor
 
 " >= 8.2
 let efmlist += ["%Z    • %m"]
