@@ -23,6 +23,9 @@ let locSpecifier += ["%f:%l:%c: "]
 " Later, ranges were specified, which we must ignore
 let locSpecifier += ["%f:%l:%c-%*\\\\d: "]
 
+" Ranges can also be 2-d :o
+let locSpecifier += ["%f:(%l\\\\,%c)-(%*\\\\d\\\\,%*\\\\d): "]
+
 for loc in locSpecifier
     " One-line errors
     ""
