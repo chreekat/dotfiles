@@ -205,6 +205,9 @@ augroup vimrc
 
     " Why isn't this here?
     au BufRead,BufNewFile Vagrantfile setf ruby
+
+    "" SKELETON FILES
+    au BufNewFile *.sh 0r ~/.vim/skel/skel.sh|normal G
 augroup END
 
 "" GLOBAL AUTOCMDS
