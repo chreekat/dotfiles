@@ -70,8 +70,6 @@
 	enabled = true
 [commit]
 	gpgsign = true
-[diff]
-	colorMoved = zebra
 [grep]
 	linenumber = true
 [pager]
