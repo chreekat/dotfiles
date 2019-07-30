@@ -94,6 +94,9 @@ in
         universal-ctags
         git
         (import ./lorri {})
+        nix-prefetch-scripts
+        nix-prefetch
+        nix-prefetch-github
         ripgrep
         tmux
         vim_configurable
