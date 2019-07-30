@@ -1,0 +1,14 @@
+[Unit]
+ConditionUser=!@system
+Description=Lorri Build Daemon
+After=lorri.socket
+Requires=lorri.socket
+
+[Service]
+#Environment="RUST_BACKTRACE="
+ExecStart=/run/current-system/sw/bin/lorri daemon
+PrivateTmp=true
+ProtectSystem=strict
+Restart=on-failure
+Environment="PATH=/run/current-system/sw/bin"
+WorkingDirectory=%h

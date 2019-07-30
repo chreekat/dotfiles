@@ -92,6 +92,8 @@ DOTS=(
     config/git/config
     config/urxvt/themes/apprentice
     config/urxvt/themes/solarized-light
+    config/systemd/user/lorri.service
+    config/systemd/user/lorri.socket
     ctags
     cvsrc
     ghci
