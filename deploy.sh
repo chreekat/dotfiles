@@ -26,6 +26,8 @@ main () {
         link_dot $i
     done
     # TODO: Make sure permissions are legit. .ssh and .ghci, I'm lookin at you.
+
+    start_user_units
 }
 
 # Subroutines
@@ -80,6 +82,10 @@ link_dot() {
     doo rm -f "$dst"
     doo mkdir -p $(dirname "$dst")
     doo ln -s $EXPORT_DIR/$src $dst
+}
+
+start_user_units () {
+    systemctl --user enable --now lorri.socket
 }
 
 # Initialize globals
