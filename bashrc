@@ -77,9 +77,6 @@ alias up='g st'
 alias xo=xdg-open
 alias xp='xclip -selection clipboard'
 
-# Complete the g alias
-complete -o bashdefault -o default -o nospace -F __git_wrap__git_main g
-
 # Pretty ripgrep, with less
 prg () { rg -p $@ | less; }
 
