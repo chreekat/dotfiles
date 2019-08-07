@@ -7,7 +7,7 @@
   imports =
     [ /etc/nixos/hardware-configuration.nix
       ./system-common.nix
-      ./steam.nix
+      ./games.nix
     ];
 
   # LUKS is where root and swap hide.
