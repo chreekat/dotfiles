@@ -88,8 +88,10 @@ in
       # personal admin tools
         bup
         keepassxc
+        pass
       # development
         bugs
+        cachix
         entr
         universal-ctags
         git
