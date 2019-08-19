@@ -11,6 +11,7 @@ Abolish ogal goal
 Abolish othre other
 Abolish passpharse passphrase
 Abolish phares phrase
+Abolish secnod second
 Abolish shrikning shrinking
 Abolish sitll still
 Abolish taht that
