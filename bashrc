@@ -77,6 +77,17 @@ alias up='g st'
 alias xo=xdg-open
 alias xp='xclip -selection clipboard'
 
+# Unlock keypass for relex
+rpl () {
+    pass show keepass-relex \
+    | keepassxc-cli locate ~/GoogleDrive/RELEX/relex-keepass.kdbx $1;
+}
+rpc () {
+    pass show keepass-relex \
+    | keepassxc-cli clip ~/GoogleDrive/RELEX/relex-keepass.kdbx $1;
+}
+
+
 # Pretty ripgrep, with less
 prg () { rg -p $@ | less; }
 
