@@ -224,6 +224,7 @@ in
   };
 
   services = {
+    fwupd.enable = true;
     keybase.enable = true;
     kbfs.enable = true;
 
