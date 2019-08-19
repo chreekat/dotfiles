@@ -36,7 +36,6 @@
   nix = {
     binaryCaches = [
       "https://cache.nixos.org/"
-      "http://cache.mordor.relexsolutions.com/"
     ];
     trustedBinaryCaches = [
       "http://cache.mordor.relexsolutions.com/"
