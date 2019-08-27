@@ -87,6 +87,15 @@ rpc () {
     | keepassxc-cli clip ~/GoogleDrive/RELEX/relex-keepass.kdbx $1;
 }
 
+# Unlock keypass for personal
+pl () {
+    pass show keepass-chreekat \
+    | keepassxc-cli locate ~/GoogleDrive/chreekat/chreekat.kdbx $1;
+}
+pc () {
+    pass show keepass-chreekat \
+    | keepassxc-cli clip ~/GoogleDrive/chreekat/chreekat.kdbx $1;
+}
 
 # Pretty ripgrep, with less
 prg () { rg -p $@ | less; }
