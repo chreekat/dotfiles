@@ -161,11 +161,17 @@ in
       # social
         gnupg1compat
         mumble
+        signal-desktop
         thunderbird
         weechat
         wire-desktop
+      # ops
+        bind
       # devops
         awscli
+        kubectl
+        kubectx
+        minikube
         nixops
       # .deb is missing as of 2018-09-27 (for 17.09)
         # tor-browser-bundle-bin
