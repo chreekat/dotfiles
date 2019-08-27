@@ -116,7 +116,15 @@ nnoremap <leader><cr> gw
 nnoremap <leader><cr><cr> gwap
 
 " More useful (?) F1
-nnoremap <F1> :b <c-d>
+function! s:toggle_colors()
+    let i = index(g:colors_list, g:colors_name)
+    let n = len(g:colors_list)
+    if i >= 0
+        exec "colorscheme " . g:colors_list[(i + 1) % n]
+    endif
+endfunction
+
+nnoremap <F1> :call <SID>toggle_colors()<cr>
 
 " Jump to vimrc
 nnoremap <F3> :tabe ~/.vimrc<cr>
@@ -220,23 +228,14 @@ augroup END
 ""
 "" Scheme Usability Tweaks
 ""
-"" These don't change the scheme so much as the UI.
-function! s:vimrc_highlighting()
-    hi DiffText ctermfg=Green ctermbg=5
-    hi clear Folded
-    hi DiffDelete ctermfg=Red
-    hi Folded ctermfg=16777200
-    hi Search ctermbg=404055
-    hi MatchParen ctermfg=14 ctermbg=0
-endfunction
 augroup vimrc_highlighting
     au!
-    "au ColorScheme * call s:vimrc_highlighting()
     au ColorScheme * hi Comment ctermfg=137
 augroup END
 doautocmd ColorScheme
 colorscheme apprentice
-"set bg=light
+" Used in toggle_colors below
+let g:colors_list = ["apprentice", "default"]
 
 ""
 "" Things that should be plugins?
