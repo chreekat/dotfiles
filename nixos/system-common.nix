@@ -222,8 +222,7 @@ in
           "--notifier=${pkgs.xsecurelock}/libexec/xsecurelock/dimmer"
           "--transfer-sleep-lock --"
           # This needs to be shared with the value in xsession.
-          "env XSECURELOCK_BLANK_TIMEOUT=10"
-          "    XSECURELOCK_PASSWORD_PROMPT=disco"
+          "env XSECURELOCK_PASSWORD_PROMPT=disco"
           "${pkgs.xsecurelock}/bin/xsecurelock"
         ];
     };

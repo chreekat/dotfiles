@@ -2,10 +2,7 @@ configure_X () {
     # Blank screen after 3 minutes, dim for 10, and then really blank the
     # screen. This can't be done through NixOS yet: the two ways of doing it are
     # xset (procedural) and arguments to Xserver itself.
-    #
-    # Also, the dim timeout needs to be shared with the locker command in
-    # nixos/system-common.nix.
-    xset s 180 10
+    xset s 180 7
     xset s blank
     xsetroot -mod 16 16 -bg "#262626"
 }
