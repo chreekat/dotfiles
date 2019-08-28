@@ -141,7 +141,7 @@ in
         sshuttle
         tree
         unzip
-        # yq # Missing from 17.09
+        yq
       # Xorg (in concert with enabling xmonad)
         arandr
         dmenu
@@ -169,6 +169,7 @@ in
         bind
       # devops
         awscli
+        dive
         kubectl
         kubectx
         minikube
