@@ -160,6 +160,7 @@ in
         youtube-dl
       # social
         gnupg1compat
+        keybase-gui
         mumble
         signal-desktop
         thunderbird
