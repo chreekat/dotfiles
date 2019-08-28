@@ -14,7 +14,8 @@ run_initial_apps () {
     xcape # Backgrounds itself
 
     # So hawt
-    xmonad
+    notion
+    #xmonad
 }
 
 configure_X

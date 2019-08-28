@@ -268,6 +268,9 @@ in
         ignorePalm = true;
       };
       wacom.enable = true;
+      windowManager.notion = {
+        enable = true;
+      };
       windowManager.xmonad = {
         enable = true;
         enableContribAndExtras = true;
