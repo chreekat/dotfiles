@@ -78,24 +78,23 @@ alias xo=xdg-open
 alias xp='xclip -selection clipboard'
 
 # Unlock keypass for relex
-rpl () {
-    pass show keepass-relex \
-    | keepassxc-cli locate ~/GoogleDrive/RELEX/relex-keepass.kdbx $1;
-}
-rpc () {
-    pass show keepass-relex \
-    | keepassxc-cli clip ~/GoogleDrive/RELEX/relex-keepass.kdbx $1;
+__pass_keepass () {
+    pass show "$1" | keepassxc-cli "$2" "$3" "$4"
 }
 
+__pass_keepass_relex () {
+    __pass_keepass keepass-relex "$1" ~/GoogleDrive/RELEX/relex-keepass.kdbx "$2"
+}
+__pass_keepass_personal () {
+    __pass_keepass keepass-chreekat "$1" ~/GoogleDrive/chreekat/chreekat.kdbx "$2"
+}
+
+rpl () { __pass_keepass_relex locate "$1"; }
+rpc () { __pass_keepass_relex clip "$1"; }
+
 # Unlock keypass for personal
-pl () {
-    pass show keepass-chreekat \
-    | keepassxc-cli locate ~/GoogleDrive/chreekat/chreekat.kdbx $1;
-}
-pc () {
-    pass show keepass-chreekat \
-    | keepassxc-cli clip ~/GoogleDrive/chreekat/chreekat.kdbx $1;
-}
+pl () { __pass_keepass_personal locate "$1"; }
+pc () { __pass_keepass_personal clip "$1"; }
 
 # Pretty ripgrep, with less
 prg () { rg -p $@ | less; }
