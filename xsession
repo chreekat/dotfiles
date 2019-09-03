@@ -10,13 +10,15 @@ configure_X () {
 run_initial_apps () {
     # These are services! :o Add them as local services!)
 
+    notify-osd&
+    trayer&
+    sleep 0.5
+
+    nm-applet&
     flameshot &
     xcape # Backgrounds itself
-    trayer&
 
-    # So hawt
     notion
-    #xmonad
 }
 
 configure_X

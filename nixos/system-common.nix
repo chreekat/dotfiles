@@ -146,6 +146,8 @@ in
         arandr
         dmenu
         flameshot
+        networkmanagerapplet
+        notify-osd
         pavucontrol
         rekey
         trayer
