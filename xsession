@@ -12,6 +12,7 @@ run_initial_apps () {
 
     flameshot &
     xcape # Backgrounds itself
+    trayer&
 
     # So hawt
     notion

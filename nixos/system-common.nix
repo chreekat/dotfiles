@@ -148,6 +148,7 @@ in
         flameshot
         pavucontrol
         rekey
+        trayer
         xcape
         xclip
         xorg.xev
