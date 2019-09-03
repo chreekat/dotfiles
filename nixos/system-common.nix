@@ -193,7 +193,7 @@ in
   hardware = {
     bluetooth.enable = true;
     cpu.intel.updateMicrocode = true;
-    pulseaudio.enable = false; # Bad idle cpu usage, disabled for now
+    pulseaudio.enable = true;
     pulseaudio.package = pkgs.pulseaudioFull;
   };
 
