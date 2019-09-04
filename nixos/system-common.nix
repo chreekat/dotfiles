@@ -228,7 +228,7 @@ in
           "--transfer-sleep-lock --"
           # This needs to be shared with the value in xsession.
           "env XSECURELOCK_PASSWORD_PROMPT=disco"
-          "    XSECURELOCK_BLANK_TIMEOUT=5"
+          "    XSECURELOCK_BLANK_TIMEOUT=10"
           "    XSECURELOCK_BLANK_DPMS_STATE=off"
           "${pkgs.xsecurelock}/bin/xsecurelock"
         ];
