@@ -77,3 +77,6 @@
 [submodule "nixos/smos"]
 	path = nixos/smos
 	url = https://github.com/NorfairKing/smos
+[submodule "vim/pack/ALL/start/speeddating"]
+	path = vim/pack/ALL/start/speeddating
+	url = https://github.com/tpope/vim-speeddating
