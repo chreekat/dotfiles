@@ -80,3 +80,6 @@
 [submodule "vim/pack/ALL/start/speeddating"]
 	path = vim/pack/ALL/start/speeddating
 	url = https://github.com/tpope/vim-speeddating
+[submodule "vim/pack/ALL/start/kotlin"]
+	path = vim/pack/ALL/start/kotlin
+	url = https://github.com/udalov/kotlin-vim.git
