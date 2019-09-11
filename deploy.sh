@@ -112,6 +112,8 @@ DOTS=(
     mutt
     muttrc
     nethackrc
+    notion/cfg_notion.lua
+    notion/notion-lock
     npmrc
     offlineimap
     offlineimaprc
