@@ -7,13 +7,13 @@ syn sync fromstart
 
 augroup after_haskell
     autocmd! * <buffer>
-    autocmd BufWritePost <buffer> call s:update_tags()
+    autocmd BufWritePost <buffer> call s:update_tags(expand("<afile>"))
 augroup END
 
-function! s:update_tags()
+function! s:update_tags(fn)
     if filewritable("tags") == 1
         call job_start(
-            \["/bin/sh", "-c", "git ls-files *.hs | xargs fast-tags"],
+            \["/bin/sh", "-c", "fast-tags " . a:fn],
             \{"in_io":"null","out_io":"null","err_io":"null"})
     endif
 endfunc
