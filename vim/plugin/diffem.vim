@@ -17,7 +17,7 @@ function! s:diffEm(rev)
         let commit = system(printf("git rev-parse %s | tail -n 1 | sed -e 's/^\^//'", a:rev))
     else
         " Also handle 'rev..' syntax, which we can do just by removing the dots.
-        dots = match(a:rev, "\.\.$")
+        let dots = match(a:rev, "\.\.$")
         if dots >=0
             let commit = strpart(a:rev, 0, dots - 1)
         endif
@@ -26,7 +26,12 @@ function! s:diffEm(rev)
     function! s:godiff() closure
         exec "Gdiff" l:commit
     endfunc
-    silent let changedFiles = systemlist("git diff --name-only --relative " . l:commit)
+    silent let [gitRoot; _] = systemlist("git rev-parse --show-toplevel")
+    silent let changedFiles =
+        \ map(
+           \ systemlist("git diff --name-only " . l:commit),
+           \ { _, fn -> gitRoot ."/". fn },
+        \)
     if v:shell_error == 0
         command! DiffOff call s:diffOff()
         command! Godiff call s:godiff()
