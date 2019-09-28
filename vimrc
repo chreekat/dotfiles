@@ -231,6 +231,8 @@ augroup END
 augroup vimrc_highlighting
     au!
     au ColorScheme * hi Comment ctermfg=137
+    au ColorScheme default hi Pmenu ctermfg=NONE
+    " ^ Term colorscheme makes this invisible otherwise
 augroup END
 doautocmd ColorScheme
 colorscheme apprentice
