@@ -239,6 +239,10 @@ defbindings("WFrame.toplevel", {
     bdoc("Query for a client window to attach."),
     kpress(META.."A", "mod_query.query_attachclient(_)"),
 
+    bdoc("Switch to next/previous object within the frame."),
+    kpress(ALTMETA.."Tab", "WFrame.switch_next(_)"),
+    kpress(ALTMETA.."Shift+Tab", "WFrame.switch_prev(_)"),
+
     submap(META.."K", {
         -- Display tab numbers when modifiers are released
         submap_wait("ioncore.tabnum.show(_)"),
@@ -254,10 +258,6 @@ defbindings("WFrame.toplevel", {
         kpress("8", "WFrame.switch_nth(_, 7)"),
         kpress("9", "WFrame.switch_nth(_, 8)"),
         kpress("0", "WFrame.switch_nth(_, 9)"),
-
-        bdoc("Switch to next/previous object within the frame."),
-        kpress("N", "WFrame.switch_next(_)"),
-        kpress("P", "WFrame.switch_prev(_)"),
 
         bdoc("Move current object within the frame left/right."),
         kpress("comma", "WFrame.dec_index(_, _sub)", "_sub:non-nil"),
