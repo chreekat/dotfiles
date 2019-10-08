@@ -300,3 +300,6 @@ command! -range=% Hardcopy :<line1>,<line2>w !iconv -f UTF-8 -t 8859_1//TRANSLIT
 noremap <leader>h1- yy2pkv$r-jjv$r-
 noremap <leader>h1# yy2pkv$r#jjv$r#
 noremap <leader>h1" yy2pkv$r"jjv$r"
+noremap <leader>h1= yy2pkv$r=jjv$r=
+
+noremap <leader>h2 yypv$r
