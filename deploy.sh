@@ -112,6 +112,7 @@ DOTS=(
     mutt
     muttrc
     nethackrc
+    notion/cfg_notioncore.lua
     notion/cfg_notion.lua
     notion/notion-lock
     npmrc
