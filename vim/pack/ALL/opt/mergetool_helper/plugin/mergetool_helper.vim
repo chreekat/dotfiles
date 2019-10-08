@@ -48,6 +48,11 @@ nnoremap <SID>CRM :windo diffo<cr>:sb REMOTE<cr>:difft<cr>:4wincmd w<cr>:difft<c
 nmap <leader>crm <SID>CRM
 nmap <leader>cmr <SID>CRM
 
+" bm = BASE, MERGED
+nnoremap <SID>CBM :windo diffo<cr>:sb BASE<cr>:difft<cr>:4wincmd w<cr>:difft<cr>
+nmap <leader>cbm <SID>CBM
+nmap <leader>cmb <SID>CBM
+
 " a = all
 nnoremap <leader>ca :windo difft<cr>
 
