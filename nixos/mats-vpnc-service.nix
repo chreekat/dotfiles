@@ -55,22 +55,22 @@ let
     options = {
       gateway = mkOption {
         default = "";
-        type = types.string;
+        type = types.str;
         description = "Gateway address";
       };
       id = mkOption {
         default = "linux";
-        type = types.string;
+        type = types.str;
         description = "Your group name";
       };
       secret = mkOption {
         default = "";
-        type = types.string;
+        type = types.str;
         description = "Your group secret";
       };
       username = mkOption {
         default = "";
-        type = types.string;
+        type = types.str;
         description = "Your username";
         example = "john.doe@example.com";
       };

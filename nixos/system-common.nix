@@ -201,6 +201,7 @@ in
   };
 
   i18n.consoleUseXkbConfig = true;
+  location.provider = "geoclue2";
 
   networking.networkmanager.enable = true;
 
@@ -222,11 +223,12 @@ in
     };
     xss-lock = {
       enable = true;
+      extraOptions = [
+        "--notifier=${pkgs.xsecurelock}/libexec/xsecurelock/dimmer"
+        "--transfer-sleep-lock"
+      ];
       lockerCommand =
         lib.concatStringsSep " " [
-          "--notifier=${pkgs.xsecurelock}/libexec/xsecurelock/dimmer"
-          "--transfer-sleep-lock --"
-          # This needs to be shared with the value in xsession.
           "env XSECURELOCK_PASSWORD_PROMPT=disco"
           "    XSECURELOCK_BLANK_TIMEOUT=10"
           "    XSECURELOCK_BLANK_DPMS_STATE=off"
@@ -245,9 +247,6 @@ in
     # Redshift + Geoclue
     redshift = {
         enable = true;
-        #provider = "geoclue2"; # Broken for now
-        latitude = "60.2443";
-        longitude = "24.8800";
         temperature = {
           day = 6500;
           night = 6000;
