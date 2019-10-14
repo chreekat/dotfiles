@@ -62,11 +62,6 @@ set suffixes+=,,
 
 packadd! matchit
 
-" | Make s a synonym for z, which I always mistype
-nmap s z
-nmap ss zz
-vmap s z
-
 "" My plugin preferences
 let g:goyo_width = 84
 let g:undotree_WindowLayout = 4
@@ -102,6 +97,14 @@ nnoremap zM :<c-u>let &foldlevel=v:count<cr>
 " Make [[ and ]] support { being somewhere other than column 1
 nnoremap [[ :call search('^\S\&.*{$', 'bsW')<cr>
 nnoremap ]] :call search('^\S\&.*{$', 'sW')<cr>
+
+""
+"" Optimizations
+""
+
+" This is generally fast enough, and less annoying
+syn sync fromstart
+
 
 ""
 "" S H O R T C U T S
