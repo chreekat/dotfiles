@@ -132,7 +132,6 @@ in
         manpages # OBVIOUSLY
         ncdu
         nix-bash-completions
-        nmap
         pandoc
         par
         python
@@ -169,8 +168,10 @@ in
         thunderbird
         weechat
         wire-desktop
-      # ops
+      # networking
         bind
+        nethogs
+        nmap
       # devops
         awscli
         dive
