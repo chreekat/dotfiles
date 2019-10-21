@@ -206,14 +206,18 @@ in
 
   networking.networkmanager.enable = true;
 
-  # Let commands use these caches if they want.
-  nix.trustedBinaryCaches = [
-    "http://devdatabrary2.home.nyu.edu:5000/"
-  ];
-  nix.binaryCachePublicKeys = [
-    "devdatabrary2.home.nyu.edu-1:xpI1XOvf7czNv0+0/1ajpgotpOnUMTUBBF9v97D5/yk="
-    "databrary.cachix.org-1:jOz34d80mzekR2pjkK9JCczPi2TKeifQ/OHYcg8I6tg="
-  ];
+  nix = {
+    # Needed for various good things
+    trustedUsers = ["b"];
+    # Let commands use these caches if they want.
+    trustedBinaryCaches = [
+      "http://devdatabrary2.home.nyu.edu:5000/"
+    ];
+    binaryCachePublicKeys = [
+      "devdatabrary2.home.nyu.edu-1:xpI1XOvf7czNv0+0/1ajpgotpOnUMTUBBF9v97D5/yk="
+      "databrary.cachix.org-1:jOz34d80mzekR2pjkK9JCczPi2TKeifQ/OHYcg8I6tg="
+    ];
+  };
 
   ## Configure programs.
   programs = {
@@ -240,6 +244,7 @@ in
 
   services = {
     fwupd.enable = true;
+    localtime.enable = true;
     keybase.enable = true;
     kbfs.enable = true;
 
@@ -294,8 +299,6 @@ in
       displayManager.sessionCommands = "rekey";
     };
   };
-
-  time.timeZone = "Europe/Helsinki";
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.extraGroups.b = {

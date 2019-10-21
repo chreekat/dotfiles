@@ -39,6 +39,7 @@
     ];
     trustedBinaryCaches = [
       "http://cache.mordor.relexsolutions.com/"
+      "s3://isengard-store?region=eu-central-1"
     ];
     binaryCachePublicKeys = [
       "nixcache.devs.relexsolutions.com-1:PRveyTUC6M1NGXo4Dg29CXsdc+KQOPPa7bRoXeLgGyI="
