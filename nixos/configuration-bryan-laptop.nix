@@ -48,8 +48,6 @@
 
   nixpkgs.overlays = [ (import ./relex-overlays.nix) ];
 
-  #relex.vpn.username = "bryan.richter";
-
   services = {
     # RELEX policy
     clamav = {

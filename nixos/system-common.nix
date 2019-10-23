@@ -172,6 +172,7 @@ in
         bind
         nethogs
         nmap
+        speedometer
       # devops
         awscli
         dive
