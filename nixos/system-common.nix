@@ -244,10 +244,17 @@ in
   };
 
   services = {
+    fcron = {
+      enable = true;
+      systab = ''
+        %daily,bootrun 0 12 nix-collect-garbage --delete-older-than 2w
+        %daily,bootrun 0 13 nixos-rebuild switch --upgrade
+      '';
+    };
     fwupd.enable = true;
-    localtime.enable = true;
     keybase.enable = true;
     kbfs.enable = true;
+    localtime.enable = true;
 
     printing.enable = true;
 
