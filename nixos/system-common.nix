@@ -208,6 +208,11 @@ in
   networking.networkmanager.enable = true;
 
   nix = {
+    gc = {
+      automatic = true;
+      dates = "11:30";
+      options = "--delete-older-than 2w";
+    };
     # Needed for various good things
     trustedUsers = ["b"];
     # Let commands use these caches if they want.
@@ -244,13 +249,6 @@ in
   };
 
   services = {
-    fcron = {
-      enable = true;
-      systab = ''
-        %daily,bootrun 0 12 nix-collect-garbage --delete-older-than 2w
-        %daily,bootrun 0 13 nixos-rebuild switch --upgrade
-      '';
-    };
     fwupd.enable = true;
     keybase.enable = true;
     kbfs.enable = true;
@@ -307,6 +305,15 @@ in
       displayManager.sessionCommands = "rekey";
     };
   };
+
+
+  system = {
+    autoUpgrade = {
+      enable = true;
+      dates = "12:30";
+    };
+  };
+
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.extraGroups.b = {
