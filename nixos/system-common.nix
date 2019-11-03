@@ -323,6 +323,6 @@ in
     isNormalUser = true;
     uid = 1000;
     group = "b";
-    extraGroups = ["users" "wheel" "video"];
+    extraGroups = ["users" "wheel" "video" "systemd-journal"];
   };
 }
