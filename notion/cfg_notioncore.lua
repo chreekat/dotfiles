@@ -145,6 +145,9 @@ defbindings("WMPlex.toplevel", {
     bdoc("Print screen"),
     kpress("Print", "notioncore.exec_on(_, 'flameshot gui')"),
 
+    bdoc("Firefox"),
+    kpress(ALTMETA.."F5", "notioncore.exec_on(_, 'firefox')"),
+
     bdoc("Lock screen"),
     kpress(META.."L", "notioncore.exec_on(_, notioncore.lookup_script('notion-lock'))"),
 
@@ -166,9 +169,9 @@ defbindings("WMPlex.toplevel", {
     bdoc("Query for host to connect to with SSH."),
     kpress(ALTMETA.."F4", "mod_query.query_ssh(_, ':ssh')"),
 
-    bdoc("Query for file to edit."),
-    kpress(ALTMETA.."F5",
-           "mod_query.query_editfile(_, 'run-mailcap --action=edit')"),
+    --bdoc("Query for file to edit."),
+    --kpress(ALTMETA.."F5",
+    --       "mod_query.query_editfile(_, 'run-mailcap --action=edit')"),
 
     bdoc("Query for file to view."),
     kpress(ALTMETA.."F6",
