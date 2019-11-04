@@ -51,6 +51,7 @@
     st = status --short -b
     which = ls-tree -r HEAD --name-only
     wt = worktree
+    checkouts = !sh -c "'git reflog | grep checkout: | perl -ne '\"'\"'/moving from (\\S*)/; print $1, \"\n\"'\"'\"''" -
 [rebase]
     autosquash = true
 [fetch]
