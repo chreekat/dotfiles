@@ -142,6 +142,9 @@ defbindings("WMPlex.toplevel", {
     bdoc("Toggle tag of current object."),
     kpress(META.."T", "WRegion.set_tagged(_sub, 'toggle')", "_sub:non-nil"),
 
+    bdoc("Print screen"),
+    kpress("Print", "notioncore.exec_on(_, 'flameshot gui')"),
+
     bdoc("Lock screen"),
     kpress(META.."L", "notioncore.exec_on(_, notioncore.lookup_script('notion-lock'))"),
 
