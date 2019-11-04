@@ -173,6 +173,7 @@ in
         nethogs
         nmap
         speedometer
+        tcpdump
       # devops
         awscli
         dive
