@@ -114,6 +114,7 @@ DOTS=(
     nethackrc
     notion/cfg_notioncore.lua
     notion/cfg_notion.lua
+    notion/look.lua
     notion/notion-lock
     npmrc
     offlineimap
