@@ -119,6 +119,7 @@ in
         vlc
       # linux
         (sox.override { enableLame = true; })
+        atop
         bc
         fd
         file
