@@ -210,7 +210,7 @@ nmap <leader>* :grep -w <c-r><c-w><cr>
 augroup vimrc
     au!
     au BufRead ~/.hledger.journal runtime hledger-main-journal.vim
-    au BufRead ~/IN.in runtime IN.in.vim
+    au BufRead IN.in runtime IN.in.vim
     " Show context in quickfix for GHC's sake
     au BufReadPost quickfix setl so=3
 
