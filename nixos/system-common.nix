@@ -94,6 +94,7 @@ in
         cachix
         entr
         universal-ctags
+        ghcid
         git
         (import ./lorri {})
         nix-prefetch-scripts
