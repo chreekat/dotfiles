@@ -196,7 +196,7 @@ nmap >q >p']gq'[
 nmap >Q >P']gq'[
 
 " Trim whitespace thx (and delete blank lines at EOF)
-command! -range Trim <line1>,<line2>s/\s\+$\|\n\+\%$//e<bar>
+command! -range Trim <line1>,<line2>s/\s\+$\|\n\+\%$//e
 command! TRIM %Trim
 
 " Grep *
