@@ -274,6 +274,8 @@ in
         ACTION=="add", SUBSYSTEM=="backlight", KERNEL=="intel_backlight", RUN+="${pkgs.coreutils}/bin/chmod g+w /sys/class/backlight/%k/brightness"
     '';
 
+    unclutter-xfixes.enable = true;
+
     urxvtd.enable = true;
 
     # Enable and configure the X11 windowing system.
