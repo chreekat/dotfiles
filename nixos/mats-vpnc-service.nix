@@ -5,14 +5,19 @@ with lib;
 let
 
   localGatewaySave = "/var/run/vpnc/LOCAL_GATEWAY";
-  buildVpnc = key: value: ''
-    IPSec gateway ${value.gateway}
-    IPSec ID ${value.id}
-    IPSec secret ${value.secret}
-    Xauth username ${value.username}
-    Password helper ${pkgs.systemd}/bin/systemd-ask-password
-    Script ${pkgs.vpnc}/etc/vpnc/vpnc-script
-  '';
+  buildVpnc = key: value: {
+    name = "vpnc/${key}.conf";
+    value = {
+      text = ''
+        IPSec gateway ${value.gateway}
+        IPSec ID ${value.id}
+        IPSec secret ${value.secret}
+        Xauth username ${value.username}
+        Password helper ${pkgs.systemd}/bin/systemd-ask-password
+        Script ${pkgs.vpnc}/etc/vpnc/vpnc-script
+        '';
+    };
+  };
   up = pkgs.writeScript "up" ''
     #!${pkgs.bash}/bin/bash
     PATH=${makeBinPath [pkgs.nettools pkgs.iproute]}:$PATH
@@ -91,7 +96,7 @@ in
   config = mkIf (cfg.servers != {}) {
     environment.systemPackages = [ pkgs.vpnc ];
     boot.kernelModules = [ "tun" ];
-    networking.vpnc.services = mapAttrs buildVpnc cfg.servers;
+    environment.etc = attrsets.mapAttrs' buildVpnc cfg.servers;
     systemd.services = listToAttrs (mapAttrsFlatten buildService cfg.servers);
   };
 }
