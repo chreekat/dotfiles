@@ -46,8 +46,6 @@
     ];
   };
 
-  nixpkgs.overlays = [ (import ./relex-overlays.nix) ];
-
   services = {
     # RELEX policy
     clamav = {
