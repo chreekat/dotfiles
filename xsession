@@ -5,6 +5,8 @@ configure_X () {
     xset s 180 7
     xset s blank
     xsetroot -mod 16 16 -bg "#262626"
+
+    autorandr -c
 }
 
 run_initial_apps () {
