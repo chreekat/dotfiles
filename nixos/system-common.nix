@@ -128,7 +128,8 @@ in
         handbrake # Rips DVD to video files
         imagemagick
         inkscape
-        tor-browser-bundle-bin
+        # tor-browser-bundle-bin
+        # ^ error: cannot download tor-browser-linux64-9.0.2_en-US.tar.xz from any mirror
         transmission
         vlc
       # linux
