@@ -222,7 +222,12 @@ in
   i18n.consoleUseXkbConfig = true;
   location.provider = "geoclue2";
 
-  networking.networkmanager.enable = true;
+  networking.networkmanager = {
+    enable = true;
+    packages = [
+      pkgs.openconnect_pa
+    ];
+  };
 
   nix = {
     gc = {
