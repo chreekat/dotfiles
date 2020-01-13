@@ -44,7 +44,7 @@ main () {
     max=$(cat /sys/class/backlight/intel_backlight/max_brightness)
     cur=$(cat $control_file)
 
-    echo $(calc_new_brightness $direction $max $cur) > $control_file
+    echo $(calc_new_brightness $direction $max $cur) | tee $control_file
 }
 
 main $@
