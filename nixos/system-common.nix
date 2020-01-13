@@ -74,8 +74,20 @@ in
       cabal-install
       cabal2nix
       fast-tags
-      ghc
+      # Haskell Platform-lite
+      (ghcWithPackages (p: with p; [
+        QuickCheck
+        containers
+        nonempty-containers
+        pretty-simple
+        text
+        megaparsec
+        template-haskell
+        servant
+        scalpel-core
+        ]))
       hasktags
+      hlint
       hledger
       hledger-ui
       hpack
