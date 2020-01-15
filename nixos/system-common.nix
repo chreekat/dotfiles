@@ -78,13 +78,14 @@ in
       (ghcWithPackages (p: with p; [
         QuickCheck
         containers
+        megaparsec
         nonempty-containers
         pretty-simple
-        text
-        megaparsec
-        template-haskell
-        servant
         scalpel-core
+        servant
+        template-haskell
+        text
+        turtle
         ]))
       hasktags
       hlint
