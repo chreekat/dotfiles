@@ -31,7 +31,7 @@ calc_new_brightness () {
             calc="min($cur + $incr, $max)"
             ;;
         down)
-            calc="max($cur - $incr, 0)"
+            calc="max($cur - $incr, $incr)"
             ;;
     esac
     perl -mList::Util=min,max -e "print $calc"
