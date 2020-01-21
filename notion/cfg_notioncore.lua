@@ -84,9 +84,9 @@ defbindings("WScreen", {
     -- the managing group of that window. The right/left directions are
     -- used instead of next/prev, because they work better in conjunction
     -- with tilings.
-    kpress(META.."Tab", "ioncore.goto_next(_chld, 'right')",
+    kpress(ALTMETA.."Tab", "ioncore.goto_next(_chld, 'right')",
            "_chld:non-nil"),
-    submap(META.."K", {
+    submap(ALTMETA.."K", {
         bdoc("Backward-circulate focus."),
         kpress("AnyModifier+Tab", "ioncore.goto_next(_chld, 'left')",
                "_chld:non-nil"),
@@ -246,8 +246,8 @@ defbindings("WFrame.toplevel", {
     kpress(META.."A", "mod_query.query_attachclient(_)"),
 
     bdoc("Switch to next/previous object within the frame."),
-    kpress(ALTMETA.."Tab", "WFrame.switch_next(_)"),
-    kpress(ALTMETA.."Shift+Tab", "WFrame.switch_prev(_)"),
+    kpress(META.."Tab", "WFrame.switch_next(_)"),
+    kpress(META.."Shift+Tab", "WFrame.switch_prev(_)"),
 
     submap(META.."K", {
         -- Display tab numbers when modifiers are released
