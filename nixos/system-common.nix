@@ -106,6 +106,7 @@ in
       # development
         bugs
         cachix
+        direnv
         entr
         universal-ctags
         ghcid
