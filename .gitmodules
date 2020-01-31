@@ -70,10 +70,6 @@
 [submodule "vim/pack/ALL/start/dhall-syntax"]
 	path = vim/pack/ALL/start/dhall-syntax
 	url = https://github.com/vmchale/dhall-vim
-[submodule "nixos/lorri"]
-	path = nixos/lorri
-	url = https://github.com/target/lorri
-        branch = rolling-release
 [submodule "nixos/smos"]
 	path = nixos/smos
 	url = https://github.com/NorfairKing/smos

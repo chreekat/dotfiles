@@ -52,7 +52,7 @@ let
     '';
 in
 {
-  imports = [ ./lorri/direnv/nixos.nix ];
+  imports = [];
   boot = {
     # Use the systemd-boot EFI boot loader.
     loader.systemd-boot.enable = true;
@@ -110,7 +110,7 @@ in
         universal-ctags
         ghcid
         git
-        (import ./lorri {})
+        lorri
         nix-prefetch-scripts
         nix-prefetch
         nix-prefetch-github
