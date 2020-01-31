@@ -5,6 +5,7 @@
     /etc/nixos/hardware-configuration.nix
     ./system-common.nix
     ./mats-vpnc-service.nix
+    ./isengard-integration-tests.nix
   ];
 
   # Need all ram for building...
