@@ -171,6 +171,7 @@ nnoremap \w "+yiW
 command! -range=% Y <line1>,<line2>y+
 
 function! VimrcIndentPaste(count, reg, dent, dir)
+    let l:winline = winline()
     setl nofoldenable
     exec 'normal "' . a:reg . ']' . a:dir
     let c = a:count
@@ -179,6 +180,8 @@ function! VimrcIndentPaste(count, reg, dent, dir)
         let c = c - 1
     endwhile
     set foldenable
+    " Reset view
+    exec "normal zt" . l:winline . "\<c-y>"
 endfu
 
 for dent in ['>','<']
