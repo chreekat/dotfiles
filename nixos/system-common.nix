@@ -80,6 +80,7 @@ in
         containers
         megaparsec
         nonempty-containers
+        placeholders
         pretty-simple
         scalpel-core
         servant
