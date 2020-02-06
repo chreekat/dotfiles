@@ -17,7 +17,6 @@ Abolish sitll still
 Abolish taht that
 Abolish teh the
 Abolish watned wanted
-Abolish wolud would
-Abolish woudl would
+Abolish {w,sh}o{udl,lud} {}ould
 Abolish {combina,estima,sugges,solu,migra}tino{s,} {}tion{}
-Abolish {our,them}selevs {}selves
+Abolish {our,them}s{ele,le}vs {}selves

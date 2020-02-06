@@ -52,7 +52,7 @@ set splitbelow
 " Ignored Haskell suffixes
 set suffixes+=.dyn_hi-boot,hi-boot,o-boot,hs-boot
 " Prefer things with suffixes
-set suffixes+=,,
+set suffixes+=,
 
 "" My anti-preferences
 " I used to think 'useopen' was a decent default, but it messes up :stag and
@@ -77,7 +77,6 @@ let g:sql_type_default = 'pgsql'
 set autoindent
 set formatoptions+=nl
 set shiftwidth=4
-set softtabstop=4
 set textwidth=80
 
 ""
