@@ -79,3 +79,6 @@
 [submodule "vim/pack/ALL/start/kotlin"]
 	path = vim/pack/ALL/start/kotlin
 	url = https://github.com/udalov/kotlin-vim.git
+[submodule "vim/pack/ALL/start/gitgutter"]
+	path = vim/pack/ALL/start/gitgutter
+	url = https://github.com/airblade/vim-gitgutter
