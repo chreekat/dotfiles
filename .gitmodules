@@ -46,9 +46,6 @@
 [submodule "vim/pack/ALL/start/vim-repeat"]
 	path = vim/pack/ALL/start/repeat
 	url = https://github.com/tpope/vim-repeat/
-[submodule "vim/pack/ALL/start/gfm-syntax"]
-	path = vim/pack/ALL/start/gfm-syntax
-	url = https://github.com/rhysd/vim-gfm-syntax
 [submodule "vim/pack/ALL/start/ledger"]
 	path = vim/pack/ALL/start/ledger
 	url = https://github.com/ledger/vim-ledger
@@ -82,3 +79,6 @@
 [submodule "vim/pack/ALL/start/gitgutter"]
 	path = vim/pack/ALL/start/gitgutter
 	url = https://github.com/airblade/vim-gitgutter
+[submodule "vim/pack/ALL/start/markdown-devel"]
+	path = vim/pack/ALL/start/markdown-devel
+	url = https://github.com/tpope/vim-markdown
