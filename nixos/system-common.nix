@@ -95,7 +95,7 @@ in
       hpack
       stack
       stylish-haskell
-      (callPackage /home/b/Projects/usort/package.nix {})
+      (pkgs.haskell.lib.dontCheck (callPackage /home/b/Projects/usort/package.nix {}))
     ]) ++ (with pkgs; [
       # categories suck
         anki
