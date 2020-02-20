@@ -70,6 +70,7 @@ alias jb=jobs
 alias la='ls -a'
 alias n.='ls -ad .*'
 alias n=ls
+alias nb=nix-build
 alias ns=nix-shell
 alias pd=pushd
 alias rg='rg --colors path:fg:cyan --colors path:style:bold'
