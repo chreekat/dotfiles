@@ -53,6 +53,7 @@ set splitbelow
 set suffixes+=.dyn_hi-boot,hi-boot,o-boot,hs-boot
 " Prefer things with suffixes
 set suffixes+=,
+set updatetime=100
 
 "" My anti-preferences
 " I used to think 'useopen' was a decent default, but it messes up :stag and
