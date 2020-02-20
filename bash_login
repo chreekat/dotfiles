@@ -11,6 +11,6 @@ fi
 
 # Interactive logins also need to source .bashrc
 
-if [ "${PS1:+x}" = x ] && ( echo $- | grep -q i ); then
+if echo $- | grep -q i; then
     . ~/.bashrc
 fi
