@@ -64,6 +64,8 @@ in
     cleanTmpDir = true;
   };
 
+  console.useXkbConfig = true;
+
   # Include man section 3. >:(
   documentation.dev.enable = true;
 
@@ -94,7 +96,7 @@ in
       hledger-ui
       hpack
       stack
-      stylish-haskell
+      # stylish-haskell # broken on 2020-02-21
       (pkgs.haskell.lib.dontCheck (callPackage /home/b/Projects/usort/package.nix {}))
     ]) ++ (with pkgs; [
       # categories suck
@@ -222,7 +224,6 @@ in
     pulseaudio.package = pkgs.pulseaudioFull;
   };
 
-  i18n.consoleUseXkbConfig = true;
   location.provider = "geoclue2";
 
   networking.networkmanager = {
@@ -307,11 +308,6 @@ in
       autoRepeatDelay = 300;
       autoRepeatInterval = 10;
       libinput.enable = true;
-      multitouch = {
-        enable = true;
-        ignorePalm = true;
-      };
-      wacom.enable = true;
       windowManager.notion = {
         enable = true;
       };
