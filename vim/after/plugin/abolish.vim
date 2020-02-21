@@ -20,3 +20,4 @@ Abolish watned wanted
 Abolish {w,sh}o{udl,lud} {}ould
 Abolish {combina,estima,sugges,solu,migra}tino{s,} {}tion{}
 Abolish {our,them}s{ele,le}vs {}selves
+Abolish axniety anxiety
