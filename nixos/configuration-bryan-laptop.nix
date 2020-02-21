@@ -12,13 +12,12 @@
   boot.tmpOnTmpfs = false;
 
   # LUKS
-  boot.initrd.luks.devices = [
-    {
-      name = "root";
+  boot.initrd.luks.devices = {
+    root = {
       device = "/dev/sda2";
       preLVM = true;
-    }
-  ];
+    };
+  };
 
   networking = {
     hostName = "bryan-laptop";
