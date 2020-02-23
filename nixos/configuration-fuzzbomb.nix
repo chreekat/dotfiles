@@ -1,21 +1,30 @@
 { config, pkgs, ... }:
 
-{
-  networking.hostName = "fuzzbomb";
-  system.stateVersion = "17.03";
+let
+  statefulness = {
+    # LUKS is where root and swap hide.
+    boot.initrd.luks.devices.crypted.device = "/dev/disk/by-uuid/a201e00a-e97b-4539-bc9b-462bba2570c6";
 
-  imports =
-    [ /etc/nixos/hardware-configuration.nix
-      ./system-common.nix
-      ./games.nix
-    ];
+    networking.hostName = "fuzzbomb";
 
-  # LUKS is where root and swap hide.
-  boot.initrd.luks.devices.crypted.device = "/dev/disk/by-uuid/a201e00a-e97b-4539-bc9b-462bba2570c6";
+    system.stateVersion = "17.03";
+
+  };
+  imports = [
+    /etc/nixos/hardware-configuration.nix
+    ./system-common.nix
+    ./games.nix
+  ];
+in
+statefulness // {
+  inherit imports;
 
   hardware.cpu.intel.updateMicrocode = true;
 
-  users.users.b.extraGroups = ["docker"];
+  services.transmission.enable = true;
+
+  users.users.b.extraGroups = ["docker" "transmission"];
+
   virtualisation.docker = {
     enable = true;
     enableOnBoot = false;
