@@ -239,6 +239,16 @@ augroup vimrc_highlighting
     au ColorScheme * hi Comment ctermfg=137
     au ColorScheme default hi Pmenu ctermfg=NONE
     " ^ Term colorscheme makes this invisible otherwise
+    au ColorScheme default hi Folded NONE
+    au ColorScheme default hi Folded ctermfg=247
+    au ColorScheme default hi DiffAdd NONE
+    au ColorScheme default hi DiffDelete NONE
+    au ColorScheme default hi DiffText NONE
+    au ColorScheme default hi DiffChange NONE
+    au ColorScheme default hi DiffAdd ctermfg=28 cterm=reverse
+    au ColorScheme default hi DiffDelete ctermfg=203 cterm=reverse
+    au ColorScheme default hi DiffText ctermfg=173 cterm=reverse
+    au ColorScheme default hi DiffChange ctermfg=104 cterm=reverse
 augroup END
 doautocmd ColorScheme
 colorscheme apprentice
