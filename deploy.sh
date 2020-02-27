@@ -122,7 +122,6 @@ DOTS=(
     terminfo
     tmux
     tmux.conf
-    toprc
     vim
     vimrc
     weechat
