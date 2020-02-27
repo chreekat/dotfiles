@@ -2,83 +2,83 @@
 	path = mutt/lunatic-mutt
 	url = git@github.com:chreekat/lunatic-mutt.git
 [submodule "vim/pack/ALL/start/undotree"]
-	path = vim/pack/all/start/undotree
+	path = vim/pack/start/start/undotree
 	url = git://github.com/mbbill/undotree.git
 [submodule "vim/pack/ALL/start/html5.vim"]
-	path = vim/pack/all/start/html5.vim
+	path = vim/pack/start/start/html5.vim
 	url = git://github.com/othree/html5.vim.git
 [submodule "vim/pack/ALL/start/vim-abolish"]
-	path = vim/pack/all/start/abolish
+	path = vim/pack/start/start/abolish
 	url = git://github.com/tpope/vim-abolish.git
 [submodule "vim/pack/ALL/start/vim-eunuch"]
-	path = vim/pack/all/start/eunuch
+	path = vim/pack/start/start/eunuch
 	url = git://github.com/tpope/vim-eunuch.git
 [submodule "vim/pack/ALL/start/vim-flagship"]
-	path = vim/pack/all/start/flagship
+	path = vim/pack/start/start/flagship
 	url = git://github.com/tpope/vim-flagship.git
 [submodule "vim/pack/ALL/start/vim-obsession"]
-	path = vim/pack/all/start/obsession
+	path = vim/pack/start/start/obsession
 	url = git://github.com/tpope/vim-obsession.git
 [submodule "vim/pack/ALL/start/VisIncr"]
-	path = vim/pack/all/start/VisIncr
+	path = vim/pack/start/start/VisIncr
 	url = git://github.com/vim-scripts/VisIncr.git
 [submodule "vim/pack/ALL/start/goyo.vim"]
-	path = vim/pack/all/start/goyo.vim
+	path = vim/pack/start/start/goyo.vim
 	url = git://github.com/junegunn/goyo.vim.git
 [submodule "vim/pack/ALL/start/NrrwRgn"]
-	path = vim/pack/all/start/NrrwRgn
+	path = vim/pack/start/start/NrrwRgn
 	url = git://github.com/chrisbra/NrrwRgn.git
 [submodule "vim/pack/ALL/start/vim-coffee-script"]
-	path = vim/pack/all/start/coffee-script
+	path = vim/pack/start/start/coffee-script
 	url = https://github.com/kchmck/vim-coffee-script
 [submodule "vim/pack/ALL/start/vimin"]
-	path = vim/pack/all/start/vimin
+	path = vim/pack/start/start/vimin
 	url = git@github.com:chreekat/vimin.git
 [submodule "vim/pack/ALL/start/Apprentice"]
-	path = vim/pack/all/start/Apprentice
+	path = vim/pack/start/start/Apprentice
 	url = https://github.com/romainl/Apprentice
 [submodule "vim/pack/ALL/start/vim-fugitive"]
-	path = vim/pack/all/start/fugitive
+	path = vim/pack/start/start/fugitive
 	url = git://github.com/tpope/vim-fugitive.git
 [submodule "vim/pack/ALL/start/pgsql.vim"]
-	path = vim/pack/all/start/pgsql.vim
+	path = vim/pack/start/start/pgsql.vim
 	url = https://github.com/exu/pgsql.vim
 [submodule "vim/pack/ALL/start/vim-repeat"]
-	path = vim/pack/all/start/repeat
+	path = vim/pack/start/start/repeat
 	url = https://github.com/tpope/vim-repeat/
 [submodule "vim/pack/ALL/start/ledger"]
-	path = vim/pack/all/start/ledger
+	path = vim/pack/start/start/ledger
 	url = https://github.com/ledger/vim-ledger
 [submodule "vim/pack/ALL/start/traces"]
-	path = vim/pack/all/start/traces
+	path = vim/pack/start/start/traces
 	url = https://github.com/markonm/traces.vim
 [submodule "vim/pack/ALL/start/vim-characterize"]
-	path = vim/pack/all/start/characterize
+	path = vim/pack/start/start/characterize
 	url = https://github.com/tpope/vim-characterize
 [submodule "vim/pack/ALL/start/editorconfig"]
-	path = vim/pack/all/start/editorconfig
+	path = vim/pack/start/start/editorconfig
 	url = https://github.com/editorconfig/editorconfig-vim.git
 [submodule "vim/pack/ALL/start/passhole"]
-	path = vim/pack/all/start/passhole
+	path = vim/pack/start/start/passhole
 	url = git@github.com:chreekat/passhole
 [submodule "vim/pack/ALL/start/elm-vim"]
-	path = vim/pack/all/start/elm-vim
+	path = vim/pack/start/start/elm-vim
 	url = https://github.com/ElmCast/elm-vim
 [submodule "vim/pack/ALL/start/dhall-syntax"]
-	path = vim/pack/all/start/dhall-syntax
+	path = vim/pack/start/start/dhall-syntax
 	url = https://github.com/vmchale/dhall-vim
 [submodule "nixos/smos"]
 	path = nixos/smos
 	url = https://github.com/NorfairKing/smos
 [submodule "vim/pack/ALL/start/speeddating"]
-	path = vim/pack/all/start/speeddating
+	path = vim/pack/start/start/speeddating
 	url = https://github.com/tpope/vim-speeddating
 [submodule "vim/pack/ALL/start/kotlin"]
-	path = vim/pack/all/start/kotlin
+	path = vim/pack/start/start/kotlin
 	url = https://github.com/udalov/kotlin-vim.git
 [submodule "vim/pack/ALL/start/gitgutter"]
-	path = vim/pack/all/start/gitgutter
+	path = vim/pack/start/start/gitgutter
 	url = https://github.com/airblade/vim-gitgutter
 [submodule "vim/pack/ALL/start/markdown-devel"]
-	path = vim/pack/all/start/markdown-devel
+	path = vim/pack/start/start/markdown-devel
 	url = https://github.com/tpope/vim-markdown
