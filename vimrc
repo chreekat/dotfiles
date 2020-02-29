@@ -127,7 +127,8 @@ function! s:toggle_colors()
     endif
 endfunction
 
-nnoremap <F1> :call <SID>toggle_colors()<cr>
+noremap <F1> :call <SID>toggle_colors()<cr>
+imap <F1> <c-o><F1>
 
 " Jump to vimrc
 nnoremap <F3> :tabe ~/.vimrc<cr>
