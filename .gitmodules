@@ -57,7 +57,7 @@
 	url = https://github.com/tpope/vim-characterize
 [submodule "vim/pack/ALL/start/editorconfig"]
 	path = vim/pack/start/start/editorconfig
-	url = https://github.com/editorconfig/editorconfig-vim.git
+	url = git@github.com:chreekat/editorconfig-vim.git
 [submodule "vim/pack/ALL/start/passhole"]
 	path = vim/pack/start/start/passhole
 	url = git@github.com:chreekat/passhole
