@@ -269,6 +269,9 @@ in
           "env XSECURELOCK_PASSWORD_PROMPT=disco"
           "    XSECURELOCK_BLANK_TIMEOUT=10"
           "    XSECURELOCK_BLANK_DPMS_STATE=off"
+          # Need to escape the % because they get interpreted by systemd.
+          "    XSECURELOCK_DATETIME_FORMAT='%%a %%d %%b %%Y, %%R %%Z, W%%V'"
+          "    XSECURELOCK_SHOW_DATETIME=1"
           "${pkgs.xsecurelock}/bin/xsecurelock"
         ];
     };
