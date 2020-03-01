@@ -21,7 +21,13 @@ statefulness // {
 
   hardware.cpu.intel.updateMicrocode = true;
 
-  services.transmission.enable = true;
+  services.transmission = {
+    enable = true;
+    settings = {
+      ratio-limit-enabled = true;
+      ratio-limit = 2.5;
+    };
+  };
 
   users.users.b.extraGroups = ["docker" "transmission"];
 
