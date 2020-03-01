@@ -252,7 +252,6 @@ augroup vimrc_highlighting
     au ColorScheme default hi DiffText ctermfg=173 cterm=reverse
     au ColorScheme default hi DiffChange ctermfg=104 cterm=reverse
 augroup END
-doautocmd ColorScheme
 colorscheme apprentice
 " Used in toggle_colors below
 let g:colors_list = ["apprentice", "default"]
