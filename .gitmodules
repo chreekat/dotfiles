@@ -58,6 +58,7 @@
 [submodule "vim/pack/ALL/start/editorconfig"]
 	path = vim/pack/start/start/editorconfig
 	url = git@github.com:chreekat/editorconfig-vim.git
+	branch = local-changes
 [submodule "vim/pack/ALL/start/passhole"]
 	path = vim/pack/start/start/passhole
 	url = git@github.com:chreekat/passhole
