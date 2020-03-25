@@ -279,7 +279,6 @@ in
 
   services = {
     autorandr.enable = true;
-    blueman.enable = true;
     fwupd.enable = true;
     keybase.enable = true;
     kbfs.enable = true;

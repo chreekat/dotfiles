@@ -19,7 +19,6 @@ run_initial_apps () {
     nm-applet&
     flameshot &
     xcape # Backgrounds itself
-    blueman-tray # Ditto
 
     notion
 }
