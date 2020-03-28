@@ -122,9 +122,10 @@ in
         tmux
         vim_configurable
       # media
+        aegisub
         audacity
         beets
-        digikam
+        #digikam
         ghostscript
         gimp
         gitAndTools.git-annex
@@ -185,8 +186,9 @@ in
         gnupg1compat
         keybase-gui
         mumble
+        riot-desktop
         signal-desktop
-        thunderbird
+        #thunderbird
         weechat
         wire-desktop
       # networking
