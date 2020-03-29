@@ -1,11 +1,6 @@
 configure_X () {
-    # Blank screen after 3 minutes, dim for 10, and then really blank the
-    # screen. This can't be done through NixOS yet: the two ways of doing it are
-    # xset (procedural) and arguments to Xserver itself.
-    xset s 180 7
-    xset s blank
+    /home/b/bin/scr on
     xsetroot -mod 16 16 -bg "#262626"
-
     autorandr -c
 }
 
