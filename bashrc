@@ -67,6 +67,7 @@ alias f=fg
 alias g=git
 alias j=jobs
 alias jb=jobs
+alias cp='cp --reflink=auto'
 alias la='ls -a'
 alias n.='ls -ad .*'
 alias n=ls
