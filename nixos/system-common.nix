@@ -64,7 +64,10 @@ in
     cleanTmpDir = true;
   };
 
-  console.useXkbConfig = true;
+  # 20.03
+  # console.useXkbConfig = true;
+  # 19.09
+  i18n.consoleUseXkbConfig = true;
 
   # Include man section 3. >:(
   documentation.dev.enable = true;
