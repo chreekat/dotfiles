@@ -21,14 +21,6 @@
 
   networking = {
     hostName = "bryan-laptop";
-    hosts = {
-      # My PC environments
-      "10.23.12.64" = [
-        "bryan-legacy.relexsolutions.com"
-        "bryan-scale-out.relexsolutions.com"
-        "bryan-scale-out-nix.relexsolutions.com"
-      ];
-    };
     search = [ "relex.fi" "relexsolutions.com" ];
   };
 
