@@ -79,24 +79,64 @@ alias up='g st'
 alias xo=xdg-open
 alias xp='xclip -selection clipboard'
 
-# Unlock keypass for relex
+#
+# Fetch keys from keepass, via pass.
+#
+# "But why?" Because keepass works on Android and it supports TOTP, so it's a
+# better source of truth. But pass has a better UI for me on Linux.
+
+# Helper: Unlock keypass with pass
+__pass_keepass_unlock () {
+    declare acct="$1"
+    shift
+    pass show "$acct" | keepassxc-cli "$@"
+}
+
+# Helper: workhorse wrapper function
 __pass_keepass () {
-    pass show "$1" | keepassxc-cli "$2" "$3" "$4"
+    for arg in account action; do
+        eval declare "$arg"="$1"
+        shift
+    done
+    case "$account" in
+        relex)
+            declare pass_key='keepass-relex'
+            declare kdbx_path=~/GoogleDrive/RELEX/relex-keepass.kdbx
+            ;;
+        personal)
+            declare pass_key='keepass-chreekat'
+            declare kdbx_path=~/GoogleDrive/chreekat/chreekat.kdbx
+            ;;
+        *)
+            >&2 echo "Unknown account: $account"
+            return 1
+            ;;
+    esac
+
+    case "$action" in
+        locate|clip)
+            __pass_keepass_unlock "$pass_key" "$action" "$kdbx_path" "$1"
+            ;;
+        totp)
+            __pass_keepass_unlock "$pass_key" show -t "$kdbx_path" "$1" \
+                | tail -n 1 | xclip -selection clipboard
+            ;;
+        *)
+            >&2 echo "Unknown action: $action"
+            return 1
+            ;;
+    esac
+
 }
 
-__pass_keepass_relex () {
-    __pass_keepass keepass-relex "$1" ~/GoogleDrive/RELEX/relex-keepass.kdbx "$2"
-}
-__pass_keepass_personal () {
-    __pass_keepass keepass-chreekat "$1" ~/GoogleDrive/chreekat/chreekat.kdbx "$2"
-}
-
-rpl () { __pass_keepass_relex locate "$1"; }
-rpc () { __pass_keepass_relex clip "$1"; }
+rpl () { __pass_keepass relex locate "$1"; }
+rpc () { __pass_keepass relex clip "$1"; }
+rtotp () { __pass_keepass relex totp "$1"; }
 
 # Unlock keypass for personal
-pl () { __pass_keepass_personal locate "$1"; }
-pc () { __pass_keepass_personal clip "$1"; }
+ppl () { __pass_keepass personal locate "$1"; }
+ppc () { __pass_keepass personal clip "$1"; }
+ptotp () { __pass_keepass personal totp "$1"; }
 
 # Pretty ripgrep, with less
 prg () { rg -p $@ | less; }
