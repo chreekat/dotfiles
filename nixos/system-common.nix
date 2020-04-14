@@ -229,7 +229,11 @@ in
     pulseaudio.package = pkgs.pulseaudioFull;
   };
 
-  location.provider = "geoclue2";
+  location = {
+    # .provider = "geoclue2";
+    latitude = 60.2443;
+    longitude = 24.8800;
+  };
 
   networking.networkmanager = {
     enable = true;
@@ -294,9 +298,10 @@ in
     # Redshift + Geoclue
     redshift = {
         enable = true;
+        brightness.night = "0.5";
         temperature = {
           day = 6500;
-          night = 6000;
+          night = 3500;
         };
     };
 
