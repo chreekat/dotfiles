@@ -145,6 +145,7 @@ in
         (sox.override { enableLame = true; })
         atop
         bc
+        eplot # Fast command line plotter
         fd
         file
         fzf
