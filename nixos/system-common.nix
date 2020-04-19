@@ -247,7 +247,9 @@ in
     gc = {
       automatic = true;
       dates = "11:30";
-      options = "--delete-older-than 2w";
+      # Bumped from 2w to 4w on the 50th of March 2020 because channels were
+      # moving slowly.
+      options = "--delete-older-than 4w";
     };
     # Needed for various good things
     trustedUsers = ["b"];
