@@ -83,10 +83,12 @@ in
       (ghcWithPackages (p: with p; [
         QuickCheck
         containers
+        lens
         megaparsec
         nonempty-containers
         placeholders
         pretty-simple
+        req
         scalpel-core
         servant
         template-haskell
