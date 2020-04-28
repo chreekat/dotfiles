@@ -65,9 +65,9 @@ in
   };
 
   # 20.03
-  # console.useXkbConfig = true;
+  console.useXkbConfig = true;
   # 19.09
-  i18n.consoleUseXkbConfig = true;
+  # i18n.consoleUseXkbConfig = true;
 
   # Include man section 3. >:(
   documentation.dev.enable = true;
@@ -99,7 +99,7 @@ in
       hledger-ui
       hpack
       stack
-      # stylish-haskell # broken on 2020-02-21
+      # stylish-haskell # broken on 2020-02-21. Still broken on 2020-04-28
       (pkgs.haskell.lib.dontCheck (callPackage /home/b/Projects/usort/package.nix {}))
     ]) ++ (with pkgs; [
       # categories suck
@@ -128,7 +128,7 @@ in
       # media
         aegisub
         audacity
-        beets
+        # beets - broken dep python3.7-soco in 20.03
         #digikam
         ghostscript
         gimp
@@ -138,8 +138,6 @@ in
         handbrake # Rips DVD to video files
         imagemagick
         inkscape
-        # tor-browser-bundle-bin
-        # ^ error: cannot download tor-browser-linux64-9.0.2_en-US.tar.xz from any mirror
         transmission
         vlc
       # linux
