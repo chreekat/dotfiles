@@ -6,7 +6,7 @@ log_aliases () {
 
     local single_line='%C(6)%h%Creset %s%C(auto).%d %C(4)%cd, %an% GK%Creset'
 
-    local multi_line='%C(6)│       │%n%C(6)│%h│%Creset %s%C(auto).%d%C(4) %cd, %an% GK%n%C(6)│       │%Creset'
+    local multi_line='%C(6)│ %h │%Creset %s%C(auto).%d%C(4) %cd, %an% GK%n%Creset'
 
     declare -A aliases
     aliases[gl]="$gitlog  --first-parent --pretty=tformat:'$single_line'"
