@@ -114,15 +114,16 @@ in
         cachix
         direnv
         entr
-        universal-ctags
         ghcid
         git
         lorri
-        nix-prefetch-scripts
         nix-prefetch
+        nix-prefetch-docker
         nix-prefetch-github
+        nix-prefetch-scripts
         ripgrep
         tmux
+        universal-ctags
         vim_configurable
       # media
         aegisub
