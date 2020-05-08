@@ -1,18 +1,45 @@
 [general]
-accounts = B_Chreekat, Snowdrift
+accounts = Relex
+#accounts = B_Chreekat, Snowdrift
 # google isn't snappy with imap
 socktimeout = 30
-pythonfile=~/.offlineimap/helper.py
-maxsyncaccounts=1
-ui=basic
+#pythonfile=~/.offlineimap/helper.py
+#maxsyncaccounts=1
+#ui=basic
 
 [mbnames]
-enabled = yes
+enabled = no
 filename = ~/.mutt/mailboxes.rc
 header = "mailboxes "
 peritem = "+%(accountname)s/%(foldername)s"
 sep = " "
 footer = "\n"
+
+[Account Relex]
+localrepository = RelexLocal
+remoterepository = RelexRemote
+
+[Repository RelexLocal]
+type = Maildir
+localfolders = ~/mail/relex
+
+[Repository RelexRemote]
+type = IMAP
+sslcacertfile = /etc/ssl/certs/ca-certificates.crt
+remoteuser = Bryan.Richter@relex.fi
+remotehost = outlook.office365.com
+tls_level = tls_secure
+ssl_version = tls1_2
+folderfilter = lambda f: f in [ 'INBOX'
+                              , 'Needs action'
+                              , 'Archive'
+                              , 'Sent Items'
+                              , 'Mordor'
+                              , 'azure-users'
+                              , 'Junk Email'
+                              , 'Deleted Items'
+                              , 'Drafts'
+                              ]
 
 ##
 ##
