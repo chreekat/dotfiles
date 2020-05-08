@@ -187,13 +187,16 @@ in
         w3m
         wget
         youtube-dl
+      # Email
+        notmuch
+        astroid
+        offlineimap
       # social
         gnupg1compat
         keybase-gui
         mumble
         riot-desktop
         signal-desktop
-        #thunderbird
         weechat
         wire-desktop
       # networking

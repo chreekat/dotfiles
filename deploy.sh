@@ -91,15 +91,18 @@ start_user_units () {
 # Initialize globals
 EXPORT_DIR=$(dirname "${PWD}/$0")
 DOTS=(
+
+    Xresources
     ackrc
     bash
-    bashrc
     bash_login
+    bashrc
+    config/astroid
     config/git/config
-    config/urxvt/themes/apprentice
-    config/urxvt/themes/solarized-light
     config/systemd/user/lorri.service
     config/systemd/user/lorri.socket
+    config/urxvt/themes/apprentice
+    config/urxvt/themes/solarized-light
     ctags
     cvsrc
     ghci
@@ -112,10 +115,11 @@ DOTS=(
     mutt
     muttrc
     nethackrc
-    notion/cfg_notioncore.lua
     notion/cfg_notion.lua
+    notion/cfg_notioncore.lua
     notion/look.lua
     notion/notion-lock
+    notmuch-config
     npmrc
     offlineimap
     offlineimaprc
@@ -124,11 +128,11 @@ DOTS=(
     tmux.conf
     vim
     vimrc
-    weechat
     w3m
+    weechat
     xmonad
     xsession
-    Xresources
+
 )
 
 # Fire missiles
