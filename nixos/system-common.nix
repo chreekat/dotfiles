@@ -188,8 +188,9 @@ in
         wget
         youtube-dl
       # Email
+        extract_url
+        neomutt
         notmuch
-        astroid
         offlineimap
       # social
         gnupg1compat

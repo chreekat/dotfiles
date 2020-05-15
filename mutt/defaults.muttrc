@@ -1,0 +1,32 @@
+# These paradoxical options cause a visual bell
+set beep_new = yes
+set beep     = no
+
+# Mostly understandable
+set alias_file       = ~/.mutt/aliases
+set certificate_file = ~/.mutt/certificates
+set confirmappend    = no
+set connect_timeout  = 5  # modern default
+set crypt_autosign   = yes
+set forward_format   = "Fwd: %s"
+set help             = no
+set include          = yes
+# Use a mutt-specific override, then fall back to mutt's defaults. (I don't
+# think there's a option += foo syntax, like in vim)
+# 
+# I only need this for text/html.
+set mailcap_path     = ~/.mutt/mailcap
+set mbox_type        = Maildir
+set pager_context    = 2
+set pager_stop
+set postponed        = +postponed
+set realname         = "Bryan Richter"
+set recall           = no # Recall manually with R
+set record           = +sent
+set reverse_alias    # For mailing lists, mainly
+set sort             = threads
+set smart_wrap
+set ssl_force_tls    = yes
+set strict_threads   = yes
+set timeout          = 15
+set wrap = 80

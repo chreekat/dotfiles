@@ -1,14 +1,12 @@
 [general]
 accounts = Relex
 #accounts = B_Chreekat, Snowdrift
-# google isn't snappy with imap
-socktimeout = 30
-#pythonfile=~/.offlineimap/helper.py
+pythonfile=~/.offlineimap/helper.py
 #maxsyncaccounts=1
 #ui=basic
 
 [mbnames]
-enabled = no
+enabled = yes
 filename = ~/.mutt/mailboxes.rc
 header = "mailboxes "
 peritem = "+%(accountname)s/%(foldername)s"
@@ -21,13 +19,14 @@ remoterepository = RelexRemote
 
 [Repository RelexLocal]
 type = Maildir
-localfolders = ~/mail/relex
+localfolders = ~/mail/Relex
 
 [Repository RelexRemote]
 type = IMAP
 sslcacertfile = /etc/ssl/certs/ca-certificates.crt
 remoteuser = Bryan.Richter@relex.fi
 remotehost = outlook.office365.com
+remotepasseval = outlook()
 tls_level = tls_secure
 ssl_version = tls1_2
 folderfilter = lambda f: f in [ 'INBOX'

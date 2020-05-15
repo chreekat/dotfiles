@@ -38,8 +38,8 @@
     },
     "startup": {
         "queries": {
-            "action": "tag:action"
-            "inbox": "tag:inbox",
+            "action": "tag:action",
+            "inbox": "tag:inbox"
         }
     },
     "terminal": {

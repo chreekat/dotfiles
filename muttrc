@@ -7,63 +7,41 @@ unhook *
 unmailboxes *
 
 #
+# Defaults and Includes
+#
+
+source ~/.mutt/defaults.muttrc
+source ~/.mutt/crypto.rc
+#source ~/.mutt/subscriptions
+#source ~/.mutt/lunatic-mutt/lunatic.muttrc
+#source ~/.mutt/default-color.muttrc
+
+#
 # Accounts, subscriptions, and other personal things.
 #
 
-set spoolfile = +B_Chreekat/INBOX
-source ~/.mutt/crypto.rc
-source ~/.mutt/mailboxes.rc
-source ~/.mutt/subscriptions
-source ~/.mutt/aliases
-#source ~/.mutt/lunatic-mutt/lunatic.muttrc
-source ~/.mutt/default-color.muttrc
+
+#set spoolfile = +B_Chreekat/INBOX
 #set smtp_pass = "`passgm google.com b@chreekat.net`" ; \
-folder-hook B_Chreekat \
-    'set from = "b@chreekat.net" ; \
-    set smtp_url = "smtps://b@chreekat.net@smtp.gmail.com" ; \
-    color status color7 color2 ; \
-    bind index,pager d delete-message ; \
-    bind index,pager \Cd delete-thread'
-#set smtp_pass = "`passgm gmail personal`" ; \
-folder-hook Personal \
-    'set from = "bryan.richter@gmail.com" ; \
-    set smtp_url = "smtps://bryan.richter@smtp.gmail.com" ; \
-    color status brightcolor0 color2 ; \
-    bind index,pager d delete-message ; \
-    bind index,pager \Cd delete-thread'
-#set smtp_pass = "`passgm snowdrift me`" ; \
-folder-hook Snowdrift \
-    'set from = "bryan@snowdrift.coop" ; \
-    set smtp_url = "smtp://bryan@snowdrift.coop@mx1.snowdrift.coop:587" ; \
-    color status brightcolor0 color4 ; \
-    macro index,pager d <save-message>=Snowdrift/archive<enter> ; \
-    macro index,pager ! <save-message>=Snowdrift/_spam<enter> ; \
-    bind index,pager \Cd noop'
-#set smtp_pass = "`passgm gmail formaltech`" ; \
-folder-hook Formaltech \
-    'set from = "bryan.richter@formal.tech" ; \
-     set smtp_url = "smtps://bryan.richter@formal.tech@smtp.gmail.com" ; \
-     color status brightcolor0 color5 ; \
-     bind index,pager d delete-message ; \
-     bind index,pager \Cd delete-thread'
 
-folder-hook /var/mail/b 'bind index,pager d delete-message'
-folder-hook Snowdrift/archive 'bind index,pager d delete-message'
+# Lets us not worry about one folder fucking up another folder
 
-alternates -group me b@chreekat.net \
-                     bryan.richter@gmail.com \
-                     chreekat@gmail.com \
-                     chreekat@keybase.io
-alternates -group me -group work bryan@snowdrift.coop \
-                                 bryan.richter@formal.tech
-macro index,pager gi <change-folder>+Personal/INBOX<enter>   "Go to Google inbox"
-macro index,pager gt <change-folder>+Personal/starred<enter> "Go to starred messages"
-macro index,pager gr <change-folder>+Personal/recent<enter>  "Go to recent"
-macro index,pager gs <change-folder>+Snowdrift/INBOX<enter>  "Go to Snowdrift inbox"
-macro index,pager gc <change-folder>+sent<enter>             "Go to sent (\"composed\") messages"
+set imap_user = "bryan.richter@relex.fi"
+set imap_pass = "`pass outlook`"
+set smtp_pass = "`pass outlook`"
+set folder = "imaps://outlook.office365.com"
+set spoolfile = "+INBOX"
+#mailboxes "+INBOX" "+Needs action" "+Archive" "+I#
+set imap_check_subscribed = yes
 
-# Define mailboxes besides those defined by offlineimap.
-mailboxes "=Snowdrift/archive" "/var/mail/b" "=sent"
+set from = "bryan.richter@relexsolutions.com"
+set smtp_user = "bryan.richter@relex.fi"
+set smtp_pass = "`pass outlook`"
+set smtp_url = "smtp://smtp.office365.com"
+set trash = "+Archive"
+folder-hook Relex color status brightcolor0 color5
+
+alternates -group me -group work bryan.richter@relexsolutions.com bryan.richter@relex.fi
 
 #
 # Sensible defaults
@@ -71,48 +49,8 @@ mailboxes "=Snowdrift/archive" "/var/mail/b" "=sent"
 
 # Collapse threads on viewing a folder
 folder-hook . exec collapse-all
+folder-hook . exec first-entry
 
-folder-hook .               set sort = threads
-folder-hook .               set sort_aux = reverse-last-date-received
-folder-hook "INBOX|starred" set sort = date-received
-folder-hook "INBOX|starred" exec first-entry
-
-# These paradoxical options cause a visual bell
-set beep_new = yes
-set beep     = no
-
-# Mostly understandable
-set alias_file       = ~/.mutt/aliases
-set certificate_file = ~/.mutt/certificates
-set confirmappend    = no
-set connect_timeout  = 5  # modern default
-set crypt_autosign   = yes
-set delete           = yes
-set forward_format   = "Fwd: %s"
-set help             = no
-set include          = yes
-# Use a mutt-specific override, then fall back to mutt's defaults. (I don't
-# think there's a option += foo syntax, like in vim)
-# 
-# I only need this for text/html.
-set mailcap_path     = ~/.mutt/mailcap:~/.mailcap:/usr/share/mutt/mailcap:/etc/mailcap:/etc/mailcap:/usr/etc/mailcap:/usr/local/etc/mailcap
-set mbox_type        = Maildir
-set pager_context    = 2
-set pager_stop
-set postponed        = ~/Mail/postponed
-set realname         = "Bryan Richter"
-set recall           = no # Recall manually with R
-set record           = ~/Mail/sent
-set reverse_alias    # For mailing lists, mainly
-set sort             = threads
-set smart_wrap
-set ssl_force_tls    = yes
-set strict_threads   = yes
-set timeout          = 15
-
-# These seems to have no useful effect (?)
-set sleep_time = 0
-set wait_key = no
 
 # Headers to show by default
 ignore   *
@@ -122,50 +60,31 @@ unignore From:
 unignore Date:
 unignore Cc:
 
-# Gmail-esque
-bind pager       b previous-page
-bind index,pager a group-reply
-bind index,pager c mail
+auto_view text/html
 
-# In lieu of setting up mailcap in a way that makes mutt do the right thing, I
-# offer the following
-macro pager <F4> :set\ implicit_autoview<enter>q<enter>
-macro pager <F3> :unset\ implicit_autoview<enter>q<enter>
+message-hook . "unalternative_order *"
+message-hook "! ~f flowdock.com" "alternative_order text/plain text"
+message-hook flowdock.com "alternative_order text/html"
+
+#
+# extract_url config
+#
+macro index,pager ,b "<enter-command> set my_pdsave=\$pipe_decode<enter>\
+<enter-command> unset pipe_decode<enter>\
+<pipe-message>extract_url<enter>\
+<enter-command> set pipe_decode=\$my_pdsave<enter>" "get URLs"
+
+macro index,pager ,B "<enter-command> set my_pdsave=\$pipe_decode<enter>\
+<enter-command> set pipe_decode<enter>\
+<pipe-message>extract_url<enter>\
+<enter-command> set pipe_decode=\$my_pdsave<enter>" "decrypt message, then get URLs"
+
+folder-hook . 'macro index,pager \cb ,b "URL viewer"'
+message-hook . 'macro index,pager \cb ,b "URL viewer"'
+message-hook ~G 'macro index,pager \cb ,B "URL viewer"'
 
 #
 # Sketchy configurations
 #
 
-# I don't ever use shell-escape, but I do need an escape hatch for message
-# deletion. That's because I unbound 'd' to untrain a bad deletion habit.
-bind index,pager ! delete-message
-
-macro index,pager o '<sync-mailbox><shell-escape>offlineimap -qo -u basic -f INBOX -k mbnames:enabled=false<enter>' \
-                    "run offlineimap to quickly sync inbox"
-
-# Jump to the w3m view of the html attachment
-macro index ,h v/text/html<enter><enter>q          "View as html"
-macro pager ,h qv/text/html<enter><enter>q<enter>  "View as html"
-
-# Change a file's type to application/pgp — necessary for inline pgp
-macro index,pager ,p "<edit-type>application/pgp<enter>" "Change to pgp"
-
 macro pager <Esc>v <exit><collapse-thread>
-
-# Jump straight to list of mailboxes
-macro index,pager m <change-folder>?<tab>
-macro index,pager s <save-message>?<tab>
-
-# Something to mark a whole folder as 'read'
-# Line by line,
-# 1. Tag all Unread or Old messages
-# 2. If any messages are tagged, [macro aborts otherwise]
-# 3. Clear the Unread flag
-# 4. Clear the Old flag
-# 5. Untag all messages
-macro index <esc>m '\
-<tag-pattern>~N|~O<enter>\
-<tag-prefix-cond>\
-<tag-prefix><clear-flag>N\
-<tag-prefix><clear-flag>O\
-<untag-pattern>~T<enter>'             "mark all messages read"
