@@ -206,6 +206,9 @@ command! TRIM %Trim
 " Grep *
 nmap <leader>* :grep -w <c-r><c-w><cr>
 
+" A new operator in visual mode: select inner fold
+vnoremap iz zcVzogv
+
 ""
 "" O T H E R   C O N F I G U R A T I O N
 ""
