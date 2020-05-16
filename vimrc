@@ -145,7 +145,7 @@ inoremap <expr> <S-F9> strftime("%Y%m%d")
 
 " Insert the time
 inoremap <expr> <F10> strftime("%H:%M")
-" Both! :D
+" Both! :D (Doesn't work on urxvt :( )
 imap <S-F10> <F9>T<F10>
 
 " Unimpaired-inspired maps
@@ -163,7 +163,7 @@ nmap [<space> <f2>O<esc><f2>
 nmap <silent> <leader>hg   :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<cr>
 
 " See error context
-command! CC cc|cl!+3
+command! -range=3 CC cc|cl!+<count>
 
 " Yank the WORD here
 nnoremap \w "+yiW
