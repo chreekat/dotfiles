@@ -14,7 +14,6 @@ let
     /etc/nixos/hardware-configuration.nix
     ./system-common.nix
     ./games.nix
-    ./transmission-fix-test.nix
   ];
 in
 statefulness // {
@@ -22,13 +21,13 @@ statefulness // {
 
   hardware.cpu.intel.updateMicrocode = true;
 
-  #services.transmission = {
-  #  enable = true;
-  #  settings = {
-  #    ratio-limit-enabled = true;
-  #    ratio-limit = 2.5;
-  #  };
-  #};
+  services.transmission = {
+    enable = true;
+    settings = {
+      ratio-limit-enabled = true;
+      ratio-limit = 2.5;
+    };
+  };
 
   environment.systemPackages = [
     pkgs.tor-browser-bundle-bin
