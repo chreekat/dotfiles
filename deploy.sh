@@ -114,7 +114,6 @@ DOTS=(
     jshintrc
     mailcap
     mutt
-    muttrc
     nethackrc
     notion/cfg_notion.lua
     notion/cfg_notioncore.lua
