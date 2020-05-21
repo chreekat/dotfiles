@@ -118,6 +118,7 @@ in
         entr
         ghcid
         git
+        git-crypt
         lorri
         nix-prefetch
         nix-prefetch-docker
