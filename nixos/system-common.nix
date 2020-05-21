@@ -17,11 +17,11 @@ let
                 xkb_keycodes  { include "evdev+aliases(qwerty)"	};
                 xkb_types     { include "complete"	};
                 xkb_compat    { include "complete"	};
-                xkb_symbols   {
+                partial xkb_symbols   {
                     include "pc+us(dvorak)+inet(evdev)"
                     include "ctrl(nocaps)+compose(lctrl)+level3(ralt_switch)"
-                    include "eurosign(4)"
 
+                    key <AE04> { [ NoSymbol, NoSymbol, EuroSign, sterling ] };
                     key <AD01> { [ NoSymbol, NoSymbol, aring, Aring ] };
                     key <AD11> { [ NoSymbol, NoSymbol, dead_acute ] };
                     key <AC01> { [ NoSymbol, NoSymbol, adiaeresis, Adiaeresis ] };
