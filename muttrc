@@ -6,12 +6,69 @@ reset all
 unhook *
 unmailboxes *
 
+# Outlook stuff
+
+set imap_user = "bryan.richter@relex.fi"
+set imap_pass = "`pass outlook`"
+set folder = "imaps://outlook.office365.com"
+set spoolfile = +INBOX
+set record = +Archive
+set postponed = +Drafts
+#mailboxes "+INBOX" "+Needs action" "+Archive" "+I#
+set imap_check_subscribed = yes
+
+set from = "bryan.richter@relexsolutions.com"
+set smtp_url = "smtp://bryan.richter@relex.fi@smtp.office365.com"
+set smtp_pass = "`pass outlook`"
+set trash = "+Archive"
+folder-hook Relex color status brightcolor0 color5
 #
 # Defaults and Includes
 #
 
-source ~/.mutt/defaults.muttrc
-source ~/.mutt/crypto.rc
+# These paradoxical options cause a visual bell
+set beep_new = yes
+set beep     = no
+
+# Mostly understandable
+set alias_file       = ~/.mutt/aliases
+set certificate_file = ~/.mutt/certificates
+set collapse_all     = yes
+set confirmappend    = no
+set connect_timeout  = 5  # modern default
+set crypt_autosign   = yes
+set crypt_use_gpgme = yes
+set pgp_default_key=bryan.richter@relex.fi
+set pgp_sign_as=bryan.richter@relex.fi
+set crypt_replysign
+set crypt_replysignencrypted
+set forward_format   = "Fwd: %s"
+set header_cache = ~/Mail/mutt_cache
+set message_cachedir = ~/Mail/mutt_cache
+set header_cache_backend = lmdb
+set help             = no
+set include          = yes
+# Use a mutt-specific override, then fall back to mutt's defaults. (I don't
+# think there's a option += foo syntax, like in vim)
+#
+# I only need this for text/html.
+set mailcap_path     = ~/.mutt/mailcap
+set mbox_type        = Maildir
+set pager_context    = 2
+set pager_stop
+set postponed        = +postponed
+set realname         = "Bryan Richter"
+set recall           = no # Recall manually with R
+set record           = +sent
+set reverse_alias    # For mailing lists, mainly
+set sort             = threads
+set smart_wrap
+set ssl_force_tls    = yes
+set strict_threads   = yes
+set timeout          = 15
+set wrap = 80
+
+source ~/.mutt/colors.rc
 #source ~/.mutt/subscriptions
 #source ~/.mutt/lunatic-mutt/lunatic.muttrc
 #source ~/.mutt/default-color.muttrc
@@ -26,20 +83,6 @@ source ~/.mutt/crypto.rc
 
 # Lets us not worry about one folder fucking up another folder
 
-set imap_user = "bryan.richter@relex.fi"
-set imap_pass = "`pass outlook`"
-set smtp_pass = "`pass outlook`"
-set folder = "imaps://outlook.office365.com"
-set spoolfile = "+INBOX"
-#mailboxes "+INBOX" "+Needs action" "+Archive" "+I#
-set imap_check_subscribed = yes
-
-set from = "bryan.richter@relexsolutions.com"
-set smtp_user = "bryan.richter@relex.fi"
-set smtp_pass = "`pass outlook`"
-set smtp_url = "smtp://smtp.office365.com"
-set trash = "+Archive"
-folder-hook Relex color status brightcolor0 color5
 
 alternates -group me -group work bryan.richter@relexsolutions.com bryan.richter@relex.fi
 
@@ -47,8 +90,6 @@ alternates -group me -group work bryan.richter@relexsolutions.com bryan.richter@
 # Sensible defaults
 #
 
-# Collapse threads on viewing a folder
-folder-hook . exec collapse-all
 folder-hook . exec first-entry
 
 
@@ -69,19 +110,19 @@ message-hook flowdock.com "alternative_order text/html"
 #
 # extract_url config
 #
-macro index,pager ,b "<enter-command> set my_pdsave=\$pipe_decode<enter>\
+macro index,pager,attach ,b "<enter-command> set my_pdsave=\$pipe_decode<enter>\
 <enter-command> unset pipe_decode<enter>\
 <pipe-message>extract_url<enter>\
 <enter-command> set pipe_decode=\$my_pdsave<enter>" "get URLs"
 
-macro index,pager ,B "<enter-command> set my_pdsave=\$pipe_decode<enter>\
+macro index,pager,attach ,B "<enter-command> set my_pdsave=\$pipe_decode<enter>\
 <enter-command> set pipe_decode<enter>\
 <pipe-message>extract_url<enter>\
 <enter-command> set pipe_decode=\$my_pdsave<enter>" "decrypt message, then get URLs"
 
-folder-hook . 'macro index,pager \cb ,b "URL viewer"'
-message-hook . 'macro index,pager \cb ,b "URL viewer"'
-message-hook ~G 'macro index,pager \cb ,B "URL viewer"'
+folder-hook . 'macro index,pager,attach \cb ,b "URL viewer"'
+message-hook . 'macro index,pager,attach \cb ,b "URL viewer"'
+message-hook ~G 'macro index,pager,attach \cb ,B "URL viewer"'
 
 #
 # Sketchy configurations

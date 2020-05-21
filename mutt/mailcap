@@ -1,3 +1,5 @@
-text/html; firefox '%s' ; test = test -n "$DISPLAY"
-text/html; w3m -T text/html '%s' ; needsterminal
-text/html; w3m -T text/html -dump '%s' ; copiousoutput
+text/html; firefox %s ; test = test -n "$DISPLAY"
+text/html; w3m -T text/html %s ; needsterminal
+text/html; w3m -T text/html -dump %s ; copiousoutput
+image/jpeg; tiv %s ; needsterminal
+image/png; tiv %s ; needsterminal

@@ -142,6 +142,7 @@ in
         inkscape
         transmission
         vlc
+        (callPackage ./terminal-image-viewer {})
       # linux
         (sox.override { enableLame = true; })
         atop
@@ -189,6 +190,7 @@ in
         youtube-dl
       # Email
         extract_url
+        lmdb # Header cache for neomutt
         neomutt
         notmuch
         offlineimap
