@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+TIMELOG=/home/b/.timeclock
+
+# i 2020-05-19 12:42:03 comms:team chat 
+# ^^^^^^^^^^^^^^^^^^^^^^
+cur_task_duration () {
+    last="$(tail -n 1 $TIMELOG)"
+    strt=$(date +%s --date "$(cut -f2,3 -d' ' <<<"$last")")
+    endd=$(date +%s)
+    diff=$(( ($endd - $strt) / 60 ))
+    if [[ $last =~ ^i ]]; then
+        task="$(cut --complement -c1-22 <<<"$last")"
+        task=${task%  *}
+    else
+        task="no task"
+    fi
+    echo "$task: ${diff}m"
+}
+
+cur_task_duration
