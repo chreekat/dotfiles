@@ -177,6 +177,7 @@ in
         networkmanagerapplet
         notify-osd
         pavucontrol
+        peek # gif casts
         rekey
         trayer
         xcape
