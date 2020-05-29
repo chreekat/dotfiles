@@ -60,7 +60,6 @@ set pager_stop
 set postponed        = +postponed
 set realname         = "Bryan Richter"
 set recall           = no # Recall manually with R
-set record           = +sent
 set reverse_alias    # For mailing lists, mainly
 set sort             = threads
 set smart_wrap
