@@ -42,6 +42,7 @@ set pgp_default_key=bryan.richter@relex.fi
 set pgp_sign_as=bryan.richter@relex.fi
 set crypt_replysign
 set crypt_replysignencrypted
+set delete = yes # Since 'trash' is set anyway
 set forward_format   = "Fwd: %s"
 set header_cache = ~/Mail/mutt_cache
 set message_cachedir = ~/Mail/mutt_cache
