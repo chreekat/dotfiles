@@ -110,15 +110,25 @@ message-hook flowdock.com "alternative_order text/html"
 #
 # extract_url config
 #
-macro index,pager,attach ,b "<enter-command> set my_pdsave=\$pipe_decode<enter>\
+macro index,pager,attach ,b "\
+<enter-command> set my_pdsave=\$pipe_decode<enter>\
 <enter-command> unset pipe_decode<enter>\
+<enter-command> set my_wksave=\$wait_key<enter>\
+<enter-command> unset wait_key<enter>\
 <pipe-message>extract_url<enter>\
-<enter-command> set pipe_decode=\$my_pdsave<enter>" "get URLs"
+<enter-command> set wait_key=\$my_wksave<enter>\
+<enter-command> set pipe_decode=\$my_pdsave<enter>\
+" "get URLs"
 
-macro index,pager,attach ,B "<enter-command> set my_pdsave=\$pipe_decode<enter>\
+macro index,pager,attach ,B "\
+<enter-command> set my_pdsave=\$pipe_decode<enter>\
 <enter-command> set pipe_decode<enter>\
+<enter-command> set my_wksave=\$wait_key<enter>\
+<enter-command> unset wait_key<enter>\
 <pipe-message>extract_url<enter>\
-<enter-command> set pipe_decode=\$my_pdsave<enter>" "decrypt message, then get URLs"
+<enter-command> set wait_key=\$my_wksave<enter>\
+<enter-command> set pipe_decode=\$my_pdsave<enter>\
+" "decrypt message, then get URLs"
 
 folder-hook . 'macro index,pager,attach \cb ,b "URL viewer"'
 message-hook . 'macro index,pager,attach \cb ,b "URL viewer"'
