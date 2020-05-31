@@ -63,11 +63,11 @@ done
 
 ## ALIASES + FUNCTIONS
 
+alias cp='cp --reflink=auto'
 alias f=fg
 alias g=git
 alias j=jobs
 alias jb=jobs
-alias cp='cp --reflink=auto'
 alias la='ls -a'
 alias n.='ls -ad .*'
 alias n=ls
@@ -75,6 +75,7 @@ alias nb=nix-build
 alias ns=nix-shell
 alias pd=pushd
 alias rg='rg --colors path:fg:cyan --colors path:style:bold'
+alias txr=transmission-remote
 alias up='g st'
 alias xo=xdg-open
 alias xp='xclip -selection clipboard'
