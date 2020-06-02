@@ -1,115 +1,92 @@
 #
-# RESET (makes reloading configuration work nicely)
+# RELEX stuff
 #
 
-reset all
-unhook *
-unmailboxes *
+folder-hook Relex color status brightcolor0 color63
+folder-hook outlook.office365.com color status brightcolor0 color63
+set from = "bryan.richter@relexsolutions.com"
 
 # Outlook stuff
 
+set folder = ~/mail/Relex  # "imaps://outlook.office365.com"
+set mbox_type = Maildir
 set imap_user = "bryan.richter@relex.fi"
 set imap_pass = "`pass outlook`"
-set folder = "imaps://outlook.office365.com"
-set spoolfile = +INBOX
-set record = +Archive
-set postponed = +Drafts
-#mailboxes "+INBOX" "+Needs action" "+Archive" "+I#
 set imap_check_subscribed = yes
-
-set from = "bryan.richter@relexsolutions.com"
+#source ~/.mutt/mailboxes.rc
 set smtp_url = "smtp://bryan.richter@relex.fi@smtp.office365.com"
 set smtp_pass = "`pass outlook`"
-set trash = "+Archive"
-folder-hook Relex color status brightcolor0 color5
-#
-# Defaults and Includes
-#
-
-# These paradoxical options cause a visual bell
-set beep_new = yes
-set beep     = no
-
-# Mostly understandable
-set alias_file       = ~/.mutt/aliases
-set certificate_file = ~/.mutt/certificates
-set collapse_all     = yes
-set confirmappend    = no
-set connect_timeout  = 5  # modern default
-set crypt_autosign   = yes
-set crypt_use_gpgme = yes
 set pgp_default_key=bryan.richter@relex.fi
 set pgp_sign_as=bryan.richter@relex.fi
-set crypt_replysign
-set crypt_replysignencrypted
-set delete = yes # Since 'trash' is set anyway
-set forward_format   = "Fwd: %s"
-set header_cache = ~/Mail/mutt_cache
-set message_cachedir = ~/Mail/mutt_cache
-set header_cache_backend = lmdb
-set help             = no
-set include          = yes
-# Use a mutt-specific override, then fall back to mutt's defaults. (I don't
-# think there's a option += foo syntax, like in vim)
-#
-# I only need this for text/html.
-set mailcap_path     = ~/.mutt/mailcap
-set mbox_type        = Maildir
-set pager_context    = 2
-set pager_stop
-set postponed        = +postponed
-set realname         = "Bryan Richter"
-set recall           = no # Recall manually with R
-set reverse_alias    # For mailing lists, mainly
-set sort             = threads
-set smart_wrap
-set ssl_force_tls    = yes
-set strict_threads   = yes
-set timeout          = 15
-set wrap = 80
 
-source ~/.mutt/colors.rc
-#source ~/.mutt/subscriptions
-#source ~/.mutt/lunatic-mutt/lunatic.muttrc
-#source ~/.mutt/default-color.muttrc
+# Folder structure
 
-#
-# Accounts, subscriptions, and other personal things.
-#
+set postponed = +Drafts
+set record = +Archive
+set spoolfile = +INBOX
+set trash = +Archive
 
-
-#set spoolfile = +B_Chreekat/INBOX
-#set smtp_pass = "`passgm google.com b@chreekat.net`" ; \
-
-# Lets us not worry about one folder fucking up another folder
-
+# My identity
 
 alternates -group me -group work bryan.richter@relexsolutions.com bryan.richter@relex.fi
 
 #
-# Sensible defaults
+# Wat
 #
+
+# Dotfile maintenance. Keep secrets out of this file.
+set alias_file = ~/.mutt/aliases
+set certificate_file = ~/.mutt/certificates
+set mailcap_path = ~/.mutt/mailcap
+source ~/.mutt/colors.rc
+
+set header_cache = ~/mail/mutt_cache
+set message_cachedir = ~/mail/mutt_cache
+
+# Globally-useful settings
+
+set beep = no
+set beep_new = yes
+set collapse_all = yes
+set confirmappend = no
+set connect_timeout = 5  # modern default
+set crypt_autosign = yes
+set crypt_replysign
+set crypt_replysignencrypted
+set crypt_use_gpgme = yes
+set delete = yes # Since 'trash' is always set anyway
+set forward_format = "Fwd: %s"
+set header_cache_backend = lmdb
+set help = no
+set include = yes
+set pager_context = 2
+set pager_stop
+set realname = "Bryan Richter"
+set recall = no # Recall manually with R
+set reverse_alias # For mailing lists, mainly
+set smart_wrap
+set sort = threads
+set ssl_force_tls = yes
+set strict_threads = yes
+set timeout = 15
+set wrap = 80
+
+ignore   *
+unignore To Subject From Date Cc
+auto_view text/html
+
+# Globally useful hooks and macros
 
 folder-hook . exec first-entry
 
-
-# Headers to show by default
-ignore   *
-unignore To:
-unignore Subject:
-unignore From:
-unignore Date:
-unignore Cc:
-
-auto_view text/html
+# Alternative_order for flowdock
 
 message-hook . "unalternative_order *"
 message-hook "! ~f flowdock.com" "alternative_order text/plain text"
 message-hook flowdock.com "alternative_order text/html"
 
-#
-# extract_url config
-#
+# extract_url
+
 macro index,pager,attach ,b "\
 <enter-command> set my_pdsave=\$pipe_decode<enter>\
 <enter-command> unset pipe_decode<enter>\
@@ -133,9 +110,3 @@ macro index,pager,attach ,B "\
 folder-hook . 'macro index,pager,attach \cb ,b "URL viewer"'
 message-hook . 'macro index,pager,attach \cb ,b "URL viewer"'
 message-hook ~G 'macro index,pager,attach \cb ,B "URL viewer"'
-
-#
-# Sketchy configurations
-#
-
-macro pager <Esc>v <exit><collapse-thread>
