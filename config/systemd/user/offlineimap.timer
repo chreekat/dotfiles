@@ -1,0 +1,10 @@
+[Unit]
+Description=Offlineimap timer
+After=graphical.target
+
+[Timer]
+OnActiveSec=10s
+OnUnitInactiveSec=5m
+
+[Install]
+WantedBy=graphical.target

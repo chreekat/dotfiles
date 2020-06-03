@@ -86,6 +86,7 @@ link_dot() {
 
 start_user_units () {
     systemctl --user enable --now lorri.socket
+    systemctl --user enable --now offlineimap.timer
 }
 
 # Initialize globals
@@ -101,6 +102,8 @@ DOTS=(
     config/git/config
     config/systemd/user/lorri.service
     config/systemd/user/lorri.socket
+    config/systemd/user/offlineimap.service
+    config/systemd/user/offlineimap.timer
     config/urxvt/themes/apprentice
     config/urxvt/themes/solarized-light
     ctags

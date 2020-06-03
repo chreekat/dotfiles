@@ -1,0 +1,12 @@
+[Unit]
+Description=Offlineimap Service (oneshot)
+Documentation=man:offlineimap(1)
+
+[Service]
+Environment=DISPLAY=:0.0
+Environment=XAUTHORITY=/home/b/.Xauthority
+Environment=PATH=/run/current-system/sw/bin
+Type=oneshot
+ExecStart=/run/current-system/sw/bin/offlineimap -o -u basic
+# Give 120 seconds for offlineimap to gracefully stop before hard killing it:
+TimeoutStopSec=120
