@@ -31,14 +31,13 @@ tls_level = tls_secure
 ssl_version = tls1_2
 folderfilter = lambda f: f in [ 'INBOX'
                               , 'Needs action'
-                              , 'MR Review'
                               , 'Invites'
+                              , 'MR Review'
+                              , 'INTask'
                               , 'Archive'
                               , 'Sent Items'
-                              , 'Mordor'
-                              , 'azure-users'
-                              , 'Junk Email'
                               , 'Deleted Items'
+                              , 'Junk Email'
                               , 'Drafts'
                               ]
 

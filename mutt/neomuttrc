@@ -25,6 +25,7 @@ set postponed = +Drafts
 set record = +Archive
 set spoolfile = +INBOX
 set trash = +Archive
+mailboxes +INBOX "+Needs action" +Invites "+MR Review" +INTask +Archive "+Sent Items" "+Deleted Items" "+Junk Email" +Drafts
 
 # My identity
 
