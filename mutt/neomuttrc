@@ -39,10 +39,18 @@ alternates -group me -group work bryan.richter@relexsolutions.com bryan.richter@
 set alias_file = ~/.mutt/aliases
 set certificate_file = ~/.mutt/certificates
 set mailcap_path = ~/.mutt/mailcap
-source ~/.mutt/colors.rc
 
 set header_cache = ~/mail/mutt_cache
 set message_cachedir = ~/mail/mutt_cache
+
+# Colors
+
+color normal default default
+
+# Formats
+set folder_format="%2C %t %6m %N %i"
+set forward_format = "Fwd: %s"
+set sidebar_format="%B%?F? [%F]?%* %S"
 
 # Globally-useful settings
 
