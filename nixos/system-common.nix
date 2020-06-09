@@ -196,6 +196,7 @@ in
         neomutt
         notmuch
         offlineimap
+        vcal
       # social
         gnupg1compat
         keybase-gui

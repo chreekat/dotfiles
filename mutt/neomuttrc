@@ -71,13 +71,13 @@ set mail_check_stats
 set mail_check_stats_interval=3
 set mark_old = no
 set pager_context = 2
+set pager_index_lines = 6
 set pager_stop
 set realname = "Bryan Richter"
 set recall = no # Recall manually with R
 set reverse_alias # For mailing lists, mainly
 set sidebar_next_new_wrap
 set sidebar_visible
-set smart_wrap
 set sort = threads
 set sort_browser=unsorted # Uses 'mailboxes' ordering
 set ssl_force_tls = yes
@@ -87,24 +87,21 @@ set wrap = 80
 
 ignore   *
 unignore To Subject From Date Cc
-auto_view text/html
+auto_view text/html text/calendar
+
+alternative_order text/calendar
+message-hook flowdock.com "alternative_order text/html"
 
 # Bindings
 
 unbind * <F1>
 bind index,pager <F1> sidebar-prev
 bind index,pager <F2> sidebar-next
-bind index,pager <F3> sidebar-next-new
 bind index,pager <F4> sidebar-open
+
 # Globally useful hooks and macros
 
 folder-hook . exec first-entry
-
-# Alternative_order for flowdock
-
-message-hook . "unalternative_order *"
-message-hook "! ~f flowdock.com" "alternative_order text/plain text"
-message-hook flowdock.com "alternative_order text/html"
 
 # extract_url
 

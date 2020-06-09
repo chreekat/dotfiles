@@ -3,3 +3,4 @@ text/html; w3m -T text/html %s ; needsterminal
 text/html; w3m -T text/html -dump %s ; copiousoutput
 image/jpeg; tiv %s ; needsterminal
 image/png; tiv %s ; needsterminal
+text/calendar; vcal -all %s; copiousoutput
