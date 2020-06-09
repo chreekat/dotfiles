@@ -89,7 +89,7 @@ ignore   *
 unignore To Subject From Date Cc
 auto_view text/html text/calendar
 
-alternative_order text/calendar
+alternative_order text/plain text text/calendar text/html
 message-hook flowdock.com "alternative_order text/html"
 
 # Bindings
