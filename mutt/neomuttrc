@@ -6,6 +6,9 @@ folder-hook Relex color status brightcolor0 color63
 folder-hook outlook.office365.com color status brightcolor0 color63
 set from = "bryan.richter@relexsolutions.com"
 
+subscribe -group relex dev-maintenance@relexsolutions.com
+subscribe -group relex mordor@relexsolutions.com
+
 # Outlook stuff
 
 set folder = ~/mail/Relex  # "imaps://outlook.office365.com"
@@ -75,6 +78,7 @@ set pager_index_lines = 6
 set pager_stop
 set realname = "Bryan Richter"
 set recall = no # Recall manually with R
+set reply_regex = "^((re|aw|sv|vs)(\[[0-9]+\])*:[ \t]*)*" # add finnish
 set reverse_alias # For mailing lists, mainly
 set sidebar_next_new_wrap
 set sidebar_visible
@@ -89,8 +93,11 @@ ignore   *
 unignore To Subject From Date Cc
 auto_view text/html text/calendar
 
-alternative_order text/plain text text/calendar text/html
-message-hook flowdock.com "alternative_order text/html"
+# As of 2020-06-10, alternative_order is a mutable global. This is the only way
+# to do this.
+message-hook . "unalternative_order *"
+message-hook . "alternative_order text/plain text/calendar text/html"
+message-hook flowdock.com "unalternative_order text/plain"
 
 # Bindings
 
