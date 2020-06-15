@@ -20,6 +20,8 @@
 -- modifier to some of the F-key bindings.
 
 defbindings("WScreen", {
+    kpress("XF86MonBrightnessDown", "notioncore.exec_on(_, '/home/b/Projects/dotfiles/xmonad/chg_intel_brightness.sh down')"),
+    kpress("XF86MonBrightnessUp", "notioncore.exec_on(_, '/home/b/Projects/dotfiles/xmonad/chg_intel_brightness.sh up')"),
     bdoc("Switch to n:th object (workspace, full screen client window) "..
          "within current screen."),
     kpress(META.."1", "WScreen.switch_nth(_, 0)"),
