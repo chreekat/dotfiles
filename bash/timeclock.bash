@@ -5,16 +5,19 @@
 export TIMELOG=~/.timeclock
 
 to () {
-    echo o `date "+%Y-%m-%d %H:%M:%S"` >> $TIMELOG
+    if ( tail -n 1 $TIMELOG | grep -q ^i )
+    then
+        echo o `date "+%Y-%m-%d %H:%M:%S"` >> $TIMELOG
+    fi
 }
 
 ti () {
-    # First argument is account; two spaces separate it from the description.
-    # Hence the "" arg, which makes the spaces happen.
     if ( tail -n 1 $TIMELOG | grep -q ^i )
     then
         to
     fi
+    # First argument is account; two spaces separate it from the description.
+    # Hence the "" arg, which makes the spaces happen.
     echo i `date "+%Y-%m-%d %H:%M:%S"` $1 ${2:+""} ${@:2} >> $TIMELOG
 }
 
