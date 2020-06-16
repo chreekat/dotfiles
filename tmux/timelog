@@ -15,7 +15,9 @@ cur_task_duration () {
     else
         task="no task"
     fi
-    echo "$task: ${diff}m"
+    today=$(hledger -f $TIMELOG bal --begin today -O csv | grep total | cut -f2 -d, | sed -e 's/"//g')
+    week=$(hledger -f $TIMELOG bal --begin "this week" -O csv | grep total | cut -f2 -d, | sed -e 's/"//g')
+    echo "$task: ${diff}m·$today/$week"
 }
 
 cur_task_duration
