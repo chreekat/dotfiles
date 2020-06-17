@@ -22,4 +22,4 @@ ti () {
 }
 
 alias tck='hledger -f $TIMELOG'
-alias tck-week='hledger -f $TIMELOG bal -D --begin "this week"'
+alias tck-week='hledger -f $TIMELOG bal -D --begin "this week" -T'
