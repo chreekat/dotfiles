@@ -51,6 +51,7 @@ set message_cachedir = ~/mail/mutt_cache
 color normal default default
 
 # Formats
+set index_format="(%4C %Z %<[y?%<[m?%<[d?%[%H:%M ]&%[%a %d]>&%[%b %d]>&%[%m/%Y ]> %-15.15L) %s"
 set folder_format="%2C %t %6m %N %i"
 set forward_format = "Fwd: %s"
 set sidebar_format="%B%?F? [%F]?%* %S"
@@ -104,7 +105,7 @@ message-hook flowdock.com "unalternative_order text/plain"
 unbind * <F1>
 bind index,pager <F1> sidebar-prev
 bind index,pager <F2> sidebar-next
-bind index,pager <F4> sidebar-open
+bind index,pager <F3> sidebar-open
 
 # Globally useful hooks and macros
 
