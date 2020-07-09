@@ -42,6 +42,12 @@ for loc in locSpecifier
     let efmlist += ["%W" . loc . "warning:"]
 endfor
 
+" tasty-hunit has locations
+let efmlist += ["%E%m: %#FAIL%.%#"]
+let efmlist += ["%C%f:%l:"]
+let efmlist += ["%+C %#expected:%.%#"]
+let efmlist += ["%+Z %#but got:%.%#"]
+
 " >= 8.2
 let efmlist += ["%Z    • %m"]
 " < 8.2
