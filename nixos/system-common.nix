@@ -120,6 +120,7 @@ in
         git
         git-crypt
         lorri
+        niv
         nix-prefetch
         nix-prefetch-docker
         nix-prefetch-github
