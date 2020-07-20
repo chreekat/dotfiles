@@ -102,7 +102,7 @@ in
       hpack
       stack
       # stylish-haskell # broken on 2020-02-21. Still broken on 2020-04-28
-      (pkgs.haskell.lib.dontCheck (callPackage /home/b/Projects/usort/package.nix {}))
+      (import /home/b/Projects/usort {}).usort
     ]) ++ (with pkgs; [
       # categories suck
         anki
