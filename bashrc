@@ -63,6 +63,7 @@ done
 
 ## ALIASES + FUNCTIONS
 
+alias cal='cal -m'
 alias cp='cp --reflink=auto'
 alias f=fg
 alias g=git
