@@ -6,9 +6,6 @@ folder-hook Relex color status brightcolor0 color63
 folder-hook outlook.office365.com color status brightcolor0 color63
 set from = "bryan.richter@relexsolutions.com"
 
-subscribe -group relex dev-maintenance@relexsolutions.com
-subscribe -group relex mordor@relexsolutions.com
-
 # Outlook stuff
 
 set folder = ~/mail/Relex  # "imaps://outlook.office365.com"
@@ -32,7 +29,14 @@ mailboxes +INBOX "+Needs action" +Invites "+MR Review" +INTask +Archive
 
 # My identity
 
-alternates -group me -group work bryan.richter@relexsolutions.com bryan.richter@relex.fi
+alternates -group me -group relex bryan.richter@relexsolutions.com bryan.richter@relex.fi
+
+subscribe -group relex dev-maintenance@relexsolutions.com
+subscribe -group relex mordor@relexsolutions.com
+
+# My relex workflow
+
+save-hook "~M calendar" +Invites
 
 #
 # Wat
