@@ -37,6 +37,7 @@ subscribe -group relex mordor@relexsolutions.com
 # My relex workflow
 
 save-hook "~M calendar" +Invites
+save-hook "~h x-gitlab" "+MR Review"
 
 #
 # Wat
