@@ -142,6 +142,7 @@ in
         handbrake # Rips DVD to video files
         imagemagick
         inkscape
+        spotify
         transmission
         vlc
         (callPackage ./terminal-image-viewer {})
@@ -273,6 +274,9 @@ in
       "databrary.cachix.org-1:jOz34d80mzekR2pjkK9JCczPi2TKeifQ/OHYcg8I6tg="
     ];
   };
+
+  # Sorry, RMS
+  nixpkgs.config.allowUnfree = true;
 
   ## Configure programs.
   programs = {
