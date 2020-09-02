@@ -51,7 +51,7 @@
     };
     vpnc.servers = {
       relex = {
-        gateway = "gp-vpn2.relex.fi";
+        gateway = "gp-vpn.relex.fi";
         id = "linux";
         secret = import ./vpnc-secret;
         username = "bryan.richter@relexsolutions.com";
