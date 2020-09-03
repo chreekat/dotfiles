@@ -242,6 +242,8 @@ in
     pulseaudio.package = pkgs.pulseaudioFull;
   };
 
+  i18n.defaultLocale = "sv_FI.UTF-8";
+
   location = {
     # .provider = "geoclue2";
     latitude = 60.2443;
