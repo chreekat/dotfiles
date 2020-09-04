@@ -112,6 +112,7 @@ in
         keepassxc
         pass
       # development
+        bench
         bugs
         cachix
         direnv

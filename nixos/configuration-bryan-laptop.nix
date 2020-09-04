@@ -19,6 +19,10 @@
     };
   };
 
+  environment.systemPackages = [
+    pkgs.ansible
+  ];
+
   networking = {
     hostName = "bryan-laptop";
     search = [ "relex.fi" "relexsolutions.com" ];
