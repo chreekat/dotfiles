@@ -40,6 +40,18 @@ save-hook "~M calendar" +Invites
 save-hook "~h x-gitlab" "+MR Review"
 
 #
+# Colors
+#
+
+# Now based on apprentice...
+
+color attachment color3 default
+color hdrdefault color11 default
+color normal default default
+color quoted color4 default
+color signature color7 default
+
+#
 # Wat
 #
 
@@ -50,10 +62,6 @@ set mailcap_path = ~/.mutt/mailcap
 
 set header_cache = ~/mail/mutt_cache
 set message_cachedir = ~/mail/mutt_cache
-
-# Colors
-
-color normal default default
 
 # Formats
 set index_format="(%4C %Z %<[y?%<[m?%<[d?%[%H:%M ]&%[%a %d]>&%[%b %d]>&%[%m/%Y ]> %-15.15L) %s"
