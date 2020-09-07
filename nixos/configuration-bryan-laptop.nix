@@ -21,6 +21,7 @@
 
   environment.systemPackages = [
     pkgs.ansible
+    (import /home/b/RELEX/repos/hparg { inherit pkgs; }).hparg
   ];
 
   networking = {
