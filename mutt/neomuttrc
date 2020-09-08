@@ -38,6 +38,7 @@ subscribe -group relex mordor@relexsolutions.com
 
 save-hook "~M calendar" +Invites
 save-hook "~h x-gitlab" "+MR Review"
+save-hook . "+Needs action"
 
 #
 # Colors
