@@ -97,7 +97,6 @@ set recall = no # Recall manually with R
 set reply_regex = "^((re|aw|sv|vs)(\[[0-9]+\])*:[ \t]*)*" # add finnish
 set reverse_alias # For mailing lists, mainly
 set sidebar_next_new_wrap
-set sidebar_visible
 set sort = threads
 set sort_browser=unsorted # Uses 'mailboxes' ordering
 set ssl_force_tls = yes
@@ -118,9 +117,9 @@ message-hook flowdock.com "unalternative_order text/plain"
 # Bindings
 
 unbind * <F1>
-bind index,pager <F1> sidebar-prev
-bind index,pager <F2> sidebar-next
-bind index,pager <F3> sidebar-open
+macro index,pager <F1> "<enter-command>set sidebar_visible<enter><sidebar-prev>"
+macro index,pager <F2> "<enter-command>set sidebar_visible<enter><sidebar-next>"
+macro index,pager <F3> "<sidebar-open><enter-command>unset sidebar_visible<enter>"
 
 # Globally useful hooks and macros
 
