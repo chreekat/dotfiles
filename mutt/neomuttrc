@@ -68,6 +68,7 @@ set index_format="(%4C %Z %<[y?%<[m?%<[d?%[%H:%M ]&%[%a %d]>&%[%b %d]>&%[%m/%Y ]
 set folder_format="%2C %t %6m %N %i"
 set forward_format = "Fwd: %s"
 set sidebar_format="%B%?F? [%F]?%* %S"
+set sidebar_width = 17
 
 # Globally-useful settings
 
@@ -88,7 +89,7 @@ set mail_check_stats
 set mail_check_stats_interval=3
 set mark_old = no
 set pager_context = 2
-set pager_index_lines = 6
+set pager_index_lines = 4
 set pager_stop
 set realname = "Bryan Richter"
 set recall = no # Recall manually with R
