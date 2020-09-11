@@ -180,9 +180,9 @@ in
         networkmanagerapplet
         notify-osd
         pavucontrol
-        peek # gif casts
         rekey
         trayer
+        vokoscreen # gif casts
         xcape
         xclip
         xorg.xev
