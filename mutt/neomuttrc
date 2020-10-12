@@ -33,6 +33,7 @@ alternates -group me -group relex bryan.richter@relexsolutions.com bryan.richter
 
 subscribe -group relex dev-maintenance@relexsolutions.com
 subscribe -group relex mordor@relexsolutions.com
+subscribe -group relex isengard@relexsolutions.com
 
 # My relex workflow
 
