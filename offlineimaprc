@@ -23,6 +23,10 @@ localfolders = ~/mail/Relex
 
 [Repository RelexRemote]
 type = IMAP
+# When I changed language settings, Microsoft internally renamed folders e.g.
+# Archive -> Arkiv. When this happened, offlineimap happily recreated Archive on
+# the server, which created a totally duplicate folder. Let's prevent that.
+createfolders = False
 sslcacertfile = /etc/ssl/certs/ca-certificates.crt
 remoteuser = Bryan.Richter@relex.fi
 remotehost = outlook.office365.com
@@ -34,13 +38,19 @@ folderfilter = lambda f: f in [ 'INBOX'
                               , 'Invites'
                               , 'MR Review'
                               , 'INTask'
-                              , 'Archive'
-                              , 'Sent Items'
-                              , 'Deleted Items'
-                              , 'Junk Email'
-                              , 'Drafts'
+                              , 'Arkiv'
+                              , 'Skickat'
+                              , 'Borttagna objekt'
+                              , 'Skräppost'
+                              , 'Utkast'
                               ]
 
+nametrans = lambda folder: { 'Arkiv': 'Archive'
+                           , 'Skickat': 'Sent Items'
+                           , 'Borttagna objekt': 'Deleted Items'
+                           , 'Skräppost': 'Junk Email'
+                           , 'Utkast': 'Drafts'
+                           }.get(folder, folder)
 ##
 ##
 ##
