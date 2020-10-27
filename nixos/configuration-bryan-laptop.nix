@@ -41,7 +41,7 @@
       "s3://mordor-builder-cache?region=eu-central-1"
     ];
     binaryCachePublicKeys = [
-      "nixcache.devs.relexsolutions.com-1:PRveyTUC6M1NGXo4Dg29CXsdc+KQOPPa7bRoXeLgGyI="
+      "mordor.gitlab-ci:qYaMiGpGkUfs3aQVpLJgvB45NMp+wcaoUkiB4tw8sy4="
     ];
   };
 
