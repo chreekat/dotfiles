@@ -102,7 +102,7 @@ in
       hpack
       stack
       # stylish-haskell # broken on 2020-02-21. Still broken on 2020-04-28
-      (import /home/b/Projects/usort {}).usort
+      (import /home/b/Projects/usort {}).usort-console
     ]) ++ (with pkgs; [
       # categories suck
         anki
@@ -345,6 +345,9 @@ in
       autoRepeatInterval = 10;
       libinput.enable = true;
       windowManager.notion = {
+        enable = true;
+      };
+      desktopManager.xfce = {
         enable = true;
       };
 
