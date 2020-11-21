@@ -205,7 +205,7 @@ in
         gnupg1compat
         keybase-gui
         mumble
-        riot-desktop
+        element-desktop
         signal-desktop
         weechat
         wire-desktop
@@ -213,7 +213,9 @@ in
         bind
         nethogs
         nmap
-        speedometer
+        # Broken on 20.09 with "urwid-2.1.1 not supported for interpreter
+        # python2.7 :(
+        # speedometer
         tcpdump
       # devops
         awscli
@@ -222,10 +224,6 @@ in
         kubectx
         minikube
         nixops
-      # .deb is missing as of 2018-09-27 (for 17.09)
-        # tor-browser-bundle-bin
-        # skypeforlinux # .deb is missing as of 2018-09-27
-        # signal-desktop # Missing from 17.09
     ]);
 
   # Set up the default environment
