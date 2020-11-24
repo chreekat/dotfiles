@@ -26,7 +26,9 @@ type = IMAP
 # When I changed language settings, Microsoft internally renamed folders e.g.
 # Archive -> Arkiv. When this happened, offlineimap happily recreated Archive on
 # the server, which created a totally duplicate folder. Let's prevent that.
-createfolders = False
+# EDIT: But now, I do want to start creating folders for organization, so let's
+# turn it back on for a while.
+createfolders = True
 sslcacertfile = /etc/ssl/certs/ca-certificates.crt
 remoteuser = Bryan.Richter@relex.fi
 remotehost = outlook.office365.com
@@ -38,6 +40,7 @@ folderfilter = lambda f: f in [ 'INBOX'
                               , 'Invites'
                               , 'MR Review'
                               , 'INTask'
+                              , 'QuickReply'
                               , 'Arkiv'
                               , 'Skickat'
                               , 'Borttagna objekt'
