@@ -5,6 +5,7 @@ TIMELOG=/home/b/.timeclock
 # i 2020-05-19 12:42:03 comms:team chat 
 # ^^^^^^^^^^^^^^^^^^^^^^
 cur_task_duration () {
+    local show=true
     last="$(tail -n 1 $TIMELOG)"
     strt=$(date +%s --date "$(cut -f2,3 -d' ' <<<"$last")")
     endd=$(date +%s)
@@ -13,11 +14,17 @@ cur_task_duration () {
         task="$(cut --complement -c1-22 <<<"$last")"
         task=${task%  *}
     else
-        task="no task"
+        if [[ $diff -gt $(( 60 * 24 * 4 )) ]]; then
+            show=false
+        else
+            task="no task"
+        fi
     fi
     today=$(hledger -f $TIMELOG bal --begin today -O csv | grep total | cut -f2 -d, | sed -e 's/"//g')
     week=$(hledger -f $TIMELOG bal --begin "this week" -O csv | grep total | cut -f2 -d, | sed -e 's/"//g')
-    echo "$task: ${diff}m·$today/$week"
+    if $show; then
+        echo "$task: ${diff}m·$today/$week"
+    fi
 }
 
 cur_task_duration
