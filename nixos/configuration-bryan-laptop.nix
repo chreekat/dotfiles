@@ -32,15 +32,6 @@
 
   # RELEX cache
   nix = {
-    binaryCaches = [
-      "https://cache.nixos.org/"
-      "s3://isengard-store?region=eu-central-1"
-    ];
-    trustedBinaryCaches = [
-      "http://cache.mordor.relexsolutions.com/"
-      "s3://mordor-builder-cache?region=eu-central-1"
-      "s3://isengard-store?region=eu-central-1"
-    ];
     binaryCachePublicKeys = [
       "mordor.gitlab-ci:qYaMiGpGkUfs3aQVpLJgvB45NMp+wcaoUkiB4tw8sy4="
     ];

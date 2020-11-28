@@ -267,14 +267,6 @@ in
     };
     # Needed for various good things
     trustedUsers = ["b"];
-    # Let commands use these caches if they want.
-    trustedBinaryCaches = [
-      "http://devdatabrary2.home.nyu.edu:5000/"
-    ];
-    binaryCachePublicKeys = [
-      "devdatabrary2.home.nyu.edu-1:xpI1XOvf7czNv0+0/1ajpgotpOnUMTUBBF9v97D5/yk="
-      "databrary.cachix.org-1:jOz34d80mzekR2pjkK9JCczPi2TKeifQ/OHYcg8I6tg="
-    ];
   };
 
   # Sorry, RMS
