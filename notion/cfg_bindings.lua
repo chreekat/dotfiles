@@ -97,7 +97,7 @@ defbindings("WScreen", {
     kpress(META.."F9", "ioncore.create_ws(_)"),
 
     bdoc("Display the main menu."),
-    kpress("F12", "mod_menu.menu(_, _sub, 'mainmenu', {big=true})"),
+    kpress(ALT.."F12", "mod_menu.menu(_, _sub, 'mainmenu', {big=true})"),
     kpress(META.."F12", "mod_query.query_menu(_, _sub, 'mainmenu', 'Main menu:')"),
     mpress("Button3", "mod_menu.pmenu(_, _sub, 'mainmenu')"),
 
@@ -180,7 +180,6 @@ defbindings("WMPlex.toplevel", {
 
     bdoc("Run a terminal emulator.", "xterm"),
     kpress(META.."Return", "mod_query.exec_on_merr(_, XTERM or 'xterm')"),
-    kpress("F2", "mod_query.exec_on_merr(_, XTERM or 'xterm')"),
 
     bdoc("Query for command line to execute.", "run"),
     kpress(META.."J", "mod_query.query_exec(_)"),
