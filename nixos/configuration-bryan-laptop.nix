@@ -22,7 +22,7 @@
   environment.systemPackages = [
     pkgs.ansible
     pkgs.teams
-    (import /home/b/RELEX/repos/hparg { inherit pkgs; }).hparg
+    (import /home/b/RELEX/repos/hparg {}).hparg
   ];
 
   networking = {
