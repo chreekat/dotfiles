@@ -115,7 +115,6 @@ in
         bench
         bugs
         cachix
-        ccache
         direnv
         entr
         ghcid
@@ -275,7 +274,6 @@ in
   ## Configure programs.
   programs = {
     bash.enableCompletion = true;
-    ccache.enable = true;
     gnupg.agent = {
       enable = true;
       enableSSHSupport = true;
