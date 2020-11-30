@@ -118,8 +118,9 @@ DOTS=(
     mailcap
     mutt
     nethackrc
-    notion/cfg_notion.lua
     notion/cfg_bindings.lua
+    notion/cfg_dock.lua
+    notion/cfg_notion.lua
     notion/notion-lock
     notmuch-config
     npmrc

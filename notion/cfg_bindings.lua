@@ -273,14 +273,16 @@ defbindings("WFrame.toplevel", {
     bdoc("Query for a client window to attach ('nick').", "qnick"),
     kpress(ALTMETA.."N", "mod_query.query_attachclient(_)"),
 
-    bdoc("Switch to tab 0 in this frame.", "tab 0"),
-    kpress(META.."A", "WFrame.switch_nth(_, 0)"),
-    bdoc("Switch to tab 1 in this frame.", "tab 1"),
-    kpress(META.."S", "WFrame.switch_nth(_, 1)"),
-    bdoc("Switch to tab 2 in this frame.", "tab 2"),
-    kpress(META.."D", "WFrame.switch_nth(_, 2)"),
-    bdoc("Switch to tab 3 in this frame.", "tab 3"),
-    kpress(META.."F", "WFrame.switch_nth(_, 3)"),
+    -- I don't use these, so free them up.
+    --
+    -- bdoc("Switch to tab 0 in this frame.", "tab 0"),
+    -- kpress(META.."A", "WFrame.switch_nth(_, 0)"),
+    -- bdoc("Switch to tab 1 in this frame.", "tab 1"),
+    -- kpress(META.."S", "WFrame.switch_nth(_, 1)"),
+    -- bdoc("Switch to tab 2 in this frame.", "tab 2"),
+    -- kpress(META.."D", "WFrame.switch_nth(_, 2)"),
+    -- bdoc("Switch to tab 3 in this frame.", "tab 3"),
+    -- kpress(META.."F", "WFrame.switch_nth(_, 3)"),
 
     bdoc("Move current tab to the right within the frame.", "tab->"),
     kpress(META.."comma", "WFrame.dec_index(_, _sub)", "_sub:non-nil"),
