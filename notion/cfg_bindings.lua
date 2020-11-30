@@ -178,6 +178,9 @@ defbindings("WMPlex.toplevel", {
     bdoc("Lock screen", "lock"),
     kpress(META.."L", "notioncore.exec_on(_, notioncore.lookup_script('notion-lock'))"),
 
+    bdoc("Print screen"),
+    kpress("Print", "notioncore.exec_on(_, 'flameshot gui')"),
+
     bdoc("Run a terminal emulator.", "xterm"),
     kpress(META.."Return", "mod_query.exec_on_merr(_, XTERM or 'xterm')"),
 
