@@ -91,6 +91,7 @@ in
         req
         scalpel-core
         servant
+        split
         template-haskell
         text
         turtle
@@ -309,10 +310,10 @@ in
     # Redshift + Geoclue
     redshift = {
         enable = true;
-        brightness.night = "0.8";
+        brightness.night = "0.9";
         temperature = {
           day = 6500;
-          night = 4500;
+          night = 5500;
         };
     };
 
