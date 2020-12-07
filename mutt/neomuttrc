@@ -75,13 +75,13 @@ set sidebar_width = 17
 # Globally-useful settings
 
 set beep = no
-set beep_new = yes
+set beep_new = no
 set collapse_all = yes
 set confirmappend = no
 set connect_timeout = 5  # modern default
-set crypt_autosign = yes
-set crypt_replysign
-set crypt_replysignencrypted
+# set crypt_autosign = yes
+# set crypt_replysign
+# set crypt_replysignencrypted
 set crypt_use_gpgme = yes
 set delete = yes # Since 'trash' is always set anyway
 set header_cache_backend = lmdb
