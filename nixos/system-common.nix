@@ -88,6 +88,7 @@ in
         nonempty-containers
         placeholders
         pretty-simple
+        regex-applicative
         req
         scalpel-core
         servant
