@@ -83,6 +83,7 @@ in
       (ghcWithPackages (p: with p; [
         QuickCheck
         containers
+        criterion
         lens
         megaparsec
         nonempty-containers
