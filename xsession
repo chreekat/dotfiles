@@ -8,11 +8,13 @@ run_initial_apps () {
     # These are services! :o Add them as local services!)
 
     notify-osd&
-    trayer&
+    wmsystemtray&
     sleep 0.5
 
     nm-applet&
     flameshot &
+    cbatticon &
+    wmCalClock &
     xcape # Backgrounds itself
 
     notion

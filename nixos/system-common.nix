@@ -177,18 +177,20 @@ in
         yq
       # Xorg (in concert with enabling xmonad)
         arandr
-        dmenu
         flameshot
-        networkmanagerapplet
         notify-osd
         pavucontrol
         rekey
-        trayer
         vokoscreen # gif casts
         xcape
         xclip
         xorg.xev
         xorg.xmessage
+      # Xorg tray
+        wmsystemtray
+        cbatticon
+        wmcalclock
+        networkmanagerapplet
       # Web
         chromium
         firefox
