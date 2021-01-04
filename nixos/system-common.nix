@@ -232,7 +232,6 @@ in
   # Set up the default environment
   environment.variables = {
     EDITOR = "vim";
-    PARINIT = "rTbgqR B=.,?_A_a Q=_s>|";
   };
 
   fonts.fonts = [ pkgs.fira-mono pkgs.noto-fonts-emoji pkgs.noto-fonts ];
