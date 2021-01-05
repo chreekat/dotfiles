@@ -5,6 +5,7 @@
 folder-hook Relex color status brightcolor0 color63
 folder-hook outlook.office365.com color status brightcolor0 color63
 set from = "bryan.richter@relexsolutions.com"
+set hostname = "relexsolutions.com"
 
 # Outlook stuff
 
