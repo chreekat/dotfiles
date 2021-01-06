@@ -84,6 +84,7 @@ in
         QuickCheck
         containers
         criterion
+        hspec
         lens
         megaparsec
         nonempty-containers
@@ -96,6 +97,7 @@ in
         split
         tasty
         tasty-hunit
+        tasty-hspec
         tasty-quickcheck
         template-haskell
         text
