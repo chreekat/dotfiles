@@ -94,6 +94,9 @@ in
         scalpel-core
         servant
         split
+        tasty
+        tasty-hunit
+        tasty-quickcheck
         template-haskell
         text
         turtle
