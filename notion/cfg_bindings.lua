@@ -178,6 +178,17 @@ defbindings("WMPlex.toplevel", {
     bdoc("Lock screen", "lock"),
     kpress(META.."L", "notioncore.exec_on(_, notioncore.lookup_script('notion-lock'))"),
 
+    bdoc("Firefox", "firefox"),
+    kpress(META.."F8", "notioncore.exec_on(_, 'firefox')"),
+
+    bdoc("Firefox (Personal)", "firefox-personal"),
+    kpress(META.."F7", "notioncore.exec_on(_, 'firefox -P Personal')"),
+
+    bdoc("Chromium", "chromium"),
+    kpress(META.."F6", "notioncore.exec_on(_, 'chromium')"),
+
+
+
     bdoc("Print screen"),
     kpress("Print", "notioncore.exec_on(_, 'flameshot gui')"),
 
@@ -196,14 +207,6 @@ defbindings("WMPlex.toplevel", {
     bdoc("Query for file to edit.", "edit"),
     kpress(META.."F5",
            "mod_query.query_editfile(_, EDIT_COMMAND or 'run-mailcap --action=edit')"),
-
-    bdoc("Query for file to view.", "view"),
-    kpress(META.."F6",
-           "mod_query.query_runfile(_, VIEW_COMMAND or 'xdg-open')"),
-
-    bdoc("Query for keybinding.", "qkb"),
-    kpress(META.."F7",
-           "mod_query.query_binding(_, _sub)"),
 
     bdoc("Query for workspace to go to or create a new one.", "+ws"),
     kpress(ALTMETA.."F9", "mod_query.query_workspace(_)"),
