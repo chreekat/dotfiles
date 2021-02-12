@@ -232,7 +232,7 @@ in
         kubectl
         kubectx
         minikube
-        nixops
+        # nixops --> libvirt insecure
     ]);
 
   # Set up the default environment
