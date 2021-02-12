@@ -21,5 +21,10 @@ ti () {
     echo i `date "+%Y-%m-%d %H:%M:%S"` $1 ${2:+""} ${@:2} >> $TIMELOG
 }
 
+tipomo () {
+    ti "$@"
+    pomo "$1"
+}
+
 alias tck='hledger -f $TIMELOG'
 alias tck-week='hledger -f $TIMELOG bal -D --begin "this week" -T'
