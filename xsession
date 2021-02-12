@@ -16,6 +16,7 @@ run_initial_apps () {
     cbatticon &
     wmCalClock &
     xcape # Backgrounds itself
+    keynav # Backgrounds itself
 
     notion
 }

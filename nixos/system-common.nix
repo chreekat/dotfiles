@@ -184,6 +184,7 @@ in
       # Xorg (in concert with enabling xmonad)
         arandr
         flameshot
+        keynav
         notify-osd
         pavucontrol
         rekey
