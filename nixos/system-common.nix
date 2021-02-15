@@ -286,8 +286,8 @@ in
     bash.enableCompletion = true;
     gnupg.agent = {
       enable = true;
-      enableSSHSupport = true;
     };
+    ssh.startAgent = true;
     xss-lock = {
       enable = true;
       extraOptions = [
