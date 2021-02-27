@@ -88,6 +88,7 @@ in
         lens
         megaparsec
         nonempty-containers
+        nonempty-vector
         placeholders
         pretty-simple
         regex-applicative
