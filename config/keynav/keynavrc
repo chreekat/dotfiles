@@ -1,7 +1,6 @@
 daemonize
 clear
 ctrl+semicolon start
-ctrl+minus start
 r restart
 Escape end
 ctrl+bracketleft end
