@@ -308,6 +308,8 @@ in
     };
   };
 
+  security.sudo.wheelNeedsPassword = false;
+
   services = {
     autorandr.enable = true;
     fwupd.enable = true;
