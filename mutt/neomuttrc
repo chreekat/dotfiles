@@ -15,7 +15,7 @@ set imap_user = "bryan.richter@relex.fi"
 set imap_pass = "`pass outlook`"
 set imap_check_subscribed = yes
 #source ~/.mutt/mailboxes.rc
-set smtp_url = "smtp://bryan.richter@relex.fi@smtp.office365.com"
+set smtp_url = "smtp://bryan.richter@relex.fi@smtp.office365.com:587"
 set smtp_pass = "`pass outlook`"
 set pgp_default_key=bryan.richter@relex.fi
 set pgp_sign_as=bryan.richter@relex.fi
