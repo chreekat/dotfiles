@@ -151,4 +151,9 @@ md () {
 }
 
 
+# The struggle is real
+:q () {
+    logout
+}
+
 eval "$(direnv hook bash)"
