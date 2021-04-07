@@ -1,0 +1,13 @@
+diff --git a/extract_url.pl b/extract_url.pl
+index c1fd27c..66d0282 100755
+--- a/extract_url.pl
++++ b/extract_url.pl
+@@ -92,7 +92,7 @@ if ($options{'c'}) { $configfile = $options{'c'}; }
+ 
+ # create a hash of html tag names that may have links
+ my %link_attr = (
+-	'a' => {'href'=>1},
++	'a' => {'href'=>1, 'originalsrc'=>1},
+ 	'applet' => {'archive'=>1,'codebase'=>1,'code'=>1},
+ 	'area' => {'href'=>1},
+ 	'blockquote' => {'cite'=>1},

@@ -1,6 +1,9 @@
 { config, lib, pkgs, ... }:
 
 let
+  patchedExtracturl = pkgs.extract_url.overrideAttrs (old: {
+    patches = (old.patches or []) ++ [ ./extracturl.patch ];
+  });
   rekey =
     # Actual keyboard config
     #
@@ -206,7 +209,7 @@ in
         wget
         youtube-dl
       # Email
-        extract_url
+        patchedExtracturl
         lmdb # Header cache for neomutt
         neomutt
         notmuch
