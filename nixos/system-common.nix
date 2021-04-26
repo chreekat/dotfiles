@@ -114,7 +114,7 @@ in
       hpack
       stack
       # stylish-haskell # broken on 2020-02-21. Still broken on 2020-04-28
-      (import /home/b/Projects/usort {}).usort-console
+      (import /home/b/Projects/usort {}).usort
     ]) ++ (with pkgs; [
       # categories suck
         anki
