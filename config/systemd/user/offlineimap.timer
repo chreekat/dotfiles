@@ -4,7 +4,7 @@ After=graphical.target
 
 [Timer]
 OnActiveSec=10s
-OnUnitInactiveSec=2m
+OnUnitInactiveSec=10m
 
 [Install]
 WantedBy=graphical.target
