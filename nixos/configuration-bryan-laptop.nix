@@ -28,6 +28,13 @@
   networking = {
     hostName = "bryan-laptop";
     search = [ "relex.fi" "relexsolutions.com" ];
+    firewall.allowedUDPPorts = [
+      # 3478-3481 for Teams
+      3478
+      3479
+      3480
+      3481
+    ];
   };
 
   # RELEX cache
@@ -49,7 +56,7 @@
     };
     vpnc.servers = {
       relex = {
-        gateway = "gp-vpn.relex.fi";
+        gateway = "gp-vpn2.relex.fi";
         id = "linux";
         secret = import ./vpnc-secret;
         username = "bryan.richter@relexsolutions.com";
