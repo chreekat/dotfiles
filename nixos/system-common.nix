@@ -332,6 +332,8 @@ in
         };
     };
 
+    syncthing.enable = true;
+
     # Allow the video group to change backlight brightness
     udev.extraRules = ''
         ACTION=="add", SUBSYSTEM=="backlight", KERNEL=="intel_backlight", RUN+="${pkgs.coreutils}/bin/chgrp video /sys/class/backlight/%k/brightness"
