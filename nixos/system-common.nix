@@ -332,7 +332,14 @@ in
         };
     };
 
-    syncthing.enable = true;
+    syncthing = {
+      enable = true;
+      user = "b";
+      group = "b";
+      dataDir = "/home/b/Syncthing";
+      configDir = "/home/b/Syncthing/.config/syncthing";
+    };
+
 
     # Allow the video group to change backlight brightness
     udev.extraRules = ''
