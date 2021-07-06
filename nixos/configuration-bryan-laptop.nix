@@ -35,7 +35,9 @@
       3480
       3481
     ];
+    networkmanager.packages = [ pkgs.networkmanager_openconnect ];
   };
+
 
   # RELEX cache
   nix = {

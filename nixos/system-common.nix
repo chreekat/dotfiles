@@ -265,9 +265,6 @@ in
 
   networking.networkmanager = {
     enable = true;
-    packages = [
-      pkgs.openconnect_pa
-    ];
   };
 
   nix = {
