@@ -103,7 +103,7 @@ __pass_keepass () {
     case "$account" in
         relex)
             declare pass_key='keepass-relex'
-            declare kdbx_path=~/GoogleDrive/RELEX/relex-keepass.kdbx
+            declare kdbx_path=~/Syncthing/RelexFiles/relex-keepass.kdbx
             ;;
         personal)
             declare pass_key='keepass-chreekat'
