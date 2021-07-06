@@ -30,6 +30,7 @@ createfolders = False
 sslcacertfile = /etc/ssl/certs/ca-certificates.crt
 remoteuser = Bryan.Richter@relex.fi
 remotehost = outlook.office365.com
+remoteport = 993
 remotepasseval = outlook()
 tls_level = tls_secure
 ssl_version = tls1_2
@@ -41,14 +42,12 @@ folderfilter = lambda f: f in [ 'INBOX'
                               , 'QuickReply'
                               , 'Arkiv'
                               , 'Skickat'
-                              , 'Borttagna objekt'
                               , 'Skräppost'
                               , 'Utkast'
                               ]
 
 nametrans = lambda folder: { 'Arkiv': 'Archive'
                            , 'Skickat': 'Sent Items'
-                           , 'Borttagna objekt': 'Deleted Items'
                            , 'Skräppost': 'Junk Email'
                            , 'Utkast': 'Drafts'
                            }.get(folder, folder)
