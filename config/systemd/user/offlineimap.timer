@@ -3,8 +3,8 @@ Description=Offlineimap timer
 After=graphical.target
 
 [Timer]
-OnActiveSec=10s
-OnUnitInactiveSec=10m
+# Runs every ten minutes between 8am and 6pm on weekdays
+OnCalendar = mon..fri *-*-* 8..18:0/10
 
 [Install]
 WantedBy=graphical.target
