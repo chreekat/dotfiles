@@ -315,6 +315,10 @@ in
 
   services = {
     autorandr.enable = true;
+    btrfs.autoScrub = {
+      enable = true;
+      fileSystems = [ "/" ];
+    };
     fwupd.enable = true;
     keybase.enable = true;
     kbfs.enable = true;
