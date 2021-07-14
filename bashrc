@@ -80,6 +80,8 @@ alias txr=transmission-remote
 alias up='g st'
 alias xo=xdg-open
 alias xp='xclip -selection clipboard'
+alias sc=systemctl
+alias usc='systemctl --user'
 
 #
 # Fetch keys from keepass, via pass.
