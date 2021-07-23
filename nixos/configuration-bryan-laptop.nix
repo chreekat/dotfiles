@@ -50,10 +50,10 @@
     # RELEX policy
     clamav = {
       daemon.enable = true;
-      daemon.extraConfig = ''
-        ScanOnAccess yes
-        OnAccessIncludePath /home/b/Downloads
-      '';
+      daemon.settings = {
+        ScanOnAccess = true;
+        OnAccessIncludePath = "/home/b/Downloads";
+      };
       updater.enable = true;
     };
     vpnc.servers = {

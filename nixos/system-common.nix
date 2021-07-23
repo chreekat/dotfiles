@@ -198,9 +198,7 @@ in
         xorg.xev
         xorg.xmessage
       # Xorg tray
-        wmsystemtray
         cbatticon
-        wmcalclock
         networkmanagerapplet
       # Web
         chromium
