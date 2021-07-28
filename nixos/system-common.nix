@@ -243,7 +243,7 @@ in
     EDITOR = "vim";
   };
 
-  fonts.fonts = [ pkgs.fira-mono pkgs.noto-fonts-emoji pkgs.noto-fonts ];
+  fonts.fonts = [ pkgs.fira-mono pkgs.noto-fonts-emoji pkgs.noto-fonts pkgs.siji ];
   fonts.fontconfig.defaultFonts.monospace = [ "Fira Mono" ];
 
   hardware = {
