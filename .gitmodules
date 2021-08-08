@@ -80,3 +80,6 @@
 [submodule "vim/pack/ALL/start/markdown-devel"]
 	path = vim/pack/start/start/markdown-devel
 	url = https://github.com/tpope/vim-markdown
+[submodule "vim/pack/start/start/purescript-vim"]
+	path = vim/pack/start/start/purescript-vim
+	url = https://github.com/raichoo/purescript-vim
