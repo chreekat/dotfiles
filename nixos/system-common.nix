@@ -181,7 +181,7 @@ in
         par
         python
         qdirstat
-        sqlite
+        sqlite-interactive
         sshuttle
         tree
         unzip
@@ -193,6 +193,7 @@ in
         notify-osd
         pavucontrol
         rekey
+        screenkey # show keys in gif casts
         vokoscreen # gif casts
         xcape
         xclip
