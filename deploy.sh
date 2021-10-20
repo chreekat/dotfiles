@@ -109,6 +109,7 @@ DOTS=(
     config/urxvt/themes/solarized-light
     ctags
     cvsrc
+    direnvrc
     extract_urlview
     ghci
     gnupg/gpg-agent.conf
