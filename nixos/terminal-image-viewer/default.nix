@@ -1,4 +1,4 @@
-{ stdenv, fetchFromGitHub, pkgconfig, imagemagick }:
+{ stdenv, lib, fetchFromGitHub, pkgconfig, imagemagick }:
 
 stdenv.mkDerivation {
   name = "tiv-1.0-f78b65c1f375";
@@ -19,8 +19,8 @@ stdenv.mkDerivation {
   meta = {
     description = "Display images in a modern terminal";
     homepage = https://github.com/stefanhaustein/TerminalImageViewer;
-    license = stdenv.lib.licenses.asl20;
-    maintainers = [ stdenv.lib.maintainers.chreekat ];
-    platforms = stdenv.lib.platforms.all;
+    license = lib.licenses.asl20;
+    maintainers = [ lib.maintainers.chreekat ];
+    platforms = lib.platforms.all;
   };
 }
