@@ -21,6 +21,7 @@
 [alias]
     b = branch -vv
     ci = commit
+    civ = commit --no-verify
     # Commit without quotes
     cim = !sh -c 'git commit -m \"$*\"' -
     co = checkout
