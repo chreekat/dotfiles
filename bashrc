@@ -109,7 +109,7 @@ __pass_keepass () {
             ;;
         personal)
             declare pass_key='keepass-chreekat'
-            declare kdbx_path=~/GoogleDrive/chreekat/chreekat.kdbx
+            declare kdbx_path=~/Syncthing/PhoneFiles/chreekat.kdbx
             ;;
         *)
             >&2 echo "Unknown account: $account"
