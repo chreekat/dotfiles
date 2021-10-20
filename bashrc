@@ -82,7 +82,7 @@ alias xo=xdg-open
 alias xp='xclip -selection clipboard'
 alias sc=systemctl
 alias usc='systemctl --user'
-
+alias tree='tree -I dist-newstyle'
 #
 # Fetch keys from keepass, via pass.
 #
