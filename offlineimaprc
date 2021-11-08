@@ -40,17 +40,12 @@ folderfilter = lambda f: f in [ 'INBOX'
                               , 'MR Review'
                               , 'INTask'
                               , 'QuickReply'
-                              , 'Arkiv'
-                              , 'Skickat'
-                              , 'Skräppost'
-                              , 'Utkast'
+                              , 'Archive'
+                              , 'Sent Items'
+                              , 'Junk Email'
+                              , 'Drafts'
                               ]
 
-nametrans = lambda folder: { 'Arkiv': 'Archive'
-                           , 'Skickat': 'Sent Items'
-                           , 'Skräppost': 'Junk Email'
-                           , 'Utkast': 'Drafts'
-                           }.get(folder, folder)
 ##
 ##
 ##
