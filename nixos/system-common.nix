@@ -193,12 +193,14 @@ in
         notify-osd
         pavucontrol
         rekey
-        screenkey # show keys in gif casts
-        vokoscreen # gif casts
         xcape
         xclip
         xorg.xev
         xorg.xmessage
+      # Gifcasts (FIXME: make vokoscreen make gifs by default)
+        screenkey # show keys in gif casts
+        slop # Used by screenkey to select a region
+        vokoscreen # gif casts
       # Xorg tray
         cbatticon
         networkmanagerapplet
