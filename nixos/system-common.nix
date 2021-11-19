@@ -193,7 +193,7 @@ in
         notify-osd
         pavucontrol
         rekey
-        thunar # File browser
+        xfce.thunar # File browser
         xcape
         xclip
         xorg.xev
