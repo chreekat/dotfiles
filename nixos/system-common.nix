@@ -148,6 +148,7 @@ in
         audacity
         # beets - broken dep python3.7-soco in 20.03
         #digikam
+        blueberry # bluetooth
         ghostscript
         gimp
         gitAndTools.git-annex
