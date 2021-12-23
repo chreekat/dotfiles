@@ -148,7 +148,7 @@ prg () { rg -p $@ | less; }
 # ripgrep to vim
 qrg () { vim -q <(rg --vimgrep "$@"); }
 
-md () {
+mkcd () {
     mkdir -p $1 && cd $1
 }
 
