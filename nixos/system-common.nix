@@ -186,6 +186,7 @@ in
         sshuttle
         tree
         unzip
+        usbutils
         yq
       # Xorg (in concert with enabling xmonad)
         arandr
