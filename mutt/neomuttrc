@@ -154,3 +154,16 @@ macro index,pager,attach ,B "\
 folder-hook . 'macro index,pager,attach \cb ,b "URL viewer"'
 message-hook . 'macro index,pager,attach \cb ,b "URL viewer"'
 message-hook ~G 'macro index,pager,attach \cb ,B "URL viewer"'
+
+
+# Pipe html to pandoc
+
+macro attach ,p "\
+<enter-command> set my_pdsave=\$pipe_decode<enter>\
+<enter-command> unset pipe_decode<enter>\
+<enter-command> set my_wksave=\$wait_key<enter>\
+<enter-command> unset wait_key<enter>\
+<pipe-message>pandoc -f html -t markdown | less<enter>\
+<enter-command> set wait_key=\$my_wksave<enter>\
+<enter-command> set pipe_decode=\$my_pdsave<enter>\
+" "Pandoc html→md"
