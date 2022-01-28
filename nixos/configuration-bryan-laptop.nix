@@ -78,8 +78,7 @@
     };
     # For local environments
     virtualbox = {
-      host.enable = false;
-      host.headless = true;
+      host.enable = true;
     };
   };
 }
