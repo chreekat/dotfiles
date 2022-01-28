@@ -152,6 +152,9 @@ mkcd () {
     mkdir -p $1 && cd $1
 }
 
+nixos () {
+    cd ~/PROJECTS/dotfiles/nixos/
+}
 
 # The struggle is real
 :q () {
