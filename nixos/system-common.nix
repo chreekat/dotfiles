@@ -189,6 +189,7 @@ in
         usbutils
         yq
       # Xorg (in concert with enabling xmonad)
+        albert # Launcher, bound to ScrollLock
         arandr
         flameshot
         keynav
