@@ -332,10 +332,10 @@ in
     # Redshift + Geoclue
     redshift = {
         enable = true;
-        brightness.night = "0.9";
+        brightness.night = "0.8";
         temperature = {
           day = 6500;
-          night = 5500;
+          night = 5000;
         };
     };
 
