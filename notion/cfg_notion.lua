@@ -52,8 +52,8 @@ ioncore.set{
     -- * (0.0, 0.0) for top-left.
     -- * (1.0, 1.0) for bottom-right.
     -- * (0.5, 0.5) for the center of the frame.
-    --warp_factor_x=0.0,
-    --warp_factor_y=0.0,
+    warp_factor_x=0.5,
+    warp_factor_y=0.5,
 
     -- Float window placement method:
     -- one of 'udlr' (up down left right), 'lrud' (left right up down), 'pointer' or 'random'.
