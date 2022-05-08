@@ -1,11 +1,10 @@
 daemonize
 clear
-ctrl+semicolon start
+ctrl+minus start
 r restart
 Escape end
-ctrl+bracketleft end
 q record ~/.keynav_macros
-shift+at playback
+minus playback
 a history-back
 h cut-left
 j cut-down
