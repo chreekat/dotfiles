@@ -119,7 +119,8 @@ in
     ]) ++ (with pkgs; [
       # categories suck
         anki
-        drive
+      # 3d-printing
+        cura
       # personal admin tools
         bup
         keepassxc
