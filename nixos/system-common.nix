@@ -262,7 +262,7 @@ in
     pulseaudio.package = pkgs.pulseaudioFull;
   };
 
-  i18n.defaultLocale = "sv_FI.UTF-8";
+  i18n.defaultLocale = "en_FI.UTF-8";
 
   location = {
     # .provider = "geoclue2";
