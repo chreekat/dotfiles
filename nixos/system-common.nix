@@ -212,6 +212,7 @@ in
       # Web
         chromium
         firefox
+        newsboat
         w3m
         wget
         youtube-dl
