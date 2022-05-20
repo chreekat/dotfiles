@@ -82,7 +82,7 @@ in
     (with pkgs.haskellPackages; [
       cabal-install
       cabal2nix
-      fast-tags
+      # fast-tags  # Marked broken in unstable on 2022-05-19
       # Haskell Platform-lite
       (ghcWithPackages (p: with p; [
         QuickCheck
@@ -115,7 +115,7 @@ in
       hpack
       stack
       # stylish-haskell # broken on 2020-02-21. Still broken on 2020-04-28
-      (import /home/b/Projects/usort {}).usort
+      # (import /home/b/Projects/usort {}).usort
     ]) ++ (with pkgs; [
       # categories suck
         anki
@@ -176,7 +176,7 @@ in
         jq
         jre
         lshw
-        manpages # OBVIOUSLY
+        man-pages # OBVIOUSLY
         ncdu
         nix-bash-completions
         pandoc
@@ -262,7 +262,7 @@ in
     pulseaudio.package = pkgs.pulseaudioFull;
   };
 
-  i18n.defaultLocale = "en_FI.UTF-8";
+  i18n.defaultLocale = "en_GB.UTF-8";
 
   location = {
     # .provider = "geoclue2";
