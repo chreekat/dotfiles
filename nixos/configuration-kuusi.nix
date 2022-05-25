@@ -4,7 +4,6 @@ let
   statefulness = {
     networking.hostName = "kuusi";
     system.stateVersion = "21.11";
-    time.timeZone = "Europe/Helsinki";
   };
 in statefulness // {
   imports =

@@ -266,9 +266,9 @@ in
   i18n.defaultLocale = "en_GB.UTF-8";
 
   location = {
-    # .provider = "geoclue2";
-    latitude = 60.2443;
-    longitude = 24.8800;
+    provider = "geoclue2";
+    #latitude = 60.2443;
+    #longitude = 24.8800;
   };
 
   networking.networkmanager = {
@@ -327,7 +327,6 @@ in
     fwupd.enable = true;
     keybase.enable = true;
     kbfs.enable = true;
-    localtime.enable = true;
 
     printing.enable = true;
 
@@ -348,6 +347,8 @@ in
       dataDir = "/home/b/Syncthing";
       configDir = "/home/b/Syncthing/.config/syncthing";
     };
+
+    tzupdate.enable = true;
 
 
     # Allow the video group to change backlight brightness
