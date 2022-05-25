@@ -118,7 +118,7 @@ __pass_keepass () {
     esac
 
     case "$action" in
-        locate|clip)
+        search|clip)
             __pass_keepass_unlock "$pass_key" "$action" "$kdbx_path" "$1"
             ;;
         totp)
@@ -133,12 +133,12 @@ __pass_keepass () {
 
 }
 
-rpl () { __pass_keepass relex locate "$1"; }
+rpl () { __pass_keepass relex search "$1"; }
 rpc () { __pass_keepass relex clip "$1"; }
 rtotp () { __pass_keepass relex totp "$1"; }
 
 # Unlock keypass for personal
-ppl () { __pass_keepass personal locate "$1"; }
+ppl () { __pass_keepass personal search "$1"; }
 ppc () { __pass_keepass personal clip "$1"; }
 ptotp () { __pass_keepass personal totp "$1"; }
 
