@@ -11,30 +11,49 @@ intel_brightness.sh
 Changes screen brightness via the sys filesystem at
 /sys/class/backlight/intel_backlight.
 
-Requires perl. Also requires udev rules: see
+Also requires udev rules: see
 https://wiki.archlinux.org/index.php/backlight#ACPI
 
 $usage
 
 "
 
+min () {
+    if [[ $1 -lt $2 ]]
+    then
+        echo $1
+    else
+        echo $2
+    fi
+}
+
+max () {
+    if [[ $1 -gt $2 ]]
+    then
+        echo $1
+    else
+        echo $2
+    fi
+}
+
 calc_new_brightness () {
     dir=${1:?}
     max=${2:?}
     cur=${3:?}
 
-    let "incr = ${max} / 20"
+    let "incr = max / 20" \
+        "min = incr" \
+        "stepUp = cur + incr" \
+        "stepDown = cur - incr"
 
-    calc=
     case $dir in
         up)
-            calc="min($cur + $incr, $max)"
+            min $stepUp $max
             ;;
         down)
-            calc="max($cur - $incr, $incr)"
+            max $stepDown $min
             ;;
     esac
-    perl -mList::Util=min,max -e "print $calc"
 }
 
 main () {
