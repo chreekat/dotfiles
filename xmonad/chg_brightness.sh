@@ -3,13 +3,13 @@ set -Eeuo pipefail
 
 usage='# Usage
 
-    ./intel_brightness.sh [up | down]
+    ./chg_brightness.sh [up | down]
 '
 help="
-intel_brightness.sh
+chg_brightness.sh
 
 Changes screen brightness via the sys filesystem at
-/sys/class/backlight/intel_backlight.
+/sys/class/backlight/
 
 Also requires udev rules: see
 https://wiki.archlinux.org/index.php/backlight#ACPI
@@ -59,8 +59,9 @@ calc_new_brightness () {
 main () {
     direction=${1?$'missing parameter.\n\n'"$usage"}
 
-    control_file=/sys/class/backlight/intel_backlight/brightness
-    max=$(cat /sys/class/backlight/intel_backlight/max_brightness)
+    device=$(find /sys/class/backlight -type l)
+    control_file="$device/brightness"
+    max=$(cat $device/max_brightness)
     cur=$(cat $control_file)
 
     echo $(calc_new_brightness $direction $max $cur) | tee $control_file
