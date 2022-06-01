@@ -80,3 +80,5 @@
 	#diff = ~/lib/diff-highlight | less
 [interactive]
 	#diffFilter = /home/b/lib/diff-highlight
+[pull]
+	rebase = false
