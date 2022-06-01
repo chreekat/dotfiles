@@ -10,6 +10,7 @@ in statefulness // {
     [ # Include the results of the hardware scan.
       /etc/nixos/hardware-configuration.nix
       ./system-common.nix
+      ./mods/haskell-foundation.nix
     ];
 
   # (NOTE: Copied from fuzzbomb, values tweaked)
