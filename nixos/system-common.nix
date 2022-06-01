@@ -55,8 +55,10 @@ let
     '';
 in
 {
-  #imports = [./notion-4.0.nix];
-  imports = [ ./nix-direnv.nix ];
+  imports = [
+    ./nix-direnv.nix
+    ./mods/tailscale.nix
+  ];
   boot = {
     # Use the systemd-boot EFI boot loader.
     loader.systemd-boot.enable = true;
