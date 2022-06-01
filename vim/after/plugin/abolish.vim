@@ -23,3 +23,4 @@ Abolish {our,them}s{ele,le}vs {}selves
 Abolish axniety anxiety
 Abolish anwser{s,} answer{}
 Abolish inculd{ing,ed} includ{}
+Abolish supposde supposed
