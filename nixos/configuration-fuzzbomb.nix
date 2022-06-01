@@ -2,19 +2,12 @@
 
 let
   statefulness = {
-    # LUKS is where root and swap hide.
-    boot.initrd.luks.devices.crypted.device = "/dev/disk/by-uuid/a201e00a-e97b-4539-bc9b-462bba2570c6";
-
     networking.hostName = "fuzzbomb";
-
     system.stateVersion = "17.03";
-
   };
   imports = [
     /etc/nixos/hardware-configuration.nix
     ./system-common.nix
-    ./games.nix
-    ./transmission-fix-test.nix
   ];
 in
 statefulness // {
