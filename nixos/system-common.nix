@@ -224,6 +224,7 @@ in
         neomutt
         notmuch
         offlineimap
+        thunderbird
         vcal
       # social
         gnupg1compat
