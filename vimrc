@@ -144,7 +144,7 @@ inoremap <expr> <F9> strftime("%Y-%m-%d")
 inoremap <expr> <S-F9> strftime("%Y%m%d")
 
 " Insert the time
-inoremap <expr> <F10> strftime("%H:%M")
+inoremap <expr> <F10> strftime("%H:%M:")
 " Both! :D (Doesn't work on urxvt :( )
 imap <S-F10> <F9>T<F10>
 
