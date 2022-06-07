@@ -181,8 +181,8 @@ defbindings("WMPlex.toplevel", {
     bdoc("Firefox", "firefox"),
     kpress(META.."F8", "notioncore.exec_on(_, 'firefox')"),
 
-    bdoc("Firefox (Personal)", "firefox-personal"),
-    kpress(META.."F7", "notioncore.exec_on(_, 'firefox -P Personal')"),
+    bdoc("KeePass", "keepass"),
+    kpress(META.."F7", "notioncore.exec_on(_, 'keepassxc')"),
 
     bdoc("Chromium", "chromium"),
     kpress(META.."F6", "notioncore.exec_on(_, 'chromium')"),
