@@ -83,3 +83,9 @@
 [submodule "vim/pack/start/start/purescript-vim"]
 	path = vim/pack/start/start/purescript-vim
 	url = https://github.com/raichoo/purescript-vim
+[submodule "vim/pack/start/start/vim-dadbod"]
+	path = vim/pack/start/start/vim-dadbod
+	url = git@github.com:tpope/vim-dadbod.git
+[submodule "vim/pack/start/start/vim-dadbod-ui"]
+	path = vim/pack/start/start/vim-dadbod-ui
+	url = git@github.com:kristijanhusak/vim-dadbod-ui.git
