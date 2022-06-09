@@ -1,6 +1,8 @@
 { config, pkgs, ... }:
 
 let
+  # FIXME make this a module!?
+  tailscaleIP = "100.68.0.118";
   statefulness = {
     networking.hostName = "kuusi";
     system.stateVersion = "21.11";
@@ -20,5 +22,7 @@ in statefulness // {
   # for new ideas.
   nix.buildCores = 4;
   nix.maxJobs = 4;
+
+  services.openssh.listenAddresses = [ { addr = tailscaleIP; } ];
 }
 

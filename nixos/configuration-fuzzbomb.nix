@@ -1,6 +1,7 @@
 { config, pkgs, ... }:
 
 let
+  tailscaleIP = "100.92.232.15";
   statefulness = {
     networking.hostName = "fuzzbomb";
     system.stateVersion = "17.03";
@@ -40,4 +41,6 @@ statefulness // {
   # for new ideas.
   nix.buildCores = 2;
   nix.maxJobs = 2;
+
+  services.openssh.listenAddresses = [ { addr = tailscaleIP; } ];
 }
