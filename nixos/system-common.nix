@@ -327,6 +327,7 @@ in
       enable = true;
       fileSystems = [ "/" ];
     };
+    fprintd.enable = true;
     fwupd.enable = true;
     keybase.enable = true;
     kbfs.enable = true;
