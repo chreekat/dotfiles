@@ -84,7 +84,7 @@ in
     (with pkgs.haskellPackages; [
       cabal-install
       cabal2nix
-      # fast-tags  # Marked broken in unstable on 2022-05-19
+      fast-tags
       # Haskell Platform-lite
       (ghcWithPackages (p: with p; [
         QuickCheck
