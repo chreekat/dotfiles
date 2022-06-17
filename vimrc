@@ -140,13 +140,12 @@ nnoremap <F4> :UndotreeToggle<cr>
 nnoremap <F6> :call system(printf("xdg-open %s &", expand('<cWORD>')))<cr>
 
 " Insert today's date, in two formats
-inoremap <expr> <F9> strftime("%Y-%m-%d")
-inoremap <expr> <S-F9> strftime("%Y%m%d")
+" map! = Ins, Cmd
+noremap! <expr> <F9> strftime("%Y-%m-%d")
+noremap! <expr> <S-F9> strftime("%Y%m%d")
 
 " Insert the time
-inoremap <expr> <F10> strftime("%H:%M:")
-" Both! :D (Doesn't work on urxvt :( )
-imap <S-F10> <F9>T<F10>
+noremap! <expr> <F10> strftime("%H:%M:")
 
 " Unimpaired-inspired maps
 nnoremap ]q :cnext<cr>
@@ -226,6 +225,11 @@ augroup vimrc
 
     "" SKELETON FILES
     au BufNewFile *.sh 0r ~/.vim/skel/skel.sh|normal G
+
+    "" Override F9 and F10 in Log.txt
+    au BufRead,BufNewFile Log.txt inoremap <buffer> <expr> <F9> strftime("%Y-%m-%d\n----------\n\n")
+    au BufRead,BufNewFile Log.txt inoremap <buffer> <expr> <F10> strftime("%H:%M:\n       ")
+
 augroup END
 
 "" GLOBAL AUTOCMDS
