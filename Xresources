@@ -1,6 +1,9 @@
 URxvt.font: xft:FiraMono:regular:size=12
 URxvt.boldFont: xft:FiraMono:medium:size=12
 URxvt.scrollBar: off
+! Avoid ISO 14755 modes
+URxvt.iso14755: off
+URxvt.iso14755_52: off
 
 URxvt.keysym.M-C-1: command:\033]710;xft:FiraMono:regular:size=6\007\033]711;xft:FiraMono:medium:size=6\007
 URxvt.keysym.M-C-2: command:\033]710;xft:FiraMono:regular:size=8\007\033]711;xft:FiraMono:medium:size=8\007
