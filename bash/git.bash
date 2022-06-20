@@ -2,7 +2,7 @@
 # variable reuse. (And hey, four less characters to type.)
 
 log_aliases () {
-    local gitlog='git log --date=short --graph'
+    local gitlog='git log --date=short --graph --color=always'
 
     local single_line='%C(6)%h%Creset %s%C(auto).%d %C(4)%cd, %an% GK%Creset'
 
