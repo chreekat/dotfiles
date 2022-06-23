@@ -84,7 +84,16 @@ in
     (with pkgs.haskellPackages; [
       cabal-install
       cabal2nix
+      eventlog2html
       fast-tags
+      fourmolu
+      ghc-events
+      hasktags
+      hledger
+      hledger-ui
+      hlint
+      hpack
+      stack
       # Haskell Platform-lite
       (ghcWithPackages (p: with p; [
         QuickCheck
@@ -110,12 +119,6 @@ in
         text
         turtle
         ]))
-      hasktags
-      hlint
-      hledger
-      hledger-ui
-      hpack
-      stack
       # stylish-haskell # broken on 2020-02-21. Still broken on 2020-04-28
       # (import /home/b/Projects/usort {}).usort
     ]) ++ (with pkgs; [
@@ -142,6 +145,7 @@ in
         nix-prefetch-docker
         nix-prefetch-github
         nix-prefetch-scripts
+        postgresql
         ripgrep
         tmux
         universal-ctags
