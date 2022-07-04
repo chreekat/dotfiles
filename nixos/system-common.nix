@@ -405,6 +405,9 @@ in
     };
   };
 
+  # Don't need to wait for wired connection, yo
+  systemd.network.wait-online.anyInterface = true;
+
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.extraGroups.b = {
