@@ -13,6 +13,7 @@ let
     # can rerun it when I plug in a keyboard.
     #
     # Fuck me, right?
+    # TODO: Box drawing chars
     pkgs.writeShellScriptBin "rekey"
       ''
         <<EOF cat | ${pkgs.xorg.xkbcomp}/bin/xkbcomp - $DISPLAY &>/dev/null
@@ -299,6 +300,11 @@ in
 
   ## Configure programs.
   programs = {
+    atop = {
+      enable = true;
+      netatop.enable = true;
+      atopgpu.enable = true;
+    };
     bash.enableCompletion = true;
     gnupg.agent = {
       enable = true;
