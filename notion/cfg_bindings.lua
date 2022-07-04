@@ -187,6 +187,11 @@ defbindings("WMPlex.toplevel", {
     bdoc("Chromium", "chromium"),
     kpress(META.."F6", "notioncore.exec_on(_, 'chromium')"),
 
+    bdoc("AutoRandR", "autorandr"),
+    kpress(META.."F5", "notioncore.exec_on(_, 'autorandr -c')"),
+
+
+
 
 
     bdoc("Print screen"),
@@ -201,12 +206,14 @@ defbindings("WMPlex.toplevel", {
     bdoc("Query for Lua code to execute.", "lua"),
     kpress(ALTMETA.."J", "mod_query.query_lua(_)"),
 
-    bdoc("Query for host to connect to with SSH.", "ssh"),
-    kpress(META.."F4", "mod_query.query_ssh(_, ':ssh')"),
-
-    bdoc("Query for file to edit.", "edit"),
-    kpress(META.."F5",
-           "mod_query.query_editfile(_, EDIT_COMMAND or 'run-mailcap --action=edit')"),
+    -- Unused.
+    --
+    -- bdoc("Query for host to connect to with SSH.", "ssh"),
+    -- kpress(META.."F4", "mod_query.query_ssh(_, ':ssh')"),
+    --
+    -- bdoc("Query for file to edit.", "edit"),
+    -- kpress(META.."F5",
+    --        "mod_query.query_editfile(_, EDIT_COMMAND or 'run-mailcap --action=edit')"),
 
     bdoc("Query for workspace to go to or create a new one.", "+ws"),
     kpress(ALTMETA.."F9", "mod_query.query_workspace(_)"),
