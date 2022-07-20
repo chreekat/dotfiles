@@ -9,6 +9,8 @@ cabal-dev
 *.pyo
 *.o
 *.hi
+*.dyn_hi
+*.dyn_o
 .redo
 .cabal-sandbox
 cabal.sandbox.config
