@@ -1,1 +1,1 @@
-let g:passhole_recipients = ["0x934B289C"]
+let g:passhole_recipients = ["0xB202264020068BFB"]

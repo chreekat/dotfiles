@@ -125,6 +125,7 @@ in
     ]) ++ (with pkgs; [
       # categories suck
         anki
+        chrysalis
       # 3d-printing
         cura
       # personal admin tools
@@ -135,6 +136,7 @@ in
         bench
         bugs
         cachix
+        difftastic
         direnv
         entr
         ghcid
@@ -366,6 +368,9 @@ in
 
     tzupdate.enable = true;
 
+
+    # Packages that include udev rules
+    udev.packages = [ pkgs.chrysalis ];
 
     # Allow the video group to change backlight brightness
     udev.extraRules = ''
