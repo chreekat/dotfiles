@@ -66,6 +66,16 @@ packadd! matchit
 "" My plugin preferences
 let g:goyo_width = 84
 let g:undotree_WindowLayout = 4
+let g:undotree_TreeReturnShape = "╲"
+let g:undotree_TreeVertShape   = "│"
+let g:undotree_TreeSplitShape  = "╱"
+" Customize undotree
+function g:Undotree_CustomMap()
+    nmap <buffer> J <plug>UndotreeNextState
+    nmap <buffer> K <plug>UndotreePreviousState
+    nmap <buffer> T <plug>UndotreeTimestampToggle
+endfunc
+
 let g:easy_align_delimiters = {'>': {'pattern': '::\|->\|=>'}}
 let g:ledger_bin = 'hledger'
 " Fold markdown by headers, etc
@@ -137,7 +147,7 @@ nnoremap <F3> :tabe ~/.vimrc<cr>
 nnoremap <F4> :UndotreeToggle<cr>
 
 " Open url (or anything, I guess) at point. Interwebs, you say?
-nnoremap <F6> :call system(printf("xdg-open %s &", expand('<cWORD>')))<cr>
+nnoremap <F6> :call system("xargs xdg-open", expand('<cWORD>'))<cr>
 
 " Insert today's date, in two formats
 " map! = Ins, Cmd
