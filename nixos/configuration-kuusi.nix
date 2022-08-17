@@ -23,6 +23,9 @@ in statefulness // {
   nix.buildCores = 4;
   nix.maxJobs = 4;
 
+  # Disabling GC for sailing
+  nix.gc.automatic = false;
+
   services.openssh.listenAddresses = [ { addr = tailscaleIP; } ];
 }
 
