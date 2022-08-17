@@ -176,6 +176,8 @@ command! -range=3 CC cc|cl!+<count>
 
 " Yank the WORD here
 nnoremap \w "+yiW
+" Etc
+nnoremap \p "+yip
 
 " Yank the whole damn doc
 command! -range=% Y <line1>,<line2>y+
@@ -239,6 +241,11 @@ augroup vimrc
     "" Override F9 and F10 in Log.txt
     au BufRead,BufNewFile Log.txt inoremap <buffer> <expr> <F9> strftime("%Y-%m-%d\n----------\n\n")
     au BufRead,BufNewFile Log.txt inoremap <buffer> <expr> <F10> strftime("%H:%M:\n       ")
+
+    " DB setup
+    au BufRead ~/HaskellFoundation/queries.sql DB g:cijobs = sqlite:/home/b/HF/jobs.db
+    au BufRead ~/HaskellFoundation/queries.sql nmap <buffer> <leader>c vip:DB g:cijobs<cr>
+    au BufRead ~/HaskellFoundation/queries.sql vmap <buffer> <leader>c :DB g:cijobs<cr>
 
 augroup END
 
