@@ -238,9 +238,9 @@ augroup vimrc
     "" SKELETON FILES
     au BufNewFile *.sh 0r ~/.vim/skel/skel.sh|normal G
 
-    "" Override F9 and F10 in Log.txt
-    au BufRead,BufNewFile Log.txt inoremap <buffer> <expr> <F9> strftime("%Y-%m-%d\n----------\n\n")
-    au BufRead,BufNewFile Log.txt inoremap <buffer> <expr> <F10> strftime("%H:%M:\n       ")
+    "" Override F9 in Log.txt
+    au BufRead,BufNewFile Log.txt nnoremap <buffer> <F9> :%!runghc ~/.vim/timestamp.hs<cr>GddA
+    au BufRead,BufNewFile Log.txt setl sw=7 tw=90 fo-=a2 nowrap
 
     " DB setup
     au BufRead ~/HaskellFoundation/queries.sql DB g:cijobs = sqlite:/home/b/HF/jobs.db
