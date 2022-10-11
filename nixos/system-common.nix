@@ -126,6 +126,7 @@ in
       # categories suck
         anki
         chrysalis
+        aspell
       # 3d-printing
         cura
       # personal admin tools
@@ -153,6 +154,7 @@ in
         tmux
         universal-ctags
         vim_configurable
+        vscodium
       # media
         aegisub
         audacity
@@ -344,6 +346,13 @@ in
     btrfs.autoScrub = {
       enable = true;
       fileSystems = [ "/" ];
+    };
+    dictd = {
+      enable = true;
+      DBs = ((d: [
+        d.wiktionary
+        d.wordnet
+      ]) pkgs.dictdDBs);
     };
     fprintd.enable = true;
     fwupd.enable = true;
