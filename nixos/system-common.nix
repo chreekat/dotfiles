@@ -257,6 +257,7 @@ in
         kubectl
         kubectx
         minikube
+        metal-cli
         # nixops --> libvirt insecure
     ]);
 
