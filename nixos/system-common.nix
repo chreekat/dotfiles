@@ -188,6 +188,7 @@ in
         jre
         lshw
         man-pages # OBVIOUSLY
+        mosh
         ncdu
         nix-bash-completions
         pandoc
