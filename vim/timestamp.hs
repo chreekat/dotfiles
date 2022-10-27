@@ -103,7 +103,13 @@ renderSt (St w d t) =
     , renderTime t
     ]
 
+dropBlankLines = reverse . drop . reverse . lines
+  where
+    drop [] = []
+    drop ("":xs) = drop xs
+    drop gud = gud
+
 main = do
     zero <- zeroSt
-    last <- foldMap printAccumSt . lines =<< hGetContents stdin
+    last <- foldMap printAccumSt . dropBlankLines =<< hGetContents stdin
     putStrLn . unlines . renderSt $ nextSt zero last
