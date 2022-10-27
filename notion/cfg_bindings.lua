@@ -179,7 +179,7 @@ defbindings("WMPlex.toplevel", {
     kpress(META.."L", "notioncore.exec_on(_, notioncore.lookup_script('notion-lock'))"),
 
     bdoc("Firefox", "firefox"),
-    kpress(META.."F8", "notioncore.exec_on(_, 'firefox')"),
+    kpress(META.."N", "notioncore.exec_on(_, 'firefox')"),
 
     bdoc("KeePass", "keepass"),
     kpress(META.."F7", "notioncore.exec_on(_, 'keepassxc')"),
@@ -278,10 +278,10 @@ defbindings("WFrame", {
 -- Frames for transient windows ignore this bindmap
 
 defbindings("WFrame.toplevel", {
-    bdoc("Attach tagged objects to this frame.", "nick"),
-    kpress(META.."N", "ioncore.tagged_attach(_)"),
-    bdoc("Query for a client window to attach ('nick').", "qnick"),
-    kpress(ALTMETA.."N", "mod_query.query_attachclient(_)"),
+    bdoc("Stick tagged objects to this frame.", "stick"),
+    kpress(META.."S", "ioncore.tagged_attach(_)"),
+    bdoc("Query for a client window to attach ('stick').", "qstick"),
+    kpress(ALTMETA.."S", "mod_query.query_attachclient(_)"),
 
     -- I don't use these, so free them up.
     --
