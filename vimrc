@@ -130,10 +130,12 @@ nnoremap <leader><cr><cr> gwap
 
 " More useful (?) F1
 function! s:toggle_colors()
-    let i = index(g:colors_list, g:colors_name)
-    let n = len(g:colors_list)
+    let colors_list = ["apprentice", "PaperColor" ]
+    let i = index(colors_list, g:colors_name)
+    let n = len(colors_list)
     if i >= 0
-        exec "colorscheme " . g:colors_list[(i + 1) % n]
+        set bg=light " Apprentice overwrites this, which is ok
+        exec "colorscheme " . colors_list[(i + 1) % n]
     endif
 endfunction
 
@@ -277,8 +279,6 @@ augroup vimrc_highlighting
     au ColorScheme default hi DiffChange ctermfg=104 cterm=reverse
 augroup END
 colorscheme apprentice
-" Used in toggle_colors below
-let g:colors_list = ["apprentice", "default"]
 
 ""
 "" Things that should be plugins?
