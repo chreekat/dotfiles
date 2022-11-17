@@ -24,3 +24,4 @@ Abolish axniety anxiety
 Abolish anwser{s,} answer{}
 Abolish inculd{ing,ed} includ{}
 Abolish supposde supposed
+Abolish actulaly actually
