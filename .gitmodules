@@ -92,3 +92,6 @@
 [submodule "vim/pack/start/start/vim-lsp"]
 	path = vim/pack/start/start/vim-lsp
 	url = git@github.com:prabirshrestha/vim-lsp.git
+[submodule "vim/pack/start/start/papercolor-theme"]
+	path = vim/pack/start/start/papercolor-theme
+	url = git@github.com:NLKNguyen/papercolor-theme
