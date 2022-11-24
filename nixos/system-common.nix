@@ -268,13 +268,14 @@ in
   };
 
   fonts.fonts = [
+    pkgs.pragmataPro_font
     pkgs.fira-mono
     pkgs.noto-fonts-emoji
     pkgs.noto-fonts
     pkgs.siji
     pkgs.comic-neue
   ];
-  fonts.fontconfig.defaultFonts.monospace = [ "Fira Mono" ];
+  fonts.fontconfig.defaultFonts.monospace = [ "PragmataPro Mono" ];
 
   hardware = {
     bluetooth.enable = true;
@@ -309,6 +310,7 @@ in
 
   # Sorry, RMS
   nixpkgs.config.allowUnfree = true;
+  nixpkgs.overlays = [ (import ./PragmataPro0.829) ];
 
   ## Configure programs.
   programs = {
