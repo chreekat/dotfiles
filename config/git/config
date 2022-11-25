@@ -26,9 +26,11 @@
     cim = !sh -c 'git commit -m \"$*\"' -
     co = checkout
     cp = cherry-pick
-    d = diff
-    dc = diff --cached
-    g = grep
+    dt = diff
+    dtc = diff --cached
+    d = difftool
+    dc = difftool --cached
+    g = grep --column
     ignored = clean -ndX
     lf = log --follow
     m = merge
@@ -83,3 +85,9 @@
 	#diffFilter = /home/b/lib/diff-highlight
 [pull]
 	rebase = false
+[diff]
+        tool = difftastic
+[difftool]
+        prompt = false
+[difftool "difftastic"]
+        cmd = difft "$LOCAL" "$REMOTE"
