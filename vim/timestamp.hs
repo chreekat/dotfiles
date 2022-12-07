@@ -1,4 +1,5 @@
 import Control.Monad
+import Data.Char
 import Data.Function
 import Data.Time
 -- Why do I have to do this extra import :(
@@ -106,8 +107,14 @@ renderSt (St w d t) =
 dropBlankLines = reverse . drop . reverse . lines
   where
     drop [] = []
-    drop ("":xs) = drop xs
-    drop gud = gud
+    drop (x:xs)
+        | "" <- strip x = drop xs
+        | otherwise = x:xs
+
+strip "" = ""
+strip (x:xs)
+    | isSpace x = strip xs
+    | otherwise = x:xs
 
 main = do
     zero <- zeroSt
