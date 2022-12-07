@@ -42,5 +42,7 @@ statefulness // {
   nix.settings.cores = 2;
   nix.settings.max-jobs = 2;
 
+  # Treat this device as a "server"
+  services.logind.lidSwitch = "ignore";
   services.openssh.listenAddresses = [ { addr = tailscaleIP; } ];
 }
