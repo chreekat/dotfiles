@@ -313,7 +313,7 @@ in
       options = "--delete-older-than 4w";
     };
     # Needed for various good things
-    trustedUsers = ["b"];
+    settings.trusted-users = ["b"];
   };
 
   # Sorry, RMS

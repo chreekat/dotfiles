@@ -20,8 +20,8 @@ in statefulness // {
   # Watching
   # https://discourse.nixos.org/t/are-there-concrete-suggestions-for-balancing-cores-and-max-jobs/11824
   # for new ideas.
-  nix.buildCores = 4;
-  nix.maxJobs = 4;
+  nix.settings.cores = 4;
+  nix.settings.max-jobs = 4;
 
   services.openssh.listenAddresses = [ { addr = tailscaleIP; } ];
 }
