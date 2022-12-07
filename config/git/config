@@ -1,4 +1,4 @@
-# vi: ft=gitconfig
+# vi: ft=gitconfig noet sw=8
 [user]
     name = Bryan Richter
     email = b@chreekat.net
@@ -56,6 +56,7 @@
     which = ls-tree -r HEAD --name-only
     wt = worktree
     checkouts = !sh -c "'git reflog | grep checkout: | perl -ne '\"'\"'/moving from (\\S*)/; print $1, \"\n\"'\"'\"" -
+    gr = grep --recurse-submodules
 [rebase]
     autosquash = true
 [fetch]
@@ -77,12 +78,6 @@
 	gpgsign = true
 [grep]
 	linenumber = true
-[pager]
-	#log = ~/lib/diff-highlight | less
-	#show = ~/lib/diff-highlight | less
-	#diff = ~/lib/diff-highlight | less
-[interactive]
-	#diffFilter = /home/b/lib/diff-highlight
 [pull]
 	rebase = false
 [diff]
@@ -91,3 +86,5 @@
         prompt = false
 [difftool "difftastic"]
         cmd = difft "$LOCAL" "$REMOTE"
+[pager]
+	difftool = true
