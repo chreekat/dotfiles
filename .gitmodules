@@ -96,5 +96,5 @@
 	path = vim/pack/start/start/papercolor-theme
 	url = git@github.com:NLKNguyen/papercolor-theme
 [submodule "nixos/PragmataPro0.829"]
-	path = nixos/PragmataPro0.829
+	path = nixos/nonfree-fonts
 	url = git@git.sr.ht:~chreekat/nonfree-fonts
