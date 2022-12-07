@@ -267,15 +267,23 @@ in
     EDITOR = "vim";
   };
 
-  fonts.fonts = [
-    pkgs.pragmataPro_font
-    pkgs.fira-mono
-    pkgs.noto-fonts-emoji
-    pkgs.noto-fonts
-    pkgs.siji
-    pkgs.comic-neue
-  ];
-  fonts.fontconfig.defaultFonts.monospace = [ "PragmataPro Mono" ];
+  fonts = {
+    fonts = [
+      pkgs.FSD-Emoji-font
+      pkgs.pragmataPro-font
+      pkgs.fira-mono
+      pkgs.noto-fonts-emoji
+      pkgs.noto-fonts
+      pkgs.siji
+      pkgs.comic-neue
+    ];
+    fontconfig.defaultFonts = {
+      monospace = [ "PragmataPro Mono" ];
+      emoji = [
+        "FSD Emoji"
+      ];
+    };
+  };
 
   hardware = {
     bluetooth.enable = true;
@@ -310,7 +318,9 @@ in
 
   # Sorry, RMS
   nixpkgs.config.allowUnfree = true;
-  nixpkgs.overlays = [ (import ./PragmataPro0.829) ];
+  nixpkgs.overlays = [
+    (import ./nonfree-fonts)
+  ];
 
   ## Configure programs.
   programs = {
