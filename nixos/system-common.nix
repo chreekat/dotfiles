@@ -312,8 +312,11 @@ in
       # moving slowly.
       options = "--delete-older-than 4w";
     };
-    # Needed for various good things
-    settings.trusted-users = ["b"];
+    settings = {
+      # Needed for various good things
+      trusted-users = ["b"];
+      experimental-features = [ "nix-command" "flakes" ];
+    };
   };
 
   # Sorry, RMS
