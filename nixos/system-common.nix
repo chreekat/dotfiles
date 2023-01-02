@@ -145,6 +145,7 @@ in
         git-crypt
         lorri
         niv
+        nix-diff
         nix-prefetch
         nix-prefetch-docker
         nix-prefetch-github
@@ -175,7 +176,6 @@ in
         (callPackage ./terminal-image-viewer {})
       # linux
         (sox.override { enableLame = true; })
-        atop
         bc
         eplot # Fast command line plotter
         fd
