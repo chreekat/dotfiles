@@ -25,3 +25,4 @@ Abolish anwser{s,} answer{}
 Abolish inculd{ing,ed} includ{}
 Abolish supposde supposed
 Abolish actulaly actually
+Abolish emali{,s} email{}
