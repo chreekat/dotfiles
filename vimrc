@@ -237,12 +237,15 @@ augroup vimrc
     " Why isn't this here?
     au BufRead,BufNewFile Vagrantfile setf ruby
 
+    " GHC Test files
+    au BufRead,BufNewFile *.T setf python
+
     "" SKELETON FILES
     au BufNewFile *.sh 0r ~/.vim/skel/skel.sh|normal G
 
     "" Override F9 in Log.txt
-    au BufRead,BufNewFile Log.txt nnoremap <buffer> <F9> :%!runghc ~/.vim/timestamp.hs<cr>GddA
-    au BufRead,BufNewFile Log.txt setl sw=7 tw=90 fo-=a2 nowrap
+    au BufRead,BufNewFile Log.txt,Log/*.txt nnoremap <buffer> <F9> :%!runghc ~/.vim/timestamp.hs<cr>Gdd5<c-e>A
+    au BufRead,BufNewFile Log.txt,Log/*.txt setl sw=7 tw=90 fo-=a2 nowrap
 
     " DB setup
     au BufRead ~/HaskellFoundation/clones/spurious-failures/queries.sql DB g:cijobs = sqlite:/home/b/HaskellFoundation/clones/spurious-failures/jobs.db
