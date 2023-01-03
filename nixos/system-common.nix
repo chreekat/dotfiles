@@ -376,6 +376,9 @@ in
     keybase.enable = true;
     kbfs.enable = true;
 
+    # /run/user/1000 limit
+    logind.extraConfig = "RuntimeDirectorySize=50%";
+
     openssh.enable = true;
 
     printing.enable = true;
