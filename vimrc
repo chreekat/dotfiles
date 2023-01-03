@@ -245,9 +245,9 @@ augroup vimrc
     au BufRead,BufNewFile Log.txt setl sw=7 tw=90 fo-=a2 nowrap
 
     " DB setup
-    au BufRead ~/HaskellFoundation/queries.sql DB g:cijobs = sqlite:/home/b/HF/jobs.db
-    au BufRead ~/HaskellFoundation/queries.sql nmap <buffer> <leader>c vip:DB g:cijobs<cr>
-    au BufRead ~/HaskellFoundation/queries.sql vmap <buffer> <leader>c :DB g:cijobs<cr>
+    au BufRead ~/HaskellFoundation/clones/spurious-failures/queries.sql DB g:cijobs = sqlite:/home/b/HaskellFoundation/clones/spurious-failures/jobs.db
+    au BufRead ~/HaskellFoundation/clones/spurious-failures/queries.sql nmap <buffer> <leader>c vip:DB g:cijobs<cr>
+    au BufRead ~/HaskellFoundation/clones/spurious-failures/queries.sql vmap <buffer> <leader>c :DB g:cijobs<cr>
 
 augroup END
 
