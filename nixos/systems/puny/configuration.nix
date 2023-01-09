@@ -22,6 +22,8 @@
 
   networking.hostName = "puny";
 
+  services.cachix-agent.enable = true;
+
   # Required to use ACME
   security.acme.defaults.email = "b@chreekat.net";
   security.acme.acceptTerms = true;
