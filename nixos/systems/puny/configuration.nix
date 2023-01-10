@@ -10,6 +10,7 @@
       ../user-b.nix
       ../server-sudo.nix
       ../server-ssh.nix
+      ../server-www-fileserv.nix
     ];
 
   system.stateVersion = "22.11";
@@ -21,22 +22,13 @@
   };
 
   networking.hostName = "puny";
+  networking.domain = "chreekat.net";
 
   services.cachix-agent.enable = true;
-
-  # Required to use ACME
-  security.acme.defaults.email = "b@chreekat.net";
+  services.www-fileserv = {
+    enable = true;
+    admin-email = "b@chreekat.net";
+  };
   security.acme.acceptTerms = true;
 
-  networking.firewall.allowedTCPPorts = [
-    22
-    80
-    443
-  ];
-  services.nginx.enable = true;
-  services.nginx.virtualHosts."puny.chreekat.net" = {
-    forceSSL = true;
-    enableACME = true;
-    root = "/var/www/puny";
-  };
 }
