@@ -188,10 +188,10 @@ defbindings("WMPlex.toplevel", {
     kpress(META.."F6", "notioncore.exec_on(_, 'chromium')"),
 
     bdoc("AutoRandR Default", "autorandr-def"),
-    kpress(META.."F4", "notioncore.exec_on(_, 'autorandr -l default')"),
+    kpress(META.."F4", "notioncore.exec_on(_, 'autorandr --match-edid -l default')"),
 
     bdoc("AutoRandR Detect", "autorandr-det"),
-    kpress(META.."F5", "notioncore.exec_on(_, 'autorandr -c')"),
+    kpress(META.."F5", "notioncore.exec_on(_, 'autorandr --match-edid -c')"),
 
 
 
