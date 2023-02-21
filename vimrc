@@ -166,12 +166,12 @@ nnoremap ]Q :cnfile<cr>
 nnoremap [Q :cpfile<cr>
 nnoremap ]l :lnext<cr>
 nnoremap [l :lprev<cr>
-nmap ]<space> <f2>o<esc><f2>'[
-nmap [<space> <f2>O<esc><f2>
+nnoremap ]<space> <f2>o<esc><f2>'[
+nnoremap [<space> <f2>O<esc><f2>
 " ^ Uses pastetoggle
 
 " Dr Chip's highlight group display
-nmap <silent> <leader>hg   :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<cr>
+nnoremap <silent> <leader>hg   :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<cr>
 
 " See error context
 command! -range=3 CC cc|cl!+<count>
@@ -248,9 +248,9 @@ augroup vimrc
     au BufRead,BufNewFile Log.txt,Log/*.txt setl sw=7 tw=90 fo-=a2 nowrap
 
     " DB setup
-    au BufRead ~/HaskellFoundation/clones/spurious-failures/queries.sql DB g:cijobs = sqlite:/home/b/HaskellFoundation/clones/spurious-failures/jobs.db
-    au BufRead ~/HaskellFoundation/clones/spurious-failures/queries.sql nmap <buffer> <leader>c vip:DB g:cijobs<cr>
-    au BufRead ~/HaskellFoundation/clones/spurious-failures/queries.sql vmap <buffer> <leader>c :DB g:cijobs<cr>
+    au BufRead ~/HaskellFoundation/clones/spurious-failures/spurious-failures/queries.sql DB g:cijobs = sqlite:jobs.db
+    au BufRead ~/HaskellFoundation/clones/spurious-failures/spurious-failures/queries.sql nmap <buffer> <leader>c vip:DB g:cijobs<cr>
+    au BufRead ~/HaskellFoundation/clones/spurious-failures/spurious-failures/queries.sql vmap <buffer> <leader>c :DB g:cijobs<cr>
 
 augroup END
 
