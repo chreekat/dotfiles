@@ -59,6 +59,7 @@ in
   imports = [
     ./nix-direnv.nix
     ./mods/tailscale.nix
+    ./mods/backlight.nix
   ];
   boot = {
     # Use the systemd-boot EFI boot loader.
@@ -406,12 +407,6 @@ in
 
     # Packages that include udev rules
     udev.packages = [ pkgs.chrysalis ];
-
-    # Allow the video group to change backlight brightness
-    udev.extraRules = ''
-        ACTION=="add", SUBSYSTEM=="backlight", KERNEL=="intel_backlight", RUN+="${pkgs.coreutils}/bin/chgrp video /sys/class/backlight/%k/brightness"
-        ACTION=="add", SUBSYSTEM=="backlight", KERNEL=="intel_backlight", RUN+="${pkgs.coreutils}/bin/chmod g+w /sys/class/backlight/%k/brightness"
-    '';
 
     unclutter-xfixes.enable = true;
 

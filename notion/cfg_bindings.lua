@@ -23,6 +23,10 @@ ALT="Mod1+"
 ALTSHIFT="Mod1+Shift+"
 
 defbindings("WScreen", {
+    bdoc("Brightness down", ""),
+    kpress("XF86MonBrightnessDown", "notioncore.exec('light -U 1')"),
+    bdoc("Brightness up", ""),
+    kpress("XF86MonBrightnessUp", "notioncore.exec('light -A 1')"),
     bdoc("Switch to object 0 (workspace, full screen client window) "..
          "within current screen.", "ws 0"),
     kpress(META.."1", "WScreen.switch_nth(_, 0)"),
