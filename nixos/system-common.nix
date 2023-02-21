@@ -171,6 +171,7 @@ in
         handbrake # Rips DVD to video files
         imagemagick
         inkscape
+        pinta # Simple image editor
         spotify
         transmission
         vlc
@@ -260,6 +261,7 @@ in
         kubectx
         minikube
         metal-cli
+        freerdp
         # nixops --> libvirt insecure
     ]);
 
