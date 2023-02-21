@@ -24,5 +24,7 @@ in statefulness // {
   nix.settings.max-jobs = 4;
 
   services.openssh.listenAddresses = [ { addr = tailscaleIP; } ];
+
+  services.logind.lidSwitchExternalPower = "ignore";
 }
 
