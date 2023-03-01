@@ -38,7 +38,7 @@ shopt -s histappend autocd cdspell checkhash checkjobs globstar
 
 export LESS=-iRFX
 # How about no
-unset LESSOPEN
+unset LESSOPEN LESSKEYIN_SYSTEM
 export PAGER=less
 export MP_FULLNAME="Bryan Thomas Richter"
 export MPW_FULLNAME="Bryan Thomas Richter"
