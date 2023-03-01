@@ -150,6 +150,9 @@ prg () { rg -p $@ | less; }
 # ripgrep to vim
 qrg () { vim -q <(rg --vimgrep "$@"); }
 
+# git grep to vim
+qgg () { vim -q <(git grep "$@"); }
+
 mkcd () {
     mkdir -p $1 && cd $1
 }
