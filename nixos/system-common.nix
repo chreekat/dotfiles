@@ -291,6 +291,7 @@ in
   hardware = {
     bluetooth.enable = true;
     cpu.intel.updateMicrocode = true;
+    i2c.enable = true;
     pulseaudio.enable = true;
     pulseaudio.package = pkgs.pulseaudioFull;
   };
@@ -367,6 +368,12 @@ in
       enable = true;
       fileSystems = [ "/" ];
     };
+    clight = {
+      enable = true;
+      settings = {
+        verbose = true;
+      };
+    };
     dictd = {
       enable = true;
       DBs = ((d: [
@@ -388,7 +395,7 @@ in
 
     # Redshift + Geoclue
     redshift = {
-        enable = true;
+        enable = false;
         brightness.night = "0.97";
         temperature = {
           day = 6500;
