@@ -26,3 +26,4 @@ Abolish inculd{ing,ed} includ{}
 Abolish supposde supposed
 Abolish actulaly actually
 Abolish emali{,s} email{}
+Abolish {in,}compatiblit{y,ies} {}compatibilit{}
