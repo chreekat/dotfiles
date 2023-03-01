@@ -28,13 +28,6 @@ statefulness // {
     pkgs.tor-browser-bundle-bin
   ];
 
-  users.users.b.extraGroups = ["docker" "transmission"];
-
-  virtualisation.docker = {
-    enable = true;
-    enableOnBoot = false;
-  };
-
   # Balance cores and max-jobs experimentally.
   # Watching
   # https://discourse.nixos.org/t/are-there-concrete-suggestions-for-balancing-cores-and-max-jobs/11824
