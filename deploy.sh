@@ -121,9 +121,10 @@ DOTS=(
     mutt
     nethackrc
     notion/cfg_bindings.lua
-    notion/cfg_dock.lua
+    notion/cfg_statusbar.lua
     notion/cfg_notion.lua
     notion/cfg_tiling.lua
+    notion/cfg_kludges.lua
     notion/notion-lock
     notmuch-config
     npmrc
