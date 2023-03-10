@@ -311,10 +311,10 @@ in
   nix = {
     gc = {
       automatic = true;
-      dates = "weekly";
+      dates = "monthly";
       # Bumped from 2w to 4w on the 50th of March 2020 because channels were
       # moving slowly.
-      options = "--delete-older-than 4w";
+      options = "--delete-older-than 30d";
     };
     settings = {
       # Needed for various good things
