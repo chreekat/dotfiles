@@ -11,6 +11,8 @@
       ../server-sudo.nix
       ../server-ssh.nix
       ../server-www-fileserv.nix
+      ../syncthing.nix
+      ../nix-hygiene.nix
     ];
 
   system.stateVersion = "22.11";

@@ -1,23 +1,7 @@
 {
   services.syncthing =
     let
-      devices = {
-        "Pixel 6a" = {
-          id = "";
-        };
-        fuzzbomb = {
-          id = "";
-        };
-        smilga = {
-          id = "";
-        };
-        tallac = {
-          id = "";
-        };
-        kuusi = {
-          id = "";
-        };
-      };
+      devices = builtins.fromJSON (builtins.readFile ./syncthing-devices.json);
       dataDir = "/home/b/Syncthing";
       addPath = name: val: val // { path = "${dataDir}/${name}"; };
     in {
@@ -28,11 +12,11 @@
       configDir = dataDir + "/.config/syncthing";
       folders = builtins.mapAttrs addPath {
         PhoneFiles = {
-          id = "";
+          id = "0acam-5wio6";
           devices = builtins.attrNames devices;
         };
         Brarris = {
-          id = "";
+          id = "pgfad-5ilgg";
           devices = [ "kuusi" "tallac" ];
         };
       };
