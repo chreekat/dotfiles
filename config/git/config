@@ -88,3 +88,5 @@
         cmd = difft "$LOCAL" "$REMOTE"
 [pager]
 	difftool = true
+[advice]
+	addEmptyPathspec = false
