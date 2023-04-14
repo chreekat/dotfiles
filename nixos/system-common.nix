@@ -178,7 +178,7 @@ in
         (callPackage ./terminal-image-viewer {})
       # linux
         (sox.override { enableLame = true; })
-        bc
+        bc # More like dc amirite
         eplot # Fast command line plotter
         fd
         file
