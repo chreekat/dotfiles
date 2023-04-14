@@ -27,3 +27,5 @@ Abolish supposde supposed
 Abolish actulaly actually
 Abolish emali{,s} email{}
 Abolish {in,}compatiblit{y,ies} {}compatibilit{}
+Abolish hsould should
+Abolish starteg{y,ies,ic,ize} strateg{}
