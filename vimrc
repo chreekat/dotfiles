@@ -281,8 +281,10 @@ augroup vimrc_highlighting
     au ColorScheme default hi DiffDelete ctermfg=203 cterm=reverse
     au ColorScheme default hi DiffText ctermfg=173 cterm=reverse
     au ColorScheme default hi DiffChange ctermfg=104 cterm=reverse
+    au ColorScheme PaperColor hi Folded ctermbg=NONE
+    au ColorScheme apprentice hi Folded ctermbg=NONE
 augroup END
-colorscheme apprentice
+colorscheme PaperColor
 
 ""
 "" Things that should be plugins?
