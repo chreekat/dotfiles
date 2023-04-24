@@ -13,7 +13,7 @@
       folders = builtins.mapAttrs addPath {
         PhoneFiles = {
           id = "0acam-5wio6";
-          devices = builtins.attrNames devices;
+          devices = [ "Pixel 6a" "fuzzbomb" "smilga" "kuusi" ];
         };
         Brarris = {
           id = "pgfad-5ilgg";
