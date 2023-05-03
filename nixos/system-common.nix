@@ -151,18 +151,21 @@ in
         nix-prefetch-docker
         nix-prefetch-github
         nix-prefetch-scripts
-        postgresql
         ripgrep
         tmux
         universal-ctags
         vim_configurable
         vscodium
+      # databases
+        beekeeper-studio # db tool
+        postgresql
       # media
         aegisub
         audacity
         # beets - broken dep python3.7-soco in 20.03
         #digikam
-        blueberry # bluetooth
+        blueberry # bluetooth tray and gui
+        bluetuith # bluetooth tui
         ghostscript
         gimp
         gitAndTools.git-annex
