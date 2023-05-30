@@ -139,6 +139,7 @@ in
         bugs
         cachix
         difftastic
+        dhall
         direnv
         entr
         ghcid
@@ -247,7 +248,6 @@ in
         mumble
         element-desktop
         signal-desktop
-        weechat
         wire-desktop
       # networking
         bind
@@ -265,6 +265,7 @@ in
         minikube
         metal-cli
         freerdp
+        sops
         # nixops --> libvirt insecure
     ]);
 
@@ -456,7 +457,7 @@ in
 
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.extraGroups.b = {
+  users.groups.b = {
     gid = 1000;
   };
   users.users.b = {

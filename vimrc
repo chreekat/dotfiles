@@ -6,6 +6,7 @@
 set backspace=indent,eol,start
 set breakat-=.,
 " ^ These break numbers in half.
+set display=lastline
 set expandtab
 set formatoptions+=j
 set hidden
