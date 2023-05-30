@@ -8,7 +8,7 @@ vim9script
 
 def CompleteTimeAccount(findstart: number, base: string): any
     if findstart == 1
-        if IsAcct()
+        if IsAcct(getline('.'))
             return 0
         else
             # Cancel silently and leave completion
@@ -19,8 +19,7 @@ def CompleteTimeAccount(findstart: number, base: string): any
     endif
 enddef
 
-def IsAcct(): bool
-    var line = getline('.')
+def IsAcct(line: string): bool
     var leading = line[0 : col('.') - 1]
     return leading == '' || leading =~ '^[a-z]'
 enddef
@@ -30,13 +29,11 @@ def GetAccts(base: string): list<string>
     var lineNr = 0
     # The end of a account is the first two spaces
     var endmatch = '.\{-}\ze  '
-    var match = '^\S*' .. base .. endmatch
-    if base == ""
-        match = '^[a-z]' .. endmatch
-    endif
+    var match = '^.*' .. base .. endmatch
     while lineNr < line('$')
-        var account = matchstr(getline(lineNr + 1), match)
-        if account != ""
+        var line = getline(lineNr + 1)
+        var account = matchstr(line, match)
+        if IsAcct(line) && account != ""
             add(matches, account)
         endif
         lineNr += 1
@@ -44,4 +41,5 @@ def GetAccts(base: string): list<string>
     return sort(matches)
 enddef
 
+#ci:pipeline config:cabal  2
 setlocal omnifunc=CompleteTimeAccount
