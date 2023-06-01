@@ -107,6 +107,7 @@ DOTS=(
     config/systemd/user/offlineimap.timer
     config/urxvt/themes/apprentice
     config/urxvt/themes/solarized-light
+    config/Yubico/u2f_keys
     ctags
     cvsrc
     direnvrc

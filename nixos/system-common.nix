@@ -60,6 +60,7 @@ in
     ./nix-direnv.nix
     ./mods/tailscale.nix
     ./mods/backlight.nix
+    ./mods/nitrokey.nix
   ];
   boot = {
     # Use the systemd-boot EFI boot loader.
