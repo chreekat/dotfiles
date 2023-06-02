@@ -40,7 +40,7 @@ let
   # Handy tool for tracking works in progress
   bugs =
     let
-      losh-t = pkgs.pythonPackages.buildPythonApplication {
+      losh-t = pkgs.python3Packages.buildPythonApplication {
         pname = "losh-t";
         version = "1.2.0";
         src = fetchGit {
@@ -69,8 +69,8 @@ in
 
     # Don't use tmpOnTmpfs, because I actually use all that ram when compiling
     # Haskell
-    tmpOnTmpfs = false;
-    cleanTmpDir = true;
+    tmp.useTmpfs = false;
+    tmp.cleanOnBoot = true;
   };
 
   # 20.03
@@ -200,7 +200,7 @@ in
         nix-bash-completions
         pandoc
         par
-        python
+        python3
         qdirstat
         sqlite-interactive
         sshuttle
