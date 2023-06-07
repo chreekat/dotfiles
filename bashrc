@@ -158,7 +158,7 @@ mkcd () {
 }
 
 nixos () {
-    cd ~/PROJECTS/dotfiles/nixos/
+    cd ~/Projects/dotfiles/nixos/
 }
 
 # The struggle is real

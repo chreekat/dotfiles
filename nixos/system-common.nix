@@ -200,6 +200,7 @@ in
         nix-bash-completions
         pandoc
         par
+        pciutils # lspci
         python3
         qdirstat
         sqlite-interactive
