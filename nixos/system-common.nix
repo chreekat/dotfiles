@@ -61,6 +61,7 @@ in
     ./mods/tailscale.nix
     ./mods/backlight.nix
     ./mods/nitrokey.nix
+    ./mods/haskell-platform-lite.nix
   ];
   boot = {
     # Use the systemd-boot EFI boot loader.
@@ -97,31 +98,6 @@ in
       hlint
       hpack
       stack
-      # Haskell Platform-lite
-      (ghcWithPackages (p: with p; [
-        QuickCheck
-        containers
-        criterion
-        hspec
-        lens
-        megaparsec
-        nonempty-containers
-        nonempty-vector
-        placeholders
-        pretty-simple
-        regex-applicative
-        req
-        scalpel-core
-        servant
-        split
-        tasty
-        tasty-hunit
-        tasty-hspec
-        tasty-quickcheck
-        template-haskell
-        text
-        turtle
-        ]))
       # stylish-haskell # broken on 2020-02-21. Still broken on 2020-04-28
       # (import /home/b/Projects/usort {}).usort
     ]) ++ (with pkgs; [
