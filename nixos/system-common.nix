@@ -129,6 +129,7 @@ in
         nix-prefetch-docker
         nix-prefetch-github
         nix-prefetch-scripts
+        nodejs_20
         ripgrep
         tmux
         universal-ctags
