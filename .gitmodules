@@ -98,3 +98,6 @@
 [submodule "nixos/PragmataPro0.829"]
 	path = nixos/nonfree-fonts
 	url = git@git.sr.ht:~chreekat/nonfree-fonts
+[submodule "vim/pack/start/start/coc.nvim"]
+	path = vim/pack/start/start/coc.nvim
+	url = https://github.com/neoclide/coc.nvim
