@@ -60,7 +60,6 @@ in
     ./nix-direnv.nix
     ./mods/tailscale.nix
     ./mods/backlight.nix
-    ./mods/nitrokey.nix
     ./mods/haskell-platform-lite.nix
   ];
   boot = {
