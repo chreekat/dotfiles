@@ -61,6 +61,7 @@ in
     ./mods/tailscale.nix
     ./mods/backlight.nix
     ./mods/haskell-platform-lite.nix
+    ./mods/web-dev.nix
   ];
   boot = {
     # Use the systemd-boot EFI boot loader.
@@ -83,169 +84,154 @@ in
 
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
-  environment.systemPackages =
-    (with pkgs.haskellPackages; [
-      cabal-install
-      cabal2nix
-      eventlog2html
-      fast-tags
-      fourmolu
-      ghc-events
-      hasktags
+  environment.systemPackages = with pkgs; [
+    # categories suck
+      anki
+      chrysalis
+      aspell
+    # 3d-printing
+      cura
+    # personal admin tools
+      bup
+      keepassxc
+      pass
       hledger
       hledger-ui
-      hlint
-      hpack
-      stack
-      # stylish-haskell # broken on 2020-02-21. Still broken on 2020-04-28
-      # (import /home/b/Projects/usort {}).usort
-    ]) ++ (with pkgs; [
-      # categories suck
-        anki
-        chrysalis
-        aspell
-      # 3d-printing
-        cura
-      # personal admin tools
-        bup
-        keepassxc
-        pass
-      # development
-        bench
-        bugs
-        cachix
-        difftastic
-        dhall
-        direnv
-        entr
-        ghcid
-        git
-        git-crypt
-        lorri
-        niv
-        nix-diff
-        nix-prefetch
-        nix-prefetch-docker
-        nix-prefetch-github
-        nix-prefetch-scripts
-        nodejs_20
-        ripgrep
-        tmux
-        universal-ctags
-        vim_configurable
-        vscodium
-      # databases
-        beekeeper-studio # db tool
-        postgresql
-      # media
-        aegisub
-        audacity
-        # beets - broken dep python3.7-soco in 20.03
-        #digikam
-        blueberry # bluetooth tray and gui
-        bluetuith # bluetooth tui
-        ghostscript
-        gimp
-        gitAndTools.git-annex
-        graphviz
-        gv
-        handbrake # Rips DVD to video files
-        imagemagick
-        inkscape
-        pinta # Simple image editor
-        spotify
-        transmission
-        vlc
-        (callPackage ./terminal-image-viewer {})
-      # linux
-        (sox.override { enableLame = true; })
-        bc # More like dc amirite
-        eplot # Fast command line plotter
-        fd
-        file
-        fzf
-        gdb
-        gnumake
-        htop
-        jq
-        jre
-        lshw
-        man-pages # OBVIOUSLY
-        mosh
-        ncdu
-        nix-bash-completions
-        pandoc
-        par
-        pciutils # lspci
-        python3
-        qdirstat
-        sqlite-interactive
-        sshuttle
-        tree
-        unzip
-        usbutils
-        yq
-      # Xorg (in concert with enabling xmonad)
-        albert # Launcher, bound to ScrollLock
-        arandr
-        flameshot
-        keynav
-        notify-osd
-        pavucontrol
-        rekey
-        xfce.thunar # File browser
-        xcape
-        xclip
-        xorg.xev
-        xorg.xmessage
-      # Gifcasts (FIXME: make vokoscreen make gifs by default)
-        screenkey # show keys in gif casts
-        slop # Used by screenkey to select a region
-        vokoscreen # gif casts
-      # Xorg tray
-        cbatticon
-        networkmanagerapplet
-      # Web
-        chromium
-        firefox
-        newsboat
-        w3m
-        wget
-        youtube-dl
-      # Email
-        patchedExtracturl
-        lmdb # Header cache for neomutt
-        neomutt
-        notmuch
-        offlineimap
-        thunderbird
-        vcal
-      # social
-        gnupg1compat
-        keybase-gui
-        mumble
-        element-desktop
-        signal-desktop
-        wire-desktop
-      # networking
-        bind
-        nethogs
-        nmap
-        # Broken on 20.09 with "urwid-2.1.1 not supported for interpreter
-        # python2.7 :(
-        # speedometer
-        tcpdump
-      # devops
-        awscli
-        dive
-        kubectl
-        kubectx
-        minikube
-        metal-cli
-        freerdp
-        sops
-        # nixops --> libvirt insecure
-    ]);
+    # development
+      bench
+      bugs
+      cachix
+      difftastic
+      dhall
+      direnv
+      entr
+      ghcid
+      git
+      git-crypt
+      lorri
+      niv
+      nix-diff
+      nix-prefetch
+      nix-prefetch-docker
+      nix-prefetch-github
+      nix-prefetch-scripts
+      ripgrep
+      tmux
+      universal-ctags
+      vim_configurable
+      vscodium
+    # databases
+      beekeeper-studio # db tool
+      postgresql
+    # media
+      aegisub
+      audacity
+      # beets - broken dep python3.7-soco in 20.03
+      #digikam
+      blueberry # bluetooth tray and gui
+      bluetuith # bluetooth tui
+      ghostscript
+      gimp
+      gitAndTools.git-annex
+      graphviz
+      gv
+      handbrake # Rips DVD to video files
+      imagemagick
+      inkscape
+      pinta # Simple image editor
+      spotify
+      transmission
+      vlc
+      (callPackage ./terminal-image-viewer {})
+    # linux
+      (sox.override { enableLame = true; })
+      bc # More like dc amirite
+      eplot # Fast command line plotter
+      fd
+      file
+      fzf
+      gdb
+      gnumake
+      htop
+      jq
+      jre
+      lshw
+      man-pages # OBVIOUSLY
+      mosh
+      ncdu
+      nix-bash-completions
+      pandoc
+      par
+      pciutils # lspci
+      python3
+      qdirstat
+      sqlite-interactive
+      sshuttle
+      tree
+      unzip
+      usbutils
+      yq
+    # Xorg (in concert with enabling xmonad)
+      albert # Launcher, bound to ScrollLock
+      arandr
+      flameshot
+      keynav
+      notify-osd
+      pavucontrol
+      rekey
+      xfce.thunar # File browser
+      xcape
+      xclip
+      xorg.xev
+      xorg.xmessage
+    # Gifcasts (FIXME: make vokoscreen make gifs by default)
+      screenkey # show keys in gif casts
+      slop # Used by screenkey to select a region
+      vokoscreen # gif casts
+    # Xorg tray
+      cbatticon
+      networkmanagerapplet
+    # Web
+      chromium
+      firefox
+      newsboat
+      w3m
+      wget
+      youtube-dl
+    # Email
+      patchedExtracturl
+      lmdb # Header cache for neomutt
+      neomutt
+      notmuch
+      offlineimap
+      thunderbird
+      vcal
+    # social
+      gnupg1compat
+      keybase-gui
+      mumble
+      element-desktop
+      signal-desktop
+      wire-desktop
+    # networking
+      bind
+      nethogs
+      nmap
+      # Broken on 20.09 with "urwid-2.1.1 not supported for interpreter
+      # python2.7 :(
+      # speedometer
+      tcpdump
+    # devops
+      awscli
+      dive
+      kubectl
+      kubectx
+      minikube
+      metal-cli
+      freerdp
+      sops
+      # nixops --> libvirt insecure
+    ];
 
   # Set up the default environment
   environment.variables = {
