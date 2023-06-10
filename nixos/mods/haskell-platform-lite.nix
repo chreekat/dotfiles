@@ -7,6 +7,7 @@
     pkgs.haskellPackages.fourmolu
     pkgs.haskellPackages.ghc-events
     pkgs.haskellPackages.hasktags
+    pkgs.haskell-language-server
     pkgs.hlint
     pkgs.hpack
     pkgs.stack
