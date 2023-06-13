@@ -105,8 +105,7 @@ DOTS=(
     config/systemd/user/lorri.socket
     config/systemd/user/offlineimap.service
     config/systemd/user/offlineimap.timer
-    config/urxvt/themes/apprentice
-    config/urxvt/themes/solarized-light
+    config/urxvt/themes
     config/Yubico/u2f_keys
     ctags
     cvsrc
