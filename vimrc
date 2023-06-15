@@ -355,21 +355,21 @@ noremap <leader>h2 yypv$r
 "
 " LSP SETUP
 "
-"if executable('haskell-language-server-wrapper')
-"  augroup LspHaskell
-"    autocmd!
-"    au User lsp_setup call lsp#register_server({
-"        \ 'name': 'haskell-language-server-wrapper',
-"        \ 'cmd': {server_info->['haskell-language-server-wrapper', '--lsp', '-j', '3']},
-"        \ 'root_uri':{server_info->lsp#utils#path_to_uri(
-"        \     lsp#utils#find_nearest_parent_file_directory(
-"        \         lsp#utils#get_buffer_path(),
-"        \         ['.cabal', 'stack.yaml', 'cabal.project', 'package.yaml', 'hie.yaml', '.git'],
-"        \     ))},
-"        \ 'whitelist': ['haskell', 'lhaskell'],
-"        \ })
-"  augroup END
-"endif
+if executable('haskell-language-server-wrapper')
+  augroup LspHaskell
+    autocmd!
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'haskell-language-server-wrapper',
+        \ 'cmd': {server_info->['haskell-language-server-wrapper', '--lsp', '-j', '4']},
+        \ 'root_uri':{server_info->lsp#utils#path_to_uri(
+        \     lsp#utils#find_nearest_parent_file_directory(
+        \         lsp#utils#get_buffer_path(),
+        \         ['cabal.project'],
+        \     ))},
+        \ 'allowlist': ['haskell', 'lhaskell', 'cabal', 'cabalproject'],
+        \ })
+  augroup END
+endif
 "if executable('bash-language-server')
 "  augroup LspBash
 "    autocmd!
@@ -381,10 +381,10 @@ noremap <leader>h2 yypv$r
 "  augroup END
 "endif
 "
-"function! s:on_lsp_buffer_enabled() abort
-"    setlocal omnifunc=lsp#complete
-"    setlocal signcolumn=yes
-"    if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
+function! s:on_lsp_buffer_enabled() abort
+    setlocal omnifunc=lsp#complete
+    setlocal signcolumn=yes
+    if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
 "    nmap <buffer> gd <plug>(lsp-definition)
 "    nmap <buffer> gs <plug>(lsp-document-symbol-search)
 "    nmap <buffer> gS <plug>(lsp-workspace-symbol-search)
@@ -398,14 +398,14 @@ noremap <leader>h2 yypv$r
 "    nnoremap <buffer> <expr><c-f> lsp#scroll(+4)
 "    nnoremap <buffer> <expr><c-d> lsp#scroll(-4)
 "
-"    let g:lsp_format_sync_timeout = 1000
+    let g:lsp_format_sync_timeout = 1000
 "    autocmd! BufWritePre *.rs,*.go call execute('LspDocumentFormatSync')
 "
 "    " refer to doc to add more commands
-"endfunction
+endfunction
 "
-"augroup lsp_install
-"    au!
+augroup lsp_install
+    au!
 "    " call s:on_lsp_buffer_enabled only for languages that has the server registered.
-"    autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
-"augroup END
+    autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
+augroup END
