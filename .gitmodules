@@ -101,3 +101,6 @@
 [submodule "vim/pack/start/start/vim-svelte"]
 	path = vim/pack/start/start/vim-svelte
 	url = https://github.com/evanleck/vim-svelte
+[submodule "vim/pack/start/start/coc.nvim"]
+	path = vim/pack/start/start/coc.nvim
+	url = https://github.com/neoclide/coc.nvim
