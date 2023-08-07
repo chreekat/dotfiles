@@ -30,3 +30,5 @@ log_aliases () {
 log_aliases
 
 alias regit="source ~/.bash/git.bash"
+
+alias gcd='git ci -m `ddate -1`'

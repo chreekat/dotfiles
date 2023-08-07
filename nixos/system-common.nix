@@ -109,6 +109,7 @@ in
       git
       git-crypt
       lorri
+      nil
       niv
       nix-diff
       nix-prefetch

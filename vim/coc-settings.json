@@ -4,7 +4,18 @@
       "command": "haskell-language-server-wrapper",
       "args": ["--lsp"],
       "rootPatterns": ["*.cabal", "stack.yaml", "cabal.project", "package.yaml", "hie.yaml"],
-      "filetypes": ["haskell", "lhaskell"]
+      "filetypes": ["haskell", "lhaskell", "cabal", "cabalproject"]
+    },
+    "nix": {
+      "command": "nil",
+      "filetypes": ["nix"],
+      "rootPatterns":  ["flake.nix"]
+    },
+    "python": {
+      "command": "pylsp",
+      "filetypes": ["python"],
+      "rootPatterns":  ["flake.nix", "setup.py"]
     }
-  }
-}
+  },
+ "suggest.autoTrigger": "none"
+ }
