@@ -1,4 +1,6 @@
 {
+  # Default is 100. Wtf, NixOS?
+  boot.loader.grub.configurationLimit = 20;
   nix = {
     gc = {
       automatic = true;

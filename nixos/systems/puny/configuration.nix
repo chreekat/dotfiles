@@ -9,17 +9,17 @@
     [ ./hardware-configuration.nix
       ../user-b.nix
       ../server-sudo.nix
-      ../server-ssh.nix
+      ../../mods/server-ssh.nix
+      ../../mods/tailscale.nix
       ../server-www-fileserv.nix
       ../syncthing.nix
-      ../nix-hygiene.nix
+      ../../mods/nix-hygiene.nix
     ];
 
   system.stateVersion = "22.11";
 
   boot.loader.grub = {
     enable = true;
-    version = 2;
     device = "/dev/vda";
   };
 
