@@ -1,5 +1,5 @@
-_:
+{ config, ... }:
 {
   services.tailscale.enable = true;
-  networking.firewall.checkReversePath = "loose";
+  networking.firewall.trustedInterfaces = [ config.services.tailscale.interfaceName ];
 }
