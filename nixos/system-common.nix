@@ -62,6 +62,7 @@ in
     ./mods/backlight.nix
     ./mods/haskell-platform-lite.nix
     ./mods/web-dev.nix
+    ./mods/language-server.nix
   ];
   boot = {
     # Use the systemd-boot EFI boot loader.
@@ -108,8 +109,6 @@ in
       ghcid
       git
       git-crypt
-      lorri
-      nil
       niv
       nix-diff
       nix-prefetch

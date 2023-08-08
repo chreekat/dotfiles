@@ -15,6 +15,12 @@
       "command": "pylsp",
       "filetypes": ["python"],
       "rootPatterns":  ["flake.nix", "setup.py"]
+    },
+    "bash": {
+      "command": "bash-language-server",
+      "args": ["start"],
+      "filetypes": ["sh"],
+      "ignoredRootPaths": ["~"]
     }
   },
  "suggest.autoTrigger": "none"
