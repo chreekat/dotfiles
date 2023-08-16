@@ -29,7 +29,12 @@ def GetAccts(base: string): list<string>
     var lineNr = 0
     # The end of a account is the first two spaces
     var endmatch = '.\{-}\ze  '
-    var match = '^.*' .. base .. endmatch
+    var match = '^'
+    if strlen(base) > 0
+        match = match .. '.*' .. base .. endmatch
+    else
+        match = match .. endmatch
+    endif
     while lineNr < line('$')
         var line = getline(lineNr + 1)
         var account = matchstr(line, match)
