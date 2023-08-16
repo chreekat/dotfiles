@@ -63,6 +63,7 @@ in
     ./mods/haskell-platform-lite.nix
     ./mods/web-dev.nix
     ./mods/language-server.nix
+    ./mods/dev.nix
   ];
   boot = {
     # Use the systemd-boot EFI boot loader.
