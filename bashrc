@@ -145,7 +145,7 @@ ppc () { __pass_keepass personal clip "$1"; }
 ptotp () { __pass_keepass personal totp "$1"; }
 
 # Pretty ripgrep, with less
-prg () { rg -p $@ | less; }
+prg () { rg -p "$@" | less; }
 
 # ripgrep to vim
 qrg () { vim -q <(rg --vimgrep "$@"); }
