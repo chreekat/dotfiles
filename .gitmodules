@@ -104,3 +104,6 @@
 [submodule "vim/pack/start/start/coc.nvim"]
 	path = vim/pack/start/start/coc.nvim
 	url = https://github.com/neoclide/coc.nvim
+[submodule "vim/pack/start/start/copilot.vim"]
+	path = vim/pack/start/start/copilot.vim
+	url = git@github.com:github/copilot.vim.git
