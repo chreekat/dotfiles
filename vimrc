@@ -65,6 +65,19 @@ set updatetime=100
 packadd! matchit
 
 "" My plugin preferences
+let g:copilot_filetypes = {
+      \ '*': v:false,
+      \ 'python': v:true,
+      \ 'haskell': v:true,
+      \ 'shell': v:true,
+      \ 'c': v:true,
+      \ 'cpp': v:true,
+      \ 'cabal': v:true,
+      \ 'html': v:true,
+      \ 'vim': v:true,
+      \ 'nix': v:true,
+      \ 'sh': v:true
+      \ }
 let g:goyo_width = 84
 let g:undotree_WindowLayout = 4
 let g:undotree_TreeReturnShape = "╲"

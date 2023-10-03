@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ lib, pkgs, ... }:
 
 let
   patchedExtracturl = pkgs.extract_url.overrideAttrs (old: {
@@ -64,6 +64,7 @@ in
     ./mods/web-dev.nix
     ./mods/language-server.nix
     ./mods/dev.nix
+    ./mods/chat.nix
   ];
   boot = {
     # Use the systemd-boot EFI boot loader.
@@ -207,13 +208,6 @@ in
       offlineimap
       thunderbird
       vcal
-    # social
-      gnupg1compat
-      keybase-gui
-      mumble
-      element-desktop
-      signal-desktop
-      wire-desktop
     # networking
       bind
       nethogs
