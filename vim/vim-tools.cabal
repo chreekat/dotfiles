@@ -1,0 +1,23 @@
+cabal-version:   3.0
+name:            vim-tools
+version:         0.0.1
+license:         BSD-3-Clause
+license-file:    LICENSE
+author:          Bryan Richter
+maintainer:      b@chreekat.net
+category:        Text
+build-type:      Simple
+extra-doc-files: CHANGELOG.md
+
+common warnings
+    ghc-options: -Wall
+
+executable log-timestamp
+    import:           warnings
+    main-is:          log-timestamp.hs
+    build-depends:
+        base ^>=4.16.4.0,
+        time ^>=1.12.2,
+
+    hs-source-dirs:   .
+    default-language: GHC2021
