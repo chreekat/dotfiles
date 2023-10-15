@@ -145,6 +145,7 @@ in
       transmission
       vlc
       (callPackage ./terminal-image-viewer {})
+      zathura # pdf viewer
     # linux
       (sox.override { enableLame = true; })
       bc # More like dc amirite
@@ -434,6 +435,10 @@ in
   virtualisation.docker = {
     enable = true;
     enableOnBoot = false;
+  };
+
+  xdg.mime.defaultApplications = {
+    "application/pdf" = "zathura.desktop";
   };
 
 }
