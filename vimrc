@@ -257,11 +257,6 @@ augroup vimrc
     "" SKELETON FILES
     au BufNewFile *.sh 0r ~/.vim/skel/skel.sh|normal G
 
-    "" Override F9 in Log.txt
-    au BufRead,BufNewFile Log.txt,Log/*.txt nnoremap <buffer> <F9> :%!runghc ~/.vim/timestamp.hs<cr>Gdd5<c-e>A
-    au BufRead,BufNewFile Log.txt,Log/*.txt setl sw=7 tw=90 fo-=a2 nowrap
-    au BufRead,BufNewFile Log.txt,Log/*.txt runtime account-completion.vim
-
     " DB setup
     au BufRead ~/HaskellFoundation/clones/spurious-failures/spurious-failures/queries.sql DB g:cijobs = sqlite:jobs.db
     au BufRead ~/HaskellFoundation/clones/spurious-failures/spurious-failures/queries.sql nmap <buffer> <leader>c vip:DB g:cijobs<cr>

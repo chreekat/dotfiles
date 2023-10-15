@@ -18,6 +18,8 @@ import System.Environment ( getArgs )
 import Data.Functor ( ($>) )
 import Prelude hiding (last)
 
+import Debug.Trace
+
 -- Our state is UTCTime, except with potential nulls. Oh, and did we print the week number
 -- yet?
 data St = St
