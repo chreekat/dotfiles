@@ -34,3 +34,4 @@ config/astroid/searches
 config/astroid/searches
 offlineimap/mbnames
 result
+dist-newstyle
