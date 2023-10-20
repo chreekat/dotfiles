@@ -8,5 +8,6 @@
     element-desktop
     signal-desktop
     wire-desktop
+    telegram-desktop
   ];
 }
