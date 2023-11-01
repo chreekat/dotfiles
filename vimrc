@@ -224,8 +224,8 @@ unlet dire dent
 " ^ Indented pasting
 
 " Paste-and-format, returning to the top (as p and P do normally)
-nmap >q >p']gq'[
-nmap >Q >P']gq'[
+nmap [p ]p']gq'[
+nmap [P ]P']gq'[
 
 " Trim whitespace thx (and delete blank lines at EOF)
 command! -range Trim <line1>,<line2>s/\s\+$\|\n\+\%$//e
