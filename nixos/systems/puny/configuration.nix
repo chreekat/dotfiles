@@ -12,6 +12,7 @@
       ../server-www-fileserv.nix
       ../../mods/syncthing.nix
       ../../mods/nix-hygiene.nix
+      ../../mods/irc-bouncer.nix
     ];
 
   system.stateVersion = "22.11";

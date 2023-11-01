@@ -1,0 +1,5 @@
+{
+  services.weechat = {
+    enable = true;
+  };
+}
