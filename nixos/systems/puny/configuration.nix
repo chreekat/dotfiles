@@ -24,7 +24,6 @@
   networking.hostName = "puny";
   networking.domain = "chreekat.net";
 
-  services.cachix-agent.enable = true;
   services.www-fileserv = {
     enable = true;
     admin-email = "b@chreekat.net";
