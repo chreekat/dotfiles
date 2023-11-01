@@ -67,16 +67,17 @@ packadd! matchit
 "" My plugin preferences
 let g:copilot_filetypes = {
       \ '*': v:false,
-      \ 'python': v:true,
-      \ 'haskell': v:true,
-      \ 'shell': v:true,
       \ 'c': v:true,
-      \ 'cpp': v:true,
       \ 'cabal': v:true,
+      \ 'cpp': v:true,
+      \ 'haskell': v:true,
       \ 'html': v:true,
-      \ 'vim': v:true,
+      \ 'make': v:true,
       \ 'nix': v:true,
-      \ 'sh': v:true
+      \ 'python': v:true,
+      \ 'sh': v:true,
+      \ 'shell': v:true,
+      \ 'vim': v:true,
       \ }
 let g:goyo_width = 84
 let g:undotree_WindowLayout = 4

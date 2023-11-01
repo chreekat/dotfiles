@@ -28,8 +28,8 @@
 	cp = cherry-pick
 	dt = diff
 	dtc = diff --cached
-	d = difftool
-	dc = difftool --cached
+	d = difftool -d
+	dc = difftool -d --cached
 	g = grep --column
 	ignored = clean -ndX
 	lf = log --follow
@@ -86,7 +86,7 @@
 [difftool]
 	prompt = false
 [difftool "difftastic"]
-	cmd = difft "$LOCAL" "$REMOTE"
+	cmd = difft "$LOCAL" "$REMOTE"  --syntax-highlight off --missing-as-empty
 [pager]
 	difftool = true
 [advice]
