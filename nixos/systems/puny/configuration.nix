@@ -2,8 +2,6 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
-
 {
   imports =
     [ ./hardware-configuration.nix
@@ -12,7 +10,7 @@
       ../../mods/server-ssh.nix
       ../../mods/tailscale.nix
       ../server-www-fileserv.nix
-      ../syncthing.nix
+      ../../mods/syncthing.nix
       ../../mods/nix-hygiene.nix
     ];
 
