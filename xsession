@@ -1,7 +1,7 @@
 configure_X () {
     /home/b/bin/scr on
     xsetroot -mod 16 16 -bg "#262626"
-    autorandr -c
+    autorandr --match-edid -c
 }
 
 run_initial_apps () {

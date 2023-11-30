@@ -77,6 +77,7 @@ let g:copilot_filetypes = {
       \ 'python': v:true,
       \ 'sh': v:true,
       \ 'shell': v:true,
+      \ 'yaml': v:true,
       \ 'vim': v:true,
       \ }
 let g:goyo_width = 84

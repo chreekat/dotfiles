@@ -30,7 +30,6 @@
 	dtc = diff --cached
 	d = difftool -d
 	dc = difftool -d --cached
-	g = grep --column
 	ignored = clean -ndX
 	lf = log --follow
 	m = merge
@@ -79,6 +78,7 @@
 	gpgsign = true
 [grep]
 	linenumber = true
+	column = true
 [pull]
 	rebase = false
 [diff]
