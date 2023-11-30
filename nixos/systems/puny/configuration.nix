@@ -9,7 +9,7 @@
       ../server-sudo.nix
       ../../mods/server-ssh.nix
       ../../mods/tailscale.nix
-      ../server-www-fileserv.nix
+      ../../mods/server-www-fileserv.nix
       ../../mods/syncthing.nix
       ../../mods/nix-hygiene.nix
       ../../mods/irc-bouncer.nix

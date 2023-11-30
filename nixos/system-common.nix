@@ -65,6 +65,7 @@ in
     ./mods/language-server.nix
     ./mods/dev.nix
     ./mods/chat.nix
+    ./mods/nitrokey.nix
   ];
   boot = {
     # Use the systemd-boot EFI boot loader.

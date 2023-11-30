@@ -12,4 +12,9 @@
     whatsapp-for-linux
     wire-desktop
   ];
+
+  networking.hosts = {
+    # Glowing Bear running on puny.
+    "100.81.115.78" = [ "glowing-bear.chreekat" ];
+  };
 }

@@ -19,7 +19,7 @@ declare -A old target
 # Change this if you want to deploy.
 old=(
     "puny"
-    /nix/store/m0sm4v64w6am6qw3z60ycqcfr5q320s0-nixos-system-puny-23.05.20231029.3e10c80
+    /nix/store/xa3saa51hdkrykr6kfpgkmvfwsbm1vmq-nixos-system-puny-23.05.20231029.3e10c80
 )
 
 target=(
