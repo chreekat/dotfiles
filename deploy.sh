@@ -86,7 +86,7 @@ link_dot() {
 
 start_user_units () {
     systemctl --user enable --now lorri.socket
-    systemctl --user enable --now offlineimap.timer
+    #systemctl --user enable --now offlineimap.timer
 }
 
 # Initialize globals

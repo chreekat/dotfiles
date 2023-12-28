@@ -16,7 +16,7 @@ executable log-timestamp
     import:           warnings
     main-is:          log-timestamp.hs
     build-depends:
-        base ^>=4.16.4.0,
+        base ^>=4.16.4.0 || ^>=4.17.2.1,
         time ^>=1.12.2,
 
     hs-source-dirs:   .

@@ -23,7 +23,8 @@ in statefulness // {
   nix.settings.cores = 4;
   nix.settings.max-jobs = 4;
 
-  services.openssh.listenAddresses = [ { addr = tailscaleIP; } ];
+  services.openssh.enable = true;
+  services.openssh.listenAddresses = [ { addr = tailscaleIP; port = 22; } ];
 
   services.logind.lidSwitchExternalPower = "ignore";
 }

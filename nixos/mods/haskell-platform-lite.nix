@@ -13,6 +13,7 @@
     pkgs.stack
     (pkgs.haskellPackages.ghcWithPackages (p: with p; [
       QuickCheck
+      combinatorial
       containers
       criterion
       hspec

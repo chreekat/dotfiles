@@ -54,7 +54,7 @@ set splitbelow
 set suffixes+=.dyn_hi-boot,hi-boot,o-boot,hs-boot
 " Prefer things with suffixes
 set suffixes+=,
-set updatetime=100
+set updatetime=2000
 
 "" My anti-preferences
 " I used to think 'useopen' was a decent default, but it messes up :stag and
@@ -296,6 +296,7 @@ augroup vimrc_highlighting
     au ColorScheme default hi DiffText ctermfg=173 cterm=reverse
     au ColorScheme default hi DiffChange ctermfg=104 cterm=reverse
     au ColorScheme PaperColor hi Folded ctermbg=NONE
+    au ColorScheme * hi CopilotSuggestion cterm=reverse
     au ColorScheme apprentice hi Folded ctermbg=NONE
 augroup END
 colorscheme PaperColor
