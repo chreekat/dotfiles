@@ -107,3 +107,6 @@
 [submodule "vim/pack/start/start/copilot.vim"]
 	path = vim/pack/start/start/copilot.vim
 	url = git@github.com:github/copilot.vim.git
+[submodule "tmux/plugins/tmux-resurrect"]
+	path = tmux/plugins/tmux-resurrect
+	url = https://github.com/tmux-plugins/tmux-resurrect
