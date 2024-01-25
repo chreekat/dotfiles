@@ -212,7 +212,12 @@ in
   i18n.defaultLocale = "en_GB.UTF-8";
 
   location = {
-    provider = "geoclue2";
+    #provider = "geoclue2";
+    provider = "manual";
+    # Äkäslompolo
+    latitude = 67.6030203;
+    longitude = 24.17231;
+    # Helsinki
     #latitude = 60.2443;
     #longitude = 24.8800;
   };
