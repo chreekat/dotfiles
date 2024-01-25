@@ -5,7 +5,7 @@
     pkgs.light # backlight setter
   ];
 
-      # Allow the video group to change backlight brightness
+  # Allow the video group to change backlight brightness
   services.udev.extraRules = ''
     ACTION=="add", SUBSYSTEM=="backlight", RUN+="${pkgs.coreutils}/bin/chgrp video /sys/class/backlight/%k/brightness"
     ACTION=="add", SUBSYSTEM=="backlight", RUN+="${pkgs.coreutils}/bin/chmod g+w /sys/class/backlight/%k/brightness"
