@@ -1,5 +1,6 @@
 { pkgs, lib, ...} :
 {
+  console.useXkbConfig = true;
   environment.systemPackages = with pkgs; [
     # Xorg (in concert with enabling xmonad)
       albert # Launcher, bound to ScrollLock

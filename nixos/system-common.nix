@@ -5,23 +5,6 @@ let
     patches = (old.patches or []) ++ [ ./extracturl.patch ];
   });
 
-  # Handy tool for tracking works in progress
-  bugs =
-    let
-      losh-t = pkgs.python3Packages.buildPythonApplication {
-        pname = "losh-t";
-        version = "1.2.0";
-        src = fetchGit {
-          url = "https://github.com/sjl/t";
-        };
-      };
-
-    in
-    pkgs.writeScriptBin "b" ''
-      set -Eeou pipefail
-      topLevel=$(git rev-parse --git-common-dir)
-      ${losh-t}/bin/t --task-dir $topLevel --list bugs $@
-    '';
 in
 {
   imports = [
@@ -29,8 +12,6 @@ in
     ./mods/tailscale.nix
     ./mods/backlight.nix
     ./mods/haskell-platform-lite.nix
-    ./mods/web-dev.nix
-    ./mods/language-server.nix
     ./mods/dev.nix
     ./mods/chat.nix
     ./mods/nitrokey.nix
@@ -47,13 +28,7 @@ in
     tmp.cleanOnBoot = true;
   };
 
-  # 20.03
-  console.useXkbConfig = true;
-  # 19.09
-  # i18n.consoleUseXkbConfig = true;
-
-  # Include man section 3. >:(
-  documentation.dev.enable = true;
+  documentation.man.generateCaches = true;
 
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
@@ -70,28 +45,6 @@ in
       pass
       hledger
       hledger-ui
-    # development
-      bench
-      bugs
-      cachix
-      difftastic
-      dhall
-      direnv
-      entr
-      ghcid
-      git
-      git-crypt
-      niv
-      nix-diff
-      nix-prefetch
-      nix-prefetch-docker
-      nix-prefetch-github
-      nix-prefetch-scripts
-      ripgrep
-      tmux
-      universal-ctags
-      vim_configurable
-      vscodium
     # databases
       beekeeper-studio # db tool
       postgresql
@@ -138,8 +91,10 @@ in
       pciutils # lspci
       python3
       qdirstat
+      ripgrep
       sqlite-interactive
       sshuttle
+      tmux
       tree
       unzip
       usbutils
@@ -176,7 +131,6 @@ in
       metal-cli
       freerdp
       sops
-      # nixops --> libvirt insecure
     ];
 
   # Set up the default environment

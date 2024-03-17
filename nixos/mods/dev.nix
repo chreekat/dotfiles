@@ -1,5 +1,49 @@
-{ ...}: {
-  environment.systemPackages = [
+{ pkgs, ...}:
+let
+  # Handy tool for tracking works in progress
+  bugs =
+    let
+      losh-t = pkgs.python3Packages.buildPythonApplication {
+        pname = "losh-t";
+        version = "1.2.0";
+        src = fetchGit {
+          url = "https://github.com/sjl/t";
+        };
+      };
+    in
+    pkgs.writeScriptBin "b" ''
+      set -Eeou pipefail
+      topLevel=$(git rev-parse --git-common-dir)
+      ${losh-t}/bin/t --task-dir $topLevel --list bugs $@
+    '';
+in {
+  documentation.dev.enable = true;
+
+  environment.systemPackages = with pkgs; [
     (import (fetchTarball "https://install.devenv.sh/latest")).default
+    shellcheck
+    bench
+    bugs
+    cachix
+    difftastic
+    dhall
+    direnv
+    emscripten
+    entr
+    git
+    git-crypt
+    niv
+    nix-diff
+    nix-prefetch
+    nix-prefetch-docker
+    nix-prefetch-github
+    nix-prefetch-scripts
+    nodejs
+    universal-ctags
+    vim_configurable
+    # Language servers (not Haskell, done separately)
+    nodePackages.bash-language-server
+    python311Packages.python-lsp-server
+    nil
   ];
 }
