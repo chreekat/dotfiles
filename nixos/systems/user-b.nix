@@ -16,4 +16,7 @@
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICXYHLQLP5E9vLzXPaht5rM6T5V7VtFyb48Ep2VCI2Nn bryan@omena"
     ];
   };
+
+  security.sudo.execWheelOnly = true;
+  security.sudo.wheelNeedsPassword = false;
 }

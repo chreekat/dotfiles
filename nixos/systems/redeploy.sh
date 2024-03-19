@@ -45,7 +45,7 @@ rebuild "$1" build
 new="$(readlink result)"
 current="$(ssh "${target["$1"]}" readlink /run/current-system)"
 
-if false && [[ ${old["$1"]} != "$new" ]]; then
+if [[ ${old["$1"]} != "$new" ]]; then
     >&2 echo
     >&2 echo "*** This is a NEW configuration. Edit $0 if you're satisfied with it."
     >&2 echo

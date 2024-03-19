@@ -9,9 +9,6 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ./disk-config.nix
-      ../user-b.nix
-      ../../mods/nix-hygiene.nix
-      ../../mods/server-ssh.nix
     ];
 
   system.stateVersion = "23.11";
