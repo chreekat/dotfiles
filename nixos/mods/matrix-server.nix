@@ -1,4 +1,4 @@
-{ pkgs, config, ... }:
+{ pkgs, config, lib, ... }:
 let
   fqdn = "synapse.chreekat.net";
   serverName = "chreekat.net";
@@ -6,11 +6,11 @@ let
 in {
   networking.firewall.allowedTCPPorts = [ 80 443 ];
 
-  # User
+  # User (needed when matrix-synapse.enable = false)
 
-  users.users.matrix-synapse = {
+  users.users.matrix-synapse = lib.mkDefault {
     isSystemUser = true;
-    home = "/var/lib/user-matrix-synapse";
+    home = "/var/lib/matrix-synapse";
     group = "matrix-synapse";
     createHome = true;
     description = "Synapse user";
@@ -35,6 +35,14 @@ in {
   # Postgresql
 
   services.postgresql.enable = true;
+  # synapse requires nondefault LC_COLLATE and LC_CTYPE.
+  services.postgresql.initialScript = pkgs.writeText "synapse-init.sql" ''
+    CREATE DATABASE "matrix-synapse"
+      TEMPLATE template0
+      LC_COLLATE = "C"
+      LC_CTYPE = "C";
+  '';
+  # This just makes ensureUsers happy since we create the db ourselves already.
   services.postgresql.ensureDatabases = [ "matrix-synapse" ];
   services.postgresql.ensureUsers = [
     {
@@ -63,12 +71,12 @@ in {
   # Synapse
 
   services.matrix-synapse = {
-    enable = false;
-    settings.server_name = serverName;
-    settings.public_baseurl = baseUrl;
-    settings.extraConfigFiles =  [
+    enable = true;
+    extraConfigFiles =  [
       config.age.secrets.synapse-secrets-config.path
     ];
+    settings.server_name = serverName;
+    settings.public_baseurl = baseUrl;
     settings.signing_key_path = config.age.secrets.synapse-signing-key.path;
     # TODO enable sliding sync?
   };
