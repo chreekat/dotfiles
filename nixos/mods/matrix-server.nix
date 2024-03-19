@@ -6,6 +6,17 @@ let
 in {
   networking.firewall.allowedTCPPorts = [ 80 443 ];
 
+  # User
+
+  users.users.matrix-synapse = {
+    isSystemUser = true;
+    home = "/var/lib/user-matrix-synapse";
+    group = "matrix-synapse";
+    createHome = true;
+    description = "Synapse user";
+  };
+  users.groups.matrix-synapse = {};
+
   # Secrets
 
   age.secrets.synapse-secrets-config = {

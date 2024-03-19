@@ -21,7 +21,7 @@ old=(
     "puny"
     /nix/store/xa3saa51hdkrykr6kfpgkmvfwsbm1vmq-nixos-system-puny-23.05.20231029.3e10c80
     "honk"
-    /nix/store/kk2y337b37nbpnz03hk0rkmwclsragal-nixos-system-honk-23.05.20240103.70bdade
+    /nix/store/8hq47jzr3yl43pl0h4390a4ynw199c27-nixos-system-honk-23.11.20240317.614b461
 )
 
 target=(
