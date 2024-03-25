@@ -151,7 +151,7 @@ prg () { rg -p "$@" | less; }
 qrg () { vim -q <(rg --vimgrep "$@"); }
 
 # git grep to vim
-qgg () { vim -q <(git grep "$@"); }
+qgg () { vim -q <(git grep --recurse-submodules "$@"); }
 
 mkcd () {
     mkdir -p $1 && cd $1
