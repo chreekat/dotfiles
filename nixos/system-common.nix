@@ -169,11 +169,11 @@ in
     #provider = "geoclue2";
     provider = "manual";
     # Äkäslompolo
-    latitude = 67.6030203;
-    longitude = 24.17231;
+    #latitude = 67.6030203;
+    #longitude = 24.17231;
     # Helsinki
-    #latitude = 60.2443;
-    #longitude = 24.8800;
+    latitude = 60.2443;
+    longitude = 24.8800;
   };
 
   networking.networkmanager = {
