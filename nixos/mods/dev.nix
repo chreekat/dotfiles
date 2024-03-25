@@ -20,7 +20,6 @@ in {
   documentation.dev.enable = true;
 
   environment.systemPackages = with pkgs; [
-    (import (fetchTarball "https://install.devenv.sh/latest")).default
     shellcheck
     bench
     bugs
@@ -43,7 +42,7 @@ in {
     vim_configurable
     # Language servers (not Haskell, done separately)
     nodePackages.bash-language-server
-    python311Packages.python-lsp-server
+    python3Packages.python-lsp-server
     nil
   ];
 }
