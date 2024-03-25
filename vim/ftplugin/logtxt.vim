@@ -50,7 +50,23 @@ def GetAccts(base: string): list<string>
     return sort(matches)
 enddef
 
+def FoldLevel(lnum: number): string
+    var line = getline(lnum)
+    if line =~ '^\d\d\d\d-\d\d-\d\d'
+        return ">2"
+    elseif line =~ '^\d\d:\d\d:'
+        return ">3"
+    elseif line =~ '^#'
+        return "1"
+    else
+        return "="
+    endif
+enddef
+
+command -buffer FoldLevel echo FoldLevel(line('.'))
 command -buffer Timestamp call Timestamp()
 nnoremap <buffer> <F9> :Timestamp<cr>
 setl sw=7 tw=90 fo-=a2 nowrap omnifunc=CompleteTimeAccount
-b:undo_ftplugin = getbufvar(bufnr(), 'undo_ftplugin') .. '|setl sw< tw< fo< wrap< omnifunc<'
+setl foldexpr=FoldLevel(v:lnum) foldmethod=expr fdc=3 fdl=2
+
+b:undo_ftplugin = getbufvar(bufnr(), 'undo_ftplugin') .. '|setl sw< tw< fo< wrap< omnifunc< fde< fdm< fdc< fdl<'
