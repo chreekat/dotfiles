@@ -1,7 +1,7 @@
 keys:
   - &admin_b 33C3A599DB85EA9B8BAA1866B202264020068BFB
 creation_rules:
-  - path_regex: secrets/[^/]+\.json$
+  - path_regex: secrets/[^/]+\.(json|yaml)$
     key_groups:
     - pgp:
       - *admin_b
