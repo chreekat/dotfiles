@@ -96,3 +96,5 @@
 	difftool = true
 [advice]
 	addEmptyPathspec = false
+[gpg.ssh]
+	allowedSignersFile = ./allowed-signers

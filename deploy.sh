@@ -100,6 +100,7 @@ DOTS=(
     bashrc
     config/astroid
     config/git/config
+    config/git/allowed-signers
     config/keynav/keynavrc
     config/systemd/user/lorri.service
     config/systemd/user/lorri.socket
