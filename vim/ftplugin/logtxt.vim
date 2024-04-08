@@ -12,7 +12,7 @@ enddef
 
 def CompleteTimeAccount(findstart: number, base: string): any
     if findstart == 1
-        if IsAcct(getline('.'))
+        if strlen(getline('.')) > 0
             return 0
         else
             # Cancel silently and leave completion
