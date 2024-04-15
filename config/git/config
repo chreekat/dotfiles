@@ -62,6 +62,7 @@
 	checkouts = !sh -c "'git reflog | grep checkout: | perl -ne '\"'\"'/moving from (\\S*)/; print $1, \"\n\"'\"'\"" -
 	gr = grep --recurse-submodules
 	lg = log --first-parent --graph --oneline
+	head = rev-parse HEAD
 [rebase]
 	autosquash = true
 [fetch]
