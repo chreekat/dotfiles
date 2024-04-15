@@ -108,12 +108,12 @@ in
       youtube-dl
     # Email
       patchedExtracturl
-      lmdb # Header cache for neomutt
-      neomutt
-      notmuch
-      offlineimap
-      thunderbird
-      vcal
+      #lmdb # Header cache for neomutt
+      #neomutt
+      #notmuch
+      #offlineimap
+      #thunderbird
+      #vcal
     # networking
       bind
       nethogs
