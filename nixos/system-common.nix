@@ -174,6 +174,9 @@ in
     # Helsinki
     latitude = 60.2443;
     longitude = 24.8800;
+    # Sintra
+    #latitude = 38.8017;
+    #longitude = -9.37979;
   };
 
   networking.networkmanager = {
