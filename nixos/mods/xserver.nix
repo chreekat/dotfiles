@@ -1,6 +1,7 @@
 { pkgs, lib, ...} :
 {
-  console.useXkbConfig = true;
+  imports = [ ./kmonad.nix ];
+
   environment.systemPackages = with pkgs; [
     # Xorg (in concert with enabling xmonad)
       albert # Launcher, bound to ScrollLock
@@ -10,7 +11,6 @@
       notify-osd
       pavucontrol
       xfce.thunar # File browser
-      xcape
       xclip
       xorg.xev
       xorg.xmessage
@@ -37,11 +37,10 @@
 
     ## X KEYBOARD MAP
 
-    # Basic keyboard setup that gets reused by the console via
-    # i18n.consoleUseXkbConfig.
-    xkb.layout = "b";
+    xkb.layout = "kmonad";
 
-    # my snazzy config.
+    # my snazzy config (not used anymore - using KMonad instead so dvorak only
+    # applies to the internal keyboard).
     xkb.extraLayouts.b = {
       description = "Bryan's modified dvorak";
       languages = [ "eng" "swe" "fin" ];
@@ -60,12 +59,49 @@
         };
       '';
     };
+    # For use as a base for KMonad.
+    #
+    # I want the base underlying keyboard to be US, so that I can plug in
+    # another keyboard like the Atreus and not have its output get twisted
+    # through the Dvorak layer.
+    #
+    # At the same time, I want to handle certain keys via xkb, because there's
+    # no way in KMonad to have Shift+RAlt+Quot equal RAlt+Shift+Quot (for upper
+    # case Å) -- the modifiers don't easily commute.
+    #
+    # Since this is below KMonad, I have to specify the physical keys, e.g. e is
+    # at AD03. That kinda sucks.
+    xkb.extraLayouts.kmonad = {
+      description = "KMonad base";
+      languages = [ "eng" "swe" "fin" ];
+      symbolsFile = pkgs.writeText "kmonad-base-symbols" ''
+        xkb_symbols "kmonad"  {
+            include "us(basic)"
+            include "compose(rctrl)+level3(ralt_switch)"
 
-
-    # NixOS' support for xkeyboard-config has a high impedance mismatch.
-    # See the definition for rekey above.
-    displayManager.sessionCommands = "rekey";
+            key <AE04> { [ NoSymbol, NoSymbol, EuroSign, sterling ] };
+            key <AC11> { [ NoSymbol, NoSymbol, aring, Aring ] };
+            key <AC01> { [ NoSymbol, NoSymbol, adiaeresis, Adiaeresis ] };
+            key <AD09> { [ NoSymbol, NoSymbol, odiaeresis, Odiaeresis ] };
+            key <AD03> { [ NoSymbol, NoSymbol, eacute, Eacute ] };
+            key <AB08> { [ NoSymbol, NoSymbol, Greek_lambda, NoSymbol ] };
+        };
+      '';
+    };
   };
+
+  services.kmonad = {
+    enable = true;
+    package = pkgs.haskellPackages.kmonad;
+    keyboards.lenovo = {
+      name = "lenovo";
+      device = "/dev/input/by-path/platform-i8042-serio-0-event-kbd";
+      # I want to set my special xkb layout manually, so no defcfg.
+      defcfg.enable = false;
+      config = lib.readFile ../lenovo-t14s.kbd;
+    };
+  };
+
   programs.xss-lock = {
     enable = true;
     extraOptions = [
