@@ -241,6 +241,10 @@ vnoremap iz zcVzogv
 " Bring back C-s
 nnoremap <c-s> :w<cr>
 
+" Bring back ss
+nmap s z
+nmap ss zz
+
 ""
 "" O T H E R   C O N F I G U R A T I O N
 ""
