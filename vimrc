@@ -97,6 +97,8 @@ let g:ledger_bin = 'hledger'
 " Fold markdown by headers, etc
 let g:markdown_folding = 1
 
+let g:ledger_is_hledger = 1
+
 "" In the absence of file- or filetype-specific options, these are the defaults
 "" I want.
 let g:is_bash=1
