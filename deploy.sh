@@ -112,6 +112,7 @@ DOTS=(
     cvsrc
     direnvrc
     extract_urlview
+    emacs.d/init.el
     ghci
     gnupg/gpg-agent.conf
     ignore
