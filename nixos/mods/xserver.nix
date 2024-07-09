@@ -3,7 +3,6 @@
   console.useXkbConfig = true;
   environment.systemPackages = with pkgs; [
     # Xorg (in concert with enabling xmonad)
-      albert # Launcher, bound to ScrollLock
       arandr
       flameshot
       keynav
@@ -23,11 +22,11 @@
       networkmanagerapplet
   ];
   # Enable and configure the X11 windowing system.
+  services.libinput.enable = true;
   services.xserver = {
     enable = true;
     autoRepeatDelay = 300;
     autoRepeatInterval = 10;
-    libinput.enable = true;
     windowManager.notion = {
       enable = true;
     };
