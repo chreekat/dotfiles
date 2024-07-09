@@ -46,11 +46,27 @@ new="$(readlink result)"
 current="$(ssh "${target["$1"]}" readlink /run/current-system)"
 
 if [[ ${old["$1"]} != "$new" ]]; then
-    >&2 echo
-    >&2 echo "*** This is a NEW configuration. Edit $0 if you're satisfied with it."
-    >&2 echo
-    >&2 echo "*** New result for $1: $(readlink result)"
-    exit 1
+    if [[ "${2:-}" = '-f' ]]; then
+        >&2 echo
+        >&2 echo "*** Forcing a redeploy of a NEW configuration for $1."
+        >&2 echo
+        rebuild "$1" switch --target-host "${target["$1"]}"
+        >&2 echo
+        >&2 echo "*** New result for $1: $(readlink result)"
+    else
+        >&2 echo
+        >&2 echo "*** This is a NEW configuration. Edit $0 if you're satisfied with it."
+
+        if [ -t 0 ]; then
+            read -rp "Show diff? [y/N] " yn
+            if [[ $yn = [yY] ]]; then
+                nix-diff --color always "${old["$1"]}" "$new" | less
+            fi
+        fi
+        >&2 echo
+        >&2 echo "*** New result for $1: $(readlink result)"
+        exit 1
+    fi
 elif [[ $new = "$current" ]]; then
     echo "*** No change to system. Not deploying."
 else
