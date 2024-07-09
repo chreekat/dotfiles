@@ -14,9 +14,9 @@
       xorg.xev
       xorg.xmessage
     # Gifcasts (FIXME: make vokoscreen make gifs by default)
-      screenkey # show keys in gif casts
-      slop # Used by screenkey to select a region
-      vokoscreen # gif casts
+      #screenkey # show keys in gif casts
+      #slop # Used by screenkey to select a region
+      vokoscreen-ng # gif casts
     # Xorg tray
       cbatticon
       networkmanagerapplet
