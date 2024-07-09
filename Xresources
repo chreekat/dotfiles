@@ -1,5 +1,5 @@
-URxvt.font: xft:PragmataPro Mono:regular:size=12
-URxvt.boldFont: xft:PragmataPro Mono:medium:size=12
+URxvt.font: xft:PragmataPro Mono:regular:size=12,xft:FSD Emoji:size=12
+URxvt.boldFont: xft:PragmataPro Mono:medium:size=12,xft:FSD Emoji:size=12
 URxvt.scrollBar: off
 ! Avoid ISO 14755 modes
 URxvt.iso14755: off
