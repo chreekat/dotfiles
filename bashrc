@@ -85,6 +85,8 @@ alias xp='xclip -selection clipboard'
 alias sc=systemctl
 alias usc='systemctl --user'
 alias tree='tree -I dist-newstyle'
+alias autorandr='autorandr --match-edid'
+
 #
 # Fetch keys from keepass, via pass.
 #
