@@ -22,11 +22,14 @@ old=(
     /nix/store/3g2k714mfyq0j3xcax24lsizm85kwrbr-nixos-system-puny-24.05.20240707.1948467
     "honk"
     /nix/store/vvcxxl170alc5das4v6918q2z4593m8g-nixos-system-honk-24.05.20240707.1948467
+    "kuusi"
+    foo
 )
 
 target=(
     "puny" puny
     "honk" 95.216.0.246
+    "kuusi" kuusi.bryanthomasrichter.gmail.com.beta.tailscale.net
 )
 
 rebuild () {

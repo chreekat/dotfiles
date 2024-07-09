@@ -12,6 +12,10 @@
   };
 
   outputs = { self, nixpkgs, disko, agenix }:  {
+    nixosConfigurations.kuusi = nixpkgs.lib.nixosSystem {
+      system = "x86_64-linux";
+      modules = [ ../configuration-kuusi.nix ];
+    };
     nixosConfigurations.puny = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
