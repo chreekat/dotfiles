@@ -173,11 +173,14 @@ in
     #latitude = 67.6030203;
     #longitude = 24.17231;
     # Helsinki
-    latitude = 60.2443;
-    longitude = 24.8800;
+    #latitude = 60.2443;
+    #longitude = 24.8800;
     # Sintra
     #latitude = 38.8017;
     #longitude = -9.37979;
+    # Zürich
+    latitude = 47.3745;
+    longitude = 8.5410;
   };
 
   networking.networkmanager = {
