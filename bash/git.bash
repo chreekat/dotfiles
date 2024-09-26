@@ -4,9 +4,9 @@
 log_aliases () {
     local gitlog='git log --date=short --graph --color=always'
 
-    local single_line='%C(reverse red)%h%Creset %s%C(auto).%d %C(4)%cd, %an% GK%Creset'
+    local single_line='%C(reverse red)%h%C(auto) %s.%d %C(4)%cd, %an%C(auto) %GK'
 
-    local multi_line='%C(reverse red)│ %h │%C(auto) %s. (%C(auto)%D%C(reset)) %C(4)%cd, %an% GK%n%Creset'
+    local multi_line='%C(reverse red)│ %h │%C(auto) %s. (%C(auto)%D%C(reset)) %C(4)%cd, %an%C(auto) (%GK %GS)'
 
     declare -A aliases
     aliases[gl]="$gitlog  --first-parent --pretty=tformat:'$single_line'"

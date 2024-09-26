@@ -31,10 +31,10 @@
 	cim = !sh -c 'git commit -m \"$*\"' -
 	co = checkout
 	cp = cherry-pick
-	dt = diff
-	dtc = diff --cached
-	d = difftool
-	dc = difftool --cached
+	dt = difftool
+	dtc = difftool --cached
+	d = diff
+	dc = diff --cached
 	ignored = clean -ndX
 	lf = log --follow
 	m = merge
@@ -99,3 +99,5 @@
 	addEmptyPathspec = false
 [gpg.ssh]
 	allowedSignersFile = ./allowed-signers
+[init]
+	defaultBranch = main
