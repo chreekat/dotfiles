@@ -44,6 +44,7 @@ let b:exportLast = -1
 augroup ImportRange
     autocmd! * <buffer>
     autocmd BufReadPost,CursorHold,CursorHoldI <buffer> let [b:importFirst, b:importLast] = s:ImportRange()
+    autocmd BufReadPost,CursorHold,CursorHoldI <buffer> let [b:exportFirst, b:exportLast] = s:ExportRange()
 augroup END
 
 " Find the first and last lines that start with 'import' in the file.

@@ -56,6 +56,7 @@ in
       #digikam
       blueberry # bluetooth tray and gui
       bluetuith # bluetooth tui
+      docker-credential-helpers
       ghostscript
       gimp
       gitAndTools.git-annex
@@ -72,6 +73,7 @@ in
       zathura # pdf viewer
     # linux
       (sox.override { enableLame = true; })
+      age
       bc # More like dc amirite
       eplot # Fast command line plotter
       fd
@@ -103,10 +105,8 @@ in
     # Web
       chromium
       firefox
-      newsboat
       w3m
       wget
-      youtube-dl
     # Email
       patchedExtracturl
       #lmdb # Header cache for neomutt

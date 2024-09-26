@@ -1,6 +1,6 @@
 cabal-version:   3.0
 name:            vim-tools
-version:         0.0.1
+version:         0.0.2
 license:         BSD-3-Clause
 license-file:    LICENSE
 author:          Bryan Richter
@@ -16,7 +16,7 @@ executable log-timestamp
     import:           warnings
     main-is:          log-timestamp.hs
     build-depends:
-        base ^>=4.16.4.0 || ^>=4.17.2.1,
+        base ^>=4.16.4.0 || ^>=4.17.2.1 || ^>=4.18.2.1,
         time ^>=1.12.2,
 
     hs-source-dirs:   .

@@ -99,6 +99,13 @@ let g:markdown_folding = 1
 
 let g:ledger_is_hledger = 1
 
+autocmd User Flags call Hoist("buffer","ObsessionStatus")
+
+
+
+
+
+
 "" In the absence of file- or filetype-specific options, these are the defaults
 "" I want.
 let g:is_bash=1
@@ -313,6 +320,8 @@ colorscheme PaperColor
 
 " Function for turning space-indenting into tab-indenting
 " FIXME: replace with calls to [un]expand(1)
+" FIXME2: No, use 'retab!'. This whole thing might be obsolete. See below for
+" something I have used more recently.
 function! SpaceToTab(numSpaces) range
     let scmd = a:firstline . "," . a:lastline . "s/^\\(\\%(@@\\)*\\)@@/\\1\\t"
     let spaces = ""
@@ -328,6 +337,32 @@ function! SpaceToTab(numSpaces) range
         endwhile
     catch /^Vim\%((\a\+)\)\=:E486/
     endtry
+endfunction
+
+" Given a deeply nested list that uses a given shiftwidth, convert it to a
+" deeply nested list with a different shiftwidth.
+function ReNest(old, new) range
+
+    let sw_save = &l:sw
+    let et_save = &l:et
+    let ts_save = &l:ts
+
+    let &l:sw = a:old
+    let &l:et = 0
+    let &l:ts = a:old
+
+    execute a:firstline . "," . a:lastline . "retab!"
+
+    let &l:sw = a:new
+    let &l:et = 1
+    let &l:ts = a:new
+
+    execute a:firstline . "," . a:lastline . "retab!"
+
+    let &l:sw = sw_save
+    let &l:et = et_save
+    let &l:ts = ts_save
+
 endfunction
 
 " Flatten for export
