@@ -52,12 +52,12 @@ enddef
 
 def FoldLevel(lnum: number): string
     var line = getline(lnum)
-    if line =~ '^\d\d\d\d-\d\d-\d\d'
+    if line =~ '^# Week'
+        return ">1"
+    elseif line =~ '^\d\d\d\d-\d\d-\d\d'
         return ">2"
     elseif line =~ '^\d\d:\d\d:'
         return ">3"
-    elseif line =~ '^#'
-        return "1"
     else
         return "="
     endif
