@@ -32,6 +32,7 @@
         ../mods/nix-hygiene.nix
         ../mods/server-ssh.nix
         ../mods/matrix-server.nix
+        ({ pkgs, ... }: { environment.systemPackages = [ pkgs.borgbackup ]; })
       ];
     };
   };

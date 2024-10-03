@@ -21,7 +21,7 @@ old=(
     "puny"
     /nix/store/1akjrk7cd98f59ssdwbdkskm58g5zhs6-nixos-system-puny-24.05.20240707.1948467
     "honk"
-    /nix/store/vvcxxl170alc5das4v6918q2z4593m8g-nixos-system-honk-24.05.20240707.1948467
+    /nix/store/7x3syrzklnpj8scshdsi6rx9jisb31g1-nixos-system-honk-24.05.20240707.1948467
     "kuusi"
     foo
 )
