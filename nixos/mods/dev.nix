@@ -45,4 +45,6 @@ in {
     python3Packages.python-lsp-server
     nil
   ];
+
+  programs.direnv.enable = true;
 }

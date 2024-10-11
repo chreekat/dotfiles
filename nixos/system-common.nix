@@ -8,7 +8,6 @@ let
 in
 {
   imports = [
-    ./nix-direnv.nix
     ./mods/tailscale.nix
     ./mods/backlight.nix
     ./mods/haskell-platform-lite.nix
