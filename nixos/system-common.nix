@@ -123,6 +123,8 @@ in
       # python2.7 :(
       # speedometer
       tcpdump
+      # Connect to wifi with a QR. sudo wifi-qr -s
+      wifi-qr
     # devops
       awscli
       dive
