@@ -26,5 +26,8 @@ in statefulness // {
   services.openssh.listenAddresses = [ { addr = tailscaleIP; port = 22; } ];
 
   services.logind.lidSwitchExternalPower = "ignore";
+
+  # Kuusi has a nvme disk; this should make it faster.
+  boot.initrd.luks.devices.root.bypassWorkqueues = true;
 }
 

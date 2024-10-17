@@ -72,7 +72,6 @@ in
       zathura # pdf viewer
     # linux
       (sox.override { enableLame = true; })
-      age
       bc # More like dc amirite
       eplot # Fast command line plotter
       fd

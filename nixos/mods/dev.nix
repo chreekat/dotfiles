@@ -20,17 +20,20 @@ in {
   documentation.dev.enable = true;
 
   environment.systemPackages = with pkgs; [
-    shellcheck
+    age
+    age-to-nix
     bench
     bugs
     cachix
-    difftastic
+    devenv
     dhall
+    difftastic
     direnv
     emscripten
     entr
     git
     git-crypt
+    nil
     niv
     nix-diff
     nix-prefetch
@@ -38,12 +41,13 @@ in {
     nix-prefetch-github
     nix-prefetch-scripts
     nodejs
+    shellcheck
     universal-ctags
     vim_configurable
+  ] // [
     # Language servers (not Haskell, done separately)
     nodePackages.bash-language-server
     python3Packages.python-lsp-server
-    nil
   ];
 
   programs.direnv.enable = true;
