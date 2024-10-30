@@ -15,12 +15,13 @@
 (global-set-key (kbd "C-c c") #'org-capture)
 (global-set-key (kbd "C-c a") #'org-agenda)
 
-; Start a capture with god-mode disabled
-(defun disable-god-mode-in-org-capture ()
+; Start a capture and log buffers with god-mode disabled
+(defun disable-god-mode-hook-fn ()
   "Disable god-mode in org-capture buffer."
   (when (bound-and-true-p god-local-mode)
     (god-local-mode -1)))
-(add-hook 'org-capture-mode-hook #'disable-god-mode-in-org-capture)
+(add-hook 'org-capture-mode-hook #'disable-god-mode-hook-fn)
+(add-hook 'org-log-buffer-setup-hook #'disable-god-mode-hook-fn)
 
 (setq
     org-agenda-files '("~/Syncthing/PhoneFiles/org")
@@ -45,13 +46,14 @@
                       ("@freelance" . ?f)
                       ("@volunteering" . nil)
                       ("@housework" . ?H)
+                      ("@personal" . ?p)
                       (:endgroup . nil)
                       ; non-exclusive contexts
                       ("@stackage" . ?s)
                       ("@cabal" . ?c)
                       ("@errands" . ?e)
                       ("@reading_list" . nil)
-                      ("@personal_tools" . ?p)
+                      ("@productivity_tools" . nil)
                       ; non-exclusive attributes
                       ("pro_bono" . nil)
                       ("online" . nil)
@@ -101,7 +103,10 @@
  '(org-priority-default 67)
  '(org-refile-targets '((org-agenda-files :maxlevel . 3)))
  '(org-refile-use-outline-path 'file)
- '(org-stuck-projects '("+/PROJ" ("TODO" "NEXT" "OBE") nil ""))
+ '(org-stuck-projects
+   '("-FILE=\"/home/b/Syncthing/PhoneFiles/org/maybe.org\"+/PROJ"
+     ("TODO" "OBE" "WAIT")
+     nil ""))
  '(org-todo-keyword-faces
    '(("PROJ" :foreground "blue" :weight bold)
      ("WAIT" :foreground "goldenrod" :weight normal)))

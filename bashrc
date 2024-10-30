@@ -51,21 +51,23 @@ for i in "$HOME/bin" "$HOME/.local/bin"; do
     fi
 done
 #export PS0='\e[2;31m[\#/\! @ \t]\e[0m\n'
-export FIGNORE=*.o:*.hi
+export FIGNORE="*.o:*.hi"
 stty -ixon
 
 # Source aux settings in ~/.bash
-for i in $HOME/.bash/*.bash; do
-    . $i
+for i in "$HOME"/.bash/*.bash; do
+    # shellcheck disable=SC1090 # Can't make this work anyway
+    . "$i"
 done
 
 # Running dircolors with defaults is, for some reason, different than not
 # running dircolors.
+# shellcheck disable=SC1090 # Can't make this work
 . <(dircolors)
 
 ## ALIASES + FUNCTIONS
 
-alias cal='cal -m'
+alias cal='cal -3mw'
 alias cp='cp --reflink=auto'
 alias f=fg
 alias g=git
@@ -102,6 +104,7 @@ __pass_keepass_unlock () {
 
 # Helper: workhorse wrapper function
 __pass_keepass () {
+    local account action
     for arg in account action; do
         eval declare "$arg"="$1"
         shift
@@ -156,10 +159,12 @@ qrg () { vim -q <(rg --vimgrep "$@"); }
 qgg () { vim -q <(git grep --recurse-submodules "$@"); }
 
 mkcd () {
-    mkdir -p $1 && cd $1
+    set -e
+    mkdir -p "$1" && cd "$1"
 }
 
 nixos () {
+    set -e
     cd ~/Projects/dotfiles/nixos/
 }
 

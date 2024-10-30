@@ -21,7 +21,7 @@ in {
 
   environment.systemPackages = with pkgs; [
     age
-    age-to-nix
+    ssh-to-age
     bench
     bugs
     cachix
@@ -44,7 +44,7 @@ in {
     shellcheck
     universal-ctags
     vim_configurable
-  ] // [
+  ] ++ [
     # Language servers (not Haskell, done separately)
     nodePackages.bash-language-server
     python3Packages.python-lsp-server

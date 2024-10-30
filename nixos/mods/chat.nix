@@ -11,7 +11,7 @@
     slack
     telegram-desktop
     whatsapp-for-linux
-    wire-desktop
+    #wire-desktop # marked insecure 2024-10-23
   ];
 
   networking.hosts = {

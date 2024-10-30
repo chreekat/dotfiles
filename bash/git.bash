@@ -21,9 +21,10 @@ log_aliases () {
     aliases[glap]="$gitlog -p --all          --pretty=tformat:'$multi_line'"
     aliases[glfp]="$gitlog -p                --pretty=tformat:'$multi_line'"
 
-    for a in ${!aliases[@]}
+    for a in "${!aliases[@]}"
     do
-        alias $a="${aliases[$a]}"
+        # shellcheck disable=SC2139 # I want it.
+        alias "$a"="${aliases[$a]}"
     done
 }
 
