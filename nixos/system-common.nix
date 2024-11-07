@@ -271,10 +271,6 @@ in
     # Packages that include udev rules
     udev.packages = [ pkgs.chrysalis ];
 
-    unclutter-xfixes.enable = true;
-
-    urxvtd.enable = true;
-
   };
 
 

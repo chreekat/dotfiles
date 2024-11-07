@@ -22,6 +22,20 @@
       cbatticon
       networkmanagerapplet
   ];
+
+  services.unclutter-xfixes.enable = true;
+
+  services.urxvtd = {
+    enable = true;
+    package = pkgs.rxvt-unicode.override (drv: {
+      rxvt-unicode-unwrapped = pkgs.rxvt-unicode-unwrapped.overrideAttrs (orig: {
+        patches = orig.patches ++ [
+          ../patches/urxvt-garbage.patch
+        ];
+      });
+    });
+  };
+
   # Enable and configure the X11 windowing system.
   services.libinput.enable = true;
   services.xserver = {
@@ -60,11 +74,6 @@
         };
       '';
     };
-
-
-    # NixOS' support for xkeyboard-config has a high impedance mismatch.
-    # See the definition for rekey above.
-    displayManager.sessionCommands = "rekey";
   };
   programs.xss-lock = {
     enable = true;
