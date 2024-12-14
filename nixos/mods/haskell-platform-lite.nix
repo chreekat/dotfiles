@@ -2,6 +2,7 @@
   environment.systemPackages = [
     pkgs.cabal-install
     pkgs.cabal2nix
+    pkgs.ghciwatch
     pkgs.ghcid
     pkgs.haskellPackages.eventlog2html
     pkgs.haskellPackages.fast-tags

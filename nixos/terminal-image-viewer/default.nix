@@ -1,4 +1,4 @@
-{ stdenv, lib, fetchFromGitHub, pkgconfig, imagemagick }:
+{ stdenv, lib, fetchFromGitHub, imagemagick }:
 
 stdenv.mkDerivation {
   name = "tiv-1.0-f78b65c1f375";

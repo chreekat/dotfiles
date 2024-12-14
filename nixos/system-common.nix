@@ -38,7 +38,8 @@ in
       chrysalis
       aspell
     # 3d-printing
-      cura
+      # Broken dep libarcus in 24.11 as of 2024-12-14
+      #cura
     # personal admin tools
       bup
       keepassxc
@@ -66,7 +67,7 @@ in
       inkscape
       pinta # Simple image editor
       spotify
-      transmission
+      transmission_4
       vlc
       (callPackage ./terminal-image-viewer {})
       zathura # pdf viewer
@@ -160,8 +161,7 @@ in
   hardware = {
     bluetooth.enable = true;
     cpu.intel.updateMicrocode = true;
-    pulseaudio.enable = true;
-    pulseaudio.package = pkgs.pulseaudioFull;
+    # Pipewire is now the default
   };
 
   i18n.defaultLocale = "en_GB.UTF-8";
@@ -215,7 +215,7 @@ in
       netatop.enable = true;
       atopgpu.enable = true;
     };
-    bash.enableCompletion = true;
+    bash.completion.enable = true;
     gnupg.agent = {
       enable = true;
     };
