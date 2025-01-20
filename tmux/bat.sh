@@ -4,15 +4,25 @@ datum () {
     echo "/sys/class/power_supply/BAT0/${1}_${2}"
 }
 
-sys_datum () {
-    if [ -f "$(datum charge full)" ]; then
-        datum charge $1
-    else
-        datum energy $1
-    fi
-}
+status=$(cat /sys/class/power_supply/BAT0/status)
+capacity=$(cat /sys/class/power_supply/BAT0/capacity)
 
-charging=$(tr 01 -+ < /sys/class/power_supply/AC/online)
-pct=$(cat "$(sys_datum full)" "$(sys_datum now)" <(echo 100*r/p) | dc)
+case "$status" in
+    Full)
+        charging="="
+        ;;
+    Charging)
+        charging="+"
+        ;;
+    Discharging)
+        charging="-"
+        ;;
+    "Not charging")
+        charging="↯"
+        ;;
+    *)
+        charging="?"
+        ;;
+esac
 
-echo "$charging$pct%"
+echo "$charging$capacity%"
