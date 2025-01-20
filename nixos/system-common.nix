@@ -50,7 +50,6 @@ in
       beekeeper-studio # db tool
       postgresql
     # media
-      aegisub
       audacity
       # beets - broken dep python3.7-soco in 20.03
       #digikam

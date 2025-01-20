@@ -3,6 +3,7 @@
   console.useXkbConfig = true;
   environment.systemPackages = with pkgs; [
     # Xorg (in concert with enabling xmonad)
+      (import <nixos-unstable> { }).ghostty
       arandr
       flameshot
       keynav

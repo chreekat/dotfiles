@@ -19,3 +19,5 @@ Session.vim
 result
 errors.err
 .direnv
+.#*
+dist-newstyle

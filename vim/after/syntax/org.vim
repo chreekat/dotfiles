@@ -7,5 +7,11 @@ syn match orgHeading "^\*\+ .*"
 
 augroup AfterOrg
     au!
-    au ColorScheme * hi link orgHeading StatusLine
+    au ColorScheme * hi link orgHeading Label
+    au ColorScheme * hi Folded NONE
+    au ColorScheme * hi link Folded Label
 augroup END
+
+hi link orgHeading Label
+hi Folded NONE
+hi link Folded Label

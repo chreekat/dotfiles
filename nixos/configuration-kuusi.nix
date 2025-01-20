@@ -12,6 +12,7 @@ in statefulness // {
     [ # Include the results of the hardware scan.
       /etc/nixos/hardware-configuration.nix
       ./system-common.nix
+      ./mods/laptop.nix
     ];
 
   # (NOTE: Copied from fuzzbomb, values tweaked)
