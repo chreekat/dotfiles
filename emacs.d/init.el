@@ -43,7 +43,7 @@
                       (:startgroup . nil)
                       ("@haskell_foundation" . ?h)
                       ("@freelance" . ?f)
-                      ("@volunteering" . nil)
+                      ("@volunteering" . ?v)
                       ("@housework" . ?H)
                       ("@personal" . ?p)
                       (:endgroup . nil)
@@ -51,17 +51,18 @@
                       ("@errands" . ?e)
                       ; non-exclusive attributes
                       ("cabal" . ?c)
+                      ("stackage" . ?s)
                       ("easy" . nil)
                       ("meatspace" . nil)
                       ("online" . nil)
                       ("pro_bono" . nil)
                       ("productivity_tools" . nil)
                       ("reading_list" . nil)
-                      ("stackage" . ?s)
                       ))
 
 (setq org-capture-templates
-      '(("i" "Inbox" entry (file "/home/b/Syncthing/PhoneFiles/org/Inbox.org"))))
+      '(("i" "Inbox" entry (file "/home/b/Syncthing/PhoneFiles/org/Inbox.org")
+         "* %?\n[%<%Y-%m-%d %a %H:%M>]\n")))
 
 (define-key global-map (kbd "<f1>")
   (lambda () (interactive) (org-capture nil "i")))
@@ -85,23 +86,28 @@
  '(global-auto-revert-mode t)
  '(inhibit-startup-screen t)
  '(org-agenda-custom-commands
-   '(("T" "All active TODOs" tags-todo "-secondary/TODO" nil)
-     ("P" "All active PROJs" tags-todo "-secondary/PROJ" nil)
-     ("z" "All categories"
-      ((tags-todo "+@haskell_foundation-secondary/TODO" nil)
-       (tags-todo "+@personal-secondary/TODO" nil)
-       (tags-todo "+@freelance-secondary/TODO" nil)
-       (tags-todo "+@housework-secondary/TODO" nil)
-       (tags-todo "+@volunteering-secondary/TODO" nil))
-      nil)))
+   '(("z" "All categories"
+      ((tags-todo "+@haskell_foundation-secondary-SCHEDULED>\"<tomorrow>\"/TODO" nil)
+       (tags-todo "+@personal-secondary-SCHEDULED>\"<tomorrow>\"/TODO" nil)
+       (tags-todo "+@freelance-secondary-SCHEDULED>\"<tomorrow>\"/TODO" nil)
+       (tags-todo "+@housework-secondary-SCHEDULED>\"<tomorrow>\"/TODO" nil)
+       (tags-todo "+@volunteering-secondary-SCHEDULED>\"<tomorrow>\"/TODO" nil))
+      nil)
+     ("U" "Un-labeled TODOs" tags-todo
+      #("-{@.*}-secondary/TODO" 1 6
+        (regexp t))
+      nil)
+     ("P" "Active projects" tags-todo "-secondary/PROJ" nil)
+     ("W" "Waiting for..." tags-todo "-secondary/WAIT" nil)))
  '(org-agenda-files
-   '("~/Syncthing/PhoneFiles/org/books-to-read.org" "/home/b/Syncthing/PhoneFiles/org/thinking-about.org" "/home/b/Syncthing/PhoneFiles/org/maybe.org" "/home/b/Syncthing/PhoneFiles/org/Inbox.org" "/home/b/Syncthing/PhoneFiles/org/Tickler.org" "/home/b/Syncthing/PhoneFiles/org/agenda.org" "/home/b/Syncthing/PhoneFiles/org/projects.org" "/home/b/Syncthing/PhoneFiles/org/reference.org" "/home/b/Syncthing/PhoneFiles/org/todos.org" "/home/b/Syncthing/PhoneFiles/org/Projects/Haskell_Certification_Deployment.org" "/home/b/Syncthing/PhoneFiles/org/Projects/Stackage/Stackage.org"))
+   '("/home/b/Syncthing/PhoneFiles/org/books-to-read.org" "/home/b/Syncthing/PhoneFiles/org/thinking-about.org" "/home/b/Syncthing/PhoneFiles/org/maybe.org" "/home/b/Syncthing/PhoneFiles/org/Inbox.org" "/home/b/Syncthing/PhoneFiles/org/Tickler.org" "/home/b/Syncthing/PhoneFiles/org/agenda.org" "/home/b/Syncthing/PhoneFiles/org/projects.org" "/home/b/Syncthing/PhoneFiles/org/reference.org" "/home/b/Syncthing/PhoneFiles/org/todos.org" "/home/b/Syncthing/PhoneFiles/org/Projects/Haskell_Certification_Deployment.org" "/home/b/Syncthing/PhoneFiles/org/Projects/Stackage/Stackage.org"))
  '(org-agenda-show-future-repeats nil)
  '(org-agenda-skip-deadline-if-done t)
  '(org-agenda-skip-scheduled-if-done t)
  '(org-agenda-tags-todo-honor-ignore-options t)
  '(org-agenda-todo-ignore-scheduled 'future)
  '(org-capture-bookmark nil)
+ '(org-enforce-todo-dependencies t)
  '(org-export-backends '(ascii beamer html icalendar latex md odt))
  '(org-log-done 'time)
  '(org-log-into-drawer t)
