@@ -28,7 +28,8 @@ in
     tmp.cleanOnBoot = true;
   };
 
-  documentation.man.generateCaches = true;
+  # Makes rebuild too slow :(
+  #documentation.man.generateCaches = true;
 
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget

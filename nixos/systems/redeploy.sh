@@ -17,15 +17,17 @@ set -Eeuo pipefail
 declare -A old target
 
 # Change this if you want to deploy.
+# shellcheck disable=SC2190
 old=(
     "puny"
-    /nix/store/1akjrk7cd98f59ssdwbdkskm58g5zhs6-nixos-system-puny-24.05.20240707.1948467
+    /nix/store/qsk4mgcm3as69zlpccz3b7gvd4vamhqm-nixos-system-puny-24.05.20240707.1948467
     "honk"
-    /nix/store/7x3syrzklnpj8scshdsi6rx9jisb31g1-nixos-system-honk-24.05.20240707.1948467
+    /nix/store/l7ahqp6hb0r7v1y1bllxjgv6g8j2k6jx-nixos-system-honk-24.11.20250310.ebe2788
     "kuusi"
     foo
 )
 
+# shellcheck disable=SC2190
 target=(
     "puny" puny
     "honk" 95.216.0.246
@@ -63,7 +65,7 @@ if [[ ${old["$1"]} != "$new" ]]; then
         if [ -t 0 ]; then
             read -rp "Show diff? [y/N] " yn
             if [[ $yn = [yY] ]]; then
-                nix-diff --color always "${old["$1"]}" "$new" | less
+                nix-diff --color always "${old["$1"]}" "$new" | less && true
             fi
         fi
         >&2 echo

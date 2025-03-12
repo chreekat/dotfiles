@@ -5,14 +5,6 @@
 {
   imports =
     [ ./hardware-configuration.nix
-      ../user-b.nix
-      ../server-sudo.nix
-      ../../mods/server-ssh.nix
-      ../../mods/tailscale.nix
-      ../../mods/server-www-fileserv.nix
-      ../../mods/syncthing.nix
-      ../../mods/nix-hygiene.nix
-      ../../mods/irc-bouncer.nix
     ];
 
   system.stateVersion = "22.11";

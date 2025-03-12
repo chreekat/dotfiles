@@ -21,10 +21,12 @@ in {
 
   environment.systemPackages = with pkgs; [
     age
+    (pkgs.callPackage "${builtins.fetchTarball "https://github.com/ryantm/agenix/archive/main.tar.gz"}/pkgs/agenix.nix" {})
     ssh-to-age
     bench
     bugs
     cachix
+    code-cursor
     devenv
     dhall
     difftastic

@@ -1,0 +1,24 @@
+Taken from https://github.com/ryantm/agenix
+
+* Create a secret file:
+
+Add the filename to secrets.nix.
+
+Run @agenix -e new-secret.nix@
+
+Make a password, perhaps with @:r !openssl rand -base64 20@
+
+
+* Use the secret:
+
+#+BEGIN_SRC
+
+{
+  # Declare it
+  age.secrets.secret1.file = path-to/new-secret.nix;
+
+  # Use it
+  foo.settings.passwordFile = config.age.secrets.secret1.path;
+}
+
+#+END_SRC

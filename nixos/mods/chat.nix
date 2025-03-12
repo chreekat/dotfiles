@@ -13,9 +13,4 @@
     whatsapp-for-linux
     #wire-desktop # marked insecure 2024-10-23
   ];
-
-  networking.hosts = {
-    # Glowing Bear running on puny.
-    "100.81.115.78" = [ "glowing-bear.chreekat" ];
-  };
 }
