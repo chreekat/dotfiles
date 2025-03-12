@@ -55,6 +55,7 @@ set suffixes+=.dyn_hi-boot,hi-boot,o-boot,hs-boot
 " Prefer things with suffixes
 set suffixes+=,
 set updatetime=2000
+set visualbell
 
 "" My anti-preferences
 " I used to think 'useopen' was a decent default, but it messes up :stag and
@@ -74,6 +75,7 @@ let g:copilot_filetypes = {
       \ 'html': v:true,
       \ 'make': v:true,
       \ 'nix': v:true,
+      \ 'php': v:true,
       \ 'python': v:true,
       \ 'sh': v:true,
       \ 'shell': v:true,

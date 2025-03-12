@@ -21,3 +21,4 @@ errors.err
 .direnv
 .#*
 dist-newstyle
+*~

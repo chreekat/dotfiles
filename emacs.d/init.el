@@ -34,6 +34,7 @@
                       ; exclusive contexts
                       (:startgroup . nil)
                       ("@haskell_foundation" . ?h)
+                      ("@centralapp" . ?c)
                       ("@freelance" . ?f)
                       ("@volunteering" . ?v)
                       ("@housework" . ?H)
@@ -42,8 +43,8 @@
                       ; non-exclusive contexts
                       ("@errands" . ?e)
                       ; non-exclusive attributes
-                      ("cabal" . ?c)
-                      ("stackage" . ?s)
+                      ("cabal" . nil)
+                      ("stackage" . nil)
                       ("easy" . nil)
                       ("meatspace" . nil)
                       ("online" . nil)
@@ -69,6 +70,7 @@
  '(org-agenda-custom-commands
    '(("z" "All categories"
       ((tags-todo "+@haskell_foundation-secondary-SCHEDULED>\"<tomorrow>\"/TODO" nil)
+       (tags-todo "+@centralapp-secondary-SCHEDULED>\"<tomorrow>\"/TODO" nil)
        (tags-todo "+@personal-secondary-SCHEDULED>\"<tomorrow>\"/TODO" nil)
        (tags-todo "+@freelance-secondary-SCHEDULED>\"<tomorrow>\"/TODO" nil)
        (tags-todo "+@housework-secondary-SCHEDULED>\"<tomorrow>\"/TODO" nil)
@@ -81,7 +83,7 @@
      ("P" "Active projects" tags-todo "-secondary/PROJ" nil)
      ("W" "Waiting for..." tags-todo "-secondary/WAIT" nil)))
  '(org-agenda-files
-   '("/home/b/Syncthing/PhoneFiles/org/books-to-read.org" "/home/b/Syncthing/PhoneFiles/org/thinking-about.org" "/home/b/Syncthing/PhoneFiles/org/maybe.org" "/home/b/Syncthing/PhoneFiles/org/Inbox.org" "/home/b/Syncthing/PhoneFiles/org/Tickler.org" "/home/b/Syncthing/PhoneFiles/org/agenda.org" "/home/b/Syncthing/PhoneFiles/org/projects.org" "/home/b/Syncthing/PhoneFiles/org/reference.org" "/home/b/Syncthing/PhoneFiles/org/todos.org" "/home/b/Syncthing/PhoneFiles/org/Projects/Haskell_Certification_Deployment.org" "/home/b/Syncthing/PhoneFiles/org/Projects/Stackage/Stackage.org"))
+   '("~/Syncthing/PhoneFiles/org/archive/2025-archive.org" "/home/b/Syncthing/PhoneFiles/org/books-to-read.org" "/home/b/Syncthing/PhoneFiles/org/thinking-about.org" "/home/b/Syncthing/PhoneFiles/org/maybe.org" "/home/b/Syncthing/PhoneFiles/org/Inbox.org" "/home/b/Syncthing/PhoneFiles/org/Tickler.org" "/home/b/Syncthing/PhoneFiles/org/agenda.org" "/home/b/Syncthing/PhoneFiles/org/projects.org" "/home/b/Syncthing/PhoneFiles/org/reference.org" "/home/b/Syncthing/PhoneFiles/org/todos.org" "/home/b/Syncthing/PhoneFiles/org/Projects/Haskell_Certification_Deployment.org" "/home/b/Syncthing/PhoneFiles/org/Projects/Stackage/Stackage.org"))
  '(org-agenda-show-future-repeats nil)
  '(org-agenda-skip-deadline-if-done t)
  '(org-agenda-skip-scheduled-if-done t)
@@ -109,4 +111,5 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :extend nil :stipple nil :background "white" :foreground "black" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 120 :width normal :foundry "FSD " :family "PragmataPro Mono")))))
+ '(default ((t (:inherit nil :extend nil :stipple nil :background "white" :foreground "black" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 120 :width normal :foundry "FSD " :family "PragmataPro Mono"))))
+ )

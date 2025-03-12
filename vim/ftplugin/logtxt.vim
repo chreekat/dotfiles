@@ -66,6 +66,8 @@ enddef
 command -buffer FoldLevel echo FoldLevel(line('.'))
 command -buffer Timestamp call Timestamp()
 nnoremap <buffer> <F9> :Timestamp<cr>
+nnoremap <buffer> <F10> $a ; s:unbilled<esc>0i
+imap <buffer> <F10> <esc><F10>
 setl sw=7 tw=90 fo-=a2 nowrap omnifunc=CompleteTimeAccount
 setl foldexpr=FoldLevel(v:lnum) foldmethod=expr fdc=3 fdl=2
 
