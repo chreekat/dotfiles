@@ -22,7 +22,7 @@ old=(
     "puny"
     /nix/store/qsk4mgcm3as69zlpccz3b7gvd4vamhqm-nixos-system-puny-24.05.20240707.1948467
     "honk"
-    /nix/store/l7ahqp6hb0r7v1y1bllxjgv6g8j2k6jx-nixos-system-honk-24.11.20250310.ebe2788
+    /nix/store/dpc33c169fid56mb4cimy9pw2a7rm9a7-nixos-system-honk-24.11.20250310.ebe2788
     "kuusi"
     foo
 )

@@ -9,6 +9,12 @@
       description = "chreekat-honk";
       authenticationTokenConfigFile = config.age.secrets.snowdrift-gitlab-authtoken.path;
       dockerImage = "alpine:latest";
+      dockerAllowedServices = [
+        "postgres:*"
+        "docker:*"
+      ];
+      # What does this do, exactly?
+      requestConcurrency = 2;
     };
   };
 }
