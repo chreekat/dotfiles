@@ -13,8 +13,6 @@
         "postgres:*"
         "docker:*"
       ];
-      # What does this do, exactly?
-      requestConcurrency = 2;
     };
   };
 }

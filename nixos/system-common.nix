@@ -124,6 +124,7 @@ in
       tcpdump
       # Connect to wifi with a QR. sudo wifi-qr -s
       wifi-qr
+      wireguard-tools
     # devops
       awscli
       dive

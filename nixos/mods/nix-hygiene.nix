@@ -5,8 +5,14 @@
     gc = {
       automatic = true;
       dates = "weekly";
-      options = "--delete-older-than 30d";
+      options = "--delete-older-than 14d";
     };
+    optimise = {
+      automatic = true;
+      dates = [
+        "03:45"
+        "17:15"
+      ];
     settings = {
       # Needed for various good things
       trusted-users = ["b"];
