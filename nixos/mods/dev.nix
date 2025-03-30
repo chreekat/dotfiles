@@ -33,6 +33,7 @@ in {
     direnv
     emscripten
     entr
+    gh
     git
     git-crypt
     nil

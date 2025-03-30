@@ -10,7 +10,6 @@
     optimise = {
       automatic = true;
       dates = [
-        "03:45"
         "17:15"
       ];
     settings = {
