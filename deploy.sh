@@ -135,6 +135,7 @@ DOTS=(
     terminfo
     tmux
     tmux.conf
+    urxvt/ext
     vim
     vimrc
     w3m

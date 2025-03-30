@@ -1,0 +1,57 @@
+# vim: ft=perl
+
+sub on_user_command {
+    my ($self, $cmd) = @_;
+    my $size = $cmd =~ s/.*://r;
+
+    # Size can be a digit or the words 'bigger' or 'smaller'
+    if ($size eq "bigger") {
+        if ($self->{font_size}) {
+            $self->{font_size} += 1;
+        } else {
+            $self->{font_size} = 18;
+        }
+    } elsif ($size eq "smaller") {
+        if ($self->{font_size}) {
+            $self->{font_size} -= 1;
+        } else {
+            $self->{font_size} = 18;
+        }
+    }
+    else {
+        $self->{font_size} = $size;
+    }
+
+    if (0) {
+        open my $log, ">>", "/tmp/fontresize.log";
+        print $log "Got: $cmd || " . $self->{font_size} . "\n";
+        close $log;
+    }
+
+    my @fonts = (
+        "PragmataPro Mono",
+        "FSD Emoji",
+    );
+
+    my %styles = (
+        710 => ":",
+        711 => "bold:",
+        712 => "italic:",
+        713 => "bold:italic:",
+    );
+    my @seqs;
+    # For each style, make a string like \033]$style;$font1:$style_string:pixelsize=<fontsize>,$font2:$style_string:pixelsize=<fontsize>\007
+    for my $style (keys %styles) {
+        my $style_string = $styles{$style};
+        my $seq = "\033]$style;";
+        $seq .= join ",", map { "xft:$_:${style_string}pixelsize=$self->{font_size}" } @fonts;
+        $seq .= "\007";
+        push @seqs, $seq;
+    }
+
+    foreach my $seq (@seqs) {
+        $self->cmd_parse($seq);  # Send to terminal
+    }
+
+    return 1;
+}
