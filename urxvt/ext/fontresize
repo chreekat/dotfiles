@@ -2,7 +2,11 @@
 
 sub on_user_command {
     my ($self, $cmd) = @_;
-    my $size = $cmd =~ s/.*://r;
+
+    my ($who, $size) = split(/:/, $cmd);
+    if ($who ne "fontresize") {
+        return ;
+    }
 
     # Size can be a digit or the words 'bigger' or 'smaller'
     if ($size eq "bigger") {
@@ -17,10 +21,12 @@ sub on_user_command {
         } else {
             $self->{font_size} = 18;
         }
-    }
-    else {
+    } elsif ($size =~ /\d+/) {
         $self->{font_size} = $size;
+    } else {
+        return 0;
     }
+
 
     if (0) {
         open my $log, ">>", "/tmp/fontresize.log";
