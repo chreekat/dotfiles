@@ -29,7 +29,7 @@ old=(
 
 # shellcheck disable=SC2190
 target=(
-    "puny" puny
+    "puny" puny.chreekat.net
     "honk" 95.216.0.246
     "kuusi" kuusi.bryanthomasrichter.gmail.com.beta.tailscale.net
 )
