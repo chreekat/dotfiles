@@ -12,6 +12,7 @@
       dates = [
         "17:15"
       ];
+    };
     settings = {
       # Needed for various good things
       trusted-users = ["b"];
