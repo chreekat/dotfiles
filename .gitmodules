@@ -102,8 +102,11 @@
 	path = vim/pack/start/start/coc.nvim
 	url = https://github.com/neoclide/coc.nvim
 [submodule "vim/pack/start/start/copilot.vim"]
-	path = vim/pack/opt/opt/copilot.vim
+	path = vim/pack/start/start/copilot.vim
 	url = git@github.com:github/copilot.vim.git
 [submodule "tmux/plugins/tmux-resurrect"]
 	path = tmux/plugins/tmux-resurrect
 	url = https://github.com/tmux-plugins/tmux-resurrect
+[submodule "vim/pack/start/start/fzf"]
+	path = vim/pack/start/start/fzf
+	url = git@github.com:junegunn/fzf.git
