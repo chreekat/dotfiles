@@ -12,12 +12,18 @@ sub on_user_command {
     if ($size eq "bigger") {
         if ($self->{font_size}) {
             $self->{font_size} += 1;
+            if ($self->{font_size} > 100) {
+                $self->{font_size} = 100;  # Limit max font size
+            }
         } else {
             $self->{font_size} = 18;
         }
     } elsif ($size eq "smaller") {
         if ($self->{font_size}) {
             $self->{font_size} -= 1;
+            if ($self->{font_size} < 1) {
+                $self->{font_size} = 1;  # Limit min font size
+            }
         } else {
             $self->{font_size} = 18;
         }
