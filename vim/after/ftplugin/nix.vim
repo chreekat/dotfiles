@@ -1,2 +1,4 @@
 syn sync fromstart
-compiler nix
+compiler! nix
+
+setlocal formatoptions=croqnlj

@@ -1,7 +1,7 @@
 setlocal iskeyword+='
 setlocal includeexpr=(substitute(v:fname,'\\.','/','g').'.hs')
 
-compiler ghc
+compiler! ghc
 
 syn sync fromstart
 
@@ -108,4 +108,5 @@ endfunc
 setl foldmethod=expr
 setl foldexpr=s:ImportFold(v:lnum)
 setl fdc=3
+setlocal formatoptions=croqnlj
 normal `"

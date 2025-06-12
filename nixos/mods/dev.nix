@@ -44,6 +44,7 @@ in {
     nix-prefetch-github
     nix-prefetch-scripts
     nodejs
+    vscode-fhs
     shellcheck
     universal-ctags
     vim_configurable
@@ -54,4 +55,6 @@ in {
   ];
 
   programs.direnv.enable = true;
+
+  programs.nix-ld.enable = true;
 }

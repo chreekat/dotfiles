@@ -25,8 +25,11 @@ if has("persistent_undo")
     set undodir=~/.vim/undos
     set undofile
 endif
-set wildignore+=*.o,*.hi,dist,*.dyn_o,*.dyn_hi,.git,.stack-work
-set wildmode=list:longest,full
+
+set wildignore+=dist-newstyle/**,result*/**,*.o,*.hi,dist/**,*.dyn_o,*.dyn_hi,.git/**,.stack-work/**,*.lock
+set wildmode=full:lastused
+set wildoptions=pum,fuzzy,tagfile
+
 runtime shifted_fkeys.vim
 
 "" My preferences
@@ -71,8 +74,10 @@ let g:copilot_filetypes = {
       \ 'c': v:true,
       \ 'cabal': v:true,
       \ 'cpp': v:true,
+      \ 'css': v:true,
       \ 'haskell': v:true,
       \ 'html': v:true,
+      \ 'jq': v:true,
       \ 'lisp': v:true,
       \ 'make': v:true,
       \ 'nix': v:true,
@@ -81,6 +86,7 @@ let g:copilot_filetypes = {
       \ 'python': v:true,
       \ 'sh': v:true,
       \ 'shell': v:true,
+      \ 'terraform': v:true,
       \ 'yaml': v:true,
       \ 'vim': v:true,
       \ }
@@ -255,8 +261,8 @@ vnoremap iz zcVzogv
 nnoremap <c-s> :w<cr>
 
 " Bring back ss
-nmap s z
-nmap ss zz
+map s z
+map ss zz
 
 ""
 "" O T H E R   C O N F I G U R A T I O N
@@ -314,6 +320,8 @@ augroup vimrc_highlighting
     au ColorScheme default hi DiffChange ctermfg=104 cterm=reverse
     au ColorScheme PaperColor hi Folded ctermbg=NONE
     au ColorScheme * hi CopilotSuggestion cterm=reverse
+    au ColorScheme * hi Comment cterm=italic
+    au ColorScheme * hi Title cterm=bold
     au ColorScheme apprentice hi Folded ctermbg=NONE
 augroup END
 colorscheme PaperColor

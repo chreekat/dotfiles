@@ -28,6 +28,13 @@ in
     tmp.cleanOnBoot = true;
   };
 
+  # Especially good on SSDs, with modern defaults for compressor and zpool type.
+  boot.kernelParams = [
+    "zswap.enabled=1"
+    "zswap.compressor=zstd"
+    "zswap.zpool=z3fold"
+  ];
+
   # Makes rebuild too slow :(
   #documentation.man.generateCaches = true;
 
@@ -126,7 +133,7 @@ in
       wifi-qr
       wireguard-tools
     # devops
-      awscli
+      awscli2
       dive
       kubectl
       kubectx
@@ -166,23 +173,6 @@ in
   };
 
   i18n.defaultLocale = "en_GB.UTF-8";
-
-  location = {
-    #provider = "geoclue2";
-    provider = "manual";
-    # Äkäslompolo
-    #latitude = 67.6030203;
-    #longitude = 24.17231;
-    # Helsinki
-    #latitude = 60.2443;
-    #longitude = 24.8800;
-    # Sintra
-    #latitude = 38.8017;
-    #longitude = -9.37979;
-    # Zürich
-    latitude = 47.3745;
-    longitude = 8.5410;
-  };
 
   networking.networkmanager = {
     enable = true;
@@ -294,7 +284,7 @@ in
     isNormalUser = true;
     uid = 1000;
     group = "b";
-    extraGroups = ["i2c" "users" "wheel" "video" "systemd-journal" "docker" "transmission" "netdev"];
+    extraGroups = ["i2c" "users" "wheel" "video" "systemd-journal" "docker" "transmission" "netdev" "networkmanager"];
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICzNy6bOnkcu54nPeN523uvfRq3WbGCgEbTQifWLF+D0 b@kuusi"
       "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQC5wfyVQYW4sBkZ7a9dNlrGorUXQc1BvHmhxBmmrrwAKs/kkvaS1jgraDvsjo+xo4skiI9HwVXP7OMhjjdLH6MMk3X0Sewv+V8V6xDmpr6NYZKgmFx9b0tPp4IBRsuZu5vbNDyIQo/DbNFzCKT2+ax5DKy/GBahH1WMq4Ks+N01sBrXlOl40fnihdcYTpEZ5jJYheAjrgKpcmoAV364C4lNFfUGxkYVM0DAs39yIahDWQ7bReuzaJRhz+CpfAfNLTpIU1vnWP0yv4ZSRM47eQ59dYVieLqZFxroJ1xXfkdSR10AjCdcmOZWa9Bx9qBF5I5kCdPbW559D6QaROsy4EUzqGOuY8ynALm0zJDXrEj5rTxV8vJfHjQ+m8+oXUdRxdJtbrf0al8mytD80hl50mdzlhomWFiEJO9ny2N4AZiJJ0xbIhAFvHAjaTwTa+j6uF0OFIobcqrtaGjjBYXG8FPdJCNByt7N7g8UOTggfzQoxf3g3dBx79gfBbuKFEohTI7XvgEAvFFVrW3NHn7eYN4QKfqO51ns6atmJDIo0Phpjnz0670I+Od9WETa/IJcNjJkcA22612hhRtNK5NZcgKTRijNStegFAtY7ZApB2nMj5lQcRA3Dps6lF1PpICIj5IBF9R4n5AeR405l9QG113iqvAIezHgYHSltOgHBmGOMw== b@fuzzbomb"

@@ -81,7 +81,8 @@
  '(org-agenda-custom-commands
    '(("z" "All categories"
       ((tags-todo
-        "+@haskell_foundation-secondary-SCHEDULED>\"<tomorrow>\"/TODO" nil)
+        "+@haskell_foundation-secondary-SCHEDULED>\"<tomorrow>\"/TODO"
+        nil)
        (tags-todo
         "+@centralapp-secondary-SCHEDULED>\"<tomorrow>\"/TODO" nil)
        (tags-todo "+@personal-secondary-SCHEDULED>\"<tomorrow>\"/TODO"
@@ -93,11 +94,13 @@
        (tags-todo
         "+@volunteering-secondary-SCHEDULED>\"<tomorrow>\"/TODO" nil))
       ((org-agenda-sorting-strategy '(priority-down))))
-     ("U" "Un-labeled TODOs" tags-todo "-{@.*}-secondary/TODO" nil)
-     ("P" "Active projects" tags-todo "-secondary/PROJ" nil)
+     ("U" "Un-labeled TODOs" tags-todo
+      #("-{@.*}-secondary/TODO" 1 6 (regexp t)) nil)
+     ("P" "Active projects" tags-todo "-secondary/PROJ"
+      ((org-agenda-sorting-strategy '(priority-down))))
      ("W" "Waiting for..." tags-todo "-secondary/WAIT" nil)))
  '(org-agenda-files
-   '("~/Syncthing/PhoneFiles/org/archive/2025-archive.org"
+   '("/home/b/Syncthing/PhoneFiles/org/archive/2025-archive.org"
      "/home/b/Syncthing/PhoneFiles/org/books-to-read.org"
      "/home/b/Syncthing/PhoneFiles/org/thinking-about.org"
      "/home/b/Syncthing/PhoneFiles/org/maybe.org"
@@ -107,8 +110,7 @@
      "/home/b/Syncthing/PhoneFiles/org/projects.org"
      "/home/b/Syncthing/PhoneFiles/org/reference.org"
      "/home/b/Syncthing/PhoneFiles/org/todos.org"
-     "/home/b/Syncthing/PhoneFiles/org/Projects/Haskell_Certification_Deployment.org"
-     "/home/b/Syncthing/PhoneFiles/org/Projects/Stackage/Stackage.org"))
+     "/home/b/Syncthing/PhoneFiles/org/Projects/Haskell_Certification_Deployment.org"))
  '(org-agenda-show-future-repeats nil)
  '(org-agenda-skip-deadline-if-done t)
  '(org-agenda-skip-scheduled-if-done t)
@@ -127,6 +129,7 @@
  '(org-modules
    '(ol-bbdb ol-bibtex ol-docview ol-doi ol-eww ol-gnus org-habit org-id
              ol-info ol-irc ol-mhe ol-rmail ol-w3m))
+ '(org-outline-path-complete-in-steps nil)
  '(org-priority-default 67)
  '(org-refile-targets '((org-agenda-files :maxlevel . 3)))
  '(org-refile-use-outline-path 'file)
@@ -135,7 +138,9 @@
  '(org-tags-column -85)
  '(org-todo-keyword-faces
    '(("PROJ" :foreground "blue" :weight bold)
-     ("WAIT" :foreground "goldenrod" :weight normal))))
+     ("WAIT" :foreground "goldenrod" :weight normal)))
+ '(org-todo-keywords
+   '((type "TODO(t)" "PROJ(p)" "WAIT(w@/!)" "|" "DONE(!)" "OBE(@)"))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

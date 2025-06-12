@@ -11,6 +11,7 @@ def Timestamp()
 enddef
 
 def CompleteTimeAccount(findstart: number, base: string): any
+    # findstart is 1 when vim is asking where the match starts
     if findstart == 1
         if strlen(getline('.')) > 0
             return 0
@@ -18,36 +19,10 @@ def CompleteTimeAccount(findstart: number, base: string): any
             # Cancel silently and leave completion
             return -3
         endif
+    # otherwise it actually wants the completions
     else
-        return GetAccts(base)
+        return matchfuzzy(uniq(sort(mapnew(matchbufline(bufnr(), '^\S.\{-}\ze  ', 1, '$'), (_, val) => val["text"]))), base)
     endif
-enddef
-
-def IsAcct(line: string): bool
-    var leading = line[0 : col('.') - 1]
-    return leading == '' || leading =~ '^[a-z]'
-enddef
-
-def GetAccts(base: string): list<string>
-    var matches = []
-    var lineNr = 0
-    # The end of a account is the first two spaces
-    var endmatch = '.\{-}\ze  '
-    var match = '^'
-    if strlen(base) > 0
-        match = match .. '.*' .. base .. endmatch
-    else
-        match = match .. endmatch
-    endif
-    while lineNr < line('$')
-        var line = getline(lineNr + 1)
-        var account = matchstr(line, match)
-        if IsAcct(line) && account != ""
-            add(matches, account)
-        endif
-        lineNr += 1
-    endwhile
-    return sort(matches)
 enddef
 
 def FoldLevel(lnum: number): string

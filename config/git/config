@@ -101,3 +101,5 @@
 	allowedSignersFile = ./allowed-signers
 [init]
 	defaultBranch = main
+[diff "ignore"]
+	binary = true

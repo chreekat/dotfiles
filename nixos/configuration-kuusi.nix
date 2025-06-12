@@ -13,6 +13,7 @@ in statefulness // {
       /etc/nixos/hardware-configuration.nix
       ./system-common.nix
       ./mods/laptop.nix
+      ./mods/backlight.nix
     ];
 
   # (NOTE: Copied from fuzzbomb, values tweaked)
@@ -22,6 +23,8 @@ in statefulness // {
   # for new ideas.
   nix.settings.cores = 4;
   nix.settings.max-jobs = 4;
+  # Twice the default, since I got a warning to increase it.
+  nix.settings.download-buffer-size = 2 * 67108864;
 
   services.openssh.enable = true;
   services.openssh.listenAddresses = [ { addr = tailscaleIP; port = 22; } ];

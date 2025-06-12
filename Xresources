@@ -29,7 +29,7 @@ XTerm*faceName: PragmataPro Mono
 XTerm*faceSize: 12
 
 URxvt.url-launcher: xdg-open
-URxvt.perl-ext-common: color-themes,fontresize,matcher,selection
+URxvt.perl-ext-common: better-color-themes,fontresize,matcher,selection
 URxvt.color-themes.themedir:  ~/.config/urxvt/themes
 URxvt.keysym.M-C-n:  perl:color-themes:next
 URxvt.keysym.M-C-p:  perl:color-themes:prev
