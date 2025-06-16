@@ -47,6 +47,7 @@ in {
     vscode-fhs
     shellcheck
     universal-ctags
+    urlencode
     vim_configurable
   ] ++ [
     # Language servers (not Haskell, done separately)
