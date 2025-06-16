@@ -99,7 +99,7 @@
 	path = vim/pack/start/start/vim-svelte
 	url = https://github.com/evanleck/vim-svelte
 [submodule "vim/pack/start/start/coc.nvim"]
-	path = vim/pack/start/start/coc.nvim
+	path = vim/pack/opt/opt/coc.nvim
 	url = https://github.com/neoclide/coc.nvim
 [submodule "vim/pack/start/start/copilot.vim"]
 	path = vim/pack/start/start/copilot.vim
