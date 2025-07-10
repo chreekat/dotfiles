@@ -74,9 +74,6 @@
 [submodule "vim/pack/ALL/start/kotlin"]
 	path = vim/pack/start/start/kotlin
 	url = git@github.com:udalov/kotlin-vim.git
-[submodule "vim/pack/ALL/start/gitgutter"]
-	path = vim/pack/start/start/gitgutter
-	url = git@github.com:airblade/vim-gitgutter
 [submodule "vim/pack/ALL/start/markdown-devel"]
 	path = vim/pack/start/start/markdown-devel
 	url = git@github.com:tpope/vim-markdown
