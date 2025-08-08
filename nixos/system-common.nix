@@ -73,7 +73,6 @@ in
       imagemagick
       inkscape
       pinta # Simple image editor
-      spotify
       transmission_4
       vlc
       (callPackage ./terminal-image-viewer {})

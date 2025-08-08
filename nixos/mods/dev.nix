@@ -20,6 +20,7 @@ in {
   documentation.dev.enable = true;
 
   environment.systemPackages = with pkgs; [
+    act
     age
     (pkgs.callPackage "${builtins.fetchTarball "https://github.com/ryantm/agenix/archive/main.tar.gz"}/pkgs/agenix.nix" {})
     ssh-to-age
@@ -27,10 +28,10 @@ in {
     bugs
     cachix
     code-cursor
-    devenv
+    #devenv # broken
     dhall
     difftastic
-    direnv
+    amazon-ecr-credential-helper
     emscripten
     entr
     gh
@@ -49,6 +50,7 @@ in {
     universal-ctags
     urlencode
     vim_configurable
+    zgrviewer # graphviz, dot
   ] ++ [
     # Language servers (not Haskell, done separately)
     nodePackages.bash-language-server

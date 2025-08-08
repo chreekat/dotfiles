@@ -3,10 +3,10 @@
   console.useXkbConfig = true;
   environment.systemPackages = with pkgs; [
     # Xorg (in concert with enabling xmonad)
-      (import <nixos-unstable> { }).ghostty
       arandr
       flameshot
       keynav
+      kitty
       notify-osd
       pavucontrol
       termonad
@@ -27,7 +27,7 @@
   services.unclutter-xfixes.enable = true;
 
   services.urxvtd = {
-    enable = true;
+    enable = false;
     package = pkgs.rxvt-unicode.override (drv: {
       rxvt-unicode-unwrapped = pkgs.rxvt-unicode-unwrapped.overrideAttrs (orig: {
         patches = orig.patches ++ [
