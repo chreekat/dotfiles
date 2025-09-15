@@ -27,7 +27,7 @@ if has("persistent_undo")
 endif
 
 set wildignore+=dist-newstyle/**,result*/**,*.o,*.hi,dist/**,*.dyn_o,*.dyn_hi,.git/**,.stack-work/**,*.lock
-set wildmode=full:lastused
+set wildmode=longest:full:lastused,full:lastused
 set wildoptions=pum,fuzzy,tagfile
 
 runtime shifted_fkeys.vim
@@ -47,6 +47,8 @@ set incsearch
 set laststatus=1
 set nojoinspaces
 set pastetoggle=<F2>
+" This is the setting needed to make gf work. But don't rely on it for :find --
+" always use ./<foo>
 set path=.,,
 " Try to make sure :hardcopy doesn't work, because it sux
 set printdevice=do_not_use
@@ -292,11 +294,22 @@ augroup vimrc
 
 augroup END
 
+function! ShowWeekdayPopup()
+    let word = expand('<cWORD>')
+    let time = strptime('%Y-%m-%d', word)
+    let x = col('$') + 5
+    if time > 0
+        let weekday = strftime('%A', time)
+        call popup_create(weekday, #{line: "cursor", col: x, time: 2000, highlight: 'Pmenu'})
+    endif
+endfunction
+
 "" GLOBAL AUTOCMDS
 augroup vimrc_global
     au!
     " Create a global 'last insert' mark
     au InsertLeave * normal mZ
+    au CursorHold * call ShowWeekdayPopup()
 augroup END
 
 ""
@@ -387,20 +400,68 @@ ounmap -f
 " with a deep directory tree. What's the best solution there? Restrict path
 " before running gf? Use a timeout?
 " TODO: This doesn't use includeexpr
-function! GFPrompt()
-    try
-        normal! gf
-    catch /^Vim\%((\a\+)\)\=:E447/
-        if confirm("Not found. Create " . expand("<cfile>:p") . "?", "&no\n&yes") == 2
-            let l:dir = expand("<cfile>:p:h")
-            if !isdirectory(l:dir)
-                call mkdir(l:dir, "p")
+"function! GFPrompt()
+"    try
+"        normal! gf
+"    catch /^Vim\%((\a\+)\)\=:E447/
+"        if confirm("Not found. Create " . expand("<cfile>:p") . "?", "&no\n&yes") == 2
+"            let l:dir = expand("<cfile>:p:h")
+"            if !isdirectory(l:dir)
+"                call mkdir(l:dir, "p")
+"            endif
+"            edit <cfile>
+"        endif
+"    endtry
+"endfunction
+"nnoremap gf :call GFPrompt()<cr>
+"
+
+function! GFPrompt(newWindow)
+    let l:cmd = 'edit'
+    if a:newWindow
+        let l:cmd = 'split'
+    endif
+
+    let l:word = expand("<cfile>")
+    " If it's a Haskell import line
+    if getline('.') =~? '^\s*import\s\+\(qualified\)\?\s\+\zs\S\+'
+        let l:mod = substitute(l:word, '\.', '/', 'g')
+        let l:file = 'src/' . l:mod . '.hs'
+        if filereadable(l:file)
+            execute l:cmd fnameescape(l:file)
+            return
+        else
+            if confirm("Module not found. Create " . l:file . "?", "&no\n&yes") == 2
+                let l:dir = fnamemodify(l:file, ':h')
+                if !isdirectory(l:dir)
+                    call mkdir(l:dir, "p")
+                endif
+                execute 'edit' fnameescape(l:file)
+                return
             endif
-            edit <cfile>
         endif
-    endtry
+    else
+        " Default gf fallback
+        try
+            if a:newWindow
+                normal! <C-w>f
+            else
+                normal! gf
+            endif
+        catch /^Vim\%((\a\+)\)\=:E447/
+            if confirm("Not found. Create " . expand("<cfile>:p") . "?", "&no\n&yes") == 2
+                let l:dir = expand("<cfile>:p:h")
+                if !isdirectory(l:dir)
+                    call mkdir(l:dir, "p")
+                endif
+                edit <cfile>
+            endif
+        endtry
+    endif
 endfunction
-nnoremap gf :call GFPrompt()<cr>
+
+nnoremap gf :call GFPrompt(0)<cr>
+nnoremap <c-w>f :call GFPrompt(1)<cr>
 
 " M: Ranged search (M like perl's m///)
 command! -range=% -nargs=1 M normal /\%><line1>l\%<<line2>l<args><cr>
