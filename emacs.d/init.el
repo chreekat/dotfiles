@@ -17,6 +17,40 @@
 
 ;; orgmode stuff
 
+;; Getting into the shit now! Customized functions and views.
+
+(defun org-assign-ids-to-projects ()
+  "Assign IDs to all headlines in agenda files with the todo state PROJ that don't already have one.
+This version first collects all the relevant headlines as markers, then processes them,
+so buffer modifications don't interfere with the iteration."
+  (interactive)
+  (dolist (file (org-agenda-files))
+    (with-current-buffer (find-file-noselect file)
+      (let ((org-inhibit-read-only t)
+            (headlines-to-process '()))
+        ;; Collect all headline markers that need an ID.
+        (save-excursion
+          (let ((ast (org-element-parse-buffer)))
+            (dolist (hl (org-element-map ast 'headline 'identity))
+              (goto-char (org-element-property :begin hl))
+              (when (and (string= (org-get-todo-state) "PROJ")
+                         (not (org-entry-get nil "ID")))
+                ;; Use a marker so that even if the buffer is modified, we track the right position.
+                (push (copy-marker (org-element-property :begin hl)) headlines-to-process)))))
+        ;; Process all collected headlines.
+        (dolist (marker (nreverse headlines-to-process))
+          (goto-char marker)
+          (org-id-get-create))))))
+
+(defun org-auto-id-on-proj ()
+  "Auto-assign an ID if a heading becomes a PROJ."
+  (when (and (string= (org-get-todo-state) "PROJ")
+             (not (org-entry-get nil "ID")))
+    (org-id-get-create)))
+(add-hook 'org-after-todo-state-change-hook #'org-auto-id-on-proj)
+
+;; More straightforward configuration of orgmode.
+
 (global-set-key (kbd "C-c c") #'org-capture)
 (global-set-key (kbd "C-c a") #'org-agenda)
 
@@ -46,6 +80,7 @@
                       (:startgroup . nil)
                       ("@haskell_foundation" . ?h)
                       ("@centralapp" . ?c)
+                      ("@p4lang" . ?e)
                       ("@freelance" . ?f)
                       ("@volunteering" . ?v)
                       ("@housework" . ?H)
@@ -62,6 +97,8 @@
                       ("pro_bono" . nil)
                       ("productivity_tools" . nil)
                       ("reading_list" . nil)
+                      ("project_proposal" . nil)
+                      ("accounting" . nil)
                       ))
 
 (setq org-capture-templates
@@ -85,6 +122,8 @@
         nil)
        (tags-todo
         "+@centralapp-secondary-SCHEDULED>\"<tomorrow>\"/TODO" nil)
+       (tags-todo
+        "+@p4lang-secondary-SCHEDULED>\"<tomorrow>\"/TODO" nil)
        (tags-todo "+@personal-secondary-SCHEDULED>\"<tomorrow>\"/TODO"
                   nil)
        (tags-todo
@@ -118,6 +157,7 @@
  '(org-agenda-tags-todo-honor-ignore-options t)
  '(org-agenda-todo-ignore-scheduled 'future)
  '(org-capture-bookmark nil)
+ '(org-ellipsis "……")
  '(org-enforce-todo-dependencies t)
  '(org-export-backends '(ascii beamer html icalendar latex md odt))
  '(org-indent-indentation-per-level 4)
@@ -146,4 +186,4 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :extend nil :stipple nil :background "white" :foreground "black" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 120 :width normal :foundry "FSD " :family "PragmataPro Mono")))))
+ '(default ((t (:inherit nil :extend nil :stipple nil :background "white" :foreground "black" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight regular :height 120 :width normal :foundry "FSD " :family "PragmataPro Mono Liga")))))
