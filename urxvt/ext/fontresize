@@ -43,6 +43,7 @@ sub on_user_command {
     my @fonts = (
         "PragmataPro Mono",
         "FSD Emoji",
+        "Noto Color Emoji",
     );
 
     my %styles = (

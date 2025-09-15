@@ -49,7 +49,7 @@ main = xmonad defaultConfig
     , focusFollowsMouse = False
     , keys = myKeys
     , layoutHook = MinOneMain (Tall 1 (3/100) (1/2)) ||| Full ||| Mirror (MinOneMain (Tall 1 (3/100) (1/2)))
-    , terminal = "urxvtc -ls"
+    , terminal = "kitty --single-instance"
     }
 
 -- DEBUG

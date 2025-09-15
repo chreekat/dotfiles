@@ -18,7 +18,7 @@
 --ALTMETA="Mod4+Shift+"
 
 -- Terminal emulator.
-XTERM="urxvtc -ls"
+XTERM="kitty"
 -- Edit file command, mod_query.query_editfile
 --EDIT_COMMAND="run-mailcap --action=edit"
 -- View file command, mod_query.query_viewfile
