@@ -60,4 +60,9 @@ in {
   programs.direnv.enable = true;
 
   programs.nix-ld.enable = true;
+
+  # Used for developing cosmos. Services running in docker (traefik, authengine)
+  # need to access services running on the host. The firewall prevents this by
+  # default.
+  networking.firewall.trustedInterfaces = ["docker0"];
 }
