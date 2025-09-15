@@ -50,7 +50,7 @@ in {
     universal-ctags
     urlencode
     vim_configurable
-    zgrviewer # graphviz, dot
+    #zgrviewer # graphviz, dot
   ] ++ [
     # Language servers (not Haskell, done separately)
     nodePackages.bash-language-server

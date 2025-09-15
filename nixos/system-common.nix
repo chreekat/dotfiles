@@ -55,7 +55,7 @@ in
       hledger
       hledger-ui
     # databases
-      beekeeper-studio # db tool
+      #beekeeper-studio # db tool, temporarily too old in 25.05 (fixed in unstable as of 2025-09-15)
       postgresql
     # media
       audacity
@@ -78,7 +78,6 @@ in
       (callPackage ./terminal-image-viewer {})
       zathura # pdf viewer
     # linux
-      (sox.override { enableLame = true; })
       bc # More like dc amirite
       eplot # Fast command line plotter
       fd

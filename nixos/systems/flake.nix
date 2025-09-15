@@ -1,6 +1,8 @@
 {
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
+    # Stuck on 24.11 because weechat was broken
+    nixpkgs-puny.url = "github:NixOS/nixpkgs/nixos-24.11";
     agenix = {
       url = "github:ryantm/agenix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -11,12 +13,12 @@
     };
   };
 
-  outputs = { self, nixpkgs, disko, agenix }:  {
+  outputs = { self, nixpkgs, nixpkgs-puny, disko, agenix }:  {
     nixosConfigurations.kuusi = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [ ../configuration-kuusi.nix ];
     };
-    nixosConfigurations.puny = nixpkgs.lib.nixosSystem {
+    nixosConfigurations.puny = nixpkgs-puny.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
         ../upstream-patches/invoiceplane.nix
