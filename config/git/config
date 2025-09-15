@@ -37,15 +37,14 @@
 	dc = diff --cached
 	ignored = clean -ndX
 	lf = log --follow
-	m = merge
-	mff = merge --ff-only
+	m = merge --ff-only
+	mff = merge
 	mt = mergetool
 	# # alias.pu usage and expansions:
 	# git pu        -> git push -u origin <current branch>
 	# git pu foo    -> git push -u foo <current branch>
 	# git pu foo br -> git push -u foo br:br
 	pu = !sh -c "'git push -u ${1:-origin} ${1:+${2:+$2:}}${2:-$(git rev-parse --abbrev-ref HEAD)}'" -
-	puc = !sh -c "'git push -o ci.skip -u ${1:-origin} ${1:+${2:+$2:}}${2:-$(git rev-parse --abbrev-ref HEAD)}'" -
 	# # alias.pull-file usage and expansions:
 	# git pull-file blah.hs          -> show the file from HEAD
 	# git pull-file tree-ish blah.hs -> show blah.hs from tree-ish
@@ -101,5 +100,3 @@
 	allowedSignersFile = ./allowed-signers
 [init]
 	defaultBranch = main
-[diff "ignore"]
-	binary = true
