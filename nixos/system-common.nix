@@ -16,6 +16,7 @@ in
     ./mods/nitrokey.nix
     ./mods/xserver.nix
     ./mods/emacs.nix
+    ./mods/nix-hygiene.nix
   ];
   boot = {
     # Use the systemd-boot EFI boot loader.
@@ -177,13 +178,6 @@ in
   };
 
   nix = {
-    gc = {
-      automatic = true;
-      dates = "monthly";
-      # Bumped from 2w to 4w on the 50th of March 2020 because channels were
-      # moving slowly.
-      options = "--delete-older-than 30d";
-    };
     settings = {
       # Needed for various good things
       trusted-users = ["b"];
