@@ -99,6 +99,7 @@ DOTS=(
     bash_login
     bashrc
     config/astroid
+    config/ctags
     config/git/config
     config/git/allowed-signers
     config/keynav/keynavrc
@@ -108,7 +109,6 @@ DOTS=(
     config/systemd/user/offlineimap.timer
     config/urxvt/themes
     config/Yubico/u2f_keys
-    ctags
     cvsrc
     direnvrc
     extract_urlview
