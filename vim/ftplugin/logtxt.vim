@@ -38,10 +38,26 @@ def FoldLevel(lnum: number): string
     endif
 enddef
 
+# If the current line has the string "billed", do nothing. Otherwise, append ";
+# s:unbilled" to the line and enter insert mode in front of the ";".
+def AddUnbilled()
+    if getline('.') =~ 'billed'
+        return
+    endif
+    normal $a ; s:unbilled
+    normal F;
+    startinsert
+enddef
+
+# Vim9 functions are script-level by default. Mappings execute outside the
+# script context. But commands defined inside the script context are apparently
+# munged to point inside the script context. So, great?
 command -buffer FoldLevel echo FoldLevel(line('.'))
 command -buffer Timestamp call Timestamp()
+command -buffer AddUnbilled call AddUnbilled()
+
 nnoremap <buffer> <F9> :Timestamp<cr>
-nnoremap <buffer> <F10> $a ; s:unbilled<esc>0i
+nnoremap <buffer> <F10> :AddUnbilled<cr>
 imap <buffer> <F10> <esc><F10>
 setl sw=7 tw=90 fo-=a2 nowrap omnifunc=CompleteTimeAccount
 setl foldexpr=FoldLevel(v:lnum) foldmethod=expr fdc=3 fdl=2
