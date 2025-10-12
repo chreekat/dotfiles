@@ -187,7 +187,9 @@ in
   };
 
   # Sorry, RMS
-  nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
+    "slack" "steam" "steam-unwrapped"
+  ];
   nixpkgs.overlays = [
     (import ./overlays/nonfree-fonts)
   ];

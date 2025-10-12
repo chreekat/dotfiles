@@ -44,7 +44,6 @@ in {
     nix-prefetch-github
     nix-prefetch-scripts
     nodejs
-    vscode-fhs
     shellcheck
     universal-ctags
     urlencode

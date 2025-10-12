@@ -14,6 +14,7 @@ in statefulness // {
       ./system-common.nix
       ./mods/laptop.nix
       ./mods/backlight.nix
+      ./mods/games.nix
     ];
 
   # (NOTE: Copied from fuzzbomb, values tweaked)
