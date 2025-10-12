@@ -13,7 +13,7 @@ augroup END
 function! s:update_tags(fn)
     if filewritable("tags") == 1
         call job_start(
-            \["/bin/sh", "-c", "fast-tags " . a:fn],
+            \["/bin/sh", "-c", "ghc-tags -c " . a:fn],
             \{"in_io":"null","out_io":"null","err_io":"null"})
     endif
 endfunc
