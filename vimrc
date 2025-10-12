@@ -145,6 +145,11 @@ nnoremap zM :<c-u>let &foldlevel=v:count<cr>
 nnoremap [[ :call search('^\S\&.*{$', 'bsW')<cr>
 nnoremap ]] :call search('^\S\&.*{$', 'sW')<cr>
 
+" :tag is strictly worse than :tjump. Replace all instances.
+noremap <C-]> g<C-]>
+noremap <C-w>] <C-w>g<C-]>
+noremap <C-w>} <C-w>g}
+
 ""
 "" Optimizations
 ""
