@@ -122,8 +122,8 @@ so buffer modifications don't interfere with the iteration."
         nil)
        (tags-todo
         "+@centralapp-secondary-SCHEDULED>\"<tomorrow>\"/TODO" nil)
-       (tags-todo
-        "+@p4lang-secondary-SCHEDULED>\"<tomorrow>\"/TODO" nil)
+       (tags-todo "+@p4lang-secondary-SCHEDULED>\"<tomorrow>\"/TODO"
+                  nil)
        (tags-todo "+@personal-secondary-SCHEDULED>\"<tomorrow>\"/TODO"
                   nil)
        (tags-todo
@@ -180,7 +180,8 @@ so buffer modifications don't interfere with the iteration."
    '(("PROJ" :foreground "blue" :weight bold)
      ("WAIT" :foreground "goldenrod" :weight normal)))
  '(org-todo-keywords
-   '((type "TODO(t)" "PROJ(p)" "WAIT(w@/!)" "|" "DONE(!)" "OBE(@)"))))
+   '((type "TODO(t)" "PROJ(p)" "WAIT(w@/!)" "|" "DONE(!)" "OBE(@)")) t)
+ '(package-selected-packages nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
