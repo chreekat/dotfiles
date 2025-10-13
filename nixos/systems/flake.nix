@@ -2,7 +2,7 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
     # Stuck on 24.11 because weechat was broken
-    nixpkgs-puny.url = "github:NixOS/nixpkgs/nixos-24.11";
+    nixpkgs-puny.url = "github:NixOS/nixpkgs/nixos-25.05";
     agenix = {
       url = "github:ryantm/agenix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -21,7 +21,6 @@
     nixosConfigurations.puny = nixpkgs-puny.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
-        ../upstream-patches/invoiceplane.nix
         ./puny/configuration.nix
         ./user-b.nix
         ./server-sudo.nix
@@ -31,7 +30,6 @@
         ../mods/syncthing.nix
         ../mods/nix-hygiene.nix
         ../mods/irc-bouncer.nix
-        ../mods/server-invoiceplane.nix
       ];
     };
     nixosConfigurations.honk = nixpkgs.lib.nixosSystem {
