@@ -20,6 +20,7 @@
 /vim/undos
 /vim/view
 /w3m/*
+/weechat/sasl_ecdsa.pem
 /weechat/ecdsa.pem
 /weechat/logs
 /weechat/sec.conf
