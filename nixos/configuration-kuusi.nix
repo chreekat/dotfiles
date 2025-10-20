@@ -6,6 +6,7 @@ let
   statefulness = {
     networking.hostName = "kuusi";
     system.stateVersion = "21.11";
+    networking.hostId = "ce26c8ff";
   };
 in statefulness // {
   imports =

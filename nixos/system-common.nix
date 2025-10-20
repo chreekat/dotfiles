@@ -29,14 +29,17 @@ in
     # Haskell
     tmp.useTmpfs = false;
     tmp.cleanOnBoot = true;
-  };
 
-  # Especially good on SSDs, with modern defaults for compressor and zpool type.
-  boot.kernelParams = [
-    "zswap.enabled=1"
-    "zswap.compressor=zstd"
-    "zswap.zpool=z3fold"
-  ];
+    kernelModules = [ "z3fold" ];
+    # Especially good on SSDs, with modern defaults for compressor and zpool type.
+    kernelParams = [
+      "zswap.enabled=1"
+      "zswap.compressor=zstd"
+      "zswap.zpool=z3fold"
+    ];
+
+    supportedFilesystems = [ "zfs" ];
+  };
 
   # Makes rebuild too slow :(
   #documentation.man.generateCaches = true;

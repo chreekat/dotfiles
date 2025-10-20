@@ -17,9 +17,9 @@
 	HEAD = 1
 	tag = 6
 [color "diff"]
-    meta = yellow reverse
+    meta = yellow ul
     frag = magenta
-    commit = ul red
+    commit = ul red reverse
     func = cyan
 [commit]
 	verbose = true
