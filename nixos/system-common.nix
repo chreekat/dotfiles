@@ -215,6 +215,7 @@ in
 
   services = {
     autorandr.enable = true;
+    autorandr.matchEdid = true;
     btrfs.autoScrub = {
       enable = true;
       fileSystems = [ "/" ];
