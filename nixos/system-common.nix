@@ -172,7 +172,6 @@ in
   hardware = {
     bluetooth.enable = true;
     cpu.intel.updateMicrocode = true;
-    # Pipewire is now the default
   };
 
   i18n.defaultLocale = "en_GB.UTF-8";
@@ -214,8 +213,6 @@ in
   security.sudo.wheelNeedsPassword = false;
 
   services = {
-    autorandr.enable = true;
-    autorandr.matchEdid = true;
     btrfs.autoScrub = {
       enable = true;
       fileSystems = [ "/" ];

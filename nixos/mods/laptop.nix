@@ -9,4 +9,8 @@
   # Prevent disaster; be useful
   services.logind.powerKey = "suspend";
 
+  services.autorandr.enable = true;
+  services.autorandr.matchEdid = true;
+  # Allow autorandr to retry more aggressively when displays take a moment to settle.
+  systemd.services.autorandr.startLimitBurst = lib.mkForce 5;
 }
