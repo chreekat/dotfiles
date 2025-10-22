@@ -11,7 +11,7 @@ let
 in statefulness // {
   imports =
     [ # Include the results of the hardware scan.
-      /etc/nixos/hardware-configuration.nix
+      ./systems/kuusi/hardware-configuration.nix
       ./system-common.nix
       ./mods/laptop.nix
       ./mods/backlight.nix
