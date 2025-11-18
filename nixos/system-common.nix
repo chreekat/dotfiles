@@ -13,7 +13,8 @@ in
     ./mods/haskell-platform-lite.nix
     ./mods/dev.nix
     ./mods/chat.nix
-    ./mods/nitrokey.nix
+    # Broken, I think
+    #./mods/nitrokey.nix
     ./mods/xserver.nix
     ./mods/emacs.nix
     ./mods/nix-hygiene.nix
@@ -98,10 +99,10 @@ in
       mosh
       ncdu
       nix-bash-completions
+      parallel
       pandoc
       par
       pciutils # lspci
-      python3
       qdirstat
       ripgrep
       sqlite-interactive
@@ -128,9 +129,6 @@ in
       bind
       nethogs
       nmap
-      # Broken on 20.09 with "urwid-2.1.1 not supported for interpreter
-      # python2.7 :(
-      # speedometer
       tcpdump
       # Connect to wifi with a QR. sudo wifi-qr -s
       wifi-qr
