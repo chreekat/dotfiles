@@ -2,9 +2,9 @@
 # shellcheck disable=SC2190
 old=(
     "puny"
-    /nix/store/rz805lhpygbmrg88klph3rk834knhk3p-nixos-system-puny-25.05.20251010.7e297dd
+    /nix/store/f8brlx0w6nqfzak3fz64irnpgz9v0cxw-nixos-system-puny-25.11.20260113.2c3e5ec
     "honk"
-    /nix/store/4jx52xnaqwhhkh83737yg9j1vk1rrc30-nixos-system-honk-25.05.20251026.78e34d1
+    /nix/store/ld2cjn7mc2pd3ciq9rwxqig0qvhqgf25-nixos-system-honk-25.11.20260113.2c3e5ec
     "kuusi"
     foo
 )
@@ -17,8 +17,8 @@ target=(
 )
 
 nixos_rebuild_args=(
-    ["puny"]="--use-remote-sudo"
-    ["honk"]="--use-remote-sudo"
+    ["puny"]="--sudo"
+    ["honk"]="--sudo"
     ["kuusi"]=""
 );
 
