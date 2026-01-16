@@ -5,6 +5,7 @@ let
     let
       losh-t = pkgs.python3Packages.buildPythonApplication {
         pname = "losh-t";
+        format = "setuptools";
         version = "1.2.0";
         src = fetchGit {
           url = "https://github.com/sjl/t";
@@ -26,6 +27,7 @@ in {
     ssh-to-age
     bench
     bugs
+    beekeeper-studio
     cachix
     #devenv # broken
     dhall
@@ -48,7 +50,7 @@ in {
     shellcheck
     universal-ctags
     urlencode
-    vim_configurable
+    vim-full
     zgrviewer # graphviz, dot
   ] ++ [
     # Language servers (not Haskell, done separately)
@@ -60,4 +62,9 @@ in {
 
   programs.nix-ld.enable = true;
 
+  # Necessary in 25.05, but should be unnecessary in 25.11
+  # Nope, still necessary in 25.11, albeit a different version.
+  nixpkgs.config.permittedInsecurePackages = [
+    "beekeeper-studio-5.3.4"
+  ];
 }

@@ -13,12 +13,9 @@ in
     ./mods/haskell-platform-lite.nix
     ./mods/dev.nix
     ./mods/chat.nix
-    # Broken, I think
-    #./mods/nitrokey.nix
     ./mods/xserver.nix
     ./mods/emacs.nix
     ./mods/nix-hygiene.nix
-    ./mods/keyring.nix
     ./mods/docker.nix
   ];
   boot = {
@@ -62,7 +59,6 @@ in
       hledger
       hledger-ui
     # databases
-      #beekeeper-studio # db tool, temporarily too old in 25.05 (fixed in unstable as of 2025-09-15)
       postgresql
     # media
       audacity
@@ -72,7 +68,7 @@ in
       bluetuith # bluetooth tui
       ghostscript
       gimp
-      gitAndTools.git-annex
+      git-annex
       graphviz
       gv
       handbrake # Rips DVD to video files
@@ -154,7 +150,7 @@ in
       pkgs.FSD-Emoji-font
       pkgs.pragmataPro-font
       pkgs.fira-mono
-      pkgs.noto-fonts-emoji
+      pkgs.noto-fonts-color-emoji
       pkgs.noto-fonts
       pkgs.siji
       pkgs.comic-neue
@@ -226,9 +222,6 @@ in
     fwupd.enable = true;
     keybase.enable = true;
     kbfs.enable = true;
-
-    # /run/user/1000 limit
-    logind.extraConfig = "RuntimeDirectorySize=50%";
 
     printing.enable = true;
 

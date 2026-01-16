@@ -5,6 +5,6 @@
     signal-desktop
     slack
     telegram-desktop
-    whatsapp-for-linux
+    wasistlos # whatsapp
   ];
 }

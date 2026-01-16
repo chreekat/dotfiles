@@ -8,7 +8,7 @@
   };
 
   # Prevent disaster; be useful
-  services.logind.powerKey = "suspend";
+  services.logind.settings.Login.HandlePowerKey = "suspend";
 
   services.autorandr.enable = true;
   services.autorandr.matchEdid = true;

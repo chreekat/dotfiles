@@ -9,7 +9,6 @@
       kitty
       notify-osd
       pavucontrol
-      termonad
       xfce.thunar # File browser
       xcape
       xclip

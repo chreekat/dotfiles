@@ -16,6 +16,7 @@ in statefulness // {
       ./mods/laptop.nix
       ./mods/backlight.nix
       ./mods/games.nix
+      ./mods/security-key.nix
     ];
 
   # (NOTE: Copied from fuzzbomb, values tweaked)
@@ -31,7 +32,7 @@ in statefulness // {
   services.openssh.enable = true;
   services.openssh.listenAddresses = [ { addr = tailscaleIP; port = 22; } ];
 
-  services.logind.lidSwitchExternalPower = "ignore";
+  services.logind.settings.Login.HandleLidSwitchExternalPower = "lock";
 
   # Kuusi has a nvme disk; this should make it faster.
   boot.initrd.luks.devices.root.bypassWorkqueues = true;
