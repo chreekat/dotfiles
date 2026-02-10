@@ -32,6 +32,12 @@ in
       forceSSL = true;
       enableACME = true;
       root = "/var/www/" + config.networking.hostName;
+      # Make .html optional by rewriting
+      extraConfig = ''
+        location / {
+          try_files $uri $uri.html =404;
+        }
+      '';
     };
   };
 }

@@ -29,6 +29,7 @@ in {
     bugs
     beekeeper-studio
     cachix
+    claude-code # Requires allowing non-free claude-code
     #devenv # broken
     dhall
     difftastic
