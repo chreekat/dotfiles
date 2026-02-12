@@ -184,7 +184,7 @@ in
 
   # Sorry, RMS
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
-    "slack" "steam" "steam-unwrapped" "claude-code"
+    "slack" "steam" "steam-unwrapped" "claude-code" "codex"
   ];
   nixpkgs.overlays = [
     (import ./overlays/nonfree-fonts)

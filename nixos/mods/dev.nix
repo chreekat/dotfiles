@@ -30,6 +30,7 @@ in {
     beekeeper-studio
     cachix
     claude-code # Requires allowing non-free claude-code
+    codex # Requires allowing non-free codex
     #devenv # broken
     dhall
     difftastic
