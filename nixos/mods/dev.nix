@@ -43,6 +43,7 @@ in {
     just
     nil
     niv
+    nixfmt
     nix-diff
     nix-prefetch
     nix-prefetch-docker
