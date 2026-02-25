@@ -178,7 +178,6 @@ in
     settings = {
       # Needed for various good things
       trusted-users = ["b"];
-      experimental-features = [ "nix-command" "flakes" ];
     };
   };
 

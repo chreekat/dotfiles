@@ -30,6 +30,7 @@ in {
     beekeeper-studio
     cachix
     claude-code # Requires allowing non-free claude-code
+    claude-monitor
     codex # Requires allowing non-free codex
     #devenv # broken
     dhall
@@ -50,6 +51,7 @@ in {
     nix-prefetch-github
     nix-prefetch-scripts
     nodejs
+    python3
     shellcheck
     universal-ctags
     urlencode
