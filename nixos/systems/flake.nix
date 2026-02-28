@@ -29,6 +29,7 @@
         ../mods/syncthing.nix
         ../mods/nix-hygiene.nix
         ../mods/irc-bouncer.nix
+        ../mods/ntfy.nix
       ];
     };
     nixosConfigurations.honk = nixpkgs.lib.nixosSystem {
