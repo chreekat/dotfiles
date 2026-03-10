@@ -1,0 +1,23 @@
+{
+  "$schema": "https://platform.claude.com/docs/schemas/claude-code/keybindings.json",
+  "$docs": "https://code.claude.com/docs/en/keybindings",
+  "bindings": [
+    {
+      "context": "Chat",
+      "bindings": {
+        "shift+tab": null,
+        "alt+m": "chat:cycleMode",
+        "escape": null,
+        "ctrl+g": "chat:cancel",
+        "ctrl+x ctrl+e": "chat:externalEditor"
+      }
+    },
+    {
+      "context": "Confirmation",
+      "bindings": {
+        "shift+tab": null,
+        "alt+m": "confirm:cycleMode"
+      }
+    }
+  ]
+}

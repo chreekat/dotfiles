@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+
+CACHE_DIR="${XDG_CACHE_HOME:-$HOME/.cache}/claude-notify"
+DEBOUNCE_SECS=120
+ACTIVE_SECS=120
+mkdir -p "$CACHE_DIR"
+
+TITLE="$1"
+BODY="$2"
+
+(
+    flock -x 200
+
+    NOW=$(date +%s)
+
+    # Skip if user was active recently
+    ACTIVE=$(stat -c %Y "$CACHE_DIR/active" 2>/dev/null || echo 0)
+    if (( NOW - ACTIVE < ACTIVE_SECS )); then
+        exit 0
+    fi
+
+    # Skip if notified recently (debounce)
+    LAST=$(cat "$CACHE_DIR/last" 2>/dev/null || echo 0)
+    if (( NOW - LAST < DEBOUNCE_SECS )); then
+        exit 0
+    fi
+
+    echo "$NOW" > "$CACHE_DIR/last"
+    curl -s -H "Title: $TITLE" -d "$BODY" http://puny:8080/claude
+) 200>"$CACHE_DIR/lock"

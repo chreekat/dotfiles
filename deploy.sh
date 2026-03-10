@@ -98,6 +98,10 @@ DOTS=(
     bash
     bash_login
     bashrc
+    claude/CLAUDE.md
+    claude/keybindings.json
+    claude/notify
+    claude/settings.json
     config/astroid
     config/ctags
     config/git/config
