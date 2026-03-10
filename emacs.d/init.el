@@ -7,6 +7,8 @@
   :config
   (ws-butler-global-mode 1))
 
+(use-package htmlize)
+
 ;; Cleanup the UI
 (menu-bar-mode -1)
 (tool-bar-mode -1)
@@ -16,6 +18,13 @@
 (setq-default indent-tabs-mode nil)
 
 ;; orgmode stuff
+
+; orgmode is the only reason we're here.
+(add-hook 'after-init-hook #'org-agenda-list)
+(add-hook 'after-init-hook (lambda () (when (get-buffer "*scratch*") (kill-buffer "*scratch*"))))
+
+; treat files that end with .org_archive as org-mode. This isn't the default?
+(add-to-list 'auto-mode-alist '("\\.org_archive\\'" . org-mode))
 
 ;; Getting into the shit now! Customized functions and views.
 
@@ -80,14 +89,19 @@ so buffer modifications don't interfere with the iteration."
                       (:startgroup . nil)
                       ("@haskell_foundation" . ?h)
                       ("@centralapp" . ?c)
-                      ("@p4lang" . ?e)
+                      ("@p4lang" . ?P)
                       ("@freelance" . ?f)
                       ("@volunteering" . ?v)
                       ("@housework" . ?H)
                       ("@personal" . ?p)
-                      (:endgroup . nil)
-                      ; non-exclusive contexts
                       ("@errands" . ?e)
+                      (:endgroup . nil)
+                      ; sizes
+                      (:startgroup . nil)
+                      ("small" . ?1)
+                      ("medium" . ?2)
+                      ("large" . ?3)
+                      (:endgroup . nil)
                       ; non-exclusive attributes
                       ("cabal" . nil)
                       ("stackage" . nil)
@@ -103,10 +117,14 @@ so buffer modifications don't interfere with the iteration."
 
 (setq org-capture-templates
       '(("i" "Inbox" entry (file "/home/b/Syncthing/PhoneFiles/org/Inbox.org")
-         "* %?\n[%<%Y-%m-%d %a %H:%M>]\n")))
+         "* %?\n[%<%Y-%m-%d %a %H:%M>]\n")
+        ("t" "Todo" entry (file "/home/b/Syncthing/PhoneFiles/org/todos.org")
+         "* TODO %?\n[%<%Y-%m-%d %a %H:%M>]\n")))
 
 (define-key global-map (kbd "<f1>")
   (lambda () (interactive) (org-capture nil "i")))
+(define-key global-map (kbd "<f2>")
+  (lambda () (interactive) (org-capture nil "t")))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -153,7 +171,6 @@ so buffer modifications don't interfere with the iteration."
  '(org-agenda-show-future-repeats nil)
  '(org-agenda-skip-deadline-if-done t)
  '(org-agenda-skip-scheduled-if-done t)
- '(org-agenda-sticky t)
  '(org-agenda-tags-todo-honor-ignore-options t)
  '(org-agenda-todo-ignore-scheduled 'future)
  '(org-capture-bookmark nil)
@@ -180,7 +197,7 @@ so buffer modifications don't interfere with the iteration."
    '(("PROJ" :foreground "blue" :weight bold)
      ("WAIT" :foreground "goldenrod" :weight normal)))
  '(org-todo-keywords
-   '((type "TODO(t)" "PROJ(p)" "WAIT(w@/!)" "|" "DONE(!)" "OBE(@)")) t)
+   '((type "TODO(t)" "PROJ(p)" "WAIT(w@/!)" "|" "DONE(!)" "OBE(@)")))
  '(package-selected-packages nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

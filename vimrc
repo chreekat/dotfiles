@@ -75,10 +75,12 @@ let g:copilot_filetypes = {
       \ '*': v:false,
       \ 'c': v:true,
       \ 'cabal': v:true,
+      \ 'cabalproject': v:true,
       \ 'cpp': v:true,
       \ 'css': v:true,
       \ 'haskell': v:true,
       \ 'html': v:true,
+      \ 'javascript': v:true,
       \ 'jq': v:true,
       \ 'lisp': v:true,
       \ 'make': v:true,
@@ -89,6 +91,7 @@ let g:copilot_filetypes = {
       \ 'sh': v:true,
       \ 'shell': v:true,
       \ 'terraform': v:true,
+      \ 'typescript': v:true,
       \ 'yaml': v:true,
       \ 'vim': v:true,
       \ }
@@ -202,6 +205,10 @@ noremap! <expr> <S-F9> strftime("%Y%m%d")
 noremap! <expr> <F10> strftime("%H:%M:")
 
 " Unimpaired-inspired maps
+nnoremap ]t :tag<cr>
+nnoremap [t :0tag<cr>
+nnoremap ]T :tnext<cr>
+nnoremap [T :tprev<cr>
 nnoremap ]q :cnext<cr>
 nnoremap [q :cprev<cr>
 nnoremap ]Q :cnfile<cr>

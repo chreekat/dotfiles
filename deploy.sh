@@ -111,6 +111,7 @@ DOTS=(
     config/Yubico/u2f_keys
     cvsrc
     direnvrc
+    dput.cf
     extract_urlview
     emacs.d/init.el
     ghci

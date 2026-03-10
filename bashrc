@@ -163,11 +163,6 @@ mkcd () {
     mkdir -p "$1" && cd "$1"
 }
 
-nixos () {
-    set -e
-    cd ~/Projects/dotfiles/nixos/
-}
-
 # The struggle is real
 :q () {
     logout
