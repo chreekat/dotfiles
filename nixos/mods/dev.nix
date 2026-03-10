@@ -58,6 +58,10 @@ in {
     vim-full
     zgrviewer # graphviz, dot
   ] ++ [
+    # debian stuff
+    dput-ng
+    debian-devscripts
+  ] ++ [
     # Language servers (not Haskell, done separately)
     nodePackages.bash-language-server
     python3Packages.python-lsp-server
