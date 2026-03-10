@@ -1,0 +1,6 @@
+[p4lang]
+fqdn = ppa.launchpad.net
+method = sftp
+incoming = ~chreekat/p4lang/
+login = b@chreekat.net
+allow_unsigned_uploads = 0
