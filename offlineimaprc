@@ -1,6 +1,5 @@
 [general]
-accounts = Relex
-#accounts = B_Chreekat, Snowdrift
+accounts = B_Chreekat, Snowdrift
 pythonfile=~/.offlineimap/helper.py
 #maxsyncaccounts=1
 #ui=basic
@@ -13,38 +12,6 @@ peritem = "+%(accountname)s/%(foldername)s"
 sep = " "
 footer = "\n"
 
-[Account Relex]
-localrepository = RelexLocal
-remoterepository = RelexRemote
-
-[Repository RelexLocal]
-type = Maildir
-localfolders = ~/mail/Relex
-
-[Repository RelexRemote]
-type = IMAP
-# When I changed language settings, Microsoft internally renamed folders e.g.
-# Archive -> Arkiv. When this happened, offlineimap happily recreated Archive on
-# the server, which created a totally duplicate folder. Let's prevent that.
-createfolders = False
-sslcacertfile = /etc/ssl/certs/ca-certificates.crt
-remoteuser = Bryan.Richter@relex.fi
-remotehost = outlook.office365.com
-remoteport = 993
-remotepasseval = outlook()
-tls_level = tls_secure
-ssl_version = tls1_2
-folderfilter = lambda f: f in [ 'INBOX'
-                              , 'Needs action'
-                              , 'Invites'
-                              , 'MR Review'
-                              , 'INTask'
-                              , 'QuickReply'
-                              , 'Archive'
-                              , 'Sent Items'
-                              , 'Junk Email'
-                              , 'Drafts'
-                              ]
 
 ##
 ##

@@ -110,10 +110,6 @@ __pass_keepass () {
         shift
     done
     case "$account" in
-        relex)
-            declare pass_key='keepass-relex'
-            declare kdbx_path=~/Syncthing/RelexFiles/relex-keepass.kdbx
-            ;;
         personal)
             declare pass_key='keepass-chreekat'
             declare kdbx_path=~/Syncthing/PhoneFiles/chreekat.kdbx
@@ -139,10 +135,6 @@ __pass_keepass () {
     esac
 
 }
-
-rpl () { __pass_keepass relex search "$1"; }
-rpc () { __pass_keepass relex clip "$1"; }
-rtotp () { __pass_keepass relex totp "$1"; }
 
 # Unlock keypass for personal
 ppl () { __pass_keepass personal search "$1"; }

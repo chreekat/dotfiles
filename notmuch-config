@@ -30,26 +30,6 @@ path=/home/b/mail
 # address to which the original email was addressed.
 #
 
-[user]
-name=Bryan Richter
-primary_email=bryan.richter@relexsolutions.com
-
-# Configuration for "notmuch new"
-#
-# The following options are supported here:
-#
-#	tags	A list (separated by ';') of the tags that will be
-#		added to all messages incorporated by "notmuch new".
-#
-#	ignore	A list (separated by ';') of file and directory names
-#		that will not be searched for messages by "notmuch new".
-#
-#		NOTE: *Every* file/directory that goes by one of those
-#		names will be ignored, independent of its depth/location
-#		in the mail store.
-#
-other_email=bryan.richter@relex.fi;
-
 [new]
 ignore=
 
