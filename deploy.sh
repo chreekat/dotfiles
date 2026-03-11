@@ -124,6 +124,7 @@ DOTS=(
     inputrc
     irssi
     jshintrc
+    local/share/bash-completion
     mailcap
     mutt
     nethackrc
