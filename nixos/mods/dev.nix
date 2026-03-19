@@ -60,6 +60,7 @@ in {
   ] ++ [
     # debian stuff
     dput-ng
+    dpkg
     debian-devscripts
   ] ++ [
     # Language servers (not Haskell, done separately)

@@ -93,6 +93,7 @@ so buffer modifications don't interfere with the iteration."
                       ("@freelance" . ?f)
                       ("@volunteering" . ?v)
                       ("@housework" . ?H)
+                      ("@garage" . ?g)
                       ("@personal" . ?p)
                       ("@errands" . ?e)
                       (:endgroup . nil)
@@ -197,7 +198,7 @@ so buffer modifications don't interfere with the iteration."
    '(("PROJ" :foreground "blue" :weight bold)
      ("WAIT" :foreground "goldenrod" :weight normal)))
  '(org-todo-keywords
-   '((type "TODO(t)" "PROJ(p)" "WAIT(w@/!)" "|" "DONE(!)" "OBE(@)")))
+   '((type "TODO(t)" "PROJ(p)" "WAIT(w@/!)" "|" "DONE(!)" "OBE(@)")) t)
  '(package-selected-packages nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

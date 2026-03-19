@@ -1,3 +1,5 @@
+# Rules
+
 Coding rules:
 - Use TDD: write a failing test before implementing behavior.
 - Commit early and often. Write one logical change per commit.

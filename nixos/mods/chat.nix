@@ -4,7 +4,8 @@
     element-desktop
     signal-desktop
     slack
-    telegram-desktop
+    # not cached?!?
+    # telegram-desktop
     wasistlos # whatsapp
   ];
 }
