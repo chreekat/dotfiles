@@ -9,7 +9,6 @@ let
   imports = [
     /etc/nixos/hardware-configuration.nix
     ./system-common.nix
-    ./mods/backlight.nix
     ./mods/laptop.nix
   ];
 in

@@ -9,7 +9,6 @@ in
 {
   imports = [
     ./mods/tailscale.nix
-    ./mods/backlight.nix
     ./mods/haskell-platform-lite.nix
     ./mods/dev.nix
     ./mods/chat.nix

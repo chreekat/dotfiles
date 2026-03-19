@@ -14,7 +14,6 @@ in statefulness // {
       ./systems/kuusi/hardware-configuration.nix
       ./system-common.nix
       ./mods/laptop.nix
-      ./mods/backlight.nix
       ./mods/games.nix
       ./mods/security-key.nix
       ./mods/dynamic-derivations.nix
