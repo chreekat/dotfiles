@@ -17,6 +17,9 @@
       system = "x86_64-linux";
       modules = [ ../configuration-kuusi.nix ];
     };
+    #
+    # HE SO PUNY
+    #
     nixosConfigurations.puny = nixpkgs-puny.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
@@ -30,6 +33,7 @@
         ../mods/nix-hygiene.nix
         ../mods/irc-bouncer.nix
         ../mods/ntfy.nix
+        ../mods/igtest.nix
       ];
     };
     nixosConfigurations.honk = nixpkgs.lib.nixosSystem {
