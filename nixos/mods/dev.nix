@@ -58,7 +58,13 @@ in {
     vim-full
     zgrviewer # graphviz, dot
   ] ++ [
-    # debian stuff
+    # packaging stuff
+
+    # build.opensuse.org
+    python3Packages.osc
+    quilt
+
+    # debian
     dput-ng
     dpkg
     debian-devscripts

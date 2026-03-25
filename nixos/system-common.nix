@@ -199,7 +199,8 @@ in
     gnupg.agent = {
       enable = true;
     };
-    ssh.startAgent = true;
+    # Trying gnome keyring instead
+    #ssh.startAgent = true;
   };
 
   security.sudo.wheelNeedsPassword = false;
