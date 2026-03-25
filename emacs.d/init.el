@@ -118,9 +118,9 @@ so buffer modifications don't interfere with the iteration."
 
 (setq org-capture-templates
       '(("i" "Inbox" entry (file "/home/b/Syncthing/PhoneFiles/org/Inbox.org")
-         "* %?\n[%<%Y-%m-%d %a %H:%M>]\n")
+         "* %?\n:LOGBOOK:\n- Created on %U\n:END:\n")
         ("t" "Todo" entry (file "/home/b/Syncthing/PhoneFiles/org/todos.org")
-         "* TODO %?\n[%<%Y-%m-%d %a %H:%M>]\n")))
+         "* TODO %?\n:LOGBOOK:\n- Created on %U\n:END:\n")))
 
 (define-key global-map (kbd "<f1>")
   (lambda () (interactive) (org-capture nil "i")))
