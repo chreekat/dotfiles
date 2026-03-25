@@ -17,6 +17,7 @@ in statefulness // {
       ./mods/games.nix
       ./mods/security-key.nix
       ./mods/dynamic-derivations.nix
+      ./mods/desktop.nix
     ];
 
   # (NOTE: Copied from fuzzbomb, values tweaked)

@@ -346,7 +346,7 @@ augroup vimrc_highlighting
     au ColorScheme PaperColor hi Folded ctermbg=NONE
     au ColorScheme * hi CopilotSuggestion cterm=reverse
     au ColorScheme * hi Comment cterm=italic
-    au ColorScheme * hi Title cterm=bold
+    au ColorScheme * hi Title cterm=bold ctermfg=red
     au ColorScheme apprentice hi Folded ctermbg=NONE
 augroup END
 colorscheme PaperColor
