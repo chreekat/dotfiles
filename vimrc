@@ -71,6 +71,9 @@ set visualbell
 packadd! matchit
 
 "" My plugin preferences
+let g:strip_whitespace_on_save = 1
+let g:strip_only_modified_lines = 1
+
 let g:copilot_filetypes = {
       \ '*': v:false,
       \ 'c': v:true,
