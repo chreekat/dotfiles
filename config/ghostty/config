@@ -1,3 +1,6 @@
 theme = 3024 Day
 font-family = Pragmata Pro Liga
 font-size = 11
+
+window-decoration = false
+gtk-titlebar = false

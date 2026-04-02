@@ -5,8 +5,8 @@
     # Xorg (in concert with enabling xmonad)
       arandr
       flameshot
+      ghostty
       keynav
-      kitty
       notify-osd
       pavucontrol
       xfce.thunar # File browser
