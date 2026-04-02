@@ -10,21 +10,6 @@ def Timestamp()
     startinsert!
 enddef
 
-def CompleteTimeAccount(findstart: number, base: string): any
-    # findstart is 1 when vim is asking where the match starts
-    if findstart == 1
-        if strlen(getline('.')) > 0
-            return 0
-        else
-            # Cancel silently and leave completion
-            return -3
-        endif
-    # otherwise it actually wants the completions
-    else
-        return matchfuzzy(uniq(sort(mapnew(matchbufline(bufnr(), '^\S.\{-}\ze  ', 1, '$'), (_, val) => val["text"]))), base)
-    endif
-enddef
-
 def FoldLevel(lnum: number): string
     var line = getline(lnum)
     if line =~ '^# Week'
@@ -59,7 +44,7 @@ command -buffer AddUnbilled call AddUnbilled()
 nnoremap <buffer> <F9> :Timestamp<cr>
 nnoremap <buffer> <F10> :AddUnbilled<cr>
 imap <buffer> <F10> <esc><F10>
-setl sw=7 tw=90 fo-=a2 nowrap omnifunc=CompleteTimeAccount
+setl sw=7 tw=90 fo-=a2 nowrap omnifunc=hledger#CompleteAccount
 setl foldexpr=FoldLevel(v:lnum) foldmethod=expr fdc=3 fdl=2
 
 b:undo_ftplugin = getbufvar(bufnr(), 'undo_ftplugin') .. '|setl sw< tw< fo< wrap< omnifunc< fde< fdm< fdc< fdl<'
