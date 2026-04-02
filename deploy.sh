@@ -104,6 +104,7 @@ DOTS=(
     claude/settings.json
     config/astroid
     config/ctags
+    config/ghostty
     config/git/config
     config/git/allowed-signers
     config/keynav/keynavrc
@@ -135,7 +136,6 @@ DOTS=(
     notion/cfg_kludges.lua
     notion/notion-lock
     notmuch-config
-    npmrc
     offlineimap
     offlineimaprc
     terminfo
