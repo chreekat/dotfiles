@@ -18,6 +18,7 @@ in statefulness // {
       ./mods/security-key.nix
       ./mods/dynamic-derivations.nix
       ./mods/desktop.nix
+      ./mods/beyboard.nix
     ];
 
   # (NOTE: Copied from fuzzbomb, values tweaked)

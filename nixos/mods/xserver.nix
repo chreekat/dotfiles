@@ -10,7 +10,6 @@
       notify-osd
       pavucontrol
       xfce.thunar # File browser
-      xcape
       xclip
       xorg.xev
       xorg.xmessage
@@ -62,7 +61,7 @@
       symbolsFile = pkgs.writeText "my-dvorak-symbols" ''
         xkb_symbols "b"  {
             include "pc+us(dvorak)+inet(evdev)"
-            include "ctrl(nocaps)+compose(lctrl)+level3(ralt_switch)"
+            include "level3(ralt_switch)"
 
             key <AE04> { [ NoSymbol, NoSymbol, EuroSign, sterling ] };
             key <AD01> { [ NoSymbol, NoSymbol, aring, Aring ] };

@@ -1,0 +1,20 @@
+cabal-version: 3.0
+name:          beyboard
+version:       0.1.0.0
+synopsis:      Capslock-as-ctrl/escape at the evdev level
+license:       BSD-3-Clause
+
+executable beyboard
+  main-is:          Main.hs
+  hs-source-dirs:   app
+  default-language: GHC2021
+  ghc-options:      -threaded -O -Wall
+  build-depends:
+    , base         >= 4.16 && < 5
+    , bytestring
+    , containers
+    , directory
+    , clock
+    , evdev        >= 2.3
+    , hinotify
+    , text
