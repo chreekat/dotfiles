@@ -1,4 +1,5 @@
-theme = 3024 Day
+# Themes at https://iterm2colorschemes.com/
+theme = dark:Apple System Colors,light:Apple System Colors Light
 font-family = Pragmata Pro Liga
 font-size = 11
 

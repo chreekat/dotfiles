@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+# Set the desktop color scheme via dbus.
+#
+# Uses dconf rather than gsettings because my janky initialization script leaves
+# NotIon in a state where gsettings can't find any themes.
+
+set -Eeou pipefail
+
+(
+current=$(dconf read /org/gnome/desktop/interface/color-scheme)
+
+if [ "$current" = "'prefer-dark'" ]; then
+    dconf write /org/gnome/desktop/interface/color-scheme "'prefer-light'"
+    tmux set -g pane-border-style "fg=colour250" \; \
+         set -g pane-active-border-style "fg=black,bold" \; \
+         set -g @pane-theme light 2>/dev/null
+else
+    dconf write /org/gnome/desktop/interface/color-scheme "'prefer-dark'"
+    tmux set -g pane-border-style "fg=colour240" \; \
+         set -g pane-active-border-style "fg=brightwhite,bold" \; \
+         set -g @pane-theme dark 2>/dev/null
+fi
+) &>~/.notion/toggle-desktop-colors.log

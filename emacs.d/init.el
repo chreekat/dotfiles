@@ -2,6 +2,35 @@
   (require 'use-package))
 (setq use-package-always-ensure t)
 
+;; Switch theme in response to the freedesktop color-scheme preference.
+(require 'dbus)
+(defun my-handle-color-scheme-change (path var value)
+  (when (and (string-equal path "org.freedesktop.appearance")
+             (string-equal var "color-scheme"))
+    (let ((scheme (car value)))
+      (pcase scheme
+        (1 (load-theme 'modus-vivendi t))
+        (_ (mapc #'disable-theme custom-enabled-themes))))))
+
+(dbus-register-signal
+  :session
+  "org.freedesktop.portal.Desktop"
+  "/org/freedesktop/portal/desktop"
+  "org.freedesktop.portal.Settings"
+  "SettingChanged"
+  #'my-handle-color-scheme-change)
+
+(let ((current (dbus-call-method
+                :session
+                "org.freedesktop.portal.Desktop"
+                "/org/freedesktop/portal/desktop"
+                "org.freedesktop.portal.Settings"
+                "Read"
+                "org.freedesktop.appearance"
+                "color-scheme")))
+  (when (eq (car current) 1)
+    (load-theme 'modus-vivendi t)))
+
 ; delete extraneous whitespace on save
 (use-package ws-butler
   :config
@@ -198,11 +227,11 @@ so buffer modifications don't interfere with the iteration."
    '(("PROJ" :foreground "blue" :weight bold)
      ("WAIT" :foreground "goldenrod" :weight normal)))
  '(org-todo-keywords
-   '((type "TODO(t)" "PROJ(p)" "WAIT(w@/!)" "|" "DONE(!)" "OBE(@)")) t)
+   '((type "TODO(t)" "PROJ(p)" "WAIT(w@/!)" "|" "DONE(!)" "OBE(@)")))
  '(package-selected-packages nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :extend nil :stipple nil :background "white" :foreground "black" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight regular :height 120 :width normal :foundry "FSD " :family "PragmataPro Mono Liga")))))
+ '(default ((t (:inherit nil :extend nil :stipple nil :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight regular :height 120 :width normal :foundry "FSD " :family "PragmataPro Mono Liga")))))

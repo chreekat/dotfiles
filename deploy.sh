@@ -135,6 +135,7 @@ DOTS=(
     notion/cfg_tiling.lua
     notion/cfg_kludges.lua
     notion/notion-lock
+    notion/toggle-desktop-colors
     notmuch-config
     offlineimap
     offlineimaprc

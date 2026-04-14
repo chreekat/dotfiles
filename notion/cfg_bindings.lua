@@ -182,6 +182,9 @@ defbindings("WMPlex.toplevel", {
     bdoc("Lock screen", "lock"),
     kpress(META.."L", "notioncore.exec_on(_, notioncore.lookup_script('notion-lock'))"),
 
+    bdoc("Toggle dark/light theme.", "theme"),
+    kpress(META.."F8", "notioncore.exec_on(_, notioncore.lookup_script('toggle-desktop-colors'))"),
+
     bdoc("Firefox", "firefox"),
     kpress(META.."N", "notioncore.exec_on(_, 'firefox')"),
 
@@ -395,6 +398,8 @@ defmenu("mainmenu", {
     menuentry("Terminal",       "mod_query.exec_on_merr(_, XTERM or 'xterm')"),
     menuentry("Lock screen",
         "notioncore.exec_on(_, notioncore.lookup_script('notion-lock'))"),
+    menuentry("Switch theme",
+        "notioncore.exec_on(_, notioncore.lookup_script('toggle-desktop-colors'))"),
     menuentry("Help",           "mod_query.query_man(_)"),
     menuentry("About Notion",      "mod_query.show_about_ion(_)"),
     submenu("Styles",           "stylemenu"),
