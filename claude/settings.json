@@ -35,7 +35,6 @@
     ]
   },
   "enabledPlugins": {
-    "code-review@claude-plugins-official": true,
-    "context-mode@claude-context-mode": true
+    "code-review@claude-plugins-official": true
   }
 }

@@ -21,6 +21,8 @@ Haskell rules:
   debugging.
 - Never pipe `cabal build` to 'head'. Cabal does not handle SIGPIPE properly.
   You CAN pipe it to 'tail', however.
+- Use four-space indent.
+- Use diff-minimizing whitespace.
 
 Planning rules:
 - A plan should be broken down into committable steps. A rule of thumb seems to be
