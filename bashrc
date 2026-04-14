@@ -36,6 +36,8 @@ shopt -s histappend autocd cdspell checkhash checkjobs globstar
 #sourcepath      on
 #xpg_echo        off
 
+# A-Z < a-z
+export LC_COLLATE=C
 export LESS=-iRFX
 # How about no
 unset LESSOPEN LESSKEYIN_SYSTEM
@@ -86,7 +88,7 @@ alias xo=xdg-open
 alias xp='xclip -selection clipboard'
 alias sc=systemctl
 alias usc='systemctl --user'
-alias tree='tree -I dist-newstyle'
+alias tree="tree -I dist-newstyle --metafirst --filesfirst --timefmt='%Y-%m-%d %H:%M' -Dshp"
 alias autorandr='autorandr --match-edid'
 
 #
