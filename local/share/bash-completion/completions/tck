@@ -1,0 +1,2 @@
+_comp_load hledger
+complete -F _hledger_completion tck

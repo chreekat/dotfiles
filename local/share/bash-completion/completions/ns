@@ -1,0 +1,2 @@
+_comp_load nix-shell
+complete -F _nix_completion ns

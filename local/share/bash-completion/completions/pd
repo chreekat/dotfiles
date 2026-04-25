@@ -1,0 +1,2 @@
+_comp_load pushd
+complete -o nospace -F _comp_cmd_cd pd

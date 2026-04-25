@@ -1,0 +1,2 @@
+_comp_load systemctl
+complete -F _systemctl sc

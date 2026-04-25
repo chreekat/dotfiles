@@ -1,0 +1,2 @@
+_comp_load nix-build
+complete -F _nix_completion nb
