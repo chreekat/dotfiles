@@ -32,9 +32,41 @@
           }
         ]
       }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "sleep 2 && [ -f errors.err ] && [ -s errors.err ] && cat errors.err"
+          }
+        ]
+      }
     ]
   },
   "enabledPlugins": {
-    "code-review@claude-plugins-official": true
+    "code-review@claude-plugins-official": true,
+    "claude-mem@thedotmack": true
+  },
+  "extraKnownMarketplaces": {
+    "thedotmack": {
+      "source": {
+        "source": "github",
+        "repo": "thedotmack/claude-mem"
+      }
+    }
+  },
+  "skipAutoPermissionPrompt": true,
+  "effortLevel": "xhigh",
+  "permissions": {
+    "allow": [
+      "Read(/nix/store/**)",
+      "Bash(ls /nix/store/*)",
+      "Bash(cat /nix/store/*)",
+      "Bash(find /nix/store/*)",
+      "Bash(grep *)",
+      "Bash(awk *)"
+    ]
   }
 }

@@ -11,6 +11,11 @@ Coding rules:
 - Comments explain BEHAVIOR, commit messages explain CHANGE. Only add comments
   about changes if it's absolutely critical to understanding the code on its
   own.
+- Commit messages: subject line only, no body, unless the reason for the change
+  would be non-obvious to someone reading the diff. Never summarize the diff.
+
+Database rules:
+- Use singular table names (e.g. `instagram_token`, not `instagram_tokens`).
 
 Haskell rules:
 - Always write shrinks for Arbitrary instances. If the type does not admit a
@@ -23,6 +28,21 @@ Haskell rules:
   You CAN pipe it to 'tail', however.
 - Use four-space indent.
 - Use diff-minimizing whitespace.
+
+Nix rules:
+- Never use 'with'.
+
+Confidence and honesty rules:
+- Do not present guesses as facts. Qualify uncertain statements with confidence
+  indicators: "I think ... but I'm not sure", "With ~[some %] confidence, ...",
+  "Assuming X, then probably Y".
+- When you don't know something, say so. "I don't know" is always a valid and
+  valuable answer -- it maintains trust and is far more useful than a
+  confident-sounding guess. People who say "I don't know" get trusted with
+  harder problems.
+- Distinguish between: what you've verified (read the code, ran the test),
+  what you're inferring (pattern-matching on context), and what you're
+  speculating about (no direct evidence).
 
 Planning rules:
 - A plan should be broken down into committable steps. A rule of thumb seems to be
