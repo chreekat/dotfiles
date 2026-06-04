@@ -67,6 +67,12 @@ data KeyRemap = KeyRemap
 holdTimeoutNs :: Word
 holdTimeoutNs = 200_000_000
 
+-- | Simple 1:1 key translations applied before tap/hold logic.
+simpleRemaps :: [(Key, Key)]
+simpleRemaps =
+    [
+    ]
+
 mkRemaps :: IO [KeyRemap]
 mkRemaps = do
     capsRef <- newIORef Idle
@@ -214,10 +220,12 @@ handle :: Env -> [KeyRemap] -> EventData -> IO ()
 handle env remaps ed = do
     case ed of
         KeyEvent key kev -> do
+            let key' = maybe key snd (find ((== key) . fst) simpleRemaps)
+                ed' = KeyEvent key' kev
             tick env (pack (show key) <> " " <> pack (show kev))
-            case find (\r -> r.remapTrigger == key) remaps of
+            case find (\r -> r.remapTrigger == key') remaps of
                 Just remap -> handleTrigger env remaps remap kev
-                Nothing -> handleOther env remaps key kev ed
+                Nothing -> handleOther env remaps key' kev ed'
         _ -> U.writeEvent (envSink env) ed
 
 handleTrigger :: Env -> [KeyRemap] -> KeyRemap -> KeyEvent -> IO ()
