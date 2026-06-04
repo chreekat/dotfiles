@@ -10,7 +10,12 @@
     (let ((scheme (car value)))
       (pcase scheme
         (1 (load-theme 'modus-vivendi t))
-        (_ (mapc #'disable-theme custom-enabled-themes))))))
+        (_ (progn
+             ; just disable themes because the default is fine.
+             ; but for some reason i need to re-link org-hide to the default
+             ; background. This is probably a hack.
+             (mapc #'disable-theme custom-enabled-themes)
+             (set-face-foreground 'org-hide (face-background 'default))))))))
 
 (dbus-register-signal
   :session
