@@ -19,6 +19,7 @@ in statefulness // {
       ./mods/dynamic-derivations.nix
       ./mods/desktop.nix
       ./mods/beyboard.nix
+      ./mods/freelance.nix
     ];
 
   # (NOTE: Copied from fuzzbomb, values tweaked)

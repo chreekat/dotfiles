@@ -160,6 +160,27 @@ def create_invoice(contract, month):
     sheets = build("sheets", "v4", credentials=creds)
     drive = build("drive", "v3", credentials=creds)
 
+    # Check for existing invoice
+    existing = drive.files().list(
+        q=(
+            f"name = '{title}'"
+            f" and '{invoices_folder_id}' in parents"
+            " and mimeType = 'application/vnd.google-apps.spreadsheet'"
+            " and trashed = false"
+        ),
+        fields="files(id, name)",
+    ).execute().get("files", [])
+
+    if existing:
+        print(f"Invoice '{title}' already exists in Drive.")
+        answer = input("Overwrite? [y/N] ").strip().lower()
+        if answer != "y":
+            print("Aborted.")
+            sys.exit(0)
+        for f in existing:
+            print(f"Deleting existing invoice {f['id']}...")
+            drive.files().delete(fileId=f["id"]).execute()
+
     # Copy template
     print(f"Copying template to '{title}'...")
     copied = drive.files().copy(
@@ -215,6 +236,7 @@ def create_invoice(contract, month):
         amount = re.search(r"[\d,.]+", total_raw).group().replace(",", "")
         qr_url = qr_url_template.format(amount=amount)
         print(f"QR: {qr_url}")
+        print("Opening QR code in browser...")
         webbrowser.open(qr_url)
 
 
