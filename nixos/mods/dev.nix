@@ -27,6 +27,7 @@ in {
     ssh-to-age
     bench
     bugs
+    bun
     beekeeper-studio
     cachix
     claude-code # Requires allowing non-free claude-code
@@ -55,6 +56,7 @@ in {
     shellcheck
     universal-ctags
     urlencode
+    uv
     vim-full
     zgrviewer # graphviz, dot
   ] ++ [
