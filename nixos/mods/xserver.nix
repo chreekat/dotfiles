@@ -81,14 +81,48 @@
       "--transfer-sleep-lock"
     ];
     lockerCommand =
-      lib.concatStringsSep " " [
-        "env XSECURELOCK_PASSWORD_PROMPT=disco"
-        "    XSECURELOCK_BLANK_TIMEOUT=10"
-        "    XSECURELOCK_BLANK_DPMS_STATE=off"
-        # Need to escape the % because they get interpreted by systemd.
-        "    XSECURELOCK_DATETIME_FORMAT='%%a %%d %%b %%Y, %%R %%Z, W%%V'"
-        "    XSECURELOCK_SHOW_DATETIME=1"
-        "${pkgs.xsecurelock}/bin/xsecurelock"
-      ];
+      let
+        autorandrCmd = lib.concatStringsSep " " [
+          "${pkgs.autorandr}/bin/autorandr"
+          "--batch"
+          "--change"
+          "--default default"
+          "--match-edid"
+        ];
+        lockerWrapper = pkgs.writeShellScript "xsecurelock-with-autorandr" ''
+          # When locked with DPMS suspend, monitor unplug events may be missed.
+          # This watcher triggers autorandr on DPMS wake so the login prompt
+          # appears on the correct screen before authentication.
+          (
+            prev_state=""
+            while true; do
+              if ${pkgs.xorg.xset}/bin/xset q 2>/dev/null \
+                   | ${pkgs.gnugrep}/bin/grep -q "Monitor is On"; then
+                cur_state="On"
+              else
+                cur_state="Off"
+              fi
+              if [ "$cur_state" = "On" ] && [ -n "$prev_state" ] && [ "$prev_state" != "On" ]; then
+                sleep 2
+                ${autorandrCmd}
+              fi
+              prev_state="$cur_state"
+              sleep 1
+            done
+          ) &
+          WATCHER_PID=$!
+          trap "kill $WATCHER_PID 2>/dev/null" EXIT
+
+          env XSECURELOCK_PASSWORD_PROMPT=disco \
+              XSECURELOCK_BLANK_TIMEOUT=10 \
+              XSECURELOCK_BLANK_DPMS_STATE=suspend \
+              XSECURELOCK_DATETIME_FORMAT='%a %d %b %Y, %R %Z, W%V' \
+              XSECURELOCK_SHOW_DATETIME=1 \
+              ${pkgs.xsecurelock}/bin/xsecurelock
+
+          ${autorandrCmd}
+        '';
+      in
+        "${lockerWrapper}";
   };
 }
