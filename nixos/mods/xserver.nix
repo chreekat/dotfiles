@@ -52,7 +52,8 @@
 
     # Basic keyboard setup that gets reused by the console via
     # i18n.consoleUseXkbConfig.
-    xkb.layout = "b";
+    xkb.layout = "us";
+    xkb.variant = "dvorak";
 
     # my snazzy config.
     xkb.extraLayouts.b = {
@@ -60,7 +61,7 @@
       languages = [ "eng" "swe" "fin" ];
       symbolsFile = pkgs.writeText "my-dvorak-symbols" ''
         xkb_symbols "b"  {
-            include "pc+us(dvorak)+inet(evdev)"
+            include "pc+us(dvorak)"
             include "level3(ralt_switch)"
 
             key <AE04> { [ NoSymbol, NoSymbol, EuroSign, sterling ] };
