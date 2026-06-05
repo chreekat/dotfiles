@@ -8,6 +8,31 @@ let
     system.stateVersion = "21.11";
     networking.hostId = "ce26c8ff";
   };
+  # Synaptics Prometheus fingerprint reader occasionally STALLs its USB
+  # endpoint, after which fprintd cannot init the device and PAM silently
+  # drops to password-only at the lock screen. Recovery is a USB-level
+  # unbind/bind; restarting fprintd afterwards clears its empty device list.
+  fprint-reset = pkgs.writeShellScriptBin "fprint-reset" ''
+    set -eu
+    vid=06cb
+    pid=00bd
+    device=
+    for dev in /sys/bus/usb/devices/*/; do
+      if [ -r "$dev/idVendor" ] \
+         && [ "$(cat "$dev/idVendor")" = "$vid" ] \
+         && [ "$(cat "$dev/idProduct")" = "$pid" ]; then
+        device=$(basename "$dev")
+        break
+      fi
+    done
+    if [ -z "$device" ]; then
+      echo "fprint-reset: device $vid:$pid not found" >&2
+      exit 1
+    fi
+    echo "$device" > /sys/bus/usb/drivers/usb/unbind
+    echo "$device" > /sys/bus/usb/drivers/usb/bind
+    ${pkgs.systemd}/bin/systemctl restart fprintd.service || true
+  '';
 in statefulness // {
   imports =
     [ # Include the results of the hardware scan.
@@ -36,6 +61,12 @@ in statefulness // {
   services.openssh.listenAddresses = [ { addr = tailscaleIP; port = 22; } ];
 
   services.logind.settings.Login.HandleLidSwitchExternalPower = "lock";
+
+  environment.systemPackages = [ fprint-reset ];
+
+  powerManagement.resumeCommands = ''
+    ${fprint-reset}/bin/fprint-reset || true
+  '';
 
   # Kuusi has a nvme disk; this should make it faster.
   boot.initrd.luks.devices.root.bypassWorkqueues = true;
