@@ -16,7 +16,7 @@ import sys
 import webbrowser
 
 import keyring
-from google.auth.transport.requests import Request
+from google.auth.transport.requests import AuthorizedSession, Request
 from google.oauth2.credentials import Credentials
 from google_auth_oauthlib.flow import InstalledAppFlow
 from googleapiclient.discovery import build
@@ -213,13 +213,24 @@ def create_invoice(contract, month):
     os.makedirs(pdf_dir, exist_ok=True)
     pdf_path = os.path.join(pdf_dir, f"{title}.pdf")
 
+    # Use the spreadsheets export URL (not drive.files().export) so we can pass
+    # gridlines=false. The Drive export endpoint has no such knob and renders
+    # the sheet's gridlines into the PDF.
     print(f"Downloading PDF to {pdf_path}...")
-    pdf_content = drive.files().export(
-        fileId=new_id,
-        mimeType="application/pdf",
-    ).execute()
+    export_url = f"https://docs.google.com/spreadsheets/d/{new_id}/export"
+    resp = AuthorizedSession(creds).get(
+        export_url,
+        params={
+            "format": "pdf",
+            "gridlines": "false",
+            "printtitle": "false",
+            "sheetnames": "false",
+            "fzr": "false",
+        },
+    )
+    resp.raise_for_status()
     with open(pdf_path, "wb") as f:
-        f.write(pdf_content)
+        f.write(resp.content)
 
     url = f"https://docs.google.com/spreadsheets/d/{new_id}/edit"
     print()

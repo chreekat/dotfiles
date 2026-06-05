@@ -49,7 +49,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "sleep 2 && [ -f errors.err ] && [ -s errors.err ] && cat errors.err"
+            "command": "sleep 2; if [ -s errors.err ]; then cat errors.err; fi"
           }
         ]
       }
