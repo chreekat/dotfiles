@@ -2,6 +2,16 @@
   "attribution": {
     "commit": ""
   },
+  "permissions": {
+    "allow": [
+      "Read(/nix/store/**)",
+      "Bash(ls /nix/store/*)",
+      "Bash(cat /nix/store/*)",
+      "Bash(find /nix/store/*)",
+      "Bash(grep *)",
+      "Bash(awk *)"
+    ]
+  },
   "hooks": {
     "UserPromptSubmit": [
       {
@@ -57,16 +67,6 @@
       }
     }
   },
-  "skipAutoPermissionPrompt": true,
-  "effortLevel": "xhigh",
-  "permissions": {
-    "allow": [
-      "Read(/nix/store/**)",
-      "Bash(ls /nix/store/*)",
-      "Bash(cat /nix/store/*)",
-      "Bash(find /nix/store/*)",
-      "Bash(grep *)",
-      "Bash(awk *)"
-    ]
-  }
+  "theme": "auto",
+  "skipAutoPermissionPrompt": true
 }
