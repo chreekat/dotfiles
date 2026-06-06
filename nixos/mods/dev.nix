@@ -51,6 +51,7 @@ in {
     nix-prefetch-docker
     nix-prefetch-github
     nix-prefetch-scripts
+    nvd
     nodejs
     python3
     shellcheck
