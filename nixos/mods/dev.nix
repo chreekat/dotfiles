@@ -22,6 +22,7 @@ in {
 
   environment.systemPackages = with pkgs; [
     act
+    actionlint # GHA linter
     age
     (pkgs.callPackage "${builtins.fetchTarball "https://github.com/ryantm/agenix/archive/main.tar.gz"}/pkgs/agenix.nix" {})
     ssh-to-age
@@ -53,6 +54,7 @@ in {
     nix-prefetch-scripts
     nvd
     nodejs
+    openssl
     python3
     shellcheck
     universal-ctags
