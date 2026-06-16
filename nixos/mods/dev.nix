@@ -83,9 +83,11 @@ in {
 
   programs.nix-ld.enable = true;
 
-  # Necessary in 25.05, but should be unnecessary in 25.11
-  # Nope, still necessary in 25.11, albeit a different version.
   nixpkgs.config.permittedInsecurePackages = [
+    # Necessary in 25.05, but should be unnecessary in 25.11 Nope, still
+    # necessary in 25.11, albeit a different version.
     "beekeeper-studio-5.3.4"
+    # Necessary in 25.11
+    "docker-28.5.2"
   ];
 }
