@@ -9,10 +9,10 @@
       keynav
       notify-osd
       pavucontrol
-      xfce.thunar # File browser
+      thunar # File browser
       xclip
-      xorg.xev
-      xorg.xmessage
+      xev
+      xmessage
     # Gifcasts (FIXME: make vokoscreen make gifs by default)
       #screenkey # show keys in gif casts
       #slop # Used by screenkey to select a region
@@ -52,8 +52,7 @@
 
     # Basic keyboard setup that gets reused by the console via
     # i18n.consoleUseXkbConfig.
-    xkb.layout = "us";
-    xkb.variant = "dvorak";
+    xkb.layout = "b";
 
     # my snazzy config.
     xkb.extraLayouts.b = {
@@ -61,7 +60,7 @@
       languages = [ "eng" "swe" "fin" ];
       symbolsFile = pkgs.writeText "my-dvorak-symbols" ''
         xkb_symbols "b"  {
-            include "pc+us(dvorak)"
+            include "pc+us(dvorak)+inet(evdev)"
             include "level3(ralt_switch)"
 
             key <AE04> { [ NoSymbol, NoSymbol, EuroSign, sterling ] };

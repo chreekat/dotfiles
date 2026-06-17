@@ -75,7 +75,7 @@ in {
     debian-devscripts
   ] ++ [
     # Language servers (not Haskell, done separately)
-    nodePackages.bash-language-server
+    bash-language-server
     python3Packages.python-lsp-server
   ];
 

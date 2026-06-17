@@ -6,6 +6,5 @@
     slack
     # not cached?!?
     # telegram-desktop
-    wasistlos # whatsapp
   ];
 }

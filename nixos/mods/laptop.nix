@@ -1,7 +1,7 @@
 { config, pkgs, lib, ... }:
 {
   environment.systemPackages = [
-    pkgs.light # backlight setter
+    pkgs.brightnessctl # backlight setter
   ];
 
   # Allow the video group to change backlight brightness
@@ -14,9 +14,9 @@
   #
   # defbindings("WScreen", {
   #     bdoc("Brightness down", ""),
-  #     kpress("XF86MonBrightnessDown", "notioncore.exec('light -U 1')"),
+  #     kpress("XF86MonBrightnessDown", "notioncore.exec('brightnessctl set 1-')"),
   #     bdoc("Brightness up", ""),
-  #     kpress("XF86MonBrightnessUp", "notioncore.exec('light -A 1')")
+  #     kpress("XF86MonBrightnessUp", "notioncore.exec('brightnessctl set +1')")
   # }
 
   location = {

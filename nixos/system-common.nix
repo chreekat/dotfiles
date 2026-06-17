@@ -63,7 +63,6 @@ in
       audacity
       # beets - broken dep python3.7-soco in 20.03
       #digikam
-      blueberry # bluetooth tray and gui
       bluetuith # bluetooth tui
       ghostscript
       gimp
