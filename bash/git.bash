@@ -33,3 +33,19 @@ log_aliases
 alias regit="source ~/.bash/git.bash"
 
 alias gcd='git ci -m `ddate -1`'
+
+# Branch completion for the first two positional args of `git cherry`.
+# Hooks into git-completion.bash's _git_<subcommand> dispatch.
+_git_cherry ()
+{
+    case "$cur" in
+    --*)
+        __gitcomp "--abbrev= -v"
+        ;;
+    *)
+        if [ $((cword - __git_cmd_idx)) -le 2 ]; then
+            __git_complete_refs
+        fi
+        ;;
+    esac
+}
