@@ -48,25 +48,4 @@
 
   services.autorandr.enable = true;
   services.autorandr.matchEdid = true;
-  # Allow autorandr to retry more aggressively when displays take a moment to settle.
-  systemd.services.autorandr.startLimitBurst = lib.mkForce 20;
-  systemd.services.autorandr.serviceConfig.ExecStart =
-    let
-      cfg = config.services.autorandr;
-      autorandrCmd = lib.concatStringsSep " " [
-        "${pkgs.autorandr}/bin/autorandr"
-        "--batch"
-        "--change"
-        "--default ${cfg.defaultTarget}"
-        (lib.optionalString cfg.ignoreLid "--ignore-lid")
-        (lib.optionalString cfg.matchEdid "--match-edid")
-      ];
-      retryScript = pkgs.writeShellScript "autorandr-retry" ''
-        for i in 0 3 3 4; do
-          sleep $i
-          ${autorandrCmd}
-        done
-      '';
-    in
-      lib.mkForce "${retryScript}";
 }

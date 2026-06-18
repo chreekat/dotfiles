@@ -70,7 +70,7 @@ holdTimeoutNs = 200_000_000
 -- | Simple 1:1 key translations applied before tap/hold logic.
 simpleRemaps :: [(Key, Key)]
 simpleRemaps =
-    [
+    [ (KeyLeftctrl, KeyCompose)
     ]
 
 mkRemaps :: IO [KeyRemap]

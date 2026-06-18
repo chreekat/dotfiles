@@ -70,6 +70,7 @@
             key <AC02> { [ NoSymbol, NoSymbol, odiaeresis, Odiaeresis ] };
             key <AC03> { [ NoSymbol, NoSymbol, eacute, Eacute ] };
             key <AB01> { [ NoSymbol, NoSymbol, Greek_lambda, NoSymbol ] };
+            override key <MENU> { [ Multi_key ] };
         };
       '';
     };
