@@ -1,4 +1,14 @@
-{ pkgs, lib, ...} :
+{ pkgs, lib, config, ...} :
+let
+  xkb-reload = pkgs.writeShellApplication {
+    name = "xkb-reload";
+    runtimeInputs = [ pkgs.xorg.setxkbmap pkgs.xorg.xkbcomp ];
+    text = ''
+      setxkbmap -print \
+        | xkbcomp -I${config.services.xserver.xkb.dir} - "''${DISPLAY:?DISPLAY not set}"
+    '';
+  };
+in
 {
   console.useXkbConfig = true;
   environment.systemPackages = with pkgs; [
@@ -12,6 +22,7 @@
       thunar # File browser
       xclip
       xev
+      xkb-reload
       xmessage
     # Gifcasts (FIXME: make vokoscreen make gifs by default)
       #screenkey # show keys in gif casts
