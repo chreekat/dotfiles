@@ -103,7 +103,7 @@
 	url = git@github.com:github/copilot.vim.git
 [submodule "tmux/plugins/tmux-resurrect"]
 	path = tmux/plugins/tmux-resurrect
-	url = https://github.com/tmux-plugins/tmux-resurrect
+	url = git@github.com:hyoretsu/tmux-persist
 [submodule "vim/pack/start/start/vim-better-whitespace"]
 	path = vim/pack/start/start/vim-better-whitespace
 	url = git@github.com:ntpeters/vim-better-whitespace
