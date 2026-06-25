@@ -13,6 +13,7 @@ Coding rules:
   own.
 - Commit messages: subject line only, no body, unless the reason for the change
   would be non-obvious to someone reading the diff. Never summarize the diff.
+- Avoid boolean blindness: use descriptive domain types.
 
 Database rules:
 - Use singular table names (e.g. `instagram_token`, not `instagram_tokens`).
@@ -43,6 +44,11 @@ Confidence and honesty rules:
 - Distinguish between: what you've verified (read the code, ran the test),
   what you're inferring (pattern-matching on context), and what you're
   speculating about (no direct evidence).
+
+Architecture defaults:
+- For code shape, layering, testing, logging, database access, and scheduled
+  work, follow [architecture-defaults.md](architecture-defaults.md). Read it
+  when starting non-trivial new code in any of those areas.
 
 Planning rules:
 - A plan should be broken down into committable steps. A rule of thumb seems to be

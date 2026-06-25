@@ -27,7 +27,6 @@ main () {
     done
     # TODO: Make sure permissions are legit. .ssh and .ghci, I'm lookin at you.
 
-    start_user_units
 }
 
 # Subroutines
@@ -84,11 +83,6 @@ link_dot() {
     doo ln -s $EXPORT_DIR/$src $dst
 }
 
-start_user_units () {
-    systemctl --user enable --now lorri.socket
-    #systemctl --user enable --now offlineimap.timer
-}
-
 # Initialize globals
 EXPORT_DIR=$(dirname "${PWD}/$0")
 DOTS=(
@@ -99,6 +93,7 @@ DOTS=(
     bash_login
     bashrc
     claude/CLAUDE.md
+    claude/architecture-defaults.md
     claude/keybindings.json
     claude/notify
     claude/settings.json
