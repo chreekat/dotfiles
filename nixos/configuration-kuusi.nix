@@ -45,6 +45,7 @@ in statefulness // {
       ./mods/desktop.nix
       ./mods/beyboard.nix
       ./mods/freelance.nix
+      ./mods/hat.nix
     ];
 
   # (NOTE: Copied from fuzzbomb, values tweaked)
