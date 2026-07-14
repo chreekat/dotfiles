@@ -1,23 +1,6 @@
 { pkgs, ...}:
-let
-  # Handy tool for tracking works in progress
-  bugs =
-    let
-      losh-t = pkgs.python3Packages.buildPythonApplication {
-        pname = "losh-t";
-        format = "setuptools";
-        version = "1.2.0";
-        src = fetchGit {
-          url = "https://github.com/sjl/t";
-        };
-      };
-    in
-    pkgs.writeScriptBin "b" ''
-      set -Eeou pipefail
-      topLevel=$(git rev-parse --git-common-dir)
-      ${losh-t}/bin/t --task-dir $topLevel --list bugs $@
-    '';
-in {
+{
+  imports = [ ./bugs-b.nix ];
   documentation.dev.enable = true;
 
   environment.systemPackages = with pkgs; [
@@ -27,7 +10,6 @@ in {
     (pkgs.callPackage "${builtins.fetchTarball "https://github.com/ryantm/agenix/archive/main.tar.gz"}/pkgs/agenix.nix" {})
     ssh-to-age
     bench
-    bugs
     bun
     beekeeper-studio
     cachix
