@@ -99,6 +99,7 @@ DOTS=(
     claude/settings.json
     config/astroid
     config/ctags
+    config/hat/hat.conf
     config/ghostty
     config/git/config
     config/git/allowed-signers
