@@ -69,7 +69,6 @@ in
       git-annex
       graphviz
       gv
-      handbrake # Rips DVD to video files
       imagemagick
       inkscape
       pinta # Simple image editor

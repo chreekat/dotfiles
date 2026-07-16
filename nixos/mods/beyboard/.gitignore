@@ -1,0 +1,8 @@
+dist-newstyle/
+dist/
+*.hi
+*.o
+.ghc.environment.*
+result
+result-*
+errors.err

@@ -2,7 +2,7 @@
 let
   xkb-reload = pkgs.writeShellApplication {
     name = "xkb-reload";
-    runtimeInputs = [ pkgs.xorg.setxkbmap pkgs.xorg.xkbcomp ];
+    runtimeInputs = [ pkgs.setxkbmap pkgs.xkbcomp ];
     text = ''
       setxkbmap -print \
         | xkbcomp -I${config.services.xserver.xkb.dir} - "''${DISPLAY:?DISPLAY not set}"
@@ -19,7 +19,6 @@ in
       keynav
       notify-osd
       pavucontrol
-      thunar # File browser
       xclip
       xev
       xkb-reload
@@ -108,7 +107,7 @@ in
           (
             prev_state=""
             while true; do
-              if ${pkgs.xorg.xset}/bin/xset q 2>/dev/null \
+              if ${pkgs.xset}/bin/xset q 2>/dev/null \
                    | ${pkgs.gnugrep}/bin/grep -q "Monitor is On"; then
                 cur_state="On"
               else

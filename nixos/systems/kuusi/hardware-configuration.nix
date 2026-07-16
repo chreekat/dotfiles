@@ -51,7 +51,12 @@
     };
 
   swapDevices =
-    [ { device = "/dev/disk/by-uuid/b10f03bc-e98b-4fa7-ac8e-83103c5f4d38"; }
+    [ { # Referenced by partuuid: under randomEncryption the swap is
+        # re-created with a fresh key each boot, so the filesystem UUID
+        # is not stable.
+        device = "/dev/disk/by-partuuid/4ae09039-daa4-4db0-9422-170bb04ca7bb";
+        randomEncryption.enable = true;
+      }
     ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking

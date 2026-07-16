@@ -48,4 +48,23 @@
 
   services.autorandr.enable = true;
   services.autorandr.matchEdid = true;
+  # Some displays need a moment to settle after lid open / hot plug; re-trigger
+  # autorandr.service a few times so the eventual stable configuration wins.
+  # Done as a sibling service rather than an ExecStart override to stay robust
+  # against upstream module changes.
+  systemd.services.autorandr.startLimitBurst = lib.mkForce 20;
+  systemd.services.autorandr-settle = {
+    description = "Re-run autorandr to handle displays that settle slowly";
+    after = [ "autorandr.service" ];
+    wantedBy = [ "autorandr.service" ];
+    serviceConfig = {
+      Type = "oneshot";
+      ExecStart = pkgs.writeShellScript "autorandr-settle" ''
+        for i in 3 3 4; do
+          sleep $i
+          ${pkgs.systemd}/bin/systemctl start autorandr.service || true
+        done
+      '';
+    };
+  };
 }
