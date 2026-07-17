@@ -39,49 +39,25 @@ mod_statusbar.create{
     --
     --template="[ %date || load:% %>load || mail:% %>mail_new/%>mail_total ] %filler%systray",
     --template="[ %date || load: %05load_1min || mail: %02mail_new/%02mail_total ] %filler%systray",
-    template="%filler %systray % %date"
+    template="%filler %systray % %disp · %bat · %date"
 }
 
--- -- Launch ion-statusd. This must be done after creating any statusbars
--- -- for necessary statusd modules to be parsed from the templates.
--- mod_statusbar.launch_statusd{
---     -- Date meter
---     date={
---         -- ISO-8601 date format with additional abbreviated day name.
---         date_format='%a %Y-%m-%d %H:%M',
---         -- Finnish etc. date format
---         --date_format='%a %d.%m.%Y %H:%M',
---         -- Locale date format (usually shows seconds, which would require
---         -- updating rather often and can be distracting)
---         --date_format='%c',
---
---         -- Additional date formats.
---         --[[
---         formats={
---             time = '%H:%M', -- %date_time
---         }
---         --]]
---     },
---
---     -- Load meter
---     load={
---         --update_interval=10*1000,
---         --important_threshold=1.5,
---         --critical_threshold=4.0,
---     },
---
---     -- Mail meter
---     --
---     -- To monitor more mbox files, add them to the files table.  For
---     -- example, add mail_work_new and mail_junk_new to the template
---     -- above, and define them in the files table:
---     --
---     -- files = { work = "/path/to/work_email", junk = "/path/to/junk" }
---     --
---     -- Don't use the keyword 'spool' as it's reserved for mbox.
---     mail={
---         --update_interval=60*1000,
---         --mbox=os.getenv("MAIL"),
---         --files={},
---     },
--- }
+-- Launch ion-statusd. This must be done after creating any statusbars
+-- for necessary statusd modules to be parsed from the templates.
+mod_statusbar.launch_statusd{
+    -- Display state meter (%disp), see statusd_disp.lua.
+    disp={
+        --update_interval=10*1000,
+    },
+
+    -- Battery meter (%bat), see statusd_bat.lua.
+    bat={
+        --update_interval=10*1000,
+    },
+
+    -- Date meter
+    date={
+        -- ISO-8601 date format with additional abbreviated day name.
+        date_format='%a %Y-%m-%d %H:%M',
+    },
+}
