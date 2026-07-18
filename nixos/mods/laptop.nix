@@ -54,7 +54,7 @@
   environment.etc."xdg/autorandr/settings.ini".text = ''
     [config]
     match-edid = true
-    skip-options = crtc
+    skip-options = crtc,gamma
   '';
   # Some displays need a moment to settle after lid open / hot plug; re-trigger
   # autorandr.service a few times so the eventual stable configuration wins.
