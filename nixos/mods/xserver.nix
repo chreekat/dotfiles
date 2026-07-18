@@ -34,17 +34,6 @@ in
 
   services.unclutter-xfixes.enable = true;
 
-  services.urxvtd = {
-    enable = false;
-    package = pkgs.rxvt-unicode.override (drv: {
-      rxvt-unicode-unwrapped = pkgs.rxvt-unicode-unwrapped.overrideAttrs (orig: {
-        patches = orig.patches ++ [
-          ../patches/urxvt-garbage.patch
-        ];
-      });
-    });
-  };
-
   # Enable and configure the X11 windowing system.
   services.libinput.enable = true;
   services.xserver = {
@@ -97,8 +86,6 @@ in
           "${pkgs.autorandr}/bin/autorandr"
           "--batch"
           "--change"
-          "--default default"
-          "--match-edid"
         ];
         lockerWrapper = pkgs.writeShellScript "xsecurelock-with-autorandr" ''
           # When locked with DPMS suspend, monitor unplug events may be missed.

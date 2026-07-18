@@ -48,6 +48,11 @@
 
   services.autorandr.enable = true;
   services.autorandr.matchEdid = true;
+  environment.etc."xdg/autorandr/settings.ini".text = ''
+    [config]
+    match-edid = true
+    skip-options = crtc
+  '';
   # Some displays need a moment to settle after lid open / hot plug; re-trigger
   # autorandr.service a few times so the eventual stable configuration wins.
   # Done as a sibling service rather than an ExecStart override to stay robust

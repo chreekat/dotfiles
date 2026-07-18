@@ -194,11 +194,8 @@ defbindings("WMPlex.toplevel", {
     bdoc("Chromium", "chromium"),
     kpress(META.."F6", "notioncore.exec_on(_, 'chromium')"),
 
-    bdoc("AutoRandR Menu", "autorandr-menu"),
-    kpress(META.."F4", "mod_menu.menu(_, _sub, 'autorandr', {big=true})"),
-
     bdoc("AutoRandR Detect", "autorandr-det"),
-    kpress(META.."F5", "notioncore.exec_on(_, 'autorandr --match-edid -c')"),
+    kpress(META.."F5", "notioncore.exec_on(_, 'autorandr -c')"),
 
 
 
@@ -386,12 +383,6 @@ defbindings("WMoveresMode", {
 -- Menu definitions
 --
 
--- Autorandr menu
-defmenu("autorandr", {
-    menuentry("stacked", "notioncore.exec_on(_, 'autorandr --match-edid -l stacked')"),
-    menuentry("default", "notioncore.exec_on(_, 'autorandr --match-edid -l default')"),
-    menuentry("home", "notioncore.exec_on(_, 'autorandr --match-edid -l home')"),
-})
 -- Main menu
 defmenu("mainmenu", {
     menuentry("Run...",         "mod_query.query_exec(_)"),

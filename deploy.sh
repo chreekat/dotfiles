@@ -108,7 +108,6 @@ DOTS=(
     config/systemd/user/lorri.socket
     config/systemd/user/offlineimap.service
     config/systemd/user/offlineimap.timer
-    config/urxvt/themes
     config/Yubico/u2f_keys
     cvsrc
     direnvrc
@@ -132,13 +131,14 @@ DOTS=(
     notion/cfg_kludges.lua
     notion/notion-lock
     notion/toggle-desktop-colors
+    notion/statusd_disp.lua
+    notion/statusd_bat.lua
     notmuch-config
     offlineimap
     offlineimaprc
     terminfo
     tmux
     tmux.conf
-    urxvt/ext
     vim
     vimrc
     w3m
