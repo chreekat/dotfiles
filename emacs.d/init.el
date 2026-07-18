@@ -33,7 +33,7 @@
                 "Read"
                 "org.freedesktop.appearance"
                 "color-scheme")))
-  (when (eq (car current) 1)
+  (when (eq (caar current) 1)
     (load-theme 'modus-vivendi t)))
 
 ; delete extraneous whitespace on save
