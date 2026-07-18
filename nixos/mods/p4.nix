@@ -1,4 +1,7 @@
 # Stuff for developing p4 infra
 {
-  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
+  boot.binfmt = {
+    emulatedSystems = [ "aarch64-linux" ];
+    preferStaticEmulators = true;
+  };
 }

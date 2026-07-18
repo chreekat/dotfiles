@@ -39,12 +39,15 @@ in statefulness // {
       ./systems/kuusi/hardware-configuration.nix
       ./system-common.nix
       ./mods/laptop.nix
+      ./mods/suspend-retry.nix
       ./mods/games.nix
       ./mods/security-key.nix
       ./mods/dynamic-derivations.nix
       ./mods/desktop.nix
       ./mods/beyboard.nix
       ./mods/freelance.nix
+      ./mods/p4.nix
+      ./mods/amdgpu.nix
       ./mods/hat.nix
     ];
 

@@ -48,6 +48,9 @@
 
   services.autorandr.enable = true;
   services.autorandr.matchEdid = true;
+  services.autorandr.defaultTarget = "laptop";
+  # Slightly overlaps with services.autorandr.matchEdid = true, but harmless and
+  # probably safer. Putting it here ensures everybody gets it.
   environment.etc."xdg/autorandr/settings.ini".text = ''
     [config]
     match-edid = true
