@@ -32,7 +32,11 @@ in
       networkmanagerapplet
   ];
 
-  services.unclutter-xfixes.enable = true;
+  services.unclutter-xfixes = {
+    enable = true;
+    timeout = 5;
+    threshold = 10;
+  };
 
   # Enable and configure the X11 windowing system.
   services.libinput.enable = true;

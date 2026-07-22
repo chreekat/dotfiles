@@ -42,6 +42,11 @@ Haskell rules:
 - Always work through cabal (or stack) with `cabal build`, `cabal run`, and
   `cabal test`. Avoid the habit of calling built binaries directly and running
   stale artifacts.
+- For exception handling and structured concurrency (synchronous vs
+  asynchronous exceptions, bracket/withAsync for lifetimes, link vs race for
+  supervision, the ExitCode footgun), follow
+  [haskell-exceptions.md](haskell-exceptions.md). Read it before writing
+  exception handlers or spawning threads.
 
 Nix rules:
 - Never use 'with'.

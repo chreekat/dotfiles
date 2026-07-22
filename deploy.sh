@@ -94,6 +94,7 @@ DOTS=(
     bashrc
     claude/CLAUDE.md
     claude/architecture-defaults.md
+    claude/haskell-exceptions.md
     claude/keybindings.json
     claude/notify
     claude/settings.json
