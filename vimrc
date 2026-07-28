@@ -355,7 +355,43 @@ augroup vimrc_highlighting
     au ColorScheme * hi Title cterm=bold ctermfg=red
     au ColorScheme apprentice hi Folded ctermbg=NONE
 augroup END
-colorscheme PaperColor
+" Follow the freedesktop color-scheme preference (the signal Emacs also uses).
+" A value of 1 means dark; anything else means light.
+function! s:apply_os_colors(scheme)
+    if a:scheme ==# 'dark'
+        set bg=dark
+        colorscheme apprentice
+    else
+        set bg=light
+        colorscheme PaperColor
+    endif
+endfunction
+
+function! s:read_os_color_scheme()
+    let l:out = system('gdbus call --session'
+        \ . ' --dest org.freedesktop.portal.Desktop'
+        \ . ' --object-path /org/freedesktop/portal/desktop'
+        \ . ' --method org.freedesktop.portal.Settings.Read'
+        \ . ' org.freedesktop.appearance color-scheme')
+    return l:out =~# 'uint32 1' ? 'dark' : 'light'
+endfunction
+
+" Re-theme when the preference changes, parsing gdbus monitor's signal lines.
+function! s:on_setting_change(channel, msg)
+    if a:msg =~# 'org\.freedesktop\.appearance' && a:msg =~# 'color-scheme'
+        call s:apply_os_colors(a:msg =~# 'uint32 1' ? 'dark' : 'light')
+        redraw
+    endif
+endfunction
+
+if executable('gdbus')
+    call s:apply_os_colors(s:read_os_color_scheme())
+    let s:color_monitor = job_start(
+        \ ['gdbus', 'monitor', '--session', '--dest', 'org.freedesktop.portal.Desktop'],
+        \ {'out_cb': function('s:on_setting_change')})
+else
+    colorscheme PaperColor
+endif
 
 ""
 "" Things that should be plugins?
