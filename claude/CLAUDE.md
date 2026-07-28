@@ -14,6 +14,17 @@ Coding rules:
 - Comments explain BEHAVIOR, commit messages explain CHANGE. Only add comments
   about changes if it's absolutely critical to understanding the code on its
   own.
+- A comment is to a function/value what a commit message is to a change: a
+  pithy, descriptive title. Never let a comment duplicate the code it describes
+  -- code is self-documenting; the comment names intent the code can't. Like a
+  commit subject, go past 1-2 lines only when the function/value is genuinely
+  tricky or unclear from its shape alone. Unlike a commit message, a comment
+  can attach to a single line -- use that: document each field on its own field,
+  each action on its own action, never hoisted into one blob at the top of the
+  value or function. When one explanation must connect disparate bits of code,
+  use GHC's Note convention: write the prose once under a titled `Note [Some
+  title]` block, and point each relevant site at it with a bare `-- See Note
+  [Some title]` reference instead of restating or splitting it.
 - Document behavior at the function that enacts it, never at a value's
   declaration site. A type/field/constructor/constant doc describes only what
   the value IS (meaning, invariants, representation) -- at most a bare "see
