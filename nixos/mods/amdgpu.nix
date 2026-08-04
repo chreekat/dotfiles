@@ -12,6 +12,9 @@
     deviceSection = ''
       Option "TearFree" "true"
       Option "DRI" "3"
+      # HW cursor plane wedges after resume/mode events and stops painting the
+      # pointer; software cursor draws it into the framebuffer so it can't vanish.
+      Option "SWcursor" "true"
     '';
 
     screenSection = ''

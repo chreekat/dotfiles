@@ -86,30 +86,20 @@ in
     ];
     lockerCommand =
       let
-        autorandrCmd = lib.concatStringsSep " " [
-          "${pkgs.autorandr}/bin/autorandr"
-          "--batch"
-          "--change"
-        ];
-        lockerWrapper = pkgs.writeShellScript "xsecurelock-with-autorandr" ''
-          # When locked with DPMS suspend, monitor unplug events may be missed.
-          # This watcher triggers autorandr on DPMS wake so the login prompt
-          # appears on the correct screen before authentication.
+        lockerWrapper = pkgs.writeShellScript "xsecurelock-locker" ''
+          # The external's HPD toggle on self-standby makes X wake eDP's DPMS
+          # behind xsecurelock's back; xsecurelock never re-blanks because it
+          # only reacts to input. Re-assert the blank whenever the display is on
+          # but no one is here. Gated on input idle so it never fights unlock,
+          # and it never touches output config -- forcing DPMS off cannot loop.
           (
-            prev_state=""
             while true; do
               if ${pkgs.xset}/bin/xset q 2>/dev/null \
-                   | ${pkgs.gnugrep}/bin/grep -q "Monitor is On"; then
-                cur_state="On"
-              else
-                cur_state="Off"
+                   | ${pkgs.gnugrep}/bin/grep -q "Monitor is On" \
+                 && [ "$(${pkgs.xprintidle}/bin/xprintidle 2>/dev/null || echo 0)" -gt 12000 ]; then
+                ${pkgs.xset}/bin/xset dpms force off
               fi
-              if [ "$cur_state" = "On" ] && [ -n "$prev_state" ] && [ "$prev_state" != "On" ]; then
-                sleep 2
-                ${autorandrCmd}
-              fi
-              prev_state="$cur_state"
-              sleep 1
+              sleep 2
             done
           ) &
           WATCHER_PID=$!
@@ -122,9 +112,16 @@ in
               XSECURELOCK_SHOW_DATETIME=1 \
               ${pkgs.xsecurelock}/bin/xsecurelock
 
-          ${autorandrCmd}
+          # The external display drops its HPD line when it self-standbys during
+          # lock, so X deconfigures it. Re-apply the profile once on unlock.
+          ${pkgs.autorandr}/bin/autorandr --change
         '';
       in
         "${lockerWrapper}";
   };
+  # Wait indefinitely for a fingerprint rather than dropping to the password
+  # prompt after 30s. Set on the login stack, which xsecurelock authenticates
+  # against by default (also TTY console login). max-tries is left at the
+  # default, so repeated failed reads still fall through to the password.
+  security.pam.services.login.rules.auth.fprintd.settings.timeout = -1;
 }
