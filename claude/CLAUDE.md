@@ -3,22 +3,7 @@
 Unless specifically overruled, never add any claude-specific trailers to git
 messages. (Past examples: Co-Authored-By, Claude-Session)
 
-Coding rules:
-- REMOVE "PRE-EXISTING FLAKINESS" from your vocabulary! Any whiff of test
-  flakiness is a drop-everything, pants-on-fire emergency. It supercedes ANY
-  ongoing work.
-- Solve the GENERAL case, not a convenient special case. Do not kick the can
-  down the road: when the correct fix costs more (a schema/era bump, capturing
-  state you were approximating, a broader refactor), pay that cost now rather
-  than shipping a narrow fix that leaves the real bug latent. Flag the tradeoff,
-  but default to doing the whole dance.
-- Use TDD: write a failing test before implementing behavior.
-- Commit early and often. Write one logical change per commit.
-- Run tests before declaring a task complete.
-- Prefer understanding existing patterns over inventing new ones. Do not reinvent the wheel.
-- Comments explain BEHAVIOR, commit messages explain CHANGE. Only add comments
-  about changes if it's absolutely critical to understanding the code on its
-  own.
+## Documentation rules:
 - One fact, one home -- across the WHOLE change, not one file. The same
   explanation must never appear in two of {a code comment, another comment, a
   test's docstring, the commit body}. Reworded restatement still counts. A
@@ -54,12 +39,29 @@ Coding rules:
   themselves.)
 - Commit messages: subject line only, no body, unless the reason for the change
   would be non-obvious to someone reading the diff. Never summarize the diff.
+
+## Coding rules:
+- REMOVE "PRE-EXISTING FLAKINESS" from your vocabulary! Any whiff of test
+  flakiness is a drop-everything, pants-on-fire emergency. It supercedes ANY
+  ongoing work.
+- Solve the GENERAL case, not a convenient special case. Do not kick the can
+  down the road: when the correct fix costs more (a schema/era bump, capturing
+  state you were approximating, a broader refactor), pay that cost now rather
+  than shipping a narrow fix that leaves the real bug latent. Flag the tradeoff,
+  but default to doing the whole dance.
+- Use TDD: write a failing test before implementing behavior.
+- Commit early and often. Write one logical change per commit.
+- Run tests before declaring a task complete.
+- Prefer understanding existing patterns over inventing new ones. Do not reinvent the wheel.
+- Comments explain BEHAVIOR, commit messages explain CHANGE. Only add comments
+  about changes if it's absolutely critical to understanding the code on its
+  own.
 - Avoid boolean blindness: use descriptive domain types.
 
-Database rules:
+## Database rules:
 - Use singular table names (e.g. `instagram_token`, not `instagram_tokens`).
 
-Haskell rules:
+## Haskell rules:
 - Always write shrinks for Arbitrary instances. If the type does not admit a
   good shrink, suggest how it could be modified to enable it.
 - Do not improvise on version bounds. Use existing bounds if found in the
@@ -79,10 +81,10 @@ Haskell rules:
   [haskell-exceptions.md](haskell-exceptions.md). Read it before writing
   exception handlers or spawning threads.
 
-Nix rules:
+## Nix rules:
 - Never use 'with'.
 
-Confidence and honesty rules:
+## Confidence and honesty rules:
 - Do not present guesses as facts. Qualify uncertain statements with confidence
   indicators: "I think ... but I'm not sure", "With ~[some %] confidence, ...",
   "Assuming X, then probably Y".
@@ -94,12 +96,12 @@ Confidence and honesty rules:
   what you're inferring (pattern-matching on context), and what you're
   speculating about (no direct evidence).
 
-Architecture defaults:
+## Architecture defaults:
 - For code shape, layering, testing, logging, database access, and scheduled
   work, follow [architecture-defaults.md](architecture-defaults.md). Read it
   when starting non-trivial new code in any of those areas.
 
-Planning rules:
+## Planning rules:
 - A plan should be broken down into committable steps. A rule of thumb seems to be
   that a single step takes 1-8 commits.
 - For prompts requiring larger plans -- say, more than 5 steps -- it should
@@ -116,10 +118,10 @@ Planning rules:
   history (e.g. references to course corrections or responses to feedback).
   When modified, they should keep their point-in-time nature.
 
-Research rules:
+## Research rules:
 - Never run `find /`.
 
-Testing rules:
+## Testing rules:
 - Tests must exercise library code. That's the whole point.
 - Every test is one of two kinds:
   - Behavior tests document how the system is meant to work. Keep them fast and
