@@ -7,6 +7,11 @@ Coding rules:
 - REMOVE "PRE-EXISTING FLAKINESS" from your vocabulary! Any whiff of test
   flakiness is a drop-everything, pants-on-fire emergency. It supercedes ANY
   ongoing work.
+- Solve the GENERAL case, not a convenient special case. Do not kick the can
+  down the road: when the correct fix costs more (a schema/era bump, capturing
+  state you were approximating, a broader refactor), pay that cost now rather
+  than shipping a narrow fix that leaves the real bug latent. Flag the tradeoff,
+  but default to doing the whole dance.
 - Use TDD: write a failing test before implementing behavior.
 - Commit early and often. Write one logical change per commit.
 - Run tests before declaring a task complete.
@@ -14,6 +19,21 @@ Coding rules:
 - Comments explain BEHAVIOR, commit messages explain CHANGE. Only add comments
   about changes if it's absolutely critical to understanding the code on its
   own.
+- One fact, one home -- across the WHOLE change, not one file. The same
+  explanation must never appear in two of {a code comment, another comment, a
+  test's docstring, the commit body}. Reworded restatement still counts. A
+  fix's mechanism -- the race/bug it removes, why the old code was wrong -- is
+  CHANGE: it lives ONLY in the commit message. The comment at the fixed site
+  states just the invariant the new code upholds ("snapshot both reads together
+  so the frame and the flag agree"), never the failure that motivated it ("read
+  apart, a resize could slip between them..."); if that invariant is obvious
+  from the code, write no comment. When a rationale genuinely spans several
+  sites, use the Note convention (one prose block, bare pointers), never a
+  copy at each site.
+- A test's docstring states what it PINS: its spec in one line ("a shrunk
+  client must fully repaint"), plus a bug id when it's a regression guard. It
+  does not re-narrate the bug's mechanism -- that's already in the commit that
+  fixed it.
 - A comment is to a function/value what a commit message is to a change: a
   pithy, descriptive title. Never let a comment duplicate the code it describes
   -- code is self-documenting; the comment names intent the code can't. Like a
