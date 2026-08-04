@@ -21,8 +21,6 @@
     frag = magenta
     commit = ul red reverse
     func = cyan
-[commit]
-	verbose = true
 [alias]
 	b = branch -vv
 	ci = commit
@@ -69,8 +67,6 @@
 [mergetool "mergetool_helper"]
 	cmd = "vim -f -d $LOCAL $BASE $REMOTE $MERGED -c '4wincmd w | wincmd J | packadd mergetool_helper'"
 	trustExitCode = true
-[commit]
-	gpgSign = true
 [push]
 	default = simple
 	gpgSign = "if-asked"
@@ -81,6 +77,7 @@
 	enabled = true
 [commit]
 	gpgsign = true
+	verbose = true
 [grep]
 	linenumber = true
 	column = true
