@@ -98,23 +98,24 @@ DOTS=(
     claude/keybindings.json
     claude/notify
     claude/settings.json
+    claude/statusline-command.sh
+    config/Yubico/u2f_keys
     config/astroid
     config/ctags
-    config/hat/hat.conf
     config/ghostty
-    config/git/config
     config/git/allowed-signers
+    config/git/config
+    config/hat/hat.conf
     config/keynav/keynavrc
     config/systemd/user/lorri.service
     config/systemd/user/lorri.socket
     config/systemd/user/offlineimap.service
     config/systemd/user/offlineimap.timer
-    config/Yubico/u2f_keys
     cvsrc
     direnvrc
     dput.cf
-    extract_urlview
     emacs.d/init.el
+    extract_urlview
     ghci
     gnupg/gpg-agent.conf
     ignore
@@ -126,14 +127,14 @@ DOTS=(
     mutt
     nethackrc
     notion/cfg_bindings.lua
-    notion/cfg_statusbar.lua
-    notion/cfg_notion.lua
-    notion/cfg_tiling.lua
     notion/cfg_kludges.lua
+    notion/cfg_notion.lua
+    notion/cfg_statusbar.lua
+    notion/cfg_tiling.lua
     notion/notion-lock
-    notion/toggle-desktop-colors
-    notion/statusd_disp.lua
     notion/statusd_bat.lua
+    notion/statusd_disp.lua
+    notion/toggle-desktop-colors
     notmuch-config
     offlineimap
     offlineimaprc

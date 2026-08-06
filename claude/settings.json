@@ -57,6 +57,10 @@
       }
     ]
   },
+  "statusLine": {
+    "type": "command",
+    "command": "bash ~/.claude/statusline-command.sh"
+  },
   "enabledPlugins": {
     "code-review@claude-plugins-official": true,
     "claude-mem@thedotmack": true
