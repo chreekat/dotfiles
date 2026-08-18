@@ -1,0 +1,19 @@
+--- a/src/GHC/Debug/Brick/UI.hs	2001-09-09 04:46:40.000000000 +0300
++++ b/src/GHC/Debug/Brick/UI.hs	2026-08-16 14:48:27.682117991 +0300
+@@ -33,12 +33,12 @@
+ 
+ myAppAttrMap :: AppState -> AttrMap
+ myAppAttrMap _appState =
+-  attrMap (Vty.withStyle (Vty.white `on` Vty.black) Vty.dim)
+-    [ (menuAttr, Vty.withStyle (Vty.white `on` Vty.blue) Vty.bold)
++  attrMap (Vty.white `on` Vty.black)
++    [ (menuAttr, Vty.withStyle (Vty.brightWhite `on` Vty.blue) Vty.bold)
+     , (inputAttr, Vty.black `on` Vty.green)
+-    , (labelAttr, Vty.withStyle (fg Vty.white) Vty.bold)
++    , (labelAttr, Vty.withStyle (fg Vty.brightWhite) Vty.bold)
+     , (highlightAttr, Vty.black `on` Vty.yellow)
+-    , (treeAttr, fg Vty.red)
++    , (treeAttr, fg Vty.brightRed)
+     , (disabledMenuAttr, Vty.withStyle (grey `on` Vty.blue) Vty.bold)
+     ]
+ 

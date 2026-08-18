@@ -1,15 +1,15 @@
 { pkgs, ... }:
 
 {
-  # Patch the vendored libvterm to carry the SGR 2 (faint/dim) cell attribute
-  # it otherwise drops, so hat renders dim text (bug 33/48). hat is the
-  # canonical home for the patch; we reference it from the live checkout, the
-  # same way the package itself is built from disk below.
+  # ghc-debug-brick's attribute map is hardcoded -- no theme file, no flag --
+  # and its default attribute carries a blanket dim, so every unnamed piece of
+  # text renders faint in a terminal that honours SGR 2. hat does.
   nixpkgs.overlays = [
     (final: prev: {
-      libvterm-neovim = prev.libvterm-neovim.overrideAttrs (o: {
-        patches = (o.patches or [ ])
-          ++ [ /home/b/Projects/hat/nix/libvterm-dim.patch ];
+      haskellPackages = prev.haskellPackages.extend (_: hprev: {
+        ghc-debug-brick =
+          prev.haskell.lib.appendPatch hprev.ghc-debug-brick
+            ../patches/ghc-debug-brick-contrast.patch;
       });
     })
   ];
@@ -17,6 +17,8 @@
   # hat, the terminal multiplexer (https://git.sr.ht/~chreekat/hat) —
   # packaged from the local checkout, so a rebuild deploys whatever is
   # on disk there.
-  environment.systemPackages =
-    [ (pkgs.callPackage /home/b/Projects/hat/package.nix { }) ];
+  environment.systemPackages = [
+    (pkgs.callPackage /home/b/Projects/hat/package.nix { ghcDebug = true; })
+    pkgs.haskellPackages.ghc-debug-brick
+  ];
 }
