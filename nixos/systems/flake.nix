@@ -1,7 +1,7 @@
 {
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
-    nixpkgs-puny.url = "github:NixOS/nixpkgs/nixos-25.11";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
+    nixpkgs-puny.url = "github:NixOS/nixpkgs/nixos-26.05";
     agenix = {
       url = "github:ryantm/agenix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -23,17 +23,17 @@
     nixosConfigurations.puny = nixpkgs-puny.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
-        ./puny/configuration.nix
-        ./user-b.nix
-        ./server-sudo.nix
+        ../mods/igtest.nix
+        ../mods/irc-bouncer.nix
+        ../mods/nix-hygiene.nix
+        ../mods/ntfy.nix
         ../mods/server-ssh.nix
-        ../mods/tailscale.nix
         ../mods/server-www-fileserv.nix
         ../mods/syncthing.nix
-        ../mods/nix-hygiene.nix
-        ../mods/irc-bouncer.nix
-        ../mods/ntfy.nix
-        ../mods/igtest.nix
+        ../mods/tailscale.nix
+        ../mods/user-b.nix
+        ./puny/configuration.nix
+        ./server-sudo.nix
       ];
     };
     nixosConfigurations.honk = nixpkgs.lib.nixosSystem {
@@ -41,12 +41,12 @@
       modules = [
         disko.nixosModules.disko
         agenix.nixosModules.default
-        ./honk/configuration.nix
-        ./user-b.nix
-        ../mods/snowdrift-gitlab.nix
+        ../mods/matrix-server.nix
         ../mods/nix-hygiene.nix
         ../mods/server-ssh.nix
-        ../mods/matrix-server.nix
+        ../mods/snowdrift-gitlab.nix
+        ../mods/user-b.nix
+        ./honk/configuration.nix
         ({ pkgs, ... }: { environment.systemPackages = [ pkgs.borgbackup ]; })
       ];
     };
