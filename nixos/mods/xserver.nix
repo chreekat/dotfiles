@@ -124,4 +124,16 @@ in
   # against by default (also TTY console login). max-tries is left at the
   # default, so repeated failed reads still fall through to the password.
   security.pam.services.login.rules.auth.fprintd.settings.timeout = -1;
+
+  # A second pam_u2f attempt, identical to the first and still ahead of
+  # fprintd. pam_u2f has no retry count of its own, so a second try means a
+  # second stack entry.
+  security.pam.services.login.rules.auth.u2f-retry =
+    let
+      u2f = config.security.pam.services.login.rules.auth.u2f;
+    in
+      {
+        inherit (u2f) enable control modulePath settings;
+        order = u2f.order + 1;
+      };
 }
