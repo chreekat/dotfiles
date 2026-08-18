@@ -3,6 +3,30 @@
 Unless specifically overruled, never add any claude-specific trailers to git
 messages. (Past examples: Co-Authored-By, Claude-Session)
 
+## Git rules:
+- Always stage by explicit path: `git add src/Foo.hs test/Bar.hs`. Never `git
+  add -A`, `git add .`, or `git commit -a`. Blanket staging commits whatever
+  happens to be sitting in the tree -- editor backups, mergetool `.orig` files,
+  a formatter's leavings. Once such a file is tracked it goes invisible:
+  `git status` is quiet because it is committed and unmodified, and `git clean`
+  skips it because clean only ever removes untracked files.
+- If you do not know what is in the tree, run `git status` and look before
+  staging. Stage the paths you changed on purpose, nothing else.
+
+## Dotfiles:
+- `~/.claude/` is not where my config lives. `CLAUDE.md`, `settings.json`,
+  `keybindings.json`, `architecture-defaults.md`, `haskell-exceptions.md`,
+  `statusline-command.sh` and `notify` are all symlinks into
+  `~/Projects/dotfiles/claude/`, deployed by `deploy.sh`.
+- Editing tools refuse to write through a symlink. Resolve the real path first
+  (`readlink -f ~/.claude/CLAUDE.md`) and edit the file in the repo. Read is
+  fine either way; only writes are refused.
+- `~/Projects/dotfiles` is a git repo, but never commit or push in it -- I do
+  that by hand, always. Uncommitted changes there are deliberate: leaving a
+  change dirty is how I keep track of what is new and still experimental, so
+  committing it destroys that signal. Make the edit, leave it uncommitted, and
+  tell me what you changed.
+
 ## Documentation rules:
 - One fact, one home -- across the WHOLE change, not one file. The same
   explanation must never appear in two of {a code comment, another comment, a
