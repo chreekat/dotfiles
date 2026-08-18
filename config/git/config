@@ -60,6 +60,7 @@
 	gr = grep --recurse-submodules
 	lg = log --first-parent --graph --oneline
 	head = rev-parse HEAD
+	rbc = rebase --continue
 [rebase]
 	autosquash = true
 [fetch]
@@ -93,7 +94,5 @@
 	difftool = true
 [advice]
 	addEmptyPathspec = false
-[gpg.ssh]
-	allowedSignersFile = ./allowed-signers
 [init]
 	defaultBranch = main
