@@ -104,6 +104,10 @@ messages. (Past examples: Co-Authored-By, Claude-Session)
   supervision, the ExitCode footgun), follow
   [haskell-exceptions.md](haskell-exceptions.md). Read it before writing
   exception handlers or spawning threads.
+- For memory growth, retention, and heap profiling (leak vs. costly-but-correct
+  retention vs. non-heap RSS, the -s/-hT/-hi/ghc-debug ladder, measurement
+  landmines), follow [haskell-space-leaks.md](haskell-space-leaks.md). Read it
+  before profiling memory or adding strictness to fix a heap graph.
 
 ## Nix rules:
 - Never use 'with'.

@@ -95,6 +95,7 @@ DOTS=(
     claude/CLAUDE.md
     claude/architecture-defaults.md
     claude/haskell-exceptions.md
+    claude/haskell-space-leaks.md
     claude/keybindings.json
     claude/notify
     claude/settings.json
