@@ -68,11 +68,19 @@
 [mergetool "mergetool_helper"]
 	cmd = "vim -f -d $LOCAL $BASE $REMOTE $MERGED -c '4wincmd w | wincmd J | packadd mergetool_helper'"
 	trustExitCode = true
+[gpg]
+	format = ssh
+[gpg "ssh"]
+	allowedSignersFile = ~/.config/git/allowed-signers
+[user]
+	# Swap this if you've only got the Yubikey handy
+	signingkey = ~/.ssh/id_ed25519_sk_sign_n.pub
+
 [push]
 	default = simple
 	gpgSign = "if-asked"
 [merge]
-		tool = mergetool_helper
+	tool = mergetool_helper
 	gpgsign = true
 [rerere]
 	enabled = true

@@ -14,6 +14,13 @@
     "defaultMode": "auto"
   },
   "model": "opus[1m]",
+  "env": {
+    "GIT_CONFIG_COUNT": "2",
+    "GIT_CONFIG_KEY_0": "commit.gpgsign",
+    "GIT_CONFIG_VALUE_0": "true",
+    "GIT_CONFIG_KEY_1": "user.signingkey",
+    "GIT_CONFIG_VALUE_1": "/home/b/.ssh/id_ed25519_agent.pub"
+  },
   "hooks": {
     "UserPromptSubmit": [
       {
@@ -62,8 +69,7 @@
     "command": "bash ~/.claude/statusline-command.sh"
   },
   "enabledPlugins": {
-    "code-review@claude-plugins-official": true,
-    "claude-mem@thedotmack": true
+    "code-review@claude-plugins-official": true
   },
   "extraKnownMarketplaces": {
     "thedotmack": {
