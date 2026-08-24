@@ -1,3 +1,7 @@
+# The X session does not inherit systemd's user environment, where the gcr
+# agent's socket is advertised.
+export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR:-/run/user/$(id -u)}/gcr/ssh"
+
 configure_X () {
     /home/b/bin/scr on
     xsetroot -mod 16 16 -bg "#262626"
