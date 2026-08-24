@@ -1,4 +1,4 @@
-{ pkgs, ...}:
+{ pkgs, inputs, ...}:
 {
   imports = [ ./bugs-b.nix ];
   documentation.dev.enable = true;
@@ -7,7 +7,7 @@
     act
     actionlint # GHA linter
     age
-    (pkgs.callPackage "${builtins.fetchTarball "https://github.com/ryantm/agenix/archive/main.tar.gz"}/pkgs/agenix.nix" {})
+    (pkgs.callPackage "${inputs.agenix-cli}/pkgs/agenix.nix" {})
     ssh-to-age
     bench
     bun

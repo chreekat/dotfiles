@@ -1,21 +1,56 @@
 {
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
+    nixpkgs-kuusi.url = "github:NixOS/nixpkgs/nixos-26.05";
     nixpkgs-puny.url = "github:NixOS/nixpkgs/nixos-26.05";
     agenix = {
       url = "github:ryantm/agenix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    # The agenix CLI only, pinned apart from the module above so that bumping
+    # the tool kuusi encrypts with does not touch honk's secret activation.
+    agenix-cli = {
+      url = "github:ryantm/agenix";
+      flake = false;
+    };
     disko = {
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    # Submodule contents are invisible to flake evaluation, so the fonts come
+    # in as an input rather than as ../overlays/nonfree-fonts.
+    nonfree-fonts = {
+      url = "git+ssh://git@git.sr.ht/~chreekat/nonfree-fonts";
+      flake = false;
+    };
+    # 'b', the bug tracker.
+    losh-t = {
+      url = "github:sjl/t";
+      flake = false;
+    };
   };
 
-  outputs = { self, nixpkgs, nixpkgs-puny, disko, agenix }:  {
-    nixosConfigurations.kuusi = nixpkgs.lib.nixosSystem {
+  outputs = inputs@{ self, nixpkgs, nixpkgs-kuusi, nixpkgs-puny, disko, agenix, ... }:  {
+    nixosConfigurations.kuusi = nixpkgs-kuusi.lib.nixosSystem {
       system = "x86_64-linux";
-      modules = [ ../configuration-kuusi.nix ];
+      specialArgs = { inherit inputs; };
+      modules = [
+        ../mods/amdgpu.nix
+        ../mods/beyboard.nix
+        ../mods/desktop.nix
+        ../mods/dynamic-derivations.nix
+        ../mods/freelance.nix
+        ../mods/games.nix
+        ../mods/hat.nix
+        ../mods/laptop.nix
+        ../mods/p4.nix
+        ../mods/security-key.nix
+        ../mods/server-ssh.nix
+        ../mods/suspend-retry.nix
+        ../mods/user-b.nix
+        ../system-common.nix
+        ./kuusi/configuration.nix
+      ];
     };
     #
     # HE SO PUNY

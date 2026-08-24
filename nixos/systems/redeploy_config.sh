@@ -6,23 +6,30 @@ old=(
     "honk"
     /nix/store/yljm183gn2dr3sflgayifdyzv0kpk8bz-nixos-system-honk-26.05.20260817.0dd31db
     "kuusi"
-    foo
+    /nix/store/xx8a5x07qn6035p4w23wj53swf974hbs-nixos-system-kuusi-26.05.20260820.5880666
 )
 
 # shellcheck disable=SC2190
 target=(
     "puny" puny.chreekat.net
     "honk" 95.216.0.246
-    "kuusi" kuusi.bryanthomasrichter.gmail.com.beta.tailscale.net
+    # sshd only listens on the tailscale address; see listenAddresses in
+    # kuusi/configuration.nix.
+    "kuusi" kuusi.tail062b9.ts.net
 )
 
 nixos_rebuild_args=(
     ["puny"]="--sudo"
     ["honk"]="--sudo"
-    ["kuusi"]=""
+    # mods/hat.nix packages hat from the checkout at /home/b/Projects/hat so a
+    # rebuild deploys whatever is on disk there. Pure evaluation forbids
+    # absolute paths, so kuusi is built impurely.
+    ["kuusi"]="--impure --sudo"
 );
 
 redeploy_prehook () {
+    # Only puny imports the encrypted syncthing config.
+    [ "$1" = "puny" ] || return 0
     rm ../mods/syncthing.nix
     gpg ../mods/syncthing.nix.asc
     trap '> ../mods/syncthing.nix' EXIT

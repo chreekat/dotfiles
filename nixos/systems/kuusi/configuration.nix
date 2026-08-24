@@ -36,19 +36,7 @@ let
 in statefulness // {
   imports =
     [ # Include the results of the hardware scan.
-      ./systems/kuusi/hardware-configuration.nix
-      ./system-common.nix
-      ./mods/laptop.nix
-      ./mods/suspend-retry.nix
-      ./mods/games.nix
-      ./mods/security-key.nix
-      ./mods/dynamic-derivations.nix
-      ./mods/desktop.nix
-      ./mods/beyboard.nix
-      ./mods/freelance.nix
-      ./mods/p4.nix
-      ./mods/amdgpu.nix
-      ./mods/hat.nix
+      ./hardware-configuration.nix
     ];
 
   # (NOTE: Copied from fuzzbomb, values tweaked)
@@ -60,6 +48,11 @@ in statefulness // {
   nix.settings.max-jobs = 4;
   # Twice the default, since I got a warning to increase it.
   nix.settings.download-buffer-size = 2 * 67108864;
+
+  # A flake's nixpkgs source ships no programs.sqlite, unlike a channel
+  # tarball, so command-not-found reads the root channel's copy.
+  programs.command-not-found.dbPath =
+    "/nix/var/nix/profiles/per-user/root/channels/nixos/programs.sqlite";
 
   services.openssh.enable = true;
   services.openssh.listenAddresses = [ { addr = tailscaleIP; port = 22; } ];
@@ -75,4 +68,3 @@ in statefulness // {
   # Kuusi has a nvme disk; this should make it faster.
   boot.initrd.luks.devices.root.bypassWorkqueues = true;
 }
-

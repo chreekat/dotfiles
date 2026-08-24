@@ -17,6 +17,19 @@ statefulness // {
 
   hardware.cpu.intel.updateMicrocode = true;
 
+  # Built from channels rather than systems/flake.nix, so the sources the
+  # shared modules expect from the flake are supplied by hand.
+  _module.args.inputs = {
+    nonfree-fonts = ./overlays/nonfree-fonts;
+    agenix-cli = builtins.fetchTarball "https://github.com/ryantm/agenix/archive/main.tar.gz";
+    losh-t = fetchGit { url = "https://github.com/sjl/t"; };
+  };
+
+  system.autoUpgrade = {
+    enable = true;
+    dates = "12:30";
+  };
+
   #services.transmission = {
   #  enable = true;
   #  settings = {

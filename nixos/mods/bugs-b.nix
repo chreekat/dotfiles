@@ -1,4 +1,4 @@
-{ pkgs, ...}:
+{ pkgs, inputs, ...}:
 let
   # Handy tool for tracking works in progress
   bugs =
@@ -7,9 +7,7 @@ let
         pname = "losh-t";
         format = "setuptools";
         version = "1.2.0";
-        src = fetchGit {
-          url = "https://github.com/sjl/t";
-        };
+        src = inputs.losh-t;
       };
     in
     pkgs.writeScriptBin "b" ''

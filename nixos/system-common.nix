@@ -1,4 +1,4 @@
-{ lib, pkgs, ... }:
+{ lib, pkgs, inputs, ... }:
 
 let
   patchedExtracturl = pkgs.extract_url.overrideAttrs (old: {
@@ -183,7 +183,7 @@ in
     "slack" "steam" "steam-unwrapped" "claude-code" "codex"
   ];
   nixpkgs.overlays = [
-    (import ./overlays/nonfree-fonts)
+    (import inputs.nonfree-fonts)
   ];
 
   ## Configure programs.
@@ -248,13 +248,6 @@ in
 
   };
 
-
-  system = {
-    autoUpgrade = {
-      enable = true;
-      dates = "12:30";
-    };
-  };
 
   # Don't need to wait for wired connection, yo
   systemd.network.wait-online.anyInterface = true;
