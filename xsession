@@ -2,6 +2,11 @@
 # agent's socket is advertised.
 export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR:-/run/user/$(id -u)}/gcr/ssh"
 
+# Socket activation starts gcr's agent before any display exists, so restart it
+# once there is one.
+systemctl --user import-environment DISPLAY XAUTHORITY
+systemctl --user restart gcr-ssh-agent.service
+
 configure_X () {
     /home/b/bin/scr on
     xsetroot -mod 16 16 -bg "#262626"
