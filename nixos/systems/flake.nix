@@ -28,6 +28,10 @@
       url = "github:sjl/t";
       flake = false;
     };
+    # Locally developed, but pulled from origin rather than the checkouts in
+    # ~/Projects so kuusi evaluates purely.
+    hat.url = "github:chreekat/hat";
+    "4h".url = "github:chreekat/4h";
   };
 
   outputs = inputs@{ self, nixpkgs, nixpkgs-kuusi, nixpkgs-puny, disko, agenix, ... }:  {

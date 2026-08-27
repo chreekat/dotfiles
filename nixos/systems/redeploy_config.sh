@@ -21,10 +21,7 @@ target=(
 nixos_rebuild_args=(
     ["puny"]="--sudo"
     ["honk"]="--sudo"
-    # mods/local-packages.nix builds from local checkouts, so a rebuild deploys
-    # whatever is on disk there. Pure evaluation forbids absolute paths, so
-    # kuusi is built impurely.
-    ["kuusi"]="--impure --sudo"
+    ["kuusi"]="--sudo"
 );
 
 redeploy_prehook () {

@@ -1,5 +1,5 @@
 # Packages I'm developing locally I want avalailable in the system.
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 
 {
   # ghc-debug-brick's attribute map is hardcoded -- no theme file, no flag --
@@ -16,8 +16,8 @@
   ];
 
   environment.systemPackages = [
-    (pkgs.callPackage /home/b/Projects/hat/package.nix { ghcDebug = true; })
-    (pkgs.callPackage /home/b/Projects/4h/package.nix { })
+    (inputs.hat.packages.${pkgs.stdenv.hostPlatform.system}.hat.override { ghcDebug = true; })
+    inputs."4h".packages.${pkgs.stdenv.hostPlatform.system}."4h"
     pkgs.haskellPackages.ghc-debug-brick
   ];
 }

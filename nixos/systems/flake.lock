@@ -1,5 +1,23 @@
 {
   "nodes": {
+    "4h": {
+      "inputs": {
+        "nixpkgs": "nixpkgs"
+      },
+      "locked": {
+        "lastModified": 1787827957,
+        "narHash": "sha256-iTX/fVE2pthhQt4/48h53AlM2g0FIb16FXAu6+HxS28=",
+        "owner": "chreekat",
+        "repo": "4h",
+        "rev": "0c518258559712c94a4ffc4c750cfacbfe797119",
+        "type": "github"
+      },
+      "original": {
+        "owner": "chreekat",
+        "repo": "4h",
+        "type": "github"
+      }
+    },
     "agenix": {
       "inputs": {
         "darwin": "darwin",
@@ -81,6 +99,43 @@
         "type": "github"
       }
     },
+    "flake-compat": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1767039857,
+        "narHash": "sha256-vNpUSpF5Nuw8xvDLj2KCwwksIbjua2LZCqhV1LNRDns=",
+        "owner": "edolstra",
+        "repo": "flake-compat",
+        "rev": "5edf11c44bc78a0d334f6334cdaf7d60d732daab",
+        "type": "github"
+      },
+      "original": {
+        "owner": "edolstra",
+        "repo": "flake-compat",
+        "type": "github"
+      }
+    },
+    "hat": {
+      "inputs": {
+        "flake-compat": "flake-compat",
+        "nixpkgs": "nixpkgs_2",
+        "nixpkgs-ghostty": "nixpkgs-ghostty",
+        "tmux-src": "tmux-src"
+      },
+      "locked": {
+        "lastModified": 1787828792,
+        "narHash": "sha256-u5AyD5RjwewuqdAog2UaFMKaR9CaUAlEu9jM3I6IMQw=",
+        "owner": "chreekat",
+        "repo": "hat",
+        "rev": "b0a5aed1ca090f85e1c0e7fe7c48a7aaec66ff9f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "chreekat",
+        "repo": "hat",
+        "type": "github"
+      }
+    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -120,17 +175,33 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1787525875,
-        "narHash": "sha256-sKbMlkDCBVmAjUVT94LwhVtET/YEMtZaFdn5UduWxz8=",
+        "lastModified": 1787498568,
+        "narHash": "sha256-9i/VTdusq/+NM/tz+J1Re+ojkMB8MBf0QshnYfzHz30=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "a3b98866eecd08edac6e61a3081e69540a35020f",
+        "rev": "56c02bc00adcf003215cc4bd996d6efaf4cff188",
         "type": "github"
       },
       "original": {
         "owner": "NixOS",
-        "ref": "nixos-26.05",
+        "ref": "nixos-unstable",
         "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs-ghostty": {
+      "locked": {
+        "lastModified": 1783224372,
+        "narHash": "sha256-8i/87eeoqiGE4yOTjwSA3Eh/ziJRQEmd/unYU+K27sk=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "d407951447dcd00442e97087bf374aad70c04cea",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "d407951447dcd00442e97087bf374aad70c04cea",
         "type": "github"
       }
     },
@@ -166,6 +237,38 @@
         "type": "github"
       }
     },
+    "nixpkgs_2": {
+      "locked": {
+        "lastModified": 1787135253,
+        "narHash": "sha256-RD2kNWCG+Bjo6h+JVjWVNntZs2GtRoeY2xHjts/FNkA=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "ffb3c9b700e759be2ef13237c9d8f953b32a1e46",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_3": {
+      "locked": {
+        "lastModified": 1787525875,
+        "narHash": "sha256-sKbMlkDCBVmAjUVT94LwhVtET/YEMtZaFdn5UduWxz8=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "a3b98866eecd08edac6e61a3081e69540a35020f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-26.05",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nonfree-fonts": {
       "flake": false,
       "locked": {
@@ -184,11 +287,13 @@
     },
     "root": {
       "inputs": {
+        "4h": "4h",
         "agenix": "agenix",
         "agenix-cli": "agenix-cli",
         "disko": "disko",
+        "hat": "hat",
         "losh-t": "losh-t",
-        "nixpkgs": "nixpkgs",
+        "nixpkgs": "nixpkgs_3",
         "nixpkgs-kuusi": "nixpkgs-kuusi",
         "nixpkgs-puny": "nixpkgs-puny",
         "nonfree-fonts": "nonfree-fonts"
@@ -206,6 +311,23 @@
       "original": {
         "owner": "nix-systems",
         "repo": "default",
+        "type": "github"
+      }
+    },
+    "tmux-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1785385372,
+        "narHash": "sha256-/iRpbo6jady0bFg1MZP/Jsf1itIS41GXhZ6edmJoHHo=",
+        "owner": "tmux",
+        "repo": "tmux",
+        "rev": "31dccb6bc9521b0ea46307974d071ad7f09f0e9b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "tmux",
+        "repo": "tmux",
+        "rev": "31dccb6bc9521b0ea46307974d071ad7f09f0e9b",
         "type": "github"
       }
     }
