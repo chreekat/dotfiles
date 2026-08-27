@@ -40,8 +40,7 @@
         ../mods/desktop.nix
         ../mods/dynamic-derivations.nix
         ../mods/freelance.nix
-        ../mods/games.nix
-        ../mods/hat.nix
+        ../mods/local-packages.nix
         ../mods/laptop.nix
         ../mods/p4.nix
         ../mods/security-key.nix

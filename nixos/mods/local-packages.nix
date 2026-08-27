@@ -1,9 +1,10 @@
+# Packages I'm developing locally I want avalailable in the system.
 { pkgs, ... }:
 
 {
   # ghc-debug-brick's attribute map is hardcoded -- no theme file, no flag --
   # and its default attribute carries a blanket dim, so every unnamed piece of
-  # text renders faint in a terminal that honours SGR 2. hat does.
+  # text renders faint in a terminal that honours SGR 2.
   nixpkgs.overlays = [
     (final: prev: {
       haskellPackages = prev.haskellPackages.extend (_: hprev: {
@@ -14,11 +15,9 @@
     })
   ];
 
-  # hat, the terminal multiplexer (https://git.sr.ht/~chreekat/hat) —
-  # packaged from the local checkout, so a rebuild deploys whatever is
-  # on disk there.
   environment.systemPackages = [
     (pkgs.callPackage /home/b/Projects/hat/package.nix { ghcDebug = true; })
+    (pkgs.callPackage /home/b/Projects/4h/package.nix { })
     pkgs.haskellPackages.ghc-debug-brick
   ];
 }

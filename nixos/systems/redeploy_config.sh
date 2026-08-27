@@ -21,9 +21,9 @@ target=(
 nixos_rebuild_args=(
     ["puny"]="--sudo"
     ["honk"]="--sudo"
-    # mods/hat.nix packages hat from the checkout at /home/b/Projects/hat so a
-    # rebuild deploys whatever is on disk there. Pure evaluation forbids
-    # absolute paths, so kuusi is built impurely.
+    # mods/local-packages.nix builds from local checkouts, so a rebuild deploys
+    # whatever is on disk there. Pure evaluation forbids absolute paths, so
+    # kuusi is built impurely.
     ["kuusi"]="--impure --sudo"
 );
 

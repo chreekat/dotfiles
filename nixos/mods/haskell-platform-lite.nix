@@ -10,7 +10,6 @@
     pkgs.haskellPackages.ghc-events
     pkgs.haskellPackages.hasktags
     pkgs.haskellPackages.ghc-tags
-    pkgs.haskell-language-server
     pkgs.hlint
     pkgs.hpack
     pkgs.stack
