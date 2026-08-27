@@ -6,7 +6,7 @@ old=(
     "honk"
     /nix/store/yljm183gn2dr3sflgayifdyzv0kpk8bz-nixos-system-honk-26.05.20260817.0dd31db
     "kuusi"
-    /nix/store/xx8a5x07qn6035p4w23wj53swf974hbs-nixos-system-kuusi-26.05.20260820.5880666
+    /nix/store/vhyi09z8rzm4xgbaqizdp0yzsaknkf7w-nixos-system-kuusi-26.05.20260823.a3b9886
 )
 
 # shellcheck disable=SC2190
