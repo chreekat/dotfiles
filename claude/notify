@@ -8,6 +8,16 @@ mkdir -p "$CACHE_DIR"
 TITLE="$1"
 BODY="$2"
 
+# Hook payload on stdin; session name is cached by statusline-command.sh
+INPUT=$(cat 2>/dev/null)
+SESSION_ID=$(jq -r '.session_id // empty' <<<"$INPUT" 2>/dev/null)
+CWD=$(jq -r '.cwd // empty' <<<"$INPUT" 2>/dev/null)
+
+NAME=""
+[ -n "$SESSION_ID" ] && NAME=$(cat "$CACHE_DIR/name-$SESSION_ID" 2>/dev/null)
+[ -z "$NAME" ] && [ -n "$CWD" ] && NAME=$(basename "$CWD")
+[ -n "$NAME" ] && TITLE="$TITLE [$NAME]"
+
 (
     flock -x 200
 
@@ -26,5 +36,6 @@ BODY="$2"
     fi
 
     echo "$NOW" > "$CACHE_DIR/last"
+    find "$CACHE_DIR" -name 'name-*' -mtime +30 -delete
     curl -s -H "Title: $TITLE" -d "$BODY" http://puny:8080/claude
 ) 200>"$CACHE_DIR/lock"
