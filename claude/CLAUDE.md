@@ -53,7 +53,16 @@ messages. (Past examples: Co-Authored-By, Claude-Session)
   value or function. When one explanation must connect disparate bits of code,
   use GHC's Note convention: write the prose once under a titled `Note [Some
   title]` block, and point each relevant site at it with a bare `-- See Note
-  [Some title]` reference instead of restating or splitting it.
+  [Some title]` reference instead of restating or splitting it. The definition
+  site underlines its title with a matching-length line of tildes:
+
+      -- Note [Some title]
+      -- ~~~~~~~~~~~~~~~~~
+      -- prose...
+
+  (same shape in other comment syntaxes, e.g. `#` files). The underline is part
+  of the convention, not decoration -- it is what makes the definition site
+  greppable apart from its references.
 - Document behavior at the function that enacts it, never at a value's
   declaration site. A type/field/constructor/constant doc describes only what
   the value IS (meaning, invariants, representation) -- at most a bare "see
