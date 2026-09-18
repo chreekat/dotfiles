@@ -13,6 +13,11 @@
             ../patches/ghc-debug-brick-contrast.patch;
       });
     })
+    # The custom ghcid fork replaces nixpkgs' everywhere pkgs.ghcid is used,
+    # including haskell-platform-lite.
+    (final: prev: {
+      ghcid = inputs.ghcid.packages.${prev.stdenv.hostPlatform.system}.ghcid;
+    })
   ];
 
   environment.systemPackages = [

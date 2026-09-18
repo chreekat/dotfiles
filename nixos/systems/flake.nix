@@ -1,8 +1,8 @@
 {
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
-    nixpkgs-kuusi.url = "github:NixOS/nixpkgs/nixos-26.05";
-    nixpkgs-puny.url = "github:NixOS/nixpkgs/nixos-26.05";
+    nixpkgs.url = "https://channels.nixos.org/nixos-26.05/nixexprs.tar.zst";
+    nixpkgs-kuusi.url = "https://channels.nixos.org/nixos-26.05/nixexprs.tar.zst";
+    nixpkgs-puny.url = "https://channels.nixos.org/nixos-26.05/nixexprs.tar.zst";
     agenix = {
       url = "github:ryantm/agenix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -32,6 +32,7 @@
     # ~/Projects so kuusi evaluates purely.
     hat.url = "github:chreekat/hat";
     "4h".url = "github:chreekat/4h";
+    ghcid.url = "github:chreekat/ghcid";
   };
 
   outputs = inputs@{ self, nixpkgs, nixpkgs-kuusi, nixpkgs-puny, disko, agenix, ... }:  {
@@ -41,6 +42,7 @@
       modules = [
         ../mods/amdgpu.nix
         ../mods/beyboard.nix
+        ../mods/centralapp.nix
         ../mods/desktop.nix
         ../mods/dynamic-derivations.nix
         ../mods/freelance.nix

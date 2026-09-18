@@ -10,6 +10,7 @@ let
     /etc/nixos/hardware-configuration.nix
     ./system-common.nix
     ./mods/laptop.nix
+    ./mods/user-b.nix
   ];
 in
 statefulness // {
