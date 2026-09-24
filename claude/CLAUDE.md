@@ -12,6 +12,12 @@ messages. (Past examples: Co-Authored-By, Claude-Session)
   skips it because clean only ever removes untracked files.
 - If you do not know what is in the tree, run `git status` and look before
   staging. Stage the paths you changed on purpose, nothing else.
+- Never push; I push everything myself. This is deliberate supply-chain
+  defense, not distrust of agents: publishing requires my hardware key, so
+  automation compromised under my identity cannot exfiltrate or publish. An
+  auth failure on a push path is the design working -- report it and hand me
+  the branch; never route around it (HTTPS remotes, gh api, tokens, deploy
+  keys).
 
 ## Dotfiles:
 - `~/.claude/` is not where my config lives. `CLAUDE.md`, `settings.json`,
@@ -157,6 +163,12 @@ messages. (Past examples: Co-Authored-By, Claude-Session)
 
 ## Research rules:
 - Never run `find /`.
+
+## Benchmarking rules:
+- For performance benchmarks (instructions-retired slopes, gate baselines
+  re-recorded in-band with win commits, workload coverage, profiler
+  attribution), follow [benchmarking.md](benchmarking.md). Read it before
+  writing a benchmark or interpreting one's results.
 
 ## Testing rules:
 - Tests must exercise library code. That's the whole point.

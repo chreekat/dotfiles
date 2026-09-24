@@ -72,10 +72,10 @@
 	format = ssh
 [gpg "ssh"]
 	allowedSignersFile = ~/.config/git/allowed-signers
-[user]
-	# Swap this if you've only got the Yubikey handy
-	signingkey = ~/.ssh/id_ed25519_sk_sign_n.pub
-
+	# Not a path-type value: git won't expand ~ here. Also only accepts
+	# key:: literals, which git always signs via the agent (ssh-keygen -U),
+	# so this is why the gcr ssh-agent must stay enabled.
+	defaultKeyCommand = /home/b/.config/git/signing-key-command
 [push]
 	default = simple
 	gpgSign = "if-asked"

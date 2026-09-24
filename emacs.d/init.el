@@ -2,6 +2,9 @@
   (require 'use-package))
 (setq use-package-always-ensure t)
 
+; Let emacsclient reach this session (e.g. for scripted org edits).
+(server-start)
+
 ;; Switch theme in response to the freedesktop color-scheme preference.
 (require 'dbus)
 (defun my-handle-color-scheme-change (path var value)
@@ -149,6 +152,10 @@ so buffer modifications don't interfere with the iteration."
                       ("project_proposal" . nil)
                       ("accounting" . nil)
                       ))
+
+; Every entry carries its tags explicitly (so refiling can't change meaning);
+; only `secondary' still inherits, since it works as a whole-file agenda filter.
+(setq org-use-tag-inheritance '("secondary"))
 
 (setq org-capture-templates
       '(("i" "Inbox" entry (file "/home/b/Syncthing/PhoneFiles/org/Inbox.org")

@@ -1,0 +1,10 @@
+#!/bin/sh
+# gpg.ssh.defaultKeyCommand: sign with whichever token is attached (nitro wins)
+if lsusb | grep -qi nitrokey; then
+    echo "key::$(cat "$HOME/.ssh/id_ed25519_sk_sign_n.pub")"
+elif lsusb | grep -qi yubico; then
+    echo "key::$(cat "$HOME/.ssh/id_ed25519_sk_sign_y.pub")"
+else
+    echo "no signing token attached" >&2
+    exit 1
+fi

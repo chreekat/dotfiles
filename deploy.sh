@@ -94,6 +94,7 @@ DOTS=(
     bashrc
     claude/CLAUDE.md
     claude/architecture-defaults.md
+    claude/benchmarking.md
     claude/haskell-exceptions.md
     claude/haskell-space-leaks.md
     claude/keybindings.json
@@ -106,6 +107,7 @@ DOTS=(
     config/ghostty
     config/git/allowed-signers
     config/git/config
+    config/git/signing-key-command
     config/hat/hat.conf
     config/keynav/keynavrc
     config/systemd/user/lorri.service

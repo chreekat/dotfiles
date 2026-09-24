@@ -10,3 +10,6 @@ keybind = ctrl+enter=unbind
 keybind = ctrl+-=unbind
 keybind = ctrl+shift+-=decrease_font_size:1
 keybind = ctrl+shift++=increase_font_size:1
+
+# Good idea, but in the wrong spot.
+link-previews = false

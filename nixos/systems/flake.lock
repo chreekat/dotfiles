@@ -158,11 +158,11 @@
         "tmux-src": "tmux-src"
       },
       "locked": {
-        "lastModified": 1789050838,
-        "narHash": "sha256-stEK1TIqKfSdENsrkPQD8jmlad0tskJW3B121j/LEpA=",
+        "lastModified": 1790246202,
+        "narHash": "sha256-vtIDSDoihPAAdVUPIUarnh6z1a+DvAneDT5ui0uQI5M=",
         "owner": "chreekat",
         "repo": "hat",
-        "rev": "eefcc2f1a2855ca0692014ff5bdbf3d2b6614b3d",
+        "rev": "03d7a9ea082989e2154579f917b3c97136dfa3be",
         "type": "github"
       },
       "original": {
@@ -242,11 +242,11 @@
     },
     "nixpkgs-kuusi": {
       "locked": {
-        "lastModified": 1788921488,
-        "narHash": "sha256-JLopN/XSodSsJIZ7v7tEjpPZ+QXc883s3HoUIxHD8Io=",
-        "rev": "6aefcda9401be8acc2b74244fb3b37520ea1f0a8",
+        "lastModified": 1790113641,
+        "narHash": "sha256-DfkF+sEdKXCrvkg7olt82Q9cfP3p7Ro2R851fcTcSxI=",
+        "rev": "1bc55b9def8165e82073919945c3239903fe4dc2",
         "type": "tarball",
-        "url": "https://releases.nixos.org/nixos/26.05/nixos-26.05.9440.6aefcda9401b/nixexprs.tar.zst"
+        "url": "https://releases.nixos.org/nixos/26.05/nixos-26.05.10478.1bc55b9def81/nixexprs.tar.zst"
       },
       "original": {
         "type": "tarball",

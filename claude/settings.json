@@ -20,7 +20,7 @@
     ],
     "defaultMode": "auto"
   },
-  "model": "claude-fable-5[1m]",
+  "model": "fable",
   "hooks": {
     "UserPromptSubmit": [
       {
@@ -68,9 +68,6 @@
     "type": "command",
     "command": "bash ~/.claude/statusline-command.sh"
   },
-  "enabledPlugins": {
-    "code-review@claude-plugins-official": true
-  },
   "extraKnownMarketplaces": {
     "thedotmack": {
       "source": {
@@ -81,7 +78,13 @@
   },
   "effortLevel": "high",
   "tui": "fullscreen",
+  "voice": {
+    "enabled": true,
+    "mode": "tap"
+  },
   "theme": "auto",
   "agentPushNotifEnabled": true,
-  "skipAutoPermissionPrompt": true
+  "skipAutoPermissionPrompt": true,
+  "voiceEnabled": true,
+  "switchModelsOnFlag": false
 }

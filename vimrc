@@ -333,9 +333,17 @@ augroup END
 ""
 "" Scheme Usability Tweaks
 ""
+
+" Truecolor. TERM=tmux-256color doesn't advertise RGB, so set the codes.
+if has('termguicolors')
+    let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+    let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+    set termguicolors
+endif
+
 augroup vimrc_highlighting
     au!
-    au ColorScheme apprentice hi Comment ctermfg=137
+    au ColorScheme apprentice hi Comment ctermfg=137 guifg=#af875f
     au ColorScheme default hi Comment ctermfg=33
     au ColorScheme default hi Pmenu ctermfg=NONE
     " ^ Term colorscheme makes this invisible otherwise
@@ -349,11 +357,29 @@ augroup vimrc_highlighting
     au ColorScheme default hi DiffDelete ctermfg=203 cterm=reverse
     au ColorScheme default hi DiffText ctermfg=173 cterm=reverse
     au ColorScheme default hi DiffChange ctermfg=104 cterm=reverse
-    au ColorScheme PaperColor hi Folded ctermbg=NONE
-    au ColorScheme * hi CopilotSuggestion cterm=reverse
-    au ColorScheme * hi Comment cterm=italic
-    au ColorScheme * hi Title cterm=bold ctermfg=red
-    au ColorScheme apprentice hi Folded ctermbg=NONE
+    au ColorScheme PaperColor hi Folded ctermbg=NONE guibg=NONE
+    " Apprentice draws diffs in reverse video; use dark backgrounds instead
+    au ColorScheme apprentice hi DiffAdd NONE
+    au ColorScheme apprentice hi DiffDelete NONE
+    au ColorScheme apprentice hi DiffChange NONE
+    au ColorScheme apprentice hi DiffText NONE
+    au ColorScheme apprentice hi DiffAdd ctermbg=22 guibg=#1e3a1e
+    au ColorScheme apprentice hi DiffDelete ctermfg=238 guifg=#444444
+    au ColorScheme apprentice hi DiffChange ctermbg=236 guibg=#303030
+    au ColorScheme apprentice hi DiffText cterm=bold ctermbg=17 gui=bold guibg=#1c3a5e
+    " PaperColor's are loud and put the emphasis on DiffChange instead of DiffText
+    au ColorScheme PaperColor hi DiffAdd NONE
+    au ColorScheme PaperColor hi DiffDelete NONE
+    au ColorScheme PaperColor hi DiffChange NONE
+    au ColorScheme PaperColor hi DiffText NONE
+    au ColorScheme PaperColor hi DiffAdd ctermbg=151 guibg=#c8e6c9
+    au ColorScheme PaperColor hi DiffDelete ctermfg=250 guifg=#bcbcbc
+    au ColorScheme PaperColor hi DiffChange ctermbg=254 guibg=#e0e0e0
+    au ColorScheme PaperColor hi DiffText cterm=bold ctermbg=153 gui=bold guibg=#b3d4f5
+    au ColorScheme * hi CopilotSuggestion cterm=reverse gui=reverse
+    au ColorScheme * hi Comment cterm=italic gui=italic
+    au ColorScheme * hi Title cterm=bold ctermfg=red gui=bold guifg=red
+    au ColorScheme apprentice hi Folded ctermbg=NONE guibg=NONE
 augroup END
 " Follow the freedesktop color-scheme preference (the signal Emacs also uses).
 " A value of 1 means dark; anything else means light.
