@@ -23,7 +23,7 @@ relied on.
   blown and the LAN route needs fixing first.
 - Multiplayer on integrity-checked servers is the end goal. Intermediate
   steps may break the integrity check; the finished setup must not.
-  Milestones 1-3 are integrity-clean by construction: the MFD viewports are
+  Milestones 1-3 are integrity-clean by construction: the MPD viewports are
   hooked by the unmodified module, and nothing is installed outside Saved
   Games.
 - Viewport hooks in the module, verified by grepping the install for
@@ -70,7 +70,7 @@ Chosen: virtual monitor on Windows, captured and streamed as a whole.
   display's origin, so the virtual monitor is arranged in Windows directly
   to the right of the main one, top-aligned, and its viewports get
   `x = main_width` (secondary, ~80% confident; Milestone 2 step 1 confirms).
-- Panel layout: `windows/MonitorSetup/ThinkpadMFD.lua`. The two MFDs fill
+- Panel layout: `windows/MonitorSetup/ThinkpadMPD.lua`. The two MPDs fill
   the top 960 rows of the panel, leaving a 1920x120 strip at the bottom for
   Milestone 4's EUFD; the window's bottom 360 rows under the panel fall on
   no monitor at all, which is harmless.
@@ -82,11 +82,11 @@ Alternatives, and why not first:
   removes it when the stream ends, so DCS must be launched after Moonlight
   connects every time. Also unclear (~60%) whether it extends rather than
   replaces the desktop. Fallback if the Virtual Display Driver misbehaves.
-- Render the MFDs inside the main monitor and stream a cropped region
+- Render the MPDs inside the main monitor and stream a cropped region
   (OBS + NDI). No driver, but costs main-screen area, and NDI on NixOS is
   awkward. Fallback if no virtual-display route works.
-- Export MFD *data* instead of pixels (Export.lua / DCS-BIOS) and render it
-  ourselves. Not possible for MFDs: pages, TADS video and the map are rendered
+- Export MPD *data* instead of pixels (Export.lua / DCS-BIOS) and render it
+  ourselves. Not possible for MPDs: pages, TADS video and the map are rendered
   in-engine and `list_indication` exposes only text indications. Viable for
   the EUFD and KU, which are text displays -- see Milestone 4.
 
@@ -104,35 +104,35 @@ glass-to-glass latency.
    address. Commit the settings as `windows/sunshine.conf` (only the keys we
    set, never the state file with pairing secrets).
 3. NixOS: `nixos/moonlight.nix`, imported by kuusi in
-   `nixos/systems/flake.nix`. Adds `pkgs.moonlight-qt` and a `dcs-mfd` script
+   `nixos/systems/flake.nix`. Adds `pkgs.moonlight-qt` and a `dcs-mpd` script
    wrapping the `moonlight stream` invocation with the host, resolution,
    fps and bitrate baked in. Pairing is a one-off by hand:
    `moonlight pair smilga`, then the PIN in Sunshine's web UI. Check: the
    demo above, plus the latency number recorded here.
 
-## Milestone 2: Apache MFDs on the Thinkpad
+## Milestone 2: Apache MPDs on the Thinkpad
 
-Demo: in the AH-64D in a free-flight mission, both MFDs appear on the
+Demo: in the AH-64D in a free-flight mission, both MPDs appear on the
 Thinkpad, the main view is unchanged, menus stay on the main screen, and the
 fps hit is measured.
 
-1. Copy `windows/MonitorSetup/ThinkpadMFD.lua` into
+1. Copy `windows/MonitorSetup/ThinkpadMPD.lua` into
    `Saved Games\DCS\Config\MonitorSetup\` (by hand, or `windows/install.ps1`
    once there are three files to copy) and select it in DCS options with
    the resolution and window mode its header names. Check: the viewports
    land where expected; fix `x` if the window origin assumption was wrong.
 2. Tune and measure: DCS fps with and without the export, Sunshine fps and
-   bitrate (MFD content is mostly static, so expect low bitrate to suffice),
+   bitrate (MPD content is mostly static, so expect low bitrate to suffice),
    H.264 vs HEVC decode on kuusi, and the Moonlight overlay's latency figure.
    Numbers go in README.md.
 
 ## Milestone 3: one action per side
 
-Demo: on the Thinkpad, one keybinding (notion) brings up the MFDs fullscreen
+Demo: on the Thinkpad, one keybinding (notion) brings up the MPDs fullscreen
 and quitting the stream returns to the desktop; on Windows, nothing beyond
 launching DCS as usual, because the virtual monitor is always present.
 
-1. notion binding and desktop entry for `dcs-mfd`; Moonlight's own
+1. notion binding and desktop entry for `dcs-mpd`; Moonlight's own
    quit shortcut documented in README.md.
 2. `windows/install.ps1`: copies the monitor-setup Lua and the Sunshine
    settings into place, idempotently.

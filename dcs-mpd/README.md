@@ -1,6 +1,6 @@
-# dcs-mfd
+# dcs-mpd
 
-Turn the NixOS Thinkpad into a secondary display for the AH-64D's MFDs while
+Turn the NixOS Thinkpad into a secondary display for the AH-64D's MPDs while
 DCS World runs on the Windows machine.
 
 ## How it works
@@ -16,7 +16,7 @@ DCS World runs on the Windows machine.
 
 - The Virtual Display Driver adds a monitor to Windows sized to the Thinkpad
   panel.
-- DCS's monitor-setup Lua places the MFD viewports in that monitor's region.
+- DCS's monitor-setup Lua places the MPD viewports in that monitor's region.
 - Sunshine captures only that monitor and streams it with the GPU's encoder.
 - Moonlight on the Thinkpad shows the stream fullscreen.
 

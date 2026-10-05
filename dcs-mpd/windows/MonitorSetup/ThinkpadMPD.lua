@@ -1,9 +1,9 @@
--- Installed as Saved Games\DCS\Config\MonitorSetup\ThinkpadMFD.lua and picked
+-- Installed as Saved Games\DCS\Config\MonitorSetup\ThinkpadMPD.lua and picked
 -- under Options > System > Monitors, with resolution 5360x1440, borderless.
 -- Columns 3440 and up are the virtual monitor that kuusi shows.
 _  = function(p) return p end
-name = _('ThinkpadMFD')
-description = 'Main monitor, with the MFDs on the Thinkpad'
+name = _('ThinkpadMPD')
+description = 'Main monitor, with the MPDs on the Thinkpad'
 
 Viewports =
 {

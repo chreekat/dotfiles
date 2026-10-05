@@ -54,7 +54,7 @@
         ../mods/suspend-retry.nix
         ../mods/user-b.nix
         ../system-common.nix
-        ../../dcs-mfd/nixos/moonlight.nix
+        ../../dcs-mpd/nixos/moonlight.nix
         ./kuusi/configuration.nix
       ];
     };

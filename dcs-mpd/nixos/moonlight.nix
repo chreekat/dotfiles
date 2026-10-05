@@ -1,8 +1,8 @@
-# The Thinkpad side of dcs-mfd: Moonlight, and `dcs-mfd` to show smilga's
+# The Thinkpad side of dcs-mpd: Moonlight, and `dcs-mpd` to show smilga's
 # virtual monitor fullscreen. Pair once by hand with `moonlight pair smilga`.
 { pkgs, ... }:
 let
-  dcs-mfd = pkgs.writeShellScriptBin "dcs-mfd" ''
+  dcs-mpd = pkgs.writeShellScriptBin "dcs-mpd" ''
     exec ${pkgs.moonlight-qt}/bin/moonlight stream smilga Desktop \
       --display-mode fullscreen \
       --resolution 1920x1080 \
@@ -16,6 +16,6 @@ in
 {
   environment.systemPackages = [
     pkgs.moonlight-qt
-    dcs-mfd
+    dcs-mpd
   ];
 }
