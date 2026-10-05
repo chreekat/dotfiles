@@ -21,11 +21,9 @@ relied on.
   `RIGHT_MFCD` need no module edits, and nothing is installed outside Saved
   Games.
 - Pilot seat only. CPG (and the TEDAC) is a later project.
-- Bezel-button input is a planned milestone, not a stretch goal.
-- The panel is NOT a touchscreen: it is an Innolux N140HCG-GQ2, a matte
-  non-touch part (verified: panel model read from the eDP EDID; no touch
-  controller exists in any ACPI table or on USB). Pressing bezel buttons
-  therefore needs added hardware -- see "Bezel input" below.
+- The panel is not a touchscreen: Innolux N140HCG-GQ2, a matte non-touch
+  part (verified from the eDP EDID; no touch controller in ACPI or on USB).
+  Bezel-button input would need hardware and is out of scope.
 
 ## Inputs still needed
 
@@ -72,25 +70,8 @@ Chosen: virtual monitor on Windows, captured and streamed as a whole.
   display's origin, so the virtual monitor is arranged in Windows directly
   to the right of the main one, top-aligned, and its viewports get
   `x = main_width` (secondary, ~80% confident; Milestone 2 step 1 confirms).
-- Panel layout. Two MPD screens side by side, each a square, with a black
-  ring around each where the physical bezel's buttons sit. A 70 px ring gives
-  820x820 screens: 70 + 820 + 70 = 960 per MFD across, and 960 of the 1080
-  rows, leaving a 120 px strip for Milestone 5's EUFD. The ring width is a
-  placeholder until the bezel hardware is chosen (its cutout dictates the
-  square); the Lua and the input map share these numbers, so they live in
-  one place once Milestone 4 starts.
-- Bezel input. The panel is not touch, so bezel buttons mean physical
-  hardware in front of the screen: Thrustmaster MFD Cougar bezels, two USB
-  frames of 20 buttons each, made for exactly this. Plugged into the Windows
-  machine they bind in DCS's own controls and need no code at all; plugged
-  into kuusi they need an evdev-to-DCS-BIOS forwarder (Haskell: read the
-  frame's evdev node, map button to DCS-BIOS command, send to its UDP
-  command port over Tailscale). The screen squares must match the frame's
-  cutout -- measure before committing to a layout. DCS-BIOS lives in Saved
-  Games `Export.lua`, which the integrity check does not cover (secondary,
-  ~85%); its AH-64D support includes the MPD buttons (secondary, ~85%).
-  Moonlight-forwarded clicks are no route: exported viewports are not
-  clickable in DCS (secondary).
+- Panel layout. Two MPD screens side by side, each a 960x960 square at the
+  top of the panel, leaving a 1920x120 strip below for Milestone 4's EUFD.
 
 Alternatives, and why not first:
 
@@ -105,10 +86,7 @@ Alternatives, and why not first:
 - Export MFD *data* instead of pixels (Export.lua / DCS-BIOS) and render it
   ourselves. Not possible for MFDs: pages, TADS video and the map are rendered
   in-engine and `list_indication` exposes only text indications. Viable for
-  the EUFD and KU, which are text displays -- see Milestone 5.
-- Drawing bezel buttons on kuusi as an overlay window. Unnecessary given the
-  on-screen labels, and an X11 overlay under notion on top of a fullscreen
-  SDL window is its own project.
+  the EUFD and KU, which are text displays -- see Milestone 4.
 
 ## Milestone 1: the Thinkpad shows a Windows virtual monitor
 
@@ -159,31 +137,7 @@ launching DCS as usual, because the virtual monitor is always present.
 3. README.md "Flying" section: the full ritual, both sides, plus what to do
    when the stream drops mid-flight.
 
-## Milestone 4: press the MFD bezels
-
-Demo: pressing a bezel button beside an on-screen label presses that button
-in the cockpit, in multiplayer, with Moonlight still fullscreen.
-
-1. Get the bezels, measure the cutout, and resize the Milestone 2 layout to
-   it.
-2. Simplest wiring first: bezels on the Windows machine, bound in DCS's own
-   controls. If that holds, this milestone is hardware plus a layout tweak
-   and steps 3-5 vanish.
-3. Otherwise (bezels on kuusi): spike, no code committed.
-   Install DCS-BIOS on Windows, confirm from its AH-64D control reference
-   that the MPD bezel buttons are exposed, and send one press by hand with
-   `nc -u` from kuusi. This settles the two secondary facts above before
-   anything is built on them.
-4. `bezel/` Haskell project: read the device's evdev node, print events.
-   Pure core: `eventToButton :: Layout -> InputEvent -> Maybe Button` with
-   the layout rectangles shared with the Lua (generate the Lua from the
-   Haskell layout, or the other way round; pick when here).
-5. Send `Button` presses as DCS-BIOS commands over UDP; a NixOS user service
-   or a wrapper so `dcs-mfd` starts and stops it with the stream.
-6. Rocker and knob controls on the MPD (brightness, video, the page rockers)
-   as a second pass if the button mapping holds up.
-
-## Milestone 5 (stretch): EUFD in the free strip
+## Milestone 4 (stretch): EUFD in the free strip
 
 The EUFD is a text display, so the integrity-safe route is to render it on
 kuusi from exported data rather than export its pixels: Export.lua sends
