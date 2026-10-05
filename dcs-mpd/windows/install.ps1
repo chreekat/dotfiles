@@ -144,9 +144,14 @@ $service = Get-Service | Where-Object { $_.Name -match 'Sunshine' } | Select-Obj
 if (-not $service) { Manual "no Sunshine service found after install; reboot or reinstall Sunshine" }
 if ($service.Status -ne 'Running') { Start-Service $service.Name }
 
-$displays = SunshineDisplays "$sunshineDir\sunshine.log"
+# The display list is logged a few seconds after the service starts.
+$deadline = (Get-Date).AddSeconds(60)
+do {
+    $displays = SunshineDisplays "$sunshineDir\sunshine.log"
+    if (-not $displays) { Start-Sleep -Seconds 2 }
+} while (-not $displays -and (Get-Date) -lt $deadline)
 if (-not $displays) {
-    Manual "Sunshine has not logged its display list yet; restart the $($service.Name) service and look in $sunshineDir\sunshine.log"
+    Manual "Sunshine did not log its display list within 60 s; restart the $($service.Name) service and look in $sunshineDir\sunshine.log"
 }
 $virtual = @($displays | Where-Object { $_.friendly_name -match 'Virtual|IDD|MTT' })
 if ($virtual.Count -ne 1) {
