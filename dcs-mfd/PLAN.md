@@ -5,24 +5,31 @@ Point-in-time plan. Each milestone ends in something demoable. Facts marked
 blog summaries and must be re-checked against the DCS install before being
 relied on.
 
+## Fixed inputs
+
+- Thinkpad: kuusi, panel `eDP` 1920x1080 at 60 Hz, 309x173 mm (verified,
+  `xrandr`).
+- Windows: NVIDIA GPU, so Sunshine's encoder is `nvenc`.
+- 2D only. No VR.
+- Network: both machines on Tailscale, which takes the direct LAN path when
+  one exists. `tailscale status` on kuusi should show the Windows peer as
+  `direct`; a `relay` entry means the latency budget is blown and the LAN
+  route needs fixing first.
+- Multiplayer on integrity-checked servers is the end goal. Intermediate
+  steps may break the integrity check; the finished setup must not.
+  Milestones 1-3 are integrity-clean by construction: `LEFT_MFCD` and
+  `RIGHT_MFCD` need no module edits, and nothing is installed outside Saved
+  Games.
+- Pilot seat only. CPG (and the TEDAC) is a later project.
+- Touch input is a planned milestone, not a stretch goal.
+
 ## Inputs still needed
 
-Answers change the numbers in Milestones 1 and 2, not their shape.
-
-1. Thinkpad panel: `xrandr` output on kuusi (resolution, refresh rate), and
-   whether kuusi is in fact the Thinkpad in question.
-2. Windows machine: GPU vendor (picks the Sunshine encoder: `nvenc`,
-   `amdvce`, `quicksync`), main monitor resolution, Windows 10 or 11.
-3. 2D or VR? Everything below assumes 2D. Exported viewports under VR are a
-   different problem (secondary: they render to the mirror window, with
-   caveats) and would need their own investigation.
-4. Network path between the two machines: wired, Wi-Fi, same LAN? Is the
-   Windows box on Tailscale? (The Tailscale name would make a stable host
-   address for Moonlight; direct LAN is lower latency.)
-5. Does multiplayer on integrity-checked servers matter? It decides whether
-   EUFD, KU and TEDAC export are on the table at all (see Milestone 4).
-6. Pilot seat only, or CPG too?
-7. The authoritative viewport names, from the install itself:
+1. Main Windows monitor resolution. It sets the combined DCS resolution and
+   the `x` offset of the MFD viewports.
+2. Whether the panel is a touchscreen: `xinput list` on kuusi, looking for a
+   touchscreen device (not the trackpad), and its evdev node.
+3. The authoritative viewport names, from the install itself:
 
        findstr /s /n try_find_assigned_viewport "<DCS>\Mods\aircraft\AH-64D\Cockpit\Scripts\*.lua"
 
@@ -39,18 +46,20 @@ Chosen: virtual monitor on Windows, captured and streamed as a whole.
 - Virtual Display Driver (VirtualDrivers/Virtual-Display-Driver, MIT).
   Installed via `winget install --id=VirtualDrivers.Virtual-Display-Driver -e`;
   resolutions live in `C:\VirtualDisplayDriver\vdd_settings.xml` (verified
-  from its README). The driver is a plain IddCx monitor, so DCS sees it at
-  launch like any other display and no launch ordering is needed.
+  from its README). One mode: 1920x1080 at 60 Hz. The driver is a plain
+  IddCx monitor, so DCS sees it at launch like any other display and no
+  launch ordering is needed.
 - Sunshine on Windows. `output_name` set to the virtual display's
   `device_id` from `%ProgramFiles%\Sunshine\tools\dxgi-info.exe`;
   `dd_configuration_option = ensure_active` so the stream re-enables the
   display if Windows dropped it; `dd_resolution_option = auto` so the display
-  is switched to whatever Moonlight asks for (all verified from Sunshine's
-  configuration.md). Audio stays on the host (`--audio-on-host` on the
-  client).
-- moonlight-qt on NixOS. CLI verified from its source:
-  `moonlight stream <host> Desktop --display-mode fullscreen
-  --resolution WxH --fps 60 --bitrate N --audio-on-host --quit-after`.
+  is switched to whatever Moonlight asks for; `encoder = nvenc` (all
+  verified from Sunshine's configuration.md). Audio stays on the host
+  (`--audio-on-host` on the client).
+- moonlight-qt on NixOS (in nixpkgs, built with VA-API; verified). CLI
+  verified from its source:
+  `moonlight stream <tailscale-name> Desktop --display-mode fullscreen
+  --resolution 1920x1080 --fps 60 --bitrate N --audio-on-host --quit-after`.
   kuusi has an AMD GPU, so decode is VA-API.
 - DCS: borderless window at the combined resolution, a monitor-setup Lua in
   `Saved Games\DCS\Config\MonitorSetup\` with `Viewports.Center` covering the
@@ -61,6 +70,22 @@ Chosen: virtual monitor on Windows, captured and streamed as a whole.
   display's origin, so the virtual monitor is arranged in Windows directly
   to the right of the main one, top-aligned, and its viewports get
   `x = main_width` (secondary, ~80% confident; Milestone 2 step 1 confirms).
+- Panel layout. Two MPD screens side by side, each a square, with the bezel
+  ring around each left black by DCS and owned by the touch layer. A 70 px
+  ring gives 820x820 screens: 70 + 820 + 70 = 960 per MFD across, and
+  70 + 820 + 70 = 960 of the 1080 rows, leaving a 120 px strip for
+  Milestone 5's EUFD. The ring width is a guess until a finger has tried it;
+  the Lua and the touch map share these numbers, so they live in one place
+  once Milestone 4 starts.
+- Touch. The real MPD's bezel buttons are unlabeled; the labels are drawn at
+  the screen edges by the MFD itself, so the stream already shows them.
+  Nothing needs drawing on kuusi. A Haskell program reads the touchscreen's
+  evdev node, grabs it exclusively (`EVIOCGRAB`) so Moonlight never sees the
+  touches as mouse clicks, maps each touch to a bezel button by rectangle,
+  and sends the button press to DCS-BIOS's UDP command port on the Windows
+  machine over Tailscale. DCS-BIOS lives in Saved Games `Export.lua`, which
+  the integrity check does not cover (secondary, ~85%); its AH-64D support
+  includes the MPD buttons (secondary, ~85%).
 
 Alternatives, and why not first:
 
@@ -75,7 +100,10 @@ Alternatives, and why not first:
 - Export MFD *data* instead of pixels (Export.lua / DCS-BIOS) and render it
   ourselves. Not possible for MFDs: pages, TADS video and the map are rendered
   in-engine and `list_indication` exposes only text indications. Viable for
-  the EUFD and KU, which are text displays -- see Milestone 4.
+  the EUFD and KU, which are text displays -- see Milestone 5.
+- Drawing bezel buttons on kuusi as an overlay window. Unnecessary given the
+  on-screen labels, and an X11 overlay under notion on top of a fullscreen
+  SDL window is its own project.
 
 ## Milestone 1: the Thinkpad shows a Windows virtual monitor
 
@@ -83,19 +111,18 @@ Tracer bullet. No DCS involved. Demo: a stopwatch window dragged onto the
 virtual monitor appears on the Thinkpad; a photo of both screens gives the
 glass-to-glass latency.
 
-1. Windows: install the Virtual Display Driver with one mode at the Thinkpad
-   panel's resolution and refresh rate; arrange it right of the main monitor.
-   Check: a window dragged off the right edge disappears into it. Commit
-   `windows/vdd_settings.xml`.
+1. Windows: install the Virtual Display Driver with the one 1920x1080@60
+   mode; arrange it right of the main monitor. Check: a window dragged off
+   the right edge disappears into it. Commit `windows/vdd_settings.xml`.
 2. Windows: install Sunshine; set `output_name`, `dd_configuration_option`,
-   `dd_resolution_option`, encoder; pair the Thinkpad. Commit the settings
-   as `windows/sunshine.conf` (only the keys we set, never the state file
-   with pairing secrets).
+   `dd_resolution_option`, `encoder`; pair the Thinkpad over its Tailscale
+   address. Commit the settings as `windows/sunshine.conf` (only the keys we
+   set, never the state file with pairing secrets).
 3. NixOS: `nixos/moonlight.nix`, imported by kuusi in
    `nixos/systems/flake.nix`. Adds `pkgs.moonlight-qt` and a `dcs-mfd` script
    wrapping the `moonlight stream` invocation with the host, resolution,
    fps and bitrate baked in. Check: the demo above, plus the latency number
-   recorded here.
+   and the `tailscale status` path recorded here.
 
 ## Milestone 2: Apache MFDs on the Thinkpad
 
@@ -104,15 +131,12 @@ Thinkpad, the main view is unchanged, menus stay on the main screen, and the
 fps hit is measured.
 
 1. `windows/MonitorSetup/ThinkpadMFD.lua` with Center, LEFT_MFCD, RIGHT_MFCD,
-   UIMainView, GU_MAIN_VIEWPORT, with a copy step into Saved Games (by hand,
-   or `windows/install.ps1` once there are three files to copy). DCS
-   options: resolution = main + virtual, borderless, monitors = this preset.
-   Check: the viewports land where expected; fix `x` if the window origin
-   assumption was wrong.
-2. Layout. MPD screens are near-square; on a 16:9 or 16:10 panel two
-   side-by-side squares of height `panel_width / 2` leave a strip free above
-   or below for Milestone 4. Record the chosen rectangles and why.
-3. Tune and measure: DCS fps with and without the export, Sunshine fps and
+   UIMainView, GU_MAIN_VIEWPORT, using the panel layout above, with a copy
+   step into Saved Games (by hand, or `windows/install.ps1` once there are
+   three files to copy). DCS options: resolution = main + 1920 wide,
+   borderless, monitors = this preset. Check: the viewports land where
+   expected; fix `x` if the window origin assumption was wrong.
+2. Tune and measure: DCS fps with and without the export, Sunshine fps and
    bitrate (MFD content is mostly static, so expect low bitrate to suffice),
    H.264 vs HEVC decode on kuusi, and the Moonlight overlay's latency figure.
    Numbers go in README.md.
@@ -130,24 +154,31 @@ launching DCS as usual, because the virtual monitor is always present.
 3. README.md "Flying" section: the full ritual, both sides, plus what to do
    when the stream drops mid-flight.
 
-## Milestone 4 (stretch): EUFD and KU beside the MFDs
+## Milestone 4: touch the MFD bezels
 
-Two routes, decided by input 5 above.
+Demo: tapping the bezel next to an on-screen label presses that button in
+the cockpit, in multiplayer, with Moonlight still fullscreen.
 
-- Integrity-check-breaking route: add `try_find_assigned_viewport` calls in
-  the module's EUFD/KU init Lua and define the viewports in the free strip.
-  Single-player only; must be redone after every DCS update.
-- Integrity-safe route: Export.lua sends `list_indication` text for the EUFD
-  and KU over UDP to kuusi, and a small Haskell program renders them in a
-  window beside a windowed (not fullscreen) Moonlight. The Thinkpad becomes a
-  composite of streamed pixels and locally rendered text. Speculative until
-  someone checks what `list_indication` actually returns for those two
-  devices.
+1. Spike, no code committed: install DCS-BIOS on Windows, confirm from its
+   AH-64D control reference that the MPD bezel buttons are exposed, and send
+   one press by hand with `nc -u` from kuusi. This settles the two secondary
+   facts above before anything is built on them.
+2. `touch/` Haskell project: read the evdev node, grab it, print touch
+   coordinates. Pure core: `touchToButton :: Layout -> Point -> Maybe Button`
+   with the layout rectangles shared with the Lua (generate the Lua from the
+   Haskell layout, or the other way round; pick when here).
+3. Send `Button` presses as DCS-BIOS commands over UDP; a NixOS user service
+   or a wrapper so `dcs-mfd` starts and stops it with the stream.
+4. Rocker and knob controls on the MPD (brightness, video, the page rockers)
+   as a second pass if the tap mapping holds up.
 
-## Milestone 5 (stretch): touch the MFD bezels
+## Milestone 5 (stretch): EUFD in the free strip
 
-If the Thinkpad panel is a touchscreen: an overlay of bezel buttons around
-each MFD on the Thinkpad sends button presses to DCS-BIOS's UDP command port
-on the Windows machine. Clicks forwarded by Moonlight do nothing, since
-exported viewports are not clickable in DCS, so this needs DCS-BIOS (or a
-keybind emulator) regardless. Not planned until Milestones 1-3 are done.
+The EUFD is a text display, so the integrity-safe route is to render it on
+kuusi from exported data rather than export its pixels: Export.lua sends
+`list_indication` text for the EUFD over UDP, and the touch program (now
+also a renderer) draws it in the 120 px strip with Moonlight running
+borderless rather than fullscreen. Speculative until someone checks what
+`list_indication` returns for the EUFD device. The pixel route
+(`AH64_PLT_EUFD` via module Lua edits) is a single-player stepping stone
+only.
