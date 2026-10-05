@@ -96,19 +96,21 @@ Tracer bullet. No DCS involved. Demo: a stopwatch window dragged onto the
 virtual monitor appears on the Thinkpad; a photo of both screens gives the
 glass-to-glass latency.
 
-1. Windows: install the Virtual Display Driver with the one 1920x1080@60
-   mode; arrange it right of the main monitor. Check: a window dragged off
-   the right edge disappears into it. Commit `windows/vdd_settings.xml`.
-2. Windows: install Sunshine; set `output_name`, `dd_configuration_option`,
-   `dd_resolution_option`, `encoder`; pair the Thinkpad over its Tailscale
-   address. Commit the settings as `windows/sunshine.conf` (only the keys we
-   set, never the state file with pairing secrets).
+1. Windows: `windows/install.ps1`, rerun after each step it hands back.
+   It installs the Virtual Display Driver and copies `windows/vdd_settings.xml`
+   (one 1920x1080@60 mode); the driver's own Install click and the
+   monitor's placement right of the main one are by hand, and the script
+   checks both. Check: a window dragged off the right edge disappears.
+2. Windows: the same script installs Sunshine, merges `windows/sunshine.conf`
+   into the live config, takes the virtual display's `device_id` from
+   Sunshine's startup log for `output_name`, and copies the DCS preset into
+   Saved Games. Pairing is by hand: `moonlight pair smilga` on kuusi, the
+   PIN into Sunshine's web UI.
 3. NixOS: `nixos/moonlight.nix`, imported by kuusi in
    `nixos/systems/flake.nix`. Adds `pkgs.moonlight-qt` and a `dcs-mpd` script
    wrapping the `moonlight stream` invocation with the host, resolution,
-   fps and bitrate baked in. Pairing is a one-off by hand:
-   `moonlight pair smilga`, then the PIN in Sunshine's web UI. Check: the
-   demo above, plus the latency number recorded here.
+   fps and bitrate baked in. Check: the demo above, plus the latency
+   number recorded here.
 
 ## Milestone 2: Apache MPDs on the Thinkpad
 
@@ -116,11 +118,9 @@ Demo: in the AH-64D in a free-flight mission, both MPDs appear on the
 Thinkpad, the main view is unchanged, menus stay on the main screen, and the
 fps hit is measured.
 
-1. Copy `windows/MonitorSetup/ThinkpadMPD.lua` into
-   `Saved Games\DCS\Config\MonitorSetup\` (by hand, or `windows/install.ps1`
-   once there are three files to copy) and select it in DCS options with
-   the resolution and window mode its header names. Check: the viewports
-   land where expected; fix `x` if the window origin assumption was wrong.
+1. Select `ThinkpadMPD` in DCS options, with the resolution and window
+   mode its header names. Check: the viewports land where expected; fix `x`
+   if the window origin assumption was wrong.
 2. Tune and measure: DCS fps with and without the export, Sunshine fps and
    bitrate (MPD content is mostly static, so expect low bitrate to suffice),
    H.264 vs HEVC decode on kuusi, and the Moonlight overlay's latency figure.
@@ -134,9 +134,7 @@ launching DCS as usual, because the virtual monitor is always present.
 
 1. notion binding and desktop entry for `dcs-mpd`; Moonlight's own
    quit shortcut documented in README.md.
-2. `windows/install.ps1`: copies the monitor-setup Lua and the Sunshine
-   settings into place, idempotently.
-3. README.md "Flying" section: the full ritual, both sides, plus what to do
+2. README.md "Flying" section: the full ritual, both sides, plus what to do
    when the stream drops mid-flight.
 
 ## Milestone 4 (stretch): EUFD in the free strip
