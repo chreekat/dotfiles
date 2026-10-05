@@ -1,5 +1,6 @@
 -- Installed as Saved Games\DCS\Config\MonitorSetup\ThinkpadMPD.lua and picked
--- under Options > System > Monitors, with resolution 5360x1440, borderless.
+-- under Options > System > Monitors, with resolution 5360x1440 and
+-- Fullscreen unchecked.
 -- Columns 3440 and up are the virtual monitor that kuusi shows.
 _  = function(p) return p end
 name = _('ThinkpadMPD')
