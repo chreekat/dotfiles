@@ -97,10 +97,11 @@ virtual monitor appears on the Thinkpad; a photo of both screens gives the
 glass-to-glass latency.
 
 1. Windows: `windows/install.ps1`, rerun after each step it hands back.
-   It installs the Virtual Display Driver and copies `windows/vdd_settings.xml`
-   (one 1920x1080@60 mode); the driver's own Install click and the
-   monitor's placement right of the main one are by hand, and the script
-   checks both. Check: a window dragged off the right edge disappears.
+   It installs the Virtual Display Driver package, copies
+   `windows/vdd_settings.xml` (one 1920x1080@60 mode) and creates the
+   `Root\MttVDD` device with the package's own devcon; only the monitor's
+   placement right of the main one is by hand, and the script checks it.
+   Check: a window dragged off the right edge disappears.
 2. Windows: the same script installs Sunshine, merges `windows/sunshine.conf`
    into the live config, takes the virtual display's `device_id` from
    Sunshine's startup log for `output_name`, and copies the DCS preset into

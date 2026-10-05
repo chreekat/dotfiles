@@ -4,8 +4,8 @@
 #
 #     powershell -ExecutionPolicy Bypass -File install.ps1
 #
-# Steps, in order: Virtual Display Driver, its settings, the virtual monitor's
-# placement, Sunshine, its settings, the DCS monitor preset.
+# Steps, in order: Virtual Display Driver, its settings, the driver's device,
+# the virtual monitor's placement, Sunshine, its settings, the DCS preset.
 
 $ErrorActionPreference = 'Stop'
 $here = Split-Path -Parent $MyInvocation.MyCommand.Path
@@ -81,10 +81,34 @@ if (-not $vddDir) { $vddDir = 'C:\VirtualDisplayDriver'; New-Item -ItemType Dire
 Copy-Item "$here\vdd_settings.xml" "$vddDir\vdd_settings.xml" -Force
 Say "settings in $vddDir\vdd_settings.xml"
 
-$vddDevice = @(Get-PnpDevice -Class Display -Status OK -ErrorAction SilentlyContinue |
-    Where-Object { $_.FriendlyName -match 'Virtual|IDD|MTT' -or $_.InstanceId -match 'MttVDD|VirtualDisplay' })
+function VddDevice {
+    return @(Get-PnpDevice -Class Display -PresentOnly -ErrorAction SilentlyContinue |
+        Where-Object { $_.HardwareID -contains 'Root\MttVDD' })
+}
+
+# winget unpacks the control app's zip under Packages; the driver, devcon and
+# the signing catalog are in there, so the device can be created directly.
+$vddDevice = VddDevice
 if (-not $vddDevice) {
-    Manual "run 'VDD Control' (installed above; from a new shell or the Start menu) and click Install, so a virtual display adapter appears"
+    $pkg = Get-ChildItem "$env:LOCALAPPDATA\Microsoft\WinGet\Packages" -Directory -Filter 'VirtualDrivers.Virtual-Display-Driver*' | Select-Object -First 1
+    if (-not $pkg) { Manual "find where winget unpacked VirtualDrivers.Virtual-Display-Driver (expected under $env:LOCALAPPDATA\Microsoft\WinGet\Packages)" }
+    $devcon = Get-ChildItem $pkg.FullName -Recurse -Filter devcon.exe | Select-Object -First 1
+    $infs = @(Get-ChildItem $pkg.FullName -Recurse -Filter MttVDD.inf)
+    $inf = ($infs | Where-Object { $_.FullName -match '\\x64\\' } | Select-Object -First 1)
+    if (-not $inf) { $inf = $infs | Select-Object -First 1 }
+    if (-not $devcon -or -not $inf) { Manual "no devcon.exe or MttVDD.inf under $($pkg.FullName)" }
+    $cat = Join-Path $inf.DirectoryName 'MttVDD.cat'
+    if (Test-Path $cat) {
+        $signer = (Get-AuthenticodeSignature $cat).SignerCertificate
+        if ($signer) {
+            $store = New-Object System.Security.Cryptography.X509Certificates.X509Store('TrustedPublisher', 'LocalMachine')
+            $store.Open('ReadWrite'); $store.Add($signer); $store.Close()
+        }
+    }
+    Say "installing the driver from $($inf.FullName)"
+    & $devcon.FullName install $inf.FullName 'Root\MttVDD'
+    $vddDevice = VddDevice
+    if (-not $vddDevice) { Manual "devcon did not produce a Root\MttVDD device; see its output above" }
 }
 Say "driver present: $($vddDevice.FriendlyName -join ', ')"
 
