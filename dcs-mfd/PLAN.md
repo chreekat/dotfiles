@@ -79,24 +79,18 @@ Chosen: virtual monitor on Windows, captured and streamed as a whole.
   placeholder until the bezel hardware is chosen (its cutout dictates the
   square); the Lua and the input map share these numbers, so they live in
   one place once Milestone 4 starts.
-- Bezel input. The panel is not touch, so bezel buttons need hardware in
-  front of the screen. Candidates, decided at Milestone 4:
-  - Thrustmaster MFD Cougar bezels: two USB frames of 20 buttons each, made
-    for exactly this. Plugged into the Windows machine they bind in DCS's
-    own controls and need no code at all; plugged into kuusi they need an
-    evdev-to-DCS-BIOS forwarder (Haskell: read the frame's evdev node, map
-    button to DCS-BIOS command, send to its UDP command port over
-    Tailscale). The screen squares must match the frame's cutout -- measure
-    before committing to a layout. DCS-BIOS lives in Saved Games
-    `Export.lua`, which the integrity check does not cover (secondary,
-    ~85%); its AH-64D support includes the MPD buttons (secondary, ~85%).
-  - Swap in the touch variant of this panel (the T14s Gen 1 shipped with an
-    on-cell touch FHD option). A hardware project: new panel and likely a
-    different LCD cable; only then does a touchscreen plan (exclusive
-    `EVIOCGRAB` so Moonlight never sees the touches, touch-to-button by
-    rectangle, DCS-BIOS over UDP) apply.
-  Moonlight-forwarded clicks are no route in either case: exported viewports
-  are not clickable in DCS (secondary).
+- Bezel input. The panel is not touch, so bezel buttons mean physical
+  hardware in front of the screen: Thrustmaster MFD Cougar bezels, two USB
+  frames of 20 buttons each, made for exactly this. Plugged into the Windows
+  machine they bind in DCS's own controls and need no code at all; plugged
+  into kuusi they need an evdev-to-DCS-BIOS forwarder (Haskell: read the
+  frame's evdev node, map button to DCS-BIOS command, send to its UDP
+  command port over Tailscale). The screen squares must match the frame's
+  cutout -- measure before committing to a layout. DCS-BIOS lives in Saved
+  Games `Export.lua`, which the integrity check does not cover (secondary,
+  ~85%); its AH-64D support includes the MPD buttons (secondary, ~85%).
+  Moonlight-forwarded clicks are no route: exported viewports are not
+  clickable in DCS (secondary).
 
 Alternatives, and why not first:
 
@@ -170,12 +164,12 @@ launching DCS as usual, because the virtual monitor is always present.
 Demo: pressing a bezel button beside an on-screen label presses that button
 in the cockpit, in multiplayer, with Moonlight still fullscreen.
 
-1. Choose the hardware (see "Bezel input" above) and resize the Milestone 2
-   layout to its cutout.
+1. Get the bezels, measure the cutout, and resize the Milestone 2 layout to
+   it.
 2. Simplest wiring first: bezels on the Windows machine, bound in DCS's own
    controls. If that holds, this milestone is hardware plus a layout tweak
    and steps 3-5 vanish.
-3. Otherwise (bezels on kuusi, or a touch panel): spike, no code committed.
+3. Otherwise (bezels on kuusi): spike, no code committed.
    Install DCS-BIOS on Windows, confirm from its AH-64D control reference
    that the MPD bezel buttons are exposed, and send one press by hand with
    `nc -u` from kuusi. This settles the two secondary facts above before
