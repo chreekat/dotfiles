@@ -81,9 +81,16 @@ if (-not $vddDir) { $vddDir = 'C:\VirtualDisplayDriver'; New-Item -ItemType Dire
 Copy-Item "$here\vdd_settings.xml" "$vddDir\vdd_settings.xml" -Force
 Say "settings in $vddDir\vdd_settings.xml"
 
-function VddDevice {
+function VddNodes {
     return @(Get-PnpDevice -Class Display -PresentOnly -ErrorAction SilentlyContinue |
         Where-Object { $_.HardwareID -contains 'Root\MttVDD' })
+}
+
+# A Root\MttVDD node counts only once an INF is bound to it: devcon install
+# creates the node before it looks for a driver.
+function VddDevice {
+    return @(VddNodes | Where-Object {
+        (Get-PnpDeviceProperty -InstanceId $_.InstanceId -KeyName DEVPKEY_Device_DriverInfPath -ErrorAction SilentlyContinue).Data })
 }
 
 # winget unpacks the control app's zip under Packages; the driver, devcon and
@@ -107,10 +114,12 @@ if (-not $vddDevice) {
             $store.Open('ReadWrite'); $store.Add($signer); $store.Close()
         }
     }
-    Say "installing the driver from $($inf.FullName)"
-    & $devcon.FullName install $inf.FullName 'Root\MttVDD'
+    # update rebinds every existing Root\MttVDD node; install would add one.
+    $verb = if (VddNodes) { 'update' } else { 'install' }
+    Say "devcon $verb from $($inf.FullName)"
+    & $devcon.FullName $verb $inf.FullName 'Root\MttVDD'
     $vddDevice = VddDevice
-    if (-not $vddDevice) { Manual "devcon did not produce a Root\MttVDD device; see its output above" }
+    if (-not $vddDevice) { Manual "devcon did not leave a Root\MttVDD device with a driver bound; see its output above" }
 }
 Say "driver present: $($vddDevice.FriendlyName -join ', ')"
 
