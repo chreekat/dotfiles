@@ -93,10 +93,12 @@ if (-not $vddDevice) {
     $pkg = Get-ChildItem "$env:LOCALAPPDATA\Microsoft\WinGet\Packages" -Directory -Filter 'VirtualDrivers.Virtual-Display-Driver*' | Select-Object -First 1
     if (-not $pkg) { Manual "find where winget unpacked VirtualDrivers.Virtual-Display-Driver (expected under $env:LOCALAPPDATA\Microsoft\WinGet\Packages)" }
     $devcon = Get-ChildItem $pkg.FullName -Recurse -Filter devcon.exe | Select-Object -First 1
-    $infs = @(Get-ChildItem $pkg.FullName -Recurse -Filter MttVDD.inf)
-    $inf = ($infs | Where-Object { $_.FullName -match '\\x64\\' } | Select-Object -First 1)
-    if (-not $inf) { $inf = $infs | Select-Object -First 1 }
-    if (-not $devcon -or -not $inf) { Manual "no devcon.exe or MttVDD.inf under $($pkg.FullName)" }
+    # SignedDrivers\x86\VDD holds the x86-64 driver (PE32+ x86-64 per `file`,
+    # and what the project's silent-install.ps1 installs on 64-bit Windows);
+    # SignedDrivers\ARM64\VDD the ARM one.
+    $arch = if ($env:PROCESSOR_ARCHITECTURE -eq 'ARM64') { 'ARM64' } else { 'x86' }
+    $inf = Get-ChildItem $pkg.FullName -Recurse -Filter MttVDD.inf | Where-Object { $_.FullName -match "\\$arch\\" } | Select-Object -First 1
+    if (-not $devcon -or -not $inf) { Manual "no devcon.exe or $arch\VDD\MttVDD.inf under $($pkg.FullName)" }
     $cat = Join-Path $inf.DirectoryName 'MttVDD.cat'
     if (Test-Path $cat) {
         $signer = (Get-AuthenticodeSignature $cat).SignerCertificate
