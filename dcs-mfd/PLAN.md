@@ -23,25 +23,21 @@ relied on.
   blown and the LAN route needs fixing first.
 - Multiplayer on integrity-checked servers is the end goal. Intermediate
   steps may break the integrity check; the finished setup must not.
-  Milestones 1-3 are integrity-clean by construction: `LEFT_MFCD` and
-  `RIGHT_MFCD` need no module edits, and nothing is installed outside Saved
+  Milestones 1-3 are integrity-clean by construction: the MFD viewports are
+  hooked by the unmodified module, and nothing is installed outside Saved
   Games.
-- Pilot seat only. CPG (and the TEDAC) is a later project.
+- Viewport hooks in the module, verified by grepping the install for
+  `try_find_assigned_viewport`: `LEFT_MFCD` and `RIGHT_MFCD` in
+  `Mods\aircraft\AH-64D\Cockpit\Scripts\Displays\MFD\indicator\LCD\MFD_LCD.lua`,
+  and `TEDAC` (falling back to `CENTER_MFCD`) in
+  `...\Displays\TEDAC\TEDAC_viewport_cfg.lua`. Nothing else: the EUFD and KU
+  have no hook, so exporting their pixels means editing module Lua, which
+  fails the integrity check.
+- Pilot seat only. CPG is a later project; when it comes, the TEDAC exports
+  integrity-clean via the hook above.
 - The panel is not a touchscreen: Innolux N140HCG-GQ2, a matte non-touch
   part (verified from the eDP EDID; no touch controller in ACPI or on USB).
   Bezel-button input would need hardware and is out of scope.
-
-## Inputs still needed
-
-1. The authoritative viewport names, from the install itself:
-
-       findstr /s /n try_find_assigned_viewport "C:\Program Files (x86)\Steam\steamapps\common\DCSWorld\Mods\aircraft\AH-64D\Cockpit\Scripts\*.lua"
-
-   Secondary sources agree that `LEFT_MFCD` and `RIGHT_MFCD` work for the
-   AH-64D unmodified and follow whichever seat is occupied. Names reported for
-   the other displays (`AH64_PLT_EUFD`, `AH64_CPG_EUFD`, `AH64_PLT_KU`,
-   `AH64_CPG_KU`, `AH64_TEDAC`) only exist after editing module Lua, which
-   fails the integrity check.
 
 ## Design
 
@@ -74,11 +70,10 @@ Chosen: virtual monitor on Windows, captured and streamed as a whole.
   display's origin, so the virtual monitor is arranged in Windows directly
   to the right of the main one, top-aligned, and its viewports get
   `x = main_width` (secondary, ~80% confident; Milestone 2 step 1 confirms).
-- Panel layout, in DCS window coordinates: Center is 3440x1440 at the
-  origin; LEFT_MFCD is 960x960 at (3440, 0); RIGHT_MFCD is 960x960 at
-  (4400, 0). That leaves a 1920x120 strip at the bottom of the panel for
-  Milestone 4's EUFD, and the window's bottom 360 rows under the panel fall
-  on no monitor at all, which is harmless.
+- Panel layout: `windows/MonitorSetup/ThinkpadMFD.lua`. The two MFDs fill
+  the top 960 rows of the panel, leaving a 1920x120 strip at the bottom for
+  Milestone 4's EUFD; the window's bottom 360 rows under the panel fall on
+  no monitor at all, which is harmless.
 
 Alternatives, and why not first:
 
@@ -121,12 +116,11 @@ Demo: in the AH-64D in a free-flight mission, both MFDs appear on the
 Thinkpad, the main view is unchanged, menus stay on the main screen, and the
 fps hit is measured.
 
-1. `windows/MonitorSetup/ThinkpadMFD.lua` with Center, LEFT_MFCD, RIGHT_MFCD,
-   UIMainView, GU_MAIN_VIEWPORT, using the panel layout above, with a copy
-   step into Saved Games (by hand, or `windows/install.ps1` once there are
-   three files to copy). DCS options: resolution 5360x1440,
-   borderless, monitors = this preset. Check: the viewports land where
-   expected; fix `x` if the window origin assumption was wrong.
+1. Copy `windows/MonitorSetup/ThinkpadMFD.lua` into
+   `Saved Games\DCS\Config\MonitorSetup\` (by hand, or `windows/install.ps1`
+   once there are three files to copy) and select it in DCS options with
+   the resolution and window mode its header names. Check: the viewports
+   land where expected; fix `x` if the window origin assumption was wrong.
 2. Tune and measure: DCS fps with and without the export, Sunshine fps and
    bitrate (MFD content is mostly static, so expect low bitrate to suffice),
    H.264 vs HEVC decode on kuusi, and the Moonlight overlay's latency figure.
