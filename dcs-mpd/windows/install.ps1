@@ -84,7 +84,7 @@ Say "settings in $vddDir\vdd_settings.xml"
 $vddDevice = @(Get-PnpDevice -Class Display -Status OK -ErrorAction SilentlyContinue |
     Where-Object { $_.FriendlyName -match 'Virtual|IDD|MTT' -or $_.InstanceId -match 'MttVDD|VirtualDisplay' })
 if (-not $vddDevice) {
-    Manual "open Virtual Driver Control (installed above) and click Install, so a virtual display adapter appears"
+    Manual "run 'VDD Control' (installed above; from a new shell or the Start menu) and click Install, so a virtual display adapter appears"
 }
 Say "driver present: $($vddDevice.FriendlyName -join ', ')"
 
