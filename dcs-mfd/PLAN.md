@@ -9,12 +9,18 @@ relied on.
 
 - Thinkpad: kuusi, panel `eDP` 1920x1080 at 60 Hz, 309x173 mm (verified,
   `xrandr`).
-- Windows: NVIDIA GPU, so Sunshine's encoder is `nvenc`.
+- Windows: `smilga`, Windows 11, NVIDIA GPU (so Sunshine's encoder is
+  `nvenc`), one monitor, 3440x1440, primary, at the origin (verified,
+  `[System.Windows.Forms.Screen]::AllScreens`). The DCS window is therefore
+  5360x1440 and the virtual monitor's columns start at `x = 3440`.
+- DCS: the Steam build at
+  `C:\Program Files (x86)\Steam\steamapps\common\DCSWorld`, 2.9.30 MT;
+  user files in `C:\Users\b\Saved Games\DCS` (verified, `dcs.log`).
 - 2D only. No VR.
-- Network: both machines on Tailscale, which takes the direct LAN path when
-  one exists. `tailscale status` on kuusi should show the Windows peer as
-  `direct`; a `relay` entry means the latency budget is blown and the LAN
-  route needs fixing first.
+- Network: both machines on Tailscale; `tailscale status` on smilga shows
+  kuusi as `direct` over the LAN (verified). Moonlight connects to `smilga`
+  by its Tailscale name. A `relay` entry would mean the latency budget is
+  blown and the LAN route needs fixing first.
 - Multiplayer on integrity-checked servers is the end goal. Intermediate
   steps may break the integrity check; the finished setup must not.
   Milestones 1-3 are integrity-clean by construction: `LEFT_MFCD` and
@@ -27,11 +33,9 @@ relied on.
 
 ## Inputs still needed
 
-1. Main Windows monitor resolution. It sets the combined DCS resolution and
-   the `x` offset of the MFD viewports.
-2. The authoritative viewport names, from the install itself:
+1. The authoritative viewport names, from the install itself:
 
-       findstr /s /n try_find_assigned_viewport "<DCS>\Mods\aircraft\AH-64D\Cockpit\Scripts\*.lua"
+       findstr /s /n try_find_assigned_viewport "C:\Program Files (x86)\Steam\steamapps\common\DCSWorld\Mods\aircraft\AH-64D\Cockpit\Scripts\*.lua"
 
    Secondary sources agree that `LEFT_MFCD` and `RIGHT_MFCD` work for the
    AH-64D unmodified and follow whichever seat is occupied. Names reported for
@@ -58,7 +62,7 @@ Chosen: virtual monitor on Windows, captured and streamed as a whole.
   (`--audio-on-host` on the client).
 - moonlight-qt on NixOS (in nixpkgs, built with VA-API; verified). CLI
   verified from its source:
-  `moonlight stream <tailscale-name> Desktop --display-mode fullscreen
+  `moonlight stream smilga Desktop --display-mode fullscreen
   --resolution 1920x1080 --fps 60 --bitrate N --audio-on-host --quit-after`.
   kuusi has an AMD GPU, so decode is VA-API.
 - DCS: borderless window at the combined resolution, a monitor-setup Lua in
@@ -70,8 +74,11 @@ Chosen: virtual monitor on Windows, captured and streamed as a whole.
   display's origin, so the virtual monitor is arranged in Windows directly
   to the right of the main one, top-aligned, and its viewports get
   `x = main_width` (secondary, ~80% confident; Milestone 2 step 1 confirms).
-- Panel layout. Two MPD screens side by side, each a 960x960 square at the
-  top of the panel, leaving a 1920x120 strip below for Milestone 4's EUFD.
+- Panel layout, in DCS window coordinates: Center is 3440x1440 at the
+  origin; LEFT_MFCD is 960x960 at (3440, 0); RIGHT_MFCD is 960x960 at
+  (4400, 0). That leaves a 1920x120 strip at the bottom of the panel for
+  Milestone 4's EUFD, and the window's bottom 360 rows under the panel fall
+  on no monitor at all, which is harmless.
 
 Alternatives, and why not first:
 
@@ -104,8 +111,9 @@ glass-to-glass latency.
 3. NixOS: `nixos/moonlight.nix`, imported by kuusi in
    `nixos/systems/flake.nix`. Adds `pkgs.moonlight-qt` and a `dcs-mfd` script
    wrapping the `moonlight stream` invocation with the host, resolution,
-   fps and bitrate baked in. Check: the demo above, plus the latency number
-   and the `tailscale status` path recorded here.
+   fps and bitrate baked in. Pairing is a one-off by hand:
+   `moonlight pair smilga`, then the PIN in Sunshine's web UI. Check: the
+   demo above, plus the latency number recorded here.
 
 ## Milestone 2: Apache MFDs on the Thinkpad
 
@@ -116,7 +124,7 @@ fps hit is measured.
 1. `windows/MonitorSetup/ThinkpadMFD.lua` with Center, LEFT_MFCD, RIGHT_MFCD,
    UIMainView, GU_MAIN_VIEWPORT, using the panel layout above, with a copy
    step into Saved Games (by hand, or `windows/install.ps1` once there are
-   three files to copy). DCS options: resolution = main + 1920 wide,
+   three files to copy). DCS options: resolution 5360x1440,
    borderless, monitors = this preset. Check: the viewports land where
    expected; fix `x` if the window origin assumption was wrong.
 2. Tune and measure: DCS fps with and without the export, Sunshine fps and
