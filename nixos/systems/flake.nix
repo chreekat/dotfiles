@@ -63,6 +63,7 @@
     nixosConfigurations.puny = nixpkgs-puny.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
+        ../mods/hits.nix
         ../mods/igtest.nix
         ../mods/irc-bouncer.nix
         ../mods/nix-hygiene.nix
