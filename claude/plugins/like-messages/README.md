@@ -10,7 +10,20 @@ A Claude Code mod for "liking" agent messages.
 - `/likes` opens a pane listing what you've liked, newest first, with `♥` to
   unlike.
 
-Likes are kept in the plugin's `$.store`, so they persist across sessions.
+- Agents can like messages too, via a `like` tool the plugin gives the model
+  (`mcp__like-messages__like`). An agent can like your prompts, another
+  agent's replies (a subagent's, the main agent's, a peer session's), and
+  give a one-line reason. It can't like its own messages. The model never sees
+  message ids, so it names the message by quoting a verbatim snippet; the most
+  recent message containing it is liked.
+  - On an agent reply, agent likes show as `✦ liked by Claude` beside your `♡`.
+  - On your prompt, the engine still draws the row; `✦ liked by …` is added
+    beneath it.
+  - A toast says when an agent likes something, and the `/likes` pane lists
+    who liked what, and why.
+
+Likes are keyed by the message text (a hash of it, whitespace-squashed), so
+identical messages share likes. They are kept in the plugin's `$.store`, so they persist across sessions.
 Each like records the message text (first 4000 chars) and when you liked it.
 
 ## Install

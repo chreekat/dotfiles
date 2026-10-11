@@ -1,7 +1,7 @@
 {
   "name": "like-messages",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "author": { "name": "chreekat" },
-  "description": "Like (heart) agent messages; liked messages persist across sessions",
+  "description": "Like agent messages, and let agents like yours (or each other's); likes persist across sessions",
   "types": "./types/index.d.ts"
 }
