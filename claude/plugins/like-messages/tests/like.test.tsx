@@ -45,7 +45,7 @@ async function agentSays($: Engine, uuid: string, text: string, agentId?: string
 
 test('the heart under a reply toggles on every surface', async ($, on) => {
   world(on)
-  for (const surface of ['terminal', 'desktop'] as const) {
+  for (const surface of ['terminal', 'desktop', 'vscode', 'mobile'] as const) {
     const ui = await $.ui.mount({ plugin: 'like-messages', surface, ...REPLY })
     const heart = async () => (await ui.find({ type: 'Button' }))?.props.label
     const key = (await ui.find({ type: 'Button' }))?.key ?? ''
@@ -56,6 +56,16 @@ test('the heart under a reply toggles on every surface', async ($, on) => {
     expect(await heart()).toBe('♡')
     await ui.unmount()
   }
+})
+
+test('agent likes and the pane draw on the phone', async ($, on) => {
+  world(on)
+  await agentSays($, 'a1', 'Here is **the answer**.', 'sub-123456')
+  await $.tool.call({ tool: TOOL, quote: 'the answer', reason: 'nice' })
+  const reply = await $.ui.mount({ plugin: 'like-messages', surface: 'mobile', ...REPLY })
+  expect(await reply.find({ type: 'Text', text: /liked by Claude/ })).toBeDefined()
+  const pane = await $.ui.mount({ plugin: 'like-messages', surface: 'mobile', ...PANE })
+  expect(await pane.find({ type: 'Text', text: /Claude: nice/ })).toBeDefined()
 })
 
 test('a liked reply shows in the likes pane, and unlikes from there', async ($, on) => {
