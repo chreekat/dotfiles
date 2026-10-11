@@ -36,3 +36,5 @@ config/astroid/searches
 offlineimap/mbnames
 result
 dist-newstyle
+claude/plugins/*/.claude-plugin/types
+claude/plugins/*/tsconfig.json

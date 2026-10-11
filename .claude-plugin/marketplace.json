@@ -1,0 +1,6 @@
+{
+  "name": "chreekat-dotfiles",
+  "description": "chreekat's Claude Code plugins",
+  "owner": { "name": "chreekat" },
+  "plugins": [{ "name": "like-messages", "source": "./claude/plugins/like-messages" }]
+}
