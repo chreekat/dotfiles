@@ -74,6 +74,12 @@
         "source": "github",
         "repo": "thedotmack/claude-mem"
       }
+    },
+    "centralapp-skills": {
+      "source": {
+        "source": "github",
+        "repo": "centralapp/centralapp-skills"
+      }
     }
   },
   "effortLevel": "high",
@@ -83,8 +89,11 @@
     "mode": "tap"
   },
   "theme": "auto",
+  "switchModelsOnFlag": false,
   "agentPushNotifEnabled": true,
   "skipAutoPermissionPrompt": true,
   "voiceEnabled": true,
-  "switchModelsOnFlag": false
+  "enabledPlugins": {
+    "workstation@centralapp-skills": true
+  }
 }
