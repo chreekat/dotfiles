@@ -97,10 +97,13 @@ DOTS=(
     claude/benchmarking.md
     claude/haskell-exceptions.md
     claude/haskell-space-leaks.md
+    claude/haskell.md
     claude/keybindings.json
     claude/notify
+    claude/planning.md
     claude/settings.json
     claude/statusline-command.sh
+    claude/testing.md
     config/Yubico/u2f_keys
     config/astroid
     config/ctags
