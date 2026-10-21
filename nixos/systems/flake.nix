@@ -40,6 +40,7 @@
       system = "x86_64-linux";
       specialArgs = { inherit inputs; };
       modules = [
+        agenix.nixosModules.default
         ../mods/amdgpu.nix
         ../mods/beyboard.nix
         ../mods/centralapp.nix
