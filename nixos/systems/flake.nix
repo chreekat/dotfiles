@@ -3,6 +3,8 @@
     nixpkgs.url = "https://channels.nixos.org/nixos-26.05/nixexprs.tar.zst";
     nixpkgs-kuusi.url = "https://channels.nixos.org/nixos-26.05/nixexprs.tar.zst";
     nixpkgs-puny.url = "https://channels.nixos.org/nixos-26.05/nixexprs.tar.zst";
+    # For packages worth tracking ahead of stable (claude-code).
+    nixpkgs-unstable.url = "https://channels.nixos.org/nixos-unstable/nixexprs.tar.zst";
     agenix = {
       url = "github:ryantm/agenix";
       inputs.nixpkgs.follows = "nixpkgs";

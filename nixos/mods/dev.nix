@@ -1,4 +1,10 @@
 { pkgs, inputs, ...}:
+let
+  unstable = import inputs.nixpkgs-unstable {
+    inherit (pkgs.stdenv.hostPlatform) system;
+    config.allowUnfreePredicate = pkg: pkgs.lib.getName pkg == "claude-code";
+  };
+in
 {
   imports = [ ./bugs-b.nix ];
   documentation.dev.enable = true;
@@ -13,7 +19,7 @@
     bun
     beekeeper-studio
     cachix
-    claude-code # Requires allowing non-free claude-code
+    unstable.claude-code # Tracks unstable; non-free allowed in the import above
     claude-monitor
     codex # Requires allowing non-free codex
     #devenv # broken
