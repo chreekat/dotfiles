@@ -187,6 +187,11 @@ messages. (Past examples: Co-Authored-By, Claude-Session)
 - Never use a fixed sleep/timer to synchronize a test. Sync on an observable
   event (await/poll with a bounded deadline). A timeout used as a deadline (fail
   if X hasn't happened by T) is fine; a sleep used as a guess is not.
+- Every test must be parallelizable. A test that needs sequential execution is
+  an emergency on par with flakiness (it usually IS latent flakiness: hidden
+  shared state). Fix the test -- private dirs, scoped namespaces, injected
+  clocks -- or question whether it belongs (wall-clock assertions are
+  benchmarks, not tests); never just mark it sequential and move on.
 - "Integration test" is a term reserved for testing the interaction of the
   system-under-test with other systems outside our direct control. They should
   be few and used sparingly.
