@@ -16,6 +16,8 @@ in the current conversation.
   skips it because clean only ever removes untracked files.
 - If you do not know what is in the tree, run `git status` and look before
   staging. Stage the paths you changed on purpose, nothing else.
+- The push and fetch rules below apply only on a developer workstation, where
+  my hardware key guards SSH. Elsewhere (cloud sessions), push and fetch freely.
 - Push only after I confirm, in the current exchange, that I'm ready for the
   hardware-key ceremony ("I'm at the key", "push it"). A merge event, an
   automerge, or "carry on" is not that confirmation. Until then, finish
