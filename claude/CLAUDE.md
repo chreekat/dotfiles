@@ -16,8 +16,23 @@ in the current conversation.
   skips it because clean only ever removes untracked files.
 - If you do not know what is in the tree, run `git status` and look before
   staging. Stage the paths you changed on purpose, nothing else.
-- Never push; I push everything myself. This is deliberate supply-chain
-  defense, not distrust of agents: publishing requires my hardware key, so
+- Push only after I confirm, in the current exchange, that I'm ready for the
+  hardware-key ceremony ("I'm at the key", "push it"). A merge event, an
+  automerge, or "carry on" is not that confirmation. Until then, finish
+  everything local and ask with AskUserQuestion, so the session shows as
+  waiting on me: when I'm elsewhere I dismiss key prompts by reflex, so an
+  unannounced push just fails.
+- Fetching needs the key too: `git fetch`, `pull`, `clone`, `ls-remote` and
+  submodule updates over SSH, for any git remote. Treat a fetch like a push:
+  ask first, batch it into the same ceremony, never leave it waiting in the
+  background (a pending touch blocks every other key operation, signing
+  included).
+- Git is distributed: the local repo is a full repository. Base work on local
+  refs (`release/unstable`, the local branch), never on `origin/...`, and
+  don't fetch just to get fresher ones. When a ref exists only on the remote,
+  ask me for the fetch. Reading a PR's diff or metadata with `gh pr diff` /
+  `gh pr view` needs no key. Pass this on to every subagent you start.
+- The key is deliberate supply-chain defense, not distrust of agents:
   automation compromised under my identity cannot exfiltrate or publish. An
   auth failure on a push path is the design working -- report it and hand me
   the branch; never route around it (HTTPS remotes, gh api, tokens, deploy
