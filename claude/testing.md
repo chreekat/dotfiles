@@ -9,7 +9,8 @@ How tests earn their keep. These extend the rules in [CLAUDE.md](CLAUDE.md).
     and the TDD "failing test first" IS the behavior test: write it as the spec.
   - Bug-capture tests pin a specific fixed bug. Verify both directions: it must
     fail on the unfixed code and pass on the fix. Keep it permanently as a
-    regression guard; unlike a behavior test, it earns its keep even when heavy.
+    regression guard; unlike a behavior test, it earns its keep even when heavy,
+    where the code already has a test suite.
 - Bug-capture tests also map the terrain: a region that accumulates lots of them
   is "here be dragons" -- a fragile hotspot worth architectural attention.
 - Behavior tests are a cost, not just an asset. Prune or lighten one when it

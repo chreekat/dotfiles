@@ -85,7 +85,13 @@ messages. (Past examples: Co-Authored-By, Claude-Session)
   state you were approximating, a broader refactor), pay that cost now rather
   than shipping a narrow fix that leaves the real bug latent. Flag the tradeoff,
   but default to doing the whole dance.
-- Use TDD: write a failing test before implementing behavior.
+- Use TDD for behavior with real logic: write a failing test first. Skip it
+  when running the code is itself the test and a failure would be loud --
+  config, glue scripts without much branching, thin wrappers, throwaway
+  analysis, compiler-checked refactors, presentation changes. Code that can
+  fail quietly (filters, parsers, anything that chooses what to keep) still
+  gets a test, even if only a local one the repo never sees. Don't add a test
+  setup to a repo or directory that has none just to cover a small change.
 - Commit early and often. Write one logical change per commit.
 - Run tests before declaring a task complete.
 - Prefer understanding existing patterns over inventing new ones. Do not reinvent the wheel.
