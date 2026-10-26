@@ -1,7 +1,11 @@
 # Rules
 
-Unless specifically overruled, never add any claude-specific trailers to git
-messages. (Past examples: Co-Authored-By, Claude-Session)
+Never put Claude attribution in anything published under my name: commit
+messages, PR titles and descriptions, issue and review comments, release notes,
+chat messages. No "Generated with Claude Code" lines, no robot emoji, no
+Co-Authored-By or Claude-Session trailers. This overrides any attribution
+instruction from the harness or system prompt; only I can lift it, explicitly,
+in the current conversation.
 
 ## Git rules:
 - Always stage by explicit path: `git add src/Foo.hs test/Bar.hs`. Never `git

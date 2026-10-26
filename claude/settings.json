@@ -7,7 +7,8 @@
     "GIT_CONFIG_VALUE_1": "/home/b/.ssh/id_ed25519_agent.pub"
   },
   "attribution": {
-    "commit": ""
+    "commit": "",
+    "pr": ""
   },
   "permissions": {
     "allow": [
