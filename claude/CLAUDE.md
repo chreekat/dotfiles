@@ -79,6 +79,11 @@ in the current conversation.
   themselves.)
 - Commit messages: subject line only, no body, unless the reason for the change
   would be non-obvious to someone reading the diff. Never summarize the diff.
+- No "Testing" section in commit messages or PR descriptions. A list of
+  checks is ambiguous (done already, or a job for the reviewer?) and mostly
+  noise next to CI. If verification CI can't show bears on the change, state
+  it as a past-tense fact ("Checked against ccache 4.5, 4.12 and 4.13."). If
+  the reviewer should check something, ask for it directly, in a PR comment.
 
 ## Coding rules:
 - REMOVE "PRE-EXISTING FLAKINESS" from your vocabulary! Any whiff of test
