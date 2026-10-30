@@ -94,6 +94,13 @@ in the current conversation.
   sequencing, or consequences. (In Haskell, functions are the thing that
   matters; types only enrich function definitions and should only document
   themselves.)
+- The same holds in every kind of file -- config, CI, build scripts, not just
+  code. Put a reason where it does its work: on the line that would have to
+  change if the reason changed. That is usually the consumer, not the
+  producer; at the producer, write at most a pointer ("see its use in X
+  below"). Example: a CI step that computes a toolchain id gets only "See its
+  use in the cache key below"; why the id belongs in the key is explained at
+  the key.
 - Commit messages: subject line only, no body, unless the reason for the change
   would be non-obvious to someone reading the diff. Never summarize the diff.
 - No "Testing" section in commit messages or PR descriptions. A list of
