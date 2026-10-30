@@ -205,6 +205,9 @@ so buffer modifications don't interfere with the iteration."
         ((org-agenda-overriding-header "Waiting for over 2 weeks")))
        (tags-todo "-secondary/PROJ"
                   ((org-agenda-overriding-header "Active projects")
+                   (org-agenda-skip-function
+                    '(org-agenda-skip-subtree-if
+                      'notregexp "^\\*+ \\(TODO\\|WAIT\\) "))
                    (org-agenda-sorting-strategy '(priority-down))))))))
  '(org-agenda-files
    '("/home/b/Syncthing/PhoneFiles/org/archive/2025-archive.org"
