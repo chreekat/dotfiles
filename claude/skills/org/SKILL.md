@@ -137,10 +137,11 @@ yours. If the server is down, apply with `emacs --batch` instead (the user
 has `global-auto-revert-mode`, so their unmodified buffers pick up the
 change).
 
-Boundary, per user preference: the Emacs server is in scope, but no wrapper
-scripts, packages, or further automation buildup — inline elisp only. If a
-change is awkward that way, fall back to a plain text edit rather than
-building machinery. The user is not an Emacs/elisp expert: they review the
+Boundary, per user preference: mutations go through org-mode itself, never
+hand edits imitating what org would write. When inline elisp gets awkward,
+the answer is a standalone function in init.el (alongside
+`org-assign-ids-to-projects`) that the user can also run interactively —
+never tooling private to this skill. The user is not an Emacs/elisp expert: they review the
 committed org text, not the elisp, and explanations should be in terms of the
 resulting text, not Emacs internals.
 
