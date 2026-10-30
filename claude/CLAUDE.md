@@ -41,18 +41,18 @@ in the current conversation.
   keys).
 
 ## Dotfiles:
-- `~/.claude/` is not where my config lives. Everything in it (`CLAUDE.md`,
-  `settings.json`, the guidance `.md` files, ...) is a symlink into
+- `~/.claude/` is not where my config lives. Its tracked parts (`CLAUDE.md`,
+  `settings.json`, the guidance `.md` files, skills, ...) are symlinks into
   `~/Projects/dotfiles/claude/`, deployed by `deploy.sh` (which has the full
-  list).
+  list). Anything under `~/.claude/` that isn't a symlink is untracked; to
+  track it, move it into `dotfiles/claude/`, symlink it back, and add it to
+  `DOTS` in `deploy.sh`.
 - Editing tools refuse to write through a symlink. Resolve the real path first
   (`readlink -f ~/.claude/CLAUDE.md`) and edit the file in the repo. Read is
   fine either way; only writes are refused.
-- `~/Projects/dotfiles` is a git repo, but never commit or push in it -- I do
-  that by hand, always. Uncommitted changes there are deliberate: leaving a
-  change dirty is how I keep track of what is new and still experimental, so
-  committing it destroys that signal. Make the edit, leave it uncommitted, and
-  tell me what you changed.
+- `~/Projects/dotfiles` is a git repo; commit your changes there like in any
+  other. Changes already dirty in the tree are mine and still experimental --
+  leave them out of your commits unless I say otherwise.
 
 ## Documentation rules:
 - Comments explain BEHAVIOR; commit messages explain CHANGE. A fix's mechanism
