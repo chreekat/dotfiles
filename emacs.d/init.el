@@ -233,7 +233,7 @@ so buffer modifications don't interfere with the iteration."
  '(org-refile-targets '((org-agenda-files :maxlevel . 3)))
  '(org-refile-use-outline-path 'file)
  '(org-startup-indented t)
- '(org-stuck-projects '("-secondary/PROJ" ("TODO") nil ""))
+ '(org-stuck-projects '("-secondary/PROJ" ("TODO" "WAIT") nil ""))
  '(org-tags-column -85)
  '(org-todo-keyword-faces
    '(("PROJ" :foreground "blue" :weight bold)
