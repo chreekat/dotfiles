@@ -197,7 +197,15 @@ so buffer modifications don't interfere with the iteration."
       #("-{@.*}-secondary/TODO" 1 6 (regexp t)) nil)
      ("P" "Active projects" tags-todo "-secondary/PROJ"
       ((org-agenda-sorting-strategy '(priority-down))))
-     ("W" "Waiting for..." tags-todo "-secondary/WAIT" nil)))
+     ("W" "Waiting for..." tags-todo "-secondary/WAIT" nil)
+     ("R" "Project review"
+      ((stuck "")
+       (tags-todo
+        "-secondary+TIMESTAMP_IA<\"<-2w>\"|-secondary+TIMESTAMP_IA=\"\"/WAIT"
+        ((org-agenda-overriding-header "Waiting for over 2 weeks")))
+       (tags-todo "-secondary/PROJ"
+                  ((org-agenda-overriding-header "Active projects")
+                   (org-agenda-sorting-strategy '(priority-down))))))))
  '(org-agenda-files
    '("/home/b/Syncthing/PhoneFiles/org/archive/2025-archive.org"
      "/home/b/Syncthing/PhoneFiles/org/books-to-read.org"
