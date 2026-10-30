@@ -73,6 +73,11 @@ project-bound TODOs as `**` children under the matching PROJ in
 `projects.org`; date-driven items go to `Tickler.org`. When unsure which PROJ
 (or whether one applies), pick the closest fit and name the choice in the report.
 
+Thinking-about entries are items not yet clarified. Give each new one a
+`Question: ...` body line naming what would settle it ("Worth an afternoon?
+Need last year's fees."). Draft one from the context and name it in the
+report; don't block the capture on asking.
+
 Splitting: when an entry's work gets split organically (part done, part
 deferred), scope the existing entry DOWN to what got finished -- retitle it
 to match -- and close it. Capture the rest as a new entry that names the
