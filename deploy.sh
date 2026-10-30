@@ -102,6 +102,7 @@ DOTS=(
     claude/notify
     claude/planning.md
     claude/settings.json
+    claude/skills
     claude/statusline-command.sh
     claude/testing.md
     config/Yubico/u2f_keys
