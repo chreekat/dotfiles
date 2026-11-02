@@ -135,8 +135,14 @@ launching DCS as usual, because the virtual monitor is always present.
 
 1. notion binding and desktop entry for `dcs-mpd`; Moonlight's own
    quit shortcut documented in README.md.
-2. README.md "Flying" section: the full ritual, both sides, plus what to do
-   when the stream drops mid-flight.
+2. `install.ps1` places the virtual monitor at (3440, 0) itself instead of
+   asking for a drag. Disabling and re-enabling the virtual display, or a
+   driver reinstall, recreates it as a new device: Windows gives it default
+   placement and Sunshine a new `device_id`, so the installer is the one
+   recovery step and must need no hands.
+3. README.md "Flying" section: the full ritual, both sides, what to do when
+   the stream drops mid-flight, and that any toggle of the virtual display
+   means rerunning `install.ps1`.
 
 ## Milestone 4 (stretch): EUFD in the free strip
 
