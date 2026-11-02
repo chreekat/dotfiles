@@ -104,6 +104,12 @@ need one (the token is used in five places, two you can't reach). Borderline:
 sitting, but reporting invites replies and waiting. Start it as a TODO;
 promote if it turns into back-and-forth.
 
+Commitment, not timing, picks the file. Committed but not yet started
+(blocked only by bandwidth) stays on the active lists as a `[#C]` TODO,
+unscheduled, promoted to PROJ when work starts; deferral is a priority,
+not a place. `maybe.org` holds only what isn't committed -- droppable
+without telling anyone. `Tickler.org` needs a real date to resurface on.
+
 ## Workflow
 
 1. **Baseline check.** Run `git status` and `git diff --stat` scoped to
