@@ -11,8 +11,8 @@ relied on.
   `xrandr`).
 - Windows: `smilga`, Windows 11, NVIDIA GPU (so Sunshine's encoder is
   `nvenc`), one monitor, 3440x1440, primary, at the origin (verified,
-  `[System.Windows.Forms.Screen]::AllScreens`). The DCS window is therefore
-  5360x1440 and the virtual monitor's columns start at `x = 3440`.
+  `[System.Windows.Forms.Screen]::AllScreens`). The virtual monitor sits
+  below it, so the DCS window is 3440x2520.
 - DCS: the Steam build at
   `C:\Program Files (x86)\Steam\steamapps\common\DCSWorld`, 2.9.30 MT;
   user files in `C:\Users\b\Saved Games\DCS` (verified, `dcs.log`).
@@ -67,10 +67,13 @@ Chosen: virtual monitor on Windows, captured and streamed as a whole.
   rectangle; `UIMainView` and `GU_MAIN_VIEWPORT` pinned to Center so menus
   stay on the main screen. Fullscreen cannot exceed the primary display, so
   borderless is mandatory (secondary). The window's origin is the primary
-  display's origin, so the virtual monitor is arranged in Windows directly
-  to the right of the main one, top-aligned, and its viewports get
-  `x = main_width` (secondary, ~80% confident; Milestone 2 step 1 confirms).
-- Panel layout: `windows/MonitorSetup/ThinkpadMPD.lua`. The two MPDs fill
+  display's origin and it spans the bounding box of all monitors, so the
+  virtual monitor may sit anywhere right of or below the main one
+  (secondary, ~80% confident; Milestone 2 step 1 confirms). `install.ps1`
+  reads the arrangement and generates the preset and the DCS resolution
+  from it, so moving the monitor means rerunning the installer, not editing
+  Lua.
+- Panel layout: `windows/MonitorSetup/ThinkpadMPD.lua.template`. The two MPDs fill
   the top 960 rows of the panel, leaving a 1920x120 strip at the bottom for
   Milestone 4's EUFD; the window's bottom 360 rows under the panel fall on
   no monitor at all, which is harmless.
@@ -135,11 +138,12 @@ launching DCS as usual, because the virtual monitor is always present.
 
 1. notion binding and desktop entry for `dcs-mpd`; Moonlight's own
    quit shortcut documented in README.md.
-2. `install.ps1` places the virtual monitor at (3440, 0) itself instead of
-   asking for a drag. Disabling and re-enabling the virtual display, or a
-   driver reinstall, recreates it as a new device: Windows gives it default
-   placement and Sunshine a new `device_id`, so the installer is the one
-   recovery step and must need no hands.
+2. `install.ps1` re-applies the recorded placement of the virtual monitor.
+   Disabling and re-enabling the virtual display, or a driver reinstall,
+   recreates it as a new device: Windows gives it default placement and
+   Sunshine a new `device_id`. The installer already regenerates the preset
+   and the Sunshine key, but a moved monitor changes the DCS resolution to
+   type in; pinning the placement keeps that constant.
 3. README.md "Flying" section: the full ritual, both sides, what to do when
    the stream drops mid-flight, and that any toggle of the virtual display
    means rerunning `install.ps1`.
