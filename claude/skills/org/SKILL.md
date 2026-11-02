@@ -23,7 +23,7 @@ directory.
 |---|---|
 | `Inbox.org` | Capture inbox (mostly from Orgzly on phone). Unprocessed; entries are often bare `*` headings, no keyword. |
 | `todos.org` | Main flat list of standalone `* TODO` entries. Default destination for new actionable items. |
-| `projects.org` | `* PROJ` trees with nested `** TODO` children. Use when the item belongs to an existing project. |
+| `projects.org` | `* PROJ` trees, some with nested `** TODO` children. |
 | `Tickler.org` | Date-driven items: SCHEDULED/DEADLINE, often with repeaters. |
 | `maybe.org` | Someday/maybe. |
 | `thinking-about.org` | Open questions and musings, not tasks. |
@@ -68,10 +68,12 @@ Heading shape:
 - SCHEDULED/DEADLINE use active `<...>` timestamps and go on the line directly
   under the heading; repeaters like `++1m` are common in Tickler.org.
 
-Placement: append new standalone TODOs at the end of `todos.org`; nest
-project-bound TODOs as `**` children under the matching PROJ in
-`projects.org`; date-driven items go to `Tickler.org`. When unsure which PROJ
-(or whether one applies), pick the closest fit and name the choice in the report.
+Placement: append new TODOs at the end of `todos.org`, project-bound ones
+included -- name the PROJ in the body instead of nesting under it (how tasks
+attach to projects is open: "Link tasks to projects by ID instead of
+nesting?" in `thinking-about.org`). Date-driven items go to `Tickler.org`.
+When unsure which PROJ (or whether one applies), pick the closest fit and name
+the choice in the report.
 
 Thinking-about entries are items not yet clarified. Give each new one a
 `Question: ...` body line naming what would settle it ("Worth an afternoon?
@@ -82,6 +84,25 @@ Splitting: when an entry's work gets split organically (part done, part
 deferred), scope the existing entry DOWN to what got finished -- retitle it
 to match -- and close it. Capture the rest as a new entry that names the
 one it was split from.
+
+## Tasks vs projects
+
+GTD's "more than one action" test makes everything a project. Ask instead:
+will it be finished in one sitting, without waiting on anyone?
+
+- Yes: a single TODO. Put the steps in a body checklist -- procedural memory,
+  not separate actions. E.g. rotating a GitLab access token: half an hour, one
+  place, nobody else involved.
+- No: a PROJ. It spans days, needs someone else to act, or its next step
+  depends on what the current one reveals. Each of those is a stopping point
+  where it can stall; the PROJ makes the weekly review ask "what's the next
+  action now?" at each.
+
+Don't pre-decide: start as a TODO and promote to PROJ once it turns out to
+need one (the token is used in five places, two you can't reach). Borderline:
+"investigate X and report to stakeholders" -- the investigation fits one
+sitting, but reporting invites replies and waiting. Start it as a TODO;
+promote if it turns into back-and-forth.
 
 ## Workflow
 
