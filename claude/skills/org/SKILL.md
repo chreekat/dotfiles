@@ -76,14 +76,23 @@ Heading shape:
   filter. Add one when the size is obvious, `large` above all; never
   retrofit the whole list.
 
-Placement: append new TODOs at the end of `todos.org`, project-bound ones
-included -- name the PROJ in the body instead of nesting under it (how tasks
-attach to projects is open: "Link tasks to projects by ID instead of
-nesting?" in `thinking-about.org`). When one outcome has parts that move
-independently, the parts may nest as `** PROJ` sub-projects under it; the
-user chose this over flat projects. Date-driven items go to `Tickler.org`.
-When unsure which PROJ (or whether one applies), pick the closest fit and name
-the choice in the report.
+Placement: append standalone TODOs at the end of `todos.org`. Nest a
+project-bound TODO under its PROJ, wherever that PROJ lives, and keep a
+"Part of PROJ X" body line so it stays self-describing once refiled or
+archived. One task belongs to one project. The weekly review's stuck-projects
+list (`org-stuck-projects`) only sees TODO/WAIT children inside a PROJ's
+subtree, so a flat member makes its project look stuck. When one outcome has
+parts that move independently, the parts nest as `** PROJ` sub-projects
+under it. Date-driven items go to `Tickler.org`. When unsure which PROJ (or
+whether one applies), pick the closest fit and name the choice in the report.
+
+WAIT means waiting on someone else. A task blocked on another of the user's
+own tasks is a later step, not a WAIT: put both under a PROJ with the
+`ORDERED` property (`org-enforce-todo-dependencies` and
+`org-agenda-dim-blocked-tasks` are on).
+
+Moving an entry to `maybe.org` strips its TODO/PROJ/WAIT keyword: maybe
+items are not commitments.
 
 Thinking-about entries are items not yet clarified. Give each new one a
 `Question: ...` body line naming what would settle it ("Worth an afternoon?
