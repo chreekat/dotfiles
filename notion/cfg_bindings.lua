@@ -197,6 +197,9 @@ defbindings("WMPlex.toplevel", {
     bdoc("AutoRandR Detect", "autorandr-det"),
     kpress(META.."F5", "notioncore.exec_on(_, 'autorandr -c')"),
 
+    bdoc("Apache MPDs streamed from smilga", "dcs-mpd"),
+    kpress(META.."F4", "notioncore.exec_on(_, 'dcs-mpd')"),
+
 
 
 
@@ -214,9 +217,6 @@ defbindings("WMPlex.toplevel", {
     kpress(ALTMETA.."J", "mod_query.query_lua(_)"),
 
     -- Unused.
-    --
-    -- bdoc("Query for host to connect to with SSH.", "ssh"),
-    -- kpress(META.."F4", "mod_query.query_ssh(_, ':ssh')"),
     --
     -- bdoc("Query for file to edit.", "edit"),
     -- kpress(META.."F5",
