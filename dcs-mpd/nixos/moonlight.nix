@@ -3,6 +3,9 @@
 { pkgs, ... }:
 let
   dcs-mpd = pkgs.writeShellScriptBin "dcs-mpd" ''
+    # Compiled QML is rebuilt on every start rather than read from
+    # ~/.cache, which outlives a moonlight-qt upgrade.
+    export QML_DISABLE_DISK_CACHE=1
     exec ${pkgs.moonlight-qt}/bin/moonlight stream smilga Desktop \
       --display-mode fullscreen \
       --resolution 1920x1080 \
