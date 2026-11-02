@@ -5,14 +5,14 @@
 #     powershell -ExecutionPolicy Bypass -File install.ps1
 #
 # Steps, in order: Virtual Display Driver, its settings, the driver's device,
-# the virtual monitor's placement, Sunshine, its settings, the DCS preset.
+# the virtual monitor's placement, Sunshine, its settings, the DCS preset
+# generated from that placement.
 
 $ErrorActionPreference = 'Stop'
 $here = Split-Path -Parent $MyInvocation.MyCommand.Path
 
 $panelWidth = 1920
 $panelHeight = 1080
-$mainWidth = 3440
 
 function Say($msg) { Write-Host "dcs-mpd: $msg" }
 
@@ -130,10 +130,16 @@ if (-not $panel) {
     $screens | ForEach-Object { Say "screen $($_.DeviceName) primary=$($_.Primary) $($_.Bounds)" }
     Manual "no ${panelWidth}x${panelHeight} secondary screen; enable the virtual monitor in Virtual Driver Control (or Settings > Display) and set it to that mode"
 }
-if ($panel.Bounds.X -ne $mainWidth -or $panel.Bounds.Y -ne 0) {
-    Manual "in Settings > Display, drag the ${panelWidth}x${panelHeight} monitor to sit directly right of the main one, top edges aligned (it is at $($panel.Bounds.X),$($panel.Bounds.Y); it must be at $mainWidth,0)"
+# DCS's window starts at the main monitor's top-left corner and extends to
+# cover every monitor, so the panel must lie right of or below it, not left
+# or above.
+if ($panel.Bounds.X -lt 0 -or $panel.Bounds.Y -lt 0) {
+    Manual "in Settings > Display, move the ${panelWidth}x${panelHeight} monitor right of or below the main one (it is at $($panel.Bounds.X),$($panel.Bounds.Y))"
 }
-Say "virtual monitor at $($panel.Bounds)"
+$primary = $screens | Where-Object { $_.Primary } | Select-Object -First 1
+$windowW = ($screens | ForEach-Object { $_.Bounds.Right } | Measure-Object -Maximum).Maximum
+$windowH = ($screens | ForEach-Object { $_.Bounds.Bottom } | Measure-Object -Maximum).Maximum
+Say "virtual monitor at $($panel.Bounds); DCS window ${windowW}x${windowH}"
 
 # --- Sunshine ---------------------------------------------------------------
 
@@ -174,7 +180,14 @@ Say "Sunshine configured and restarted"
 
 $monitorSetup = "$env:USERPROFILE\Saved Games\DCS\Config\MonitorSetup"
 New-Item -ItemType Directory -Path $monitorSetup -Force | Out-Null
-Copy-Item "$here\MonitorSetup\ThinkpadMPD.lua" "$monitorSetup\ThinkpadMPD.lua" -Force
+$lua = Get-Content "$here\MonitorSetup\ThinkpadMPD.lua.template" -Raw
+$lua = $lua -replace '@MAIN_W@', $primary.Bounds.Width `
+            -replace '@MAIN_H@', $primary.Bounds.Height `
+            -replace '@PANEL_X@', $panel.Bounds.X `
+            -replace '@PANEL_Y@', $panel.Bounds.Y `
+            -replace '@WINDOW_W@', $windowW `
+            -replace '@WINDOW_H@', $windowH
+Set-Content -Path "$monitorSetup\ThinkpadMPD.lua" -Value $lua -Encoding ASCII -NoNewline
 Say "DCS preset in $monitorSetup\ThinkpadMPD.lua"
 
 Write-Host ''
@@ -182,4 +195,4 @@ Say "done. Left to do by hand, once:"
 Say "  1. https://localhost:47990 - set Sunshine's web UI username and password"
 Say "  2. on kuusi: moonlight pair smilga, then type the PIN into the web UI's PIN page"
 Say "  3. on kuusi: dcs-mpd, and drag a window onto the virtual monitor"
-Say "  4. in DCS: Options > System: resolution $($mainWidth + $panelWidth)x1440, Fullscreen unchecked, Monitors = ThinkpadMPD"
+Say "  4. in DCS: Options > System: resolution ${windowW}x${windowH}, Fullscreen unchecked, Monitors = ThinkpadMPD"
