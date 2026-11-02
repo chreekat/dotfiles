@@ -99,3 +99,10 @@ defwinprop {
     instance = "stalonetray",
     statusbar = "systray"
 }
+
+-- Moonlight's stream window; its Qt launcher window has class "Moonlight"
+-- and stays tiled.
+defwinprop {
+    class = "com.moonlight_stream.Moonlight",
+    fullscreen = true,
+}
