@@ -197,8 +197,8 @@ defbindings("WMPlex.toplevel", {
     bdoc("AutoRandR Detect", "autorandr-det"),
     kpress(META.."F5", "notioncore.exec_on(_, 'autorandr -c')"),
 
-    bdoc("Apache MPDs streamed from smilga", "dcs-mpd"),
-    kpress(META.."F4", "notioncore.exec_on(_, 'dcs-mpd')"),
+    bdoc("Apache MPDs streamed from smilga", "laptop-mpd"),
+    kpress(META.."F4", "notioncore.exec_on(_, 'laptop-mpd')"),
 
 
 

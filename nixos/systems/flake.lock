@@ -194,11 +194,11 @@
     },
     "laptop-mpd": {
       "locked": {
-        "lastModified": 1793625442,
-        "narHash": "sha256-UBS9nB6l3OpW5hYpc8praWKouJGTSkkZ6jSX0/FP8HU=",
+        "lastModified": 1793625668,
+        "narHash": "sha256-cVPGTSn2FZgTQYLVyv2UJ5VmwsLTjZmgo3l2nLIXh+M=",
         "owner": "chreekat",
         "repo": "laptop-mpd",
-        "rev": "d14f6d102068d2bf85664b42f6017d0c97ad2c5a",
+        "rev": "3ab2125dc49e93835a9b630bba5047d34341e748",
         "type": "github"
       },
       "original": {
