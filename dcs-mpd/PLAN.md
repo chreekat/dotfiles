@@ -99,9 +99,8 @@ Alternatives, and why not first:
 
 ## Milestone 1: the Thinkpad shows a Windows virtual monitor
 
-Tracer bullet. No DCS involved. Demo: a stopwatch window dragged onto the
-virtual monitor appears on the Thinkpad; a photo of both screens gives the
-glass-to-glass latency.
+Tracer bullet. No DCS involved. Demo: a window dragged onto the virtual
+monitor appears on the Thinkpad. Done.
 
 1. Windows: `windows/install.ps1`, rerun after each step it hands back.
    It installs the Virtual Display Driver package, copies
@@ -117,21 +116,19 @@ glass-to-glass latency.
 3. NixOS: `nixos/moonlight.nix`, imported by kuusi in
    `nixos/systems/flake.nix`. Adds `pkgs.moonlight-qt` and a `dcs-mpd` script
    wrapping the `moonlight stream` invocation with the host, resolution,
-   fps and bitrate baked in. Check: the demo above, plus the latency
-   number recorded here.
+   fps and bitrate baked in. Check: the demo above.
 
 ## Milestone 2: Apache MPDs on the Thinkpad
 
 Demo: in the AH-64D in a free-flight mission, both MPDs appear on the
-Thinkpad, the main view is unchanged, menus stay on the main screen, and the
-fps hit is measured.
+Thinkpad, the main view is unchanged, and menus stay on the main screen.
+Done.
 
 1. Select `ThinkpadMPD` in DCS options, with the resolution and window
    mode its header names. Check: the viewports land where expected. Done.
-2. Tune and measure: DCS fps with and without the export, Sunshine fps and
-   bitrate (MPD content is mostly static, so expect low bitrate to suffice),
-   H.264 vs HEVC decode on kuusi, and the Moonlight overlay's latency figure.
-   Numbers go in README.md.
+2. Performance is not measured until it is a problem. The visible lag
+   today is the Wi-Fi path above; revisit bitrate, codec and the DCS fps
+   cost only if lag survives wiring.
 
 ## Milestone 3: one action per side
 
