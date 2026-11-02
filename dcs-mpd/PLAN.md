@@ -136,8 +136,8 @@ Demo: on the Thinkpad, one keybinding (notion) brings up the MPDs fullscreen
 and quitting the stream returns to the desktop; on Windows, nothing beyond
 launching DCS as usual, because the virtual monitor is always present.
 
-1. notion binding and desktop entry for `dcs-mpd`; Moonlight's own
-   quit shortcut documented in README.md.
+1. notion binding (`META+F4`) and a winprop that fullscreens the stream
+   window; Moonlight's quit shortcut in README.md. Done.
 2. `install.ps1` re-applies the recorded placement of the virtual monitor.
    Disabling and re-enabling the virtual display, or a driver reinstall,
    recreates it as a new device: Windows gives it default placement and
@@ -146,7 +146,7 @@ launching DCS as usual, because the virtual monitor is always present.
    type in; pinning the placement keeps that constant.
 3. README.md "Flying" section: the full ritual, both sides, what to do when
    the stream drops mid-flight, and that any toggle of the virtual display
-   means rerunning `install.ps1`.
+   means rerunning `install.ps1`. Done.
 
 ## Milestone 4 (stretch): EUFD in the free strip
 
