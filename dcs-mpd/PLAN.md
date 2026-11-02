@@ -73,7 +73,7 @@ Chosen: virtual monitor on Windows, captured and streamed as a whole.
   borderless is mandatory (secondary). The window's origin is the primary
   display's origin and it spans the bounding box of all monitors, so the
   virtual monitor may sit anywhere right of or below the main one
-  (secondary, ~80% confident; Milestone 2 step 1 confirms). `install.ps1`
+  (verified: the generated preset put both MPDs where expected). `install.ps1`
   reads the arrangement and generates the preset and the DCS resolution
   from it, so moving the monitor means rerunning the installer, not editing
   Lua.
@@ -127,8 +127,7 @@ Thinkpad, the main view is unchanged, menus stay on the main screen, and the
 fps hit is measured.
 
 1. Select `ThinkpadMPD` in DCS options, with the resolution and window
-   mode its header names. Check: the viewports land where expected; fix `x`
-   if the window origin assumption was wrong.
+   mode its header names. Check: the viewports land where expected. Done.
 2. Tune and measure: DCS fps with and without the export, Sunshine fps and
    bitrate (MPD content is mostly static, so expect low bitrate to suffice),
    H.264 vs HEVC decode on kuusi, and the Moonlight overlay's latency figure.
