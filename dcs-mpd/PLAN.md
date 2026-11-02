@@ -17,10 +17,14 @@ relied on.
   `C:\Program Files (x86)\Steam\steamapps\common\DCSWorld`, 2.9.30 MT;
   user files in `C:\Users\b\Saved Games\DCS` (verified, `dcs.log`).
 - 2D only. No VR.
-- Network: both machines on Tailscale; `tailscale status` on smilga shows
-  kuusi as `direct` over the LAN (verified). Moonlight connects to `smilga`
-  by its Tailscale name. A `relay` entry would mean the latency budget is
-  blown and the LAN route needs fixing first.
+- Network: both machines on Tailscale, `direct` over the LAN (verified), and
+  Moonlight connects to `smilga` by its Tailscale name. Both ends are on
+  Wi-Fi: kuusi's Ethernet port is dock-only, smilga's Wi-Fi 6 card links
+  at 108 Mbps. Measured over that path, `tailscale ping` is 59 ms, kuusi's
+  hop to the router alone averages 13 ms with 5% packet loss, and the
+  1080p60 20 Mbps stream loses 43% of its frames. Wiring smilga, and kuusi
+  through its dock or a USB-C adapter, is the fix; a lower bitrate and
+  frame rate is the interim.
 - Multiplayer on integrity-checked servers is the end goal. Intermediate
   steps may break the integrity check; the finished setup must not.
   Milestones 1-3 are integrity-clean by construction: the MPD viewports are
