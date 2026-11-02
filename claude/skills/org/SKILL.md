@@ -25,6 +25,7 @@ directory.
 | `todos.org` | Main flat list of standalone `* TODO` entries. Default destination for new actionable items. |
 | `projects.org` | `* PROJ` trees, some with nested `** TODO` children. |
 | `Tickler.org` | Date-driven items: SCHEDULED/DEADLINE, often with repeaters. |
+| `areas.org` | Areas of focus: standards kept up, never done. No TODOs; scanned in the weekly review for areas that need a project. |
 | `maybe.org` | Someday/maybe. |
 | `thinking-about.org` | Open questions and musings, not tasks. |
 | `reference.org`, `books-to-read.org` | What they say. |
@@ -67,11 +68,20 @@ Heading shape:
   entries stay self-contained when refiled.
 - SCHEDULED/DEADLINE use active `<...>` timestamps and go on the line directly
   under the heading; repeaters like `++1m` are common in Tickler.org.
+- SCHEDULED is the user's hot list ("I mean to work on this soon"), not an
+  appointment; DEADLINE is the hard landscape. Overdue SCHEDULED items are
+  either stale intentions (re-pick a date this week, or unschedule) or
+  tickler items that came due (do them, or give a real date).
+- Size tags (`small`/`medium`/`large`) feed the "what fits the time I have"
+  filter. Add one when the size is obvious, `large` above all; never
+  retrofit the whole list.
 
 Placement: append new TODOs at the end of `todos.org`, project-bound ones
 included -- name the PROJ in the body instead of nesting under it (how tasks
 attach to projects is open: "Link tasks to projects by ID instead of
-nesting?" in `thinking-about.org`). Date-driven items go to `Tickler.org`.
+nesting?" in `thinking-about.org`). When one outcome has parts that move
+independently, the parts may nest as `** PROJ` sub-projects under it; the
+user chose this over flat projects. Date-driven items go to `Tickler.org`.
 When unsure which PROJ (or whether one applies), pick the closest fit and name
 the choice in the report.
 
@@ -84,6 +94,11 @@ Splitting: when an entry's work gets split organically (part done, part
 deferred), scope the existing entry DOWN to what got finished -- retitle it
 to match -- and close it. Capture the rest as a new entry that names the
 one it was split from.
+
+Duplicates: keep the older entry (by `Created on`) and mark the newer OBE
+with a note naming the one it duplicates. Copy any extra data (checklists,
+links, status) into the kept entry first. Exception: if the older one is a
+husk and the newer holds the history, keep the newer and say so.
 
 ## Tasks vs projects
 
@@ -158,6 +173,22 @@ Pick the mechanism by the kind of change:
   `- State ...` line is written. Known wrinkle: in a batch test the
   `CLOSED:` planning line was NOT added on DONE even though the logbook
   line was; verify (and add it manually if needed) when closing entries.
+
+  More wrinkles:
+  - `org-edit-headline` replaces only the title after the priority cookie;
+    passing "[#B] Title" yields `[#B] [#B] Title`.
+  - When computing a refile target in the same buffer as the entry, wrap the
+    lookup in `save-excursion`, or point leaves the entry and org refuses
+    ("Cannot refile to position inside the tree").
+  - `org-schedule` keeps an existing repeater. Moving a `++1m` item shifts
+    every later occurrence too (Nov 1 -> Nov 5 makes the next one Dec 5);
+    say so when rescheduling one.
+  - Diary sexps (`<%%(diary-float t 4 1)>`, "first Thursday") show on the
+    agenda but never carry over as overdue and never repeat on DONE: fine
+    for a calendar slot, wrong for a recurring TODO.
+  - Scope any text replacement to the entries it is meant for; a
+    file-wide replace also rewrites logbook notes that quote the same
+    words.
 
 For applying, prefer the user's live Emacs session when its server is up
 (init.el runs `server-start`; probe with `emacsclient -e t`): run the same
