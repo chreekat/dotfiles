@@ -219,8 +219,7 @@ so buffer modifications don't interfere with the iteration."
      "/home/b/Syncthing/PhoneFiles/org/agenda.org"
      "/home/b/Syncthing/PhoneFiles/org/projects.org"
      "/home/b/Syncthing/PhoneFiles/org/reference.org"
-     "/home/b/Syncthing/PhoneFiles/org/todos.org"
-     "/home/b/Syncthing/PhoneFiles/org/Projects/Haskell_Certification_Deployment.org"))
+     "/home/b/Syncthing/PhoneFiles/org/todos.org"))
  '(org-agenda-show-future-repeats nil)
  '(org-agenda-skip-deadline-if-done t)
  '(org-agenda-skip-scheduled-if-done t)
