@@ -35,6 +35,8 @@
     hat.url = "github:chreekat/hat";
     "4h".url = "github:chreekat/4h";
     ghcid.url = "github:chreekat/ghcid";
+    # The Apache MPD stream for kuusi; see its README.
+    laptop-mpd.url = "github:chreekat/laptop-mpd";
   };
 
   outputs = inputs@{ self, nixpkgs, nixpkgs-kuusi, nixpkgs-puny, disko, agenix, ... }:  {
@@ -57,7 +59,7 @@
         ../mods/suspend-retry.nix
         ../mods/user-b.nix
         ../system-common.nix
-        ../../dcs-mpd/nixos/moonlight.nix
+        inputs.laptop-mpd.nixosModules.default
         ./kuusi/configuration.nix
       ];
     };

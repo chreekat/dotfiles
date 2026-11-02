@@ -192,6 +192,21 @@
         "type": "github"
       }
     },
+    "laptop-mpd": {
+      "locked": {
+        "lastModified": 1793625442,
+        "narHash": "sha256-UBS9nB6l3OpW5hYpc8praWKouJGTSkkZ6jSX0/FP8HU=",
+        "owner": "chreekat",
+        "repo": "laptop-mpd",
+        "rev": "d14f6d102068d2bf85664b42f6017d0c97ad2c5a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "chreekat",
+        "repo": "laptop-mpd",
+        "type": "github"
+      }
+    },
     "losh-t": {
       "flake": false,
       "locked": {
@@ -345,6 +360,7 @@
         "disko": "disko",
         "ghcid": "ghcid",
         "hat": "hat",
+        "laptop-mpd": "laptop-mpd",
         "losh-t": "losh-t",
         "nixpkgs": "nixpkgs_4",
         "nixpkgs-kuusi": "nixpkgs-kuusi",
