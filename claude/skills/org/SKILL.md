@@ -94,6 +94,12 @@ own tasks is a later step, not a WAIT: put both under a PROJ with the
 Moving an entry to `maybe.org` strips its TODO/PROJ/WAIT keyword: maybe
 items are not commitments.
 
+A PROJ that turns out to be a standard kept up, never done, becomes an
+area: add it to `areas.org`, close the PROJ as OBE with the note "Became
+the area X (areas.org); its tasks stand alone", and archive it. Its open
+TODOs stand alone with an "Area: X (areas.org)." body line; its
+sub-PROJs become top-level PROJs.
+
 Thinking-about entries are items not yet clarified. Give each new one a
 `Question: ...` body line naming what would settle it ("Worth an afternoon?
 Need last year's fees."). Draft one from the context and name it in the
@@ -140,7 +146,8 @@ without telling anyone. `Tickler.org` needs a real date to resurface on.
    `org/`. If org files are already dirty, offer to commit that pre-existing
    state first as its own commit (subject like `Org updates through
    2026-09-09`) so the user's untracked hand-edits aren't tangled with yours.
-   Never mix the two in one commit.
+   Never mix the two in one commit. Repeat the check before every batch,
+   not once per session: the user edits and saves between your turns.
 2. **Apply.** Make the edit per Edit mechanics below. No approval round:
    the commit is the review.
 3. **Commit.** First re-run `git diff` on the files about to be staged and
@@ -198,6 +205,18 @@ Pick the mechanism by the kind of change:
   - Scope any text replacement to the entries it is meant for; a
     file-wide replace also rewrites logbook notes that quote the same
     words.
+  - `(org-align-tags t)` realigns every heading in the file. Call
+    `(org-align-tags)` on each heading you touched instead.
+  - A heading lookup must allow a priority cookie between keyword and
+    title (`* PROJ [#A] Title`), or it misses those entries.
+  - To move all children out of a parent, collect markers first
+    (`org-map-entries` over the parent's subtree), then refile or promote
+    each one. A "find the next child" loop stops early.
+  - Moving a parent to DONE/OBE while it has open children is blocked
+    (`org-enforce-todo-dependencies`): org only logs "blocked" and opens
+    no `*Org Note*` buffer. Move or close the children first.
+  - To refile to a file's top level, pass `(list FILE PATH nil nil)`. An
+    empty heading name with a position matches the file's first heading.
 
 For applying, prefer the user's live Emacs session when its server is up
 (init.el runs `server-start`; probe with `emacsclient -e t`): run the same
