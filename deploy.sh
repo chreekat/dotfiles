@@ -95,6 +95,7 @@ DOTS=(
     claude/CLAUDE.md
     claude/architecture-defaults.md
     claude/benchmarking.md
+    claude/commands
     claude/haskell-exceptions.md
     claude/haskell-space-leaks.md
     claude/haskell.md
