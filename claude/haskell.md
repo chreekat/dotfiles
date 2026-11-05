@@ -17,11 +17,15 @@ Baseline rules for any Haskell work. These extend the rules in
   `cabal test`. Avoid the habit of calling built binaries directly and running
   stale artifacts.
 - An `errors.err` file in the project root means a ghcid/bhcid watcher is
-  live: after editing, read `errors.err` instead of running `cabal build`;
-  non-empty means the tree doesn't compile. Reloads are near-instant, so a
-  plain read usually suffices; to be certain the contents postdate your edit,
-  sync on the rewrite (`inotifywait -q -t 2 -e close_write errors.err`), never
-  a sleep.
+  live: after editing, read `errors.err` instead of running `cabal build`.
+  Its first line is a header, `ghcid: generation=N state=S started=T`; any
+  line after it means the tree doesn't compile (`state=failed` means the
+  startup command itself failed, and its output follows). The contents
+  postdate your edit once `state` is not `loading` and `started` is later
+  than the edit -- `T` sorts against `date -u +%Y%m%dT%H%M%S.%NZ` taken before
+  editing. Loop on `inotifywait -q -t 2 -e close_write errors.err` until the
+  header says so, never a sleep. (A ghcid without the header: non-empty means
+  broken, and the next rewrite is the best sync available.)
 - For exception handling and structured concurrency (synchronous vs
   asynchronous exceptions, bracket/withAsync for lifetimes, link vs race for
   supervision, the ExitCode footgun), follow

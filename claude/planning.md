@@ -3,6 +3,11 @@
 How to shape a plan before work starts. These extend the rules in
 [CLAUDE.md](CLAUDE.md).
 
+- A plan or tech proposal covers: context and problem statement; goals and
+  non-goals; proposed design; alternatives considered, if any; cross-cutting
+  concerns (rollout, migrations, privacy, cost, observability), if any. A goal
+  states the outcome, never the problem. A repository's plan template sets the
+  layout; these are the contents it must still carry.
 - A plan should be broken down into committable steps. A rule of thumb seems to be
   that a single step takes 1-8 commits.
 - For prompts requiring larger plans -- say, more than 5 steps -- it should

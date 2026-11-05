@@ -69,6 +69,10 @@
     "type": "command",
     "command": "bash ~/.claude/statusline-command.sh"
   },
+  "enabledPlugins": {
+    "workstation@centralapp-skills": false,
+    "cc-plugin-you-should-know@builtin": true
+  },
   "extraKnownMarketplaces": {
     "thedotmack": {
       "source": {
@@ -93,8 +97,5 @@
   "switchModelsOnFlag": false,
   "agentPushNotifEnabled": true,
   "skipAutoPermissionPrompt": true,
-  "voiceEnabled": true,
-  "enabledPlugins": {
-    "workstation@centralapp-skills": true
-  }
+  "voiceEnabled": true
 }
