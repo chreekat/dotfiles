@@ -1,0 +1,29 @@
+[global]
+    # Named output, not an index: eDP is the sole screen in the laptop
+    # profile and the secondary in muonio, so one setting serves both.
+    monitor = eDP
+    follow = none
+    origin = top-right
+    offset = (10, 10)
+    width = (300, 450)
+    font = Sans 10
+    frame_width = 1
+    corner_radius = 4
+
+[urgency_low]
+    background = "#262626"
+    foreground = "#aaaaaa"
+    frame_color = "#444444"
+    timeout = 5
+
+[urgency_normal]
+    background = "#262626"
+    foreground = "#eeeeee"
+    frame_color = "#888888"
+    timeout = 10
+
+[urgency_critical]
+    background = "#5f0000"
+    foreground = "#ffffff"
+    frame_color = "#ff5555"
+    timeout = 0

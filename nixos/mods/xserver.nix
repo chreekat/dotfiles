@@ -17,7 +17,7 @@ in
       flameshot
       ghostty
       keynav
-      notify-osd
+      dunst
       pavucontrol
       xclip
       xev

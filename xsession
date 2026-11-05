@@ -16,7 +16,7 @@ configure_X () {
 run_initial_apps () {
     # These are services! :o Add them as local services!)
 
-    notify-osd&
+    dunst&
     wmsystemtray&
     sleep 0.5
 

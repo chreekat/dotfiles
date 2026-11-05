@@ -109,6 +109,7 @@ DOTS=(
     config/Yubico/u2f_keys
     config/astroid
     config/ctags
+    config/dunst
     config/ghostty
     config/git/allowed-signers
     config/git/config
