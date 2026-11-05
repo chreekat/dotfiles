@@ -45,6 +45,7 @@
       specialArgs = { inherit inputs; };
       modules = [
         agenix.nixosModules.default
+        ../mods/common.nix
         ../mods/amdgpu.nix
         ../mods/beyboard.nix
         ../mods/centralapp.nix
@@ -69,6 +70,7 @@
     nixosConfigurations.puny = nixpkgs-puny.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
+        ../mods/common.nix
         ../mods/igtest.nix
         ../mods/irc-bouncer.nix
         ../mods/nix-hygiene.nix
@@ -87,6 +89,7 @@
       modules = [
         disko.nixosModules.disko
         agenix.nixosModules.default
+        ../mods/common.nix
         ../mods/matrix-server.nix
         ../mods/nix-hygiene.nix
         ../mods/server-ssh.nix
