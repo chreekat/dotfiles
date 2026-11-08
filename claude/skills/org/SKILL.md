@@ -217,6 +217,20 @@ Pick the mechanism by the kind of change:
     no `*Org Note*` buffer. Move or close the children first.
   - To refile to a file's top level, pass `(list FILE PATH nil nil)`. An
     empty heading name with a position matches the file's first heading.
+  - Use `(org-back-to-heading t)`. Without the `t` it skips folded
+    headings and lands on the nearest visible ancestor, so a later
+    refile, cut or state change hits the whole parent section.
+  - In the live session the user's buffer may have an active region, and
+    `org-todo`, `org-refile` and friends then act on every heading in it.
+    Call `(deactivate-mark)` and bind
+    `org-loop-over-headlines-in-active-region` to nil around the edits,
+    or apply with `emacs --batch`, which has no region.
+  - Deferred logbook notes (refile, state change) are written by
+    `post-command-hook`; run it after `org-refile` as well as `org-todo`,
+    or the note lands later in the user's session as a stray change.
+  - To give an OBE/WAIT its required note non-interactively: after
+    `org-todo` and `post-command-hook`, insert the text into the
+    `*Org Note*` buffer and call `org-store-log-note` there.
 
 For applying, prefer the user's live Emacs session when its server is up
 (init.el runs `server-start`; probe with `emacsclient -e t`): run the same
