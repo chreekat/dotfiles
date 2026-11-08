@@ -2,9 +2,9 @@
 # shellcheck disable=SC2190
 old=(
     "puny"
-    /nix/store/r9182fh2z6svgq9ghbad7w7pn14gm3n5-nixos-system-puny-26.05.20261102.7dcdd87
+    /nix/store/j3n6grihj6h1f2708m11lwr9w825j76x-nixos-system-puny-26.05.20261105.c56a87d
     "honk"
-    /nix/store/n75nkkdmlccxp0k2kgmrvnf1f4sf5h63-nixos-system-honk-26.05.20261102.7dcdd87
+    /nix/store/wibvajvq8sq3n54iliv0jj1l4b2y32dd-nixos-system-honk-26.05.20261105.c56a87d
     "kuusi"
     /nix/store/vhyi09z8rzm4xgbaqizdp0yzsaknkf7w-nixos-system-kuusi-26.05.20260823.a3b9886
 )
