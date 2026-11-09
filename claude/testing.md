@@ -35,3 +35,19 @@ How tests earn their keep. These extend the rules in [CLAUDE.md](CLAUDE.md).
   - Yet another reason for a pure core with a light wiring at the very top
     level. Wiring gets the integration test -- everything else is focused unit
     test.
+- Capping a test's inputs (size, case count, concurrency) to make it faster is
+  usually a smell: find out whose work is slow first. Make quadratic test
+  construction linear, fix a production quadratic in production, and keep the
+  full-size test as the proof.
+- Judge a suite by orthogonality, library seams, few and light integration
+  tests, and Arbitrary/shrink quality. When a behavior is reachable only
+  through an integration test, the missing seam is the finding: add the seam
+  and move the test down.
+- Pin complexity with an allocation bound ("under 32 MB for a 32 KB line"),
+  not wall-clock time; it holds under any load.
+- Synchronize on exactly what the assertion reads (the notice on screen, the
+  trap installed), not on a nearby proxy flag that can land first.
+- A generator's cost should be linear in QuickCheck's size, so a slow
+  property's time is the code's, measurable per case.
+- Measure the runner apart from the suite: `cabal test` spent 3.5s
+  re-checking an up-to-date suite before the first test ran.

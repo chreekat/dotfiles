@@ -129,6 +129,10 @@ in the current conversation.
 - Run tests before declaring a task complete.
 - Prefer understanding existing patterns over inventing new ones. Do not reinvent the wheel.
 - Avoid boolean blindness: use descriptive domain types.
+- Don't use async exceptions as control flow. `mask` only defers them to the
+  next interruptible point, and any blocking operation (a contended
+  `takeMVar`) is one, so work in flight there is lost. Signal through STM
+  and observe the signal at a point where nothing is in flight.
 
 ## Database rules:
 - Use singular table names (e.g. `instagram_token`, not `instagram_tokens`).
