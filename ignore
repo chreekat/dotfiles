@@ -23,3 +23,5 @@ errors.err
 dist-newstyle
 *~
 .claude
+.claude/settings.local.json
+.claude/worktrees/
