@@ -129,10 +129,12 @@ in the current conversation.
 - Run tests before declaring a task complete.
 - Prefer understanding existing patterns over inventing new ones. Do not reinvent the wheel.
 - Avoid boolean blindness: use descriptive domain types.
-- Don't use async exceptions as control flow. `mask` only defers them to the
-  next interruptible point, and any blocking operation (a contended
-  `takeMVar`) is one, so work in flight there is lost. Signal through STM
-  and observe the signal at a point where nothing is in flight.
+- Async exceptions (`cancel`, `timeout`, `race`) are for abandoning work,
+  and only work that is safe to abandon at any blocking point: its resources
+  bracketed, its effects transactional or retried. To ask a thread to finish
+  what it holds and stop, signal through STM and observe the signal between
+  units of work. `mask` doesn't protect work in flight: it only defers the
+  exception to the next blocking call (a contended `takeMVar`).
 
 ## Database rules:
 - Use singular table names (e.g. `instagram_token`, not `instagram_tokens`).
