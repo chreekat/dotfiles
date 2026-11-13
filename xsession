@@ -24,7 +24,6 @@ run_initial_apps () {
     nm-applet&
     flameshot &
     cbatticon &
-    wmCalClock &
     keynav # Backgrounds itself
 
     notion
