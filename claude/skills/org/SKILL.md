@@ -167,13 +167,11 @@ If the user wants something changed afterwards, make it a follow-up commit.
 
 Pick the mechanism by the kind of change:
 
-- **New entries** (captures): run the user's Todo capture template (`"t"`
-  in `org-capture-templates`, bound to F2) headlessly, then refile the entry
-  from `todos.org` to its home. Copy the template under a temporary key,
-  with `* TODO %?` replaced by the full heading (keyword, cookie, title,
-  tags), `"\n%i\n"` appended, and `:immediate-finish t`, and bind
-  `org-capture-initial` to the body, which `%i` inserts verbatim. A `%` in
-  the heading comes out mangled, so refuse one.
+- **New entries** (captures): `(org-capture-todo-entry HEADING BODY)` from
+  init.el runs the user's Todo capture template (the one F2 opens) without
+  a capture buffer and returns a marker at the new entry in `todos.org`;
+  refile from there to its home. HEADING is everything after the stars,
+  e.g. `"TODO [#C] Title :@haskell_foundation:small:"`.
 - Never write an org file with the Edit/Write tools or a shell redirect,
   additions included: it bypasses the user's buffers. See below.
 - **Mutations of existing entries** (todo state, tags, priority, scheduling):
@@ -273,3 +271,6 @@ resulting text, not Emacs internals.
   asks "reread from disk?" in the user's frame, and emacsclient hangs on
   it; answering yes throws away their unsaved edits. Hence the guard
   above, and the `timeout`.
+- Never `load-file` init.el in the live session: it re-runs
+  `server-start`, which prompts in the user's frame. To pick up a changed
+  function, `read` and `eval` just its `defun` from the file.
