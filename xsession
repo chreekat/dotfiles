@@ -17,7 +17,8 @@ run_initial_apps () {
     # These are services! :o Add them as local services!)
 
     dunst&
-    wmsystemtray&
+    # Icons sized for notion's 20px statusbar, which swallows the tray.
+    stalonetray -i 18 -p --grow-gravity E &
     sleep 0.5
 
     nm-applet&

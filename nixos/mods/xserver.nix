@@ -28,6 +28,7 @@ in
       #slop # Used by screenkey to select a region
       vokoscreen-ng # gif casts
     # Xorg tray
+      stalonetray
       cbatticon
       networkmanagerapplet
   ];
