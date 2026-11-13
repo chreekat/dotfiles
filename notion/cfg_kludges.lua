@@ -106,3 +106,29 @@ defwinprop {
     class = "com.moonlight_stream.Moonlight",
     fullscreen = true,
 }
+
+local function is_empty(grp)
+    local empty = true
+    grp:managed_i(function() empty = false return false end)
+    return empty
+end
+
+-- No client-window group outlives its last member.
+local function close_empty_groupcws()
+    local empty = {}
+    ioncore.region_i(function(grp)
+        if is_empty(grp) then
+            table.insert(empty, grp)
+        end
+        return true
+    end, "WGroupCW")
+    -- Outside region_i: it runs its callback in restricted mode, where
+    -- rqclose is refused.
+    for _, grp in ipairs(empty) do
+        grp:rqclose(false)
+    end
+end
+
+ioncore.get_hook("clientwin_unmapped_hook"):add(function()
+    ioncore.defer(close_empty_groupcws)
+end)
