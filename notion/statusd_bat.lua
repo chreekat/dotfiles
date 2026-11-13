@@ -8,10 +8,17 @@ local settings = table.join(statusd.get_config("bat"), defaults)
 local bat_timer
 
 local function update_bat()
-    statusd.popen_bgread(os.getenv("HOME") .. "/.tmux/bat.sh", function(str)
-        statusd.inform("bat", (string.gsub(str, "%s+$", "")))
+    -- Fed one chunk per resume, then nil at end of output.
+    statusd.popen_bgread(os.getenv("HOME") .. "/.tmux/bat.sh",
+                         coroutine.wrap(function(chunk)
+        local out = ""
+        while chunk do
+            out = out .. chunk
+            chunk = coroutine.yield()
+        end
+        statusd.inform("bat", (string.gsub(out, "%s+$", "")))
         bat_timer:set(settings.update_interval, update_bat)
-    end)
+    end))
 end
 
 bat_timer = statusd.create_timer()
