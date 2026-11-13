@@ -88,6 +88,33 @@ so buffer modifications don't interfere with the iteration."
           (goto-char marker)
           (org-id-get-create))))))
 
+(defun org-capture-todo-entry (heading body)
+  "Capture an entry through the Todo template without opening a capture buffer.
+HEADING is the headline after the stars (keyword, priority, title, tags);
+BODY goes under the logbook drawer verbatim. Returns a marker at the entry."
+  (interactive "sHeading: \nsBody: ")
+  (let* ((tpl (assoc "t" org-capture-templates))
+         (placeholder "ORG-CAPTURE-TODO-ENTRY-HEADING")
+         (org-capture-initial body)
+         (org-capture-bookmark nil)
+         (org-capture-templates
+          (list (append (list "x" (nth 1 tpl) (nth 2 tpl) (nth 3 tpl)
+                              (concat (replace-regexp-in-string
+                                       "TODO %\\?" placeholder (nth 4 tpl) t t)
+                                      (if (string-empty-p body) "" "\n%i\n")))
+                        '(:immediate-finish t)))))
+    (org-capture nil "x")
+    (let ((entry (copy-marker org-capture-last-stored-marker)))
+      (with-current-buffer (marker-buffer entry)
+        (save-excursion
+          (goto-char entry)
+          ;; The template fills in %-escapes, so the heading goes in after.
+          (search-forward placeholder (line-end-position))
+          (replace-match heading t t)
+          (org-align-tags))
+        (save-buffer))
+      entry)))
+
 (defun org-auto-id-on-proj ()
   "Auto-assign an ID if a heading becomes a PROJ."
   (when (and (string= (org-get-todo-state) "PROJ")
