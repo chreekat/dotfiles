@@ -51,9 +51,9 @@ Heading shape:
 
 - Priorities `[#A] [#B] [#C]`; no cookie means C (the default). Match the
   urgency the user expresses; omit rather than invent.
-- New captures get the `- Created on [timestamp]` logbook line (this mirrors
-  the user's capture templates). Generate the timestamp with
-  `date +'[%Y-%m-%d %a %H:%M]'` — never write one from memory.
+- New captures get the `- Created on [timestamp]` logbook line, written by
+  the user's Todo capture template (`%U`); see Edit mechanics. Never type a
+  timestamp.
 - All logging goes into `:LOGBOOK:` drawers (state changes, reschedules,
   refiles). When closing an item, add `CLOSED: [timestamp]` under the heading
   and a `- State "DONE" from "TODO" [timestamp]` logbook line.
@@ -167,8 +167,15 @@ If the user wants something changed afterwards, make it a follow-up commit.
 
 Pick the mechanism by the kind of change:
 
-- **New entries** (captures): plain text via the Edit tool, following the
-  entry conventions above — this mirrors what org-capture itself produces.
+- **New entries** (captures): run the user's Todo capture template (`"t"`
+  in `org-capture-templates`, bound to F2) headlessly, then refile the entry
+  from `todos.org` to its home. Copy the template under a temporary key,
+  with `* TODO %?` replaced by the full heading (keyword, cookie, title,
+  tags), `"\n%i\n"` appended, and `:immediate-finish t`, and bind
+  `org-capture-initial` to the body, which `%i` inserts verbatim. A `%` in
+  the heading comes out mangled, so refuse one.
+- Never write an org file with the Edit/Write tools or a shell redirect,
+  additions included: it bypasses the user's buffers. See below.
 - **Mutations of existing entries** (todo state, tags, priority, scheduling):
   drive org-mode itself in batch Emacs, so logging, drawers, and tag
   alignment come from the user's real config instead of imitation:
@@ -232,15 +239,17 @@ Pick the mechanism by the kind of change:
     `org-todo` and `post-command-hook`, insert the text into the
     `*Org Note*` buffer and call `org-store-log-note` there.
 
-For applying, prefer the user's live Emacs session when its server is up
-(init.el runs `server-start`; probe with `emacsclient -e t`): run the same
-elisp via `emacsclient -e '(progn ...)'`. Editing live buffers removes any
-disk-vs-buffer divergence — but first check
-`(buffer-modified-p (get-file-buffer "<path>"))` and STOP if non-nil, since
-`save-buffer` would silently save the user's half-finished edits along with
-yours. If the server is down, apply with `emacs --batch` instead (the user
-has `global-auto-revert-mode`, so their unmodified buffers pick up the
-change).
+Apply every write, additions included, in the user's live Emacs session
+(init.el runs `server-start`; probe with `emacsclient -e t`): run the
+elisp via `timeout 30 emacsclient -e '...'`, so nothing on disk can drift
+from what the user's buffers hold. Guard before anything visits a file:
+for each file the elisp will touch (refile targets too), look it up with
+`get-file-buffer`, which never prompts. If it has unsaved changes, STOP and
+ask the user to save; `save-buffer` would otherwise save their
+half-finished edits along with yours. If the file on disk is newer,
+`(revert-buffer t t t)` it first. Only if the server is down, apply with
+`emacs --batch` (the user has `global-auto-revert-mode`, so their
+unmodified buffers pick up the change).
 
 Boundary, per user preference: mutations go through org-mode itself, never
 hand edits imitating what org would write. When inline elisp gets awkward,
@@ -260,3 +269,7 @@ resulting text, not Emacs internals.
   say they have unsaved changes in a file, don't edit it; wait.
 - Read the real current text immediately before editing (Syncthing
   and phone capture mean files change between sessions).
+- `find-file-noselect` on a file whose buffer is out of sync with disk
+  asks "reread from disk?" in the user's frame, and emacsclient hangs on
+  it; answering yes throws away their unsaved edits. Hence the guard
+  above, and the `timeout`.
